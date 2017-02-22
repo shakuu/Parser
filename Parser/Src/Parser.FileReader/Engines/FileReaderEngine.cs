@@ -9,6 +9,8 @@ namespace Parser.FileReader.Engines
 {
     public class FileReaderEngine : IFileReaderEngine
     {
+        private const string TestingFilePath = @"C:\Users\colley\OneDrive\swtor-parser\sample-logs\CombatLogs\combat_2017-02-21_21_05_53_596881.txt";
+
         private readonly ICommandParsingStrategy commandParsingStrategy;
 
         private bool isRunning = false;
@@ -20,19 +22,20 @@ namespace Parser.FileReader.Engines
             this.commandParsingStrategy = commandParsingStrategy;
         }
 
-        public void Start()
+        public void Start(string logFilePath)
         {
+            Guard.WhenArgument(logFilePath, "Invalid log file path.").IsNullOrEmpty().Throw();
+
             this.isRunning = true;
 
             var autoResetEvent = new AutoResetEvent(false);
             var fileStreamWatcher = new FileSystemWatcher(".");
-
-            // TODO: File picker
-            fileStreamWatcher.Filter = @"C:\Users\colley\OneDrive\swtor-parser\sample-logs\CombatLogs\combat_2017-02-21_21_05_53_596881.txt";
+            
+            fileStreamWatcher.Filter = logFilePath;
             fileStreamWatcher.EnableRaisingEvents = true;
             fileStreamWatcher.Changed += (s, e) => autoResetEvent.Set();
 
-            using (var fs = new FileStream(@"C:\Users\colley\OneDrive\swtor-parser\sample-logs\CombatLogs\combat_2017-02-21_21_05_53_596881.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (var fs = new FileStream(logFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 using (var sr = new StreamReader(fs))
                 {

@@ -2,7 +2,7 @@
 {
     public interface IFileReaderEngine
     {
-        void Start();
+        void Start(string logFilePath);
 
         void Stop();
     }
