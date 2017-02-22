@@ -54,6 +54,7 @@
     <Compile Include="Contracts\ICommandParsingStrategy.cs" />
     <Compile Include="Contracts\IFileReaderEngine.cs" />
     <Compile Include="Engines\FileReaderEngine.cs" />
+    <Compile Include="Factories\ICommandFactory.cs" />
     <Compile Include="Models\Command.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strategies\CommandParsingStrategy.cs" />
