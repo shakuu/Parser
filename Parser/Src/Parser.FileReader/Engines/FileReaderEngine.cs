@@ -4,6 +4,7 @@ using System.Threading;
 using Bytes2you.Validation;
 
 using Parser.FileReader.Contracts;
+using Parser.FileReader.Factories;
 
 namespace Parser.FileReader.Engines
 {
@@ -11,16 +12,20 @@ namespace Parser.FileReader.Engines
     {
         private readonly ICommandParsingStrategy commandParsingStrategy;
         private readonly ICommandUtilizationStrategy commandUtilizationStrategy;
+        private readonly IFileReaderAutoResetEventFactory fileReaderAutoResetEventFactory;
+
 
         private bool isRunning = false;
 
-        public FileReaderEngine(ICommandParsingStrategy commandParsingStrategy, ICommandUtilizationStrategy commandUtilizationStrategy)
+        public FileReaderEngine(ICommandParsingStrategy commandParsingStrategy, ICommandUtilizationStrategy commandUtilizationStrategy, IFileReaderAutoResetEventFactory fileReaderAutoResetEventFactory)
         {
             Guard.WhenArgument(commandParsingStrategy, nameof(ICommandParsingStrategy)).IsNull().Throw();
             Guard.WhenArgument(commandUtilizationStrategy, nameof(ICommandUtilizationStrategy)).IsNull().Throw();
+            Guard.WhenArgument(fileReaderAutoResetEventFactory, nameof(IFileReaderAutoResetEventFactory)).IsNull().Throw();
 
             this.commandParsingStrategy = commandParsingStrategy;
             this.commandUtilizationStrategy = commandUtilizationStrategy;
+            this.fileReaderAutoResetEventFactory = fileReaderAutoResetEventFactory;
         }
 
         public void Start(string logFilePath)
@@ -29,7 +34,7 @@ namespace Parser.FileReader.Engines
 
             this.isRunning = true;
 
-            var autoResetEvent = new AutoResetEvent(false);
+            var autoResetEvent = this.fileReaderAutoResetEventFactory.CreateFileReaderAutoResetEvent(false);
             var fileSystemWatcher = new FileSystemWatcher(".");
 
             fileSystemWatcher.Filter = logFilePath;
