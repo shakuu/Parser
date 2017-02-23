@@ -8,7 +8,7 @@ namespace Parser.ConsoleClient.FileReaderImplementations
     {
         public void UtilizeCommand(ICommand command)
         {
-            Console.WriteLine(command.AbilityActivatorName);
+            throw new NotImplementedException();
         }
     }
 }
