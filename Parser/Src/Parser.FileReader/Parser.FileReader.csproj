@@ -59,6 +59,7 @@
     <Compile Include="Engines\FileReaderEngine.cs" />
     <Compile Include="Factories\ICommandFactory.cs" />
     <Compile Include="Factories\IFileReaderAutoResetEventFactory.cs" />
+    <Compile Include="Factories\IFileReaderFileSystemWatcherFactory.cs" />
     <Compile Include="FileSystemProviders\FileReaderAutoResetEvent.cs" />
     <Compile Include="FileSystemProviders\FileReaderFileSystemWatcher.cs" />
     <Compile Include="Models\Command.cs" />

@@ -5,7 +5,5 @@ namespace Parser.FileReader.Factories
     public interface ICommandFactory
     {
         ICommand CreateCommand();
-
-        //ICommand CreateCommand(DateTime timeStamp, string abilityActivatorName, string abilityTargetName, string abilityName, string effectName, decimal effectAmount, decimal effectEffectiveAmount);
     }
 }

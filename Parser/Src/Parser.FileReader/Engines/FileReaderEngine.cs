@@ -13,19 +13,21 @@ namespace Parser.FileReader.Engines
         private readonly ICommandParsingStrategy commandParsingStrategy;
         private readonly ICommandUtilizationStrategy commandUtilizationStrategy;
         private readonly IFileReaderAutoResetEventFactory fileReaderAutoResetEventFactory;
-
+        private readonly IFileReaderFileSystemWatcherFactory fileReaderFileSystemWatcherFactory;
 
         private bool isRunning = false;
 
-        public FileReaderEngine(ICommandParsingStrategy commandParsingStrategy, ICommandUtilizationStrategy commandUtilizationStrategy, IFileReaderAutoResetEventFactory fileReaderAutoResetEventFactory)
+        public FileReaderEngine(ICommandParsingStrategy commandParsingStrategy, ICommandUtilizationStrategy commandUtilizationStrategy, IFileReaderAutoResetEventFactory fileReaderAutoResetEventFactory, IFileReaderFileSystemWatcherFactory fileReaderFileSystemWatcherFactory)
         {
             Guard.WhenArgument(commandParsingStrategy, nameof(ICommandParsingStrategy)).IsNull().Throw();
             Guard.WhenArgument(commandUtilizationStrategy, nameof(ICommandUtilizationStrategy)).IsNull().Throw();
             Guard.WhenArgument(fileReaderAutoResetEventFactory, nameof(IFileReaderAutoResetEventFactory)).IsNull().Throw();
+            Guard.WhenArgument(fileReaderFileSystemWatcherFactory, nameof(IFileReaderFileSystemWatcherFactory)).IsNull().Throw();
 
             this.commandParsingStrategy = commandParsingStrategy;
             this.commandUtilizationStrategy = commandUtilizationStrategy;
             this.fileReaderAutoResetEventFactory = fileReaderAutoResetEventFactory;
+            this.fileReaderFileSystemWatcherFactory = fileReaderFileSystemWatcherFactory;
         }
 
         public void Start(string logFilePath)
@@ -35,11 +37,7 @@ namespace Parser.FileReader.Engines
             this.isRunning = true;
 
             var autoResetEvent = this.fileReaderAutoResetEventFactory.CreateFileReaderAutoResetEvent(false);
-            var fileSystemWatcher = new FileSystemWatcher(".");
-
-            fileSystemWatcher.Filter = logFilePath;
-            fileSystemWatcher.EnableRaisingEvents = true;
-            fileSystemWatcher.Changed += (s, e) => autoResetEvent.Set();
+            var fileSystemWatcher = this.fileReaderFileSystemWatcherFactory.CreateFileReaderFileSystemWatcher(logFilePath, true, autoResetEvent);
 
             using (var fs = new FileStream(logFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {

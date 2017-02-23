@@ -19,10 +19,10 @@ namespace Parser.FileReader.FileSystemProviders
 
             this.fileSystemWatcher.Filter = filter;
             this.fileSystemWatcher.EnableRaisingEvents = enableRaisingEvents;
-            this.fileSystemWatcher.Changed += this.CreateEventHandler(autoResetEvent);
+            this.fileSystemWatcher.Changed += this.CreateOnChangedEventHandler(autoResetEvent);
         }
 
-        private FileSystemEventHandler CreateEventHandler(IFileReaderAutoResetEvent autoResetEvent)
+        private FileSystemEventHandler CreateOnChangedEventHandler(IFileReaderAutoResetEvent autoResetEvent)
         {
             return (sender, args) => autoResetEvent.Set();
         }
