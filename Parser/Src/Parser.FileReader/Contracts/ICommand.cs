@@ -24,6 +24,10 @@ namespace Parser.FileReader.Contracts
 
         decimal EffectAmount { get; set; }
 
+        string EffectType { get; set; }
+
+        string EffectTypeGameId { get; set; }
+
         decimal EffectEffectiveAmount { get; set; }
 
         bool IsCritical { get; set; }

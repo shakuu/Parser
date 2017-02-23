@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Bytes2you.Validation;
@@ -26,11 +27,92 @@ namespace Parser.FileReader.Strategies
 
             var nextCommand = this.commandFactory.CreateCommand();
 
-            nextCommand.TimeStamp = DateTime.Parse(commandWords[0]);
-            nextCommand.AbilityActivatorName = commandWords[1];
-            nextCommand.AbilityTargetName = commandWords[2];
-            // TODO: 
-            return null;
+            nextCommand.TimeStamp = this.GetTimeStamp(commandWords);
+            nextCommand.AbilityActivatorName = this.GetAbilityActivatorName(commandWords);
+            nextCommand.AbilityTargetName = this.GetAbilityTargetName(commandWords);
+
+            nextCommand = this.GetAbilityDetails(commandWords, nextCommand);
+            nextCommand = this.GetEventDetails(commandWords, nextCommand);
+
+            nextCommand.EffectAmount = this.GetEffectEffectiveAmount(commandWords);
+            nextCommand.EffectEffectiveAmount = this.GetEffectEffectiveAmount(commandWords);
+
+            return nextCommand;
+        }
+
+        private DateTime GetTimeStamp(IList<string> commandWords)
+        {
+            return DateTime.Parse(commandWords[0]);
+        }
+
+        private string GetAbilityActivatorName(IList<string> commandWords)
+        {
+            return commandWords[1];
+        }
+
+        private string GetAbilityTargetName(IList<string> commandWords)
+        {
+            return commandWords[2];
+        }
+
+        private ICommand GetAbilityDetails(IList<string> commandWords, ICommand command)
+        {
+            var abilityDetails = commandWords[3].Split(new[] { ':', '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
+
+            command.AbilityName = abilityDetails[0].Trim();
+            command.AbilityGameId = abilityDetails[1].Trim();
+
+            return command;
+        }
+
+        private ICommand GetEventDetails(IList<string> commandWords, ICommand command)
+        {
+            var eventCommandWords = commandWords[4].Split(':');
+
+            var eventTypeDetails = eventCommandWords[0].Split(new[] { ':', '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
+            command.EventType = eventTypeDetails[0];
+            command.EventTypeGameId = eventTypeDetails[1];
+
+            var eventNameDetails = eventCommandWords[1].Split(new[] { ':', '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
+            command.EventName = eventNameDetails[0];
+            command.EventNameGameId = eventNameDetails[1];
+
+            return command;
+        }
+        
+        private ICommand GetEffectAmountDetails(IList<string> commandWords, ICommand command)
+        {
+            if (commandWords.Count < 6)
+            {
+                return command;
+            }
+
+            var effectAmountDetails = commandWords[5].Split(new[] { ' ', '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
+            if (effectAmountDetails[0].Contains("*"))
+            {
+                command.IsCritical = true;
+                effectAmountDetails[0].Trim('*');
+            }
+
+            command.EffectAmount = decimal.Parse(effectAmountDetails[0]);
+
+            if (effectAmountDetails.Length > 1)
+            {
+                command.EffectType = effectAmountDetails[1];
+                command.EffectTypeGameId = effectAmountDetails[2];
+            }
+
+            return command;
+        }
+
+        private decimal GetEffectEffectiveAmount(IList<string> commandWords)
+        {
+            if (commandWords.Count >= 7)
+            {
+                return decimal.Parse(commandWords[6]);
+            }
+
+            return 0;
         }
     }
 }
