@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandParsingStrategy.cs" />
+    <Compile Include="Contracts\ICommandUtilizationStrategy.cs" />
     <Compile Include="Contracts\IFileReaderEngine.cs" />
     <Compile Include="Engines\FileReaderEngine.cs" />
     <Compile Include="Factories\ICommandFactory.cs" />

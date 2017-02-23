@@ -9,17 +9,18 @@ namespace Parser.FileReader.Engines
 {
     public class FileReaderEngine : IFileReaderEngine
     {
-        private const string TestingFilePath = @"C:\Users\colley\OneDrive\swtor-parser\sample-logs\CombatLogs\combat_2017-02-21_21_05_53_596881.txt";
-
         private readonly ICommandParsingStrategy commandParsingStrategy;
+        private readonly ICommandUtilizationStrategy commandUtilizationStrategy;
 
         private bool isRunning = false;
 
-        public FileReaderEngine(ICommandParsingStrategy commandParsingStrategy)
+        public FileReaderEngine(ICommandParsingStrategy commandParsingStrategy, ICommandUtilizationStrategy commandUtilizationStrategy)
         {
             Guard.WhenArgument(commandParsingStrategy, nameof(ICommandParsingStrategy)).IsNull().Throw();
+            Guard.WhenArgument(commandUtilizationStrategy, nameof(ICommandUtilizationStrategy)).IsNull().Throw();
 
             this.commandParsingStrategy = commandParsingStrategy;
+            this.commandUtilizationStrategy = commandUtilizationStrategy;
         }
 
         public void Start(string logFilePath)
@@ -30,7 +31,7 @@ namespace Parser.FileReader.Engines
 
             var autoResetEvent = new AutoResetEvent(false);
             var fileStreamWatcher = new FileSystemWatcher(".");
-            
+
             fileStreamWatcher.Filter = logFilePath;
             fileStreamWatcher.EnableRaisingEvents = true;
             fileStreamWatcher.Changed += (s, e) => autoResetEvent.Set();
@@ -46,6 +47,7 @@ namespace Parser.FileReader.Engines
                         if (nextInputLine != null)
                         {
                             var nextParsedCommand = this.commandParsingStrategy.ParseInputCommand(nextInputLine);
+                            this.commandUtilizationStrategy.UtilizeCommand(nextParsedCommand);
                         }
                         else
                         {
