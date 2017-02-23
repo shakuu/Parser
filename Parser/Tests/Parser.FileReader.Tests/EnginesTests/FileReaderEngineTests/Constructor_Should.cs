@@ -13,6 +13,23 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
     public class Constructor_Should
     {
         [Test]
+        public void CreateValidObject_WhenAllParametersAreValid()
+        {
+            // Arrange
+            var commandParsingStrategy = new Mock<ICommandParsingStrategy>();
+            var commandUtilizationStrategy = new Mock<ICommandUtilizationStrategy>();
+            var fileReaderAutoResetEventFactory = new Mock<IFileReaderAutoResetEventFactory>();
+            var fileReaderFileSystemWatcherFactory = new Mock<IFileReaderFileSystemWatcherFactory>();
+            var fileReaderInputProviderFactory = new Mock<IFileReaderInputProviderFactory>();
+
+            // Act 
+            var actualInstance = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+
+            // Assert
+            Assert.That(actualInstance, Is.Not.Null.And.InstanceOf<IFileReaderEngine>());
+        }
+
+        [Test]
         public void ThrowArgumentNullException_WhenICommandParsingStrategyIsNull()
         {
             // Arrange
