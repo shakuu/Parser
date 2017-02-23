@@ -5,6 +5,7 @@ using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 
 using Parser.ConsoleClient.FileReaderImplementations;
+
 using Parser.FileReader.Contracts;
 
 namespace Parser.ConsoleClient.NinjectModules

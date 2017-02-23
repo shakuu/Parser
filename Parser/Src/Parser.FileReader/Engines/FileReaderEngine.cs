@@ -7,6 +7,8 @@ namespace Parser.FileReader.Engines
 {
     public class FileReaderEngine : IFileReaderEngine
     {
+        private const int AutoResetEventWaitTimeoutInMiliseconds = 250;
+
         private readonly ICommandParsingStrategy commandParsingStrategy;
         private readonly ICommandUtilizationStrategy commandUtilizationStrategy;
         private readonly IFileReaderAutoResetEventFactory fileReaderAutoResetEventFactory;
@@ -52,7 +54,7 @@ namespace Parser.FileReader.Engines
                     }
                     else
                     {
-                        autoResetEvent.WaitOne(1000);
+                        autoResetEvent.WaitOne(FileReaderEngine.AutoResetEventWaitTimeoutInMiliseconds);
                     }
                 }
             }
