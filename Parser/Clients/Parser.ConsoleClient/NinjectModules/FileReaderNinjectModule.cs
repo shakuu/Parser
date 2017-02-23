@@ -27,7 +27,8 @@ namespace Parser.ConsoleClient.NinjectModules
             bind
                 .FromAssembliesMatching("*.FileReader.*")
                 .SelectAllClasses()
-                .BindDefaultInterface();
+                .BindDefaultInterface()
+                .Configure(c => c.InSingletonScope());
         }
     }
 }
