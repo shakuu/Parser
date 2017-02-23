@@ -56,12 +56,15 @@
     <Compile Include="Contracts\IFileReaderAutoResetEvent.cs" />
     <Compile Include="Contracts\IFileReaderEngine.cs" />
     <Compile Include="Contracts\IFileReaderFileSystemWatcher.cs" />
+    <Compile Include="Contracts\IFileReaderInputProvider.cs" />
     <Compile Include="Engines\FileReaderEngine.cs" />
     <Compile Include="Factories\ICommandFactory.cs" />
     <Compile Include="Factories\IFileReaderAutoResetEventFactory.cs" />
     <Compile Include="Factories\IFileReaderFileSystemWatcherFactory.cs" />
+    <Compile Include="Factories\IFileReaderInputProviderFactory.cs" />
     <Compile Include="FileSystemProviders\FileReaderAutoResetEvent.cs" />
     <Compile Include="FileSystemProviders\FileReaderFileSystemWatcher.cs" />
+    <Compile Include="FileSystemProviders\FileReaderInputProvider.cs" />
     <Compile Include="Models\Command.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strategies\CommandParsingStrategy.cs" />
