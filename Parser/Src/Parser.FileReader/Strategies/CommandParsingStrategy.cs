@@ -26,6 +26,10 @@ namespace Parser.FileReader.Strategies
             commandWords = commandWords.Where(s => s != " ").ToArray();
 
             var nextCommand = this.commandFactory.CreateCommand();
+            if (commandWords.Length == 0)
+            {
+                return nextCommand;
+            }
 
             nextCommand.TimeStamp = this.GetTimeStamp(commandWords);
             nextCommand.AbilityActivatorName = this.GetAbilityActivatorName(commandWords);
@@ -67,7 +71,17 @@ namespace Parser.FileReader.Strategies
 
         private ICommand GetEventDetails(IList<string> commandWords, ICommand command)
         {
+            if (commandWords.Count < 5)
+            {
+                return command;
+            }
+
             var eventCommandWords = commandWords[4].Split(':');
+            if (eventCommandWords.Length == 1)
+            {
+                command.AbilityCost = decimal.Parse(eventCommandWords[0]);
+                return command;
+            }
 
             var eventTypeDetails = eventCommandWords[0].Split(new[] { ':', '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
             command.EventType = eventTypeDetails[0];
@@ -91,7 +105,7 @@ namespace Parser.FileReader.Strategies
             if (effectAmountDetails[0].Contains("*"))
             {
                 command.IsCritical = true;
-                effectAmountDetails[0].Trim('*');
+                effectAmountDetails[0] = effectAmountDetails[0].Trim('*');
             }
 
             command.EffectAmount = decimal.Parse(effectAmountDetails[0]);

@@ -49,6 +49,14 @@
       <HintPath>..\..\packages\Ninject.Extensions.Factory.3.2.1.0\lib\net45-full\Ninject.Extensions.Factory.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject.Extensions.Interception, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.Extensions.Interception.3.2.0.0\lib\net45-full\Ninject.Extensions.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception.DynamicProxy, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.Extensions.Interception.DynamicProxy.3.2.0.0\lib\net45-full\Ninject.Extensions.Interception.DynamicProxy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileReaderImplementations\ConsoleClientCommandUtilizationStrategy.cs" />
     <Compile Include="NinjectModules\FileReaderNinjectModule.cs" />
     <Compile Include="NinjectModules\NinjectStandardKernelProvider.cs" />
     <Compile Include="Program.cs" />

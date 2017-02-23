@@ -1,6 +1,10 @@
 ﻿using Ninject.Extensions.Conventions;
 using Ninject.Extensions.Conventions.Syntax;
+using Ninject.Extensions.Interception;
 using Ninject.Modules;
+
+using Parser.ConsoleClient.FileReaderImplementations;
+using Parser.FileReader.Contracts;
 
 namespace Parser.ConsoleClient.NinjectModules
 {
@@ -10,6 +14,13 @@ namespace Parser.ConsoleClient.NinjectModules
         {
             this.Bind(this.BindFactoriesByConvention);
             this.Bind(this.BindAllClassesByConvention);
+
+            this.Bind<ICommandUtilizationStrategy>().To<ConsoleClientCommandUtilizationStrategy>().InSingletonScope();
+        }
+
+        private void ICommandUtilizationStrategyUtilizeCommandMethod(IInvocation invocation)
+        {
+            System.Console.WriteLine("Intercepted");
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)
@@ -27,8 +38,7 @@ namespace Parser.ConsoleClient.NinjectModules
             bind
                 .FromAssembliesMatching("*.FileReader.*")
                 .SelectAllClasses()
-                .BindDefaultInterface()
-                .Configure(c => c.InSingletonScope());
+                .BindDefaultInterface();
         }
     }
 }

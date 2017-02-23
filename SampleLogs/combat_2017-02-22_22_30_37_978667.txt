@@ -9396,3 +9396,6 @@
 [22:59:55.851] [@Morninn'wood:Wampa {4007732768145408}] [@Morninn'wood] [Kolto Blast {4007870207098880}] [ApplyEffect {836045448945477}: Heal {836045448945500}] (2810) <1405>
 [22:59:56.850] [@Morninn'wood:Wampa {4007732768145408}] [@Morninn'wood] [Kolto Blast {4007870207098880}] [ApplyEffect {836045448945477}: Heal {836045448945500}] (2810)
 [22:59:57.744] [@Morninn'wood:Wampa {4007732768145408}] [@Morninn'wood] [Kolto Blast {4007870207098880}] [ApplyEffect {836045448945477}: Heal {836045448945500}] (2810)
+[22:59:57.744] [@Morninn'wood:Wampa {4007732768145408}] [@Morninn'wood] [Kolto Blast {4007870207098880}] [ApplyEffect {836045448945477}: Heal {836045448945500}] (2810)
+[22:59:57.744] [@Morninn'wood:Wampa {4007732768145408}] [@Morninn'wood] [Kolto Blast {4007870207098880}] [ApplyEffect {836045448945477}: Heal {836045448945500}] (2810)
+

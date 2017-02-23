@@ -16,6 +16,8 @@ namespace Parser.FileReader.Models
 
         public string AbilityGameId { get; set; }
 
+        public decimal AbilityCost { get; set; }
+
         public string EventType { get; set; }
 
         public string EventTypeGameId { get; set; }

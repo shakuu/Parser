@@ -14,6 +14,8 @@ namespace Parser.FileReader.Contracts
 
         string AbilityGameId { get; set; }
 
+        decimal AbilityCost { get; set; }
+
         string EventType { get; set; }
 
         string EventTypeGameId { get; set; }
