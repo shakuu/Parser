@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-using Bytes2you.Validation;
+﻿using Bytes2you.Validation;
 
 using Parser.FileReader.Contracts;
 using Parser.FileReader.Factories;
@@ -13,20 +11,23 @@ namespace Parser.FileReader.Engines
         private readonly ICommandUtilizationStrategy commandUtilizationStrategy;
         private readonly IFileReaderAutoResetEventFactory fileReaderAutoResetEventFactory;
         private readonly IFileReaderFileSystemWatcherFactory fileReaderFileSystemWatcherFactory;
+        private readonly IFileReaderInputProviderFactory fileReaderInputProviderFactory;
 
         private bool isRunning = false;
 
-        public FileReaderEngine(ICommandParsingStrategy commandParsingStrategy, ICommandUtilizationStrategy commandUtilizationStrategy, IFileReaderAutoResetEventFactory fileReaderAutoResetEventFactory, IFileReaderFileSystemWatcherFactory fileReaderFileSystemWatcherFactory)
+        public FileReaderEngine(ICommandParsingStrategy commandParsingStrategy, ICommandUtilizationStrategy commandUtilizationStrategy, IFileReaderAutoResetEventFactory fileReaderAutoResetEventFactory, IFileReaderFileSystemWatcherFactory fileReaderFileSystemWatcherFactory, IFileReaderInputProviderFactory fileReaderInputProviderFactory)
         {
             Guard.WhenArgument(commandParsingStrategy, nameof(ICommandParsingStrategy)).IsNull().Throw();
             Guard.WhenArgument(commandUtilizationStrategy, nameof(ICommandUtilizationStrategy)).IsNull().Throw();
             Guard.WhenArgument(fileReaderAutoResetEventFactory, nameof(IFileReaderAutoResetEventFactory)).IsNull().Throw();
             Guard.WhenArgument(fileReaderFileSystemWatcherFactory, nameof(IFileReaderFileSystemWatcherFactory)).IsNull().Throw();
+            Guard.WhenArgument(fileReaderInputProviderFactory, nameof(IFileReaderInputProviderFactory)).IsNull().Throw();
 
             this.commandParsingStrategy = commandParsingStrategy;
             this.commandUtilizationStrategy = commandUtilizationStrategy;
             this.fileReaderAutoResetEventFactory = fileReaderAutoResetEventFactory;
             this.fileReaderFileSystemWatcherFactory = fileReaderFileSystemWatcherFactory;
+            this.fileReaderInputProviderFactory = fileReaderInputProviderFactory;
         }
 
         public void Start(string logFilePath)
@@ -38,27 +39,22 @@ namespace Parser.FileReader.Engines
             var autoResetEvent = this.fileReaderAutoResetEventFactory.CreateFileReaderAutoResetEvent(false);
             var fileSystemWatcher = this.fileReaderFileSystemWatcherFactory.CreateFileReaderFileSystemWatcher(logFilePath, true, autoResetEvent);
 
-            using (var fs = new FileStream(logFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (var inputProvider = this.fileReaderInputProviderFactory.CreateFileReaderInputProvider(logFilePath))
             {
-                using (var sr = new StreamReader(fs))
+                var nextInputLine = string.Empty;
+                while (this.isRunning)
                 {
-                    var nextInputLine = string.Empty;
-                    while (this.isRunning)
+                    nextInputLine = inputProvider.ReadLine();
+                    if (nextInputLine != null)
                     {
-                        nextInputLine = sr.ReadLine();
-                        if (nextInputLine != null)
-                        {
-                            var nextParsedCommand = this.commandParsingStrategy.ParseInputCommand(nextInputLine);
-                            this.commandUtilizationStrategy.UtilizeCommand(nextParsedCommand);
-                        }
-                        else
-                        {
-                            autoResetEvent.WaitOne(1000);
-                        }
+                        var nextParsedCommand = this.commandParsingStrategy.ParseInputCommand(nextInputLine);
+                        this.commandUtilizationStrategy.UtilizeCommand(nextParsedCommand);
+                    }
+                    else
+                    {
+                        autoResetEvent.WaitOne(1000);
                     }
                 }
-
-                fs.Close();
             }
         }
 
