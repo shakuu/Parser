@@ -4,20 +4,28 @@ namespace Parser.FileReader.Contracts
 {
     public interface ICommand
     {
-        DateTime TimeStamp { get; }
+        DateTime TimeStamp { get; set; }
 
-        string AbilityActivatorName { get; }
+        string AbilityActivatorName { get; set; }
 
-        string AbilityTargetName { get; }
+        string AbilityTargetName { get; set; }
 
-        string AbilityName { get; }
+        string AbilityName { get; set; }
 
-        string EffectName { get; }
+        string AbilityGameId { get; set; }
 
-        decimal EffectAmount { get; }
+        string EventType { get; set; }
 
-        decimal EffectEffectiveAmount { get; }
+        string EventTypeGameId { get; set; }
 
-        bool IsCritical { get; }
+        string EventName { get; set; }
+
+        string EventNameGameId { get; set; }
+
+        decimal EffectAmount { get; set; }
+
+        decimal EffectEffectiveAmount { get; set; }
+
+        bool IsCritical { get; set; }
     }
 }

@@ -24,6 +24,11 @@ namespace Parser.FileReader.Strategies
             var commandWords = input.Split(new[] { '[', ']', '(', ')', '<', '>' }, StringSplitOptions.RemoveEmptyEntries);
             commandWords = commandWords.Where(s => s != " ").ToArray();
 
+            var nextCommand = this.commandFactory.CreateCommand();
+
+            nextCommand.TimeStamp = DateTime.Parse(commandWords[0]);
+            nextCommand.AbilityActivatorName = commandWords[1];
+            nextCommand.AbilityTargetName = commandWords[2];
             // TODO: 
             return null;
         }

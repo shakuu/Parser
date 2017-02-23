@@ -6,31 +6,28 @@ namespace Parser.FileReader.Models
 {
     public class Command : ICommand
     {
-        public Command(DateTime timeStamp, string abilityActivatorName, string abilityTargetName, string abilityName, string effectName, decimal effectAmount, decimal effectEffectiveAmount)
-        {
-            this.TimeStamp = timeStamp;
-            this.AbilityActivatorName = abilityActivatorName;
-            this.AbilityTargetName = abilityTargetName;
-            this.AbilityName = abilityName;
-            this.EffectName = effectName;
-            this.EffectAmount = effectAmount;
-            this.EffectEffectiveAmount = effectEffectiveAmount;
-        }
+        public DateTime TimeStamp { get; set; }
 
-        public string AbilityActivatorName { get; private set; }
+        public string AbilityActivatorName { get; set; }
 
-        public string AbilityTargetName { get; private set; }
+        public string AbilityTargetName { get; set; }
 
-        public string AbilityName { get; private set; }
+        public string AbilityName { get; set; }
 
-        public decimal EffectAmount { get; private set; }
+        public string AbilityGameId { get; set; }
 
-        public decimal EffectEffectiveAmount { get; private set; }
+        public string EventType { get; set; }
 
-        public string EffectName { get; private set; }
+        public string EventTypeGameId { get; set; }
 
-        public bool IsCritical { get; private set; }
+        public string EventName { get; set; }
 
-        public DateTime TimeStamp { get; private set; }
+        public string EventNameGameId { get; set; }
+
+        public decimal EffectAmount { get; set; }
+
+        public decimal EffectEffectiveAmount { get; set; }
+
+        public bool IsCritical { get; set; }
     }
 }
