@@ -30,11 +30,11 @@ namespace Parser.FileReader.Engines
             this.isRunning = true;
 
             var autoResetEvent = new AutoResetEvent(false);
-            var fileStreamWatcher = new FileSystemWatcher(".");
+            var fileSystemWatcher = new FileSystemWatcher(".");
 
-            fileStreamWatcher.Filter = logFilePath;
-            fileStreamWatcher.EnableRaisingEvents = true;
-            fileStreamWatcher.Changed += (s, e) => autoResetEvent.Set();
+            fileSystemWatcher.Filter = logFilePath;
+            fileSystemWatcher.EnableRaisingEvents = true;
+            fileSystemWatcher.Changed += (s, e) => autoResetEvent.Set();
 
             using (var fs = new FileStream(logFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
