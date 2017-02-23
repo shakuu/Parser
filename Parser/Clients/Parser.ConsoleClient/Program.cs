@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Parser.FileReader.Engines;
-using Parser.FileReader.Factories;
-using Parser.FileReader.Strategies;
+﻿using Ninject;
+
+using Parser.ConsoleClient.NinjectModules;
+using Parser.FileReader.Contracts;
 
 namespace Parser.ConsoleClient
 {
@@ -17,8 +11,7 @@ namespace Parser.ConsoleClient
 
         static void Main(string[] args)
         {
-            var strategy = new CommandParsingStrategy(null);
-            var engine = new FileReaderEngine(strategy);
+            var engine = NinjectStandardKernelProvider.Kernel.Get<IFileReaderEngine>();
 
             engine.Start(Program.MorninWoodDummyParse);
         }

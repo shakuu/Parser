@@ -1,6 +1,4 @@
-﻿using System;
-
-using Ninject.Extensions.Conventions;
+﻿using Ninject.Extensions.Conventions;
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
@@ -17,7 +15,7 @@ namespace Parser.ConsoleClient.NinjectModules
         private void BindFactoriesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.FileReader")
+                .FromAssembliesMatching("*.FileReader.*")
                 .SelectAllInterfaces()
                 .EndingWith("Factory")
                 .BindToFactory()
@@ -27,7 +25,7 @@ namespace Parser.ConsoleClient.NinjectModules
         private void BindAllClassesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.FileReader")
+                .FromAssembliesMatching("*.FileReader.*")
                 .SelectAllClasses()
                 .BindDefaultInterface();
         }
