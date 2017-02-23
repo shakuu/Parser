@@ -33,8 +33,8 @@ namespace Parser.FileReader.Strategies
 
             nextCommand = this.GetAbilityDetails(commandWords, nextCommand);
             nextCommand = this.GetEventDetails(commandWords, nextCommand);
+            nextCommand = this.GetEffectAmountDetails(commandWords, nextCommand);
 
-            nextCommand.EffectAmount = this.GetEffectEffectiveAmount(commandWords);
             nextCommand.EffectEffectiveAmount = this.GetEffectEffectiveAmount(commandWords);
 
             return nextCommand;
@@ -79,7 +79,7 @@ namespace Parser.FileReader.Strategies
 
             return command;
         }
-        
+
         private ICommand GetEffectAmountDetails(IList<string> commandWords, ICommand command)
         {
             if (commandWords.Count < 6)
