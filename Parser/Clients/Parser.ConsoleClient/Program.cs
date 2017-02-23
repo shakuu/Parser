@@ -1,4 +1,7 @@
-﻿using Ninject;
+﻿using System.Threading;
+using System.Threading.Tasks;
+
+using Ninject;
 
 using Parser.ConsoleClient.NinjectModules;
 using Parser.FileReader.Contracts;
@@ -13,7 +16,10 @@ namespace Parser.ConsoleClient
         {
             var engine = NinjectStandardKernelProvider.Kernel.Get<IFileReaderEngine>();
 
-            engine.Start(Program.MorninWoodDummyParse);
+            Task.Run(() => engine.Start(Program.MorninWoodDummyParse));
+
+            Thread.Sleep(100);
+            engine.Stop();
         }
     }
 }
