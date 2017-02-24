@@ -20,6 +20,6 @@ environment:
     secure: DOk9i0IebrlcZDodTNY5nEUZ3v9KOWz8MAQabAzo8PTavkDf33l3EQfuxmx2tVkb
 
 after_test: 
-  - Parser\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"Parser\packages\NUnit.ConsoleRunner.3.6.0\tools\nunit3-console.exe" -targetargs:"/domain:single  Parser\Tests\Parser.LogFileReader.Tests\bin\Debug\Parser.FileReader.Tests.dll" -output:coverage.xml
+  - Parser\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"Parser\packages\NUnit.ConsoleRunner.3.6.0\tools\nunit3-console.exe" -targetargs:"/domain:single  Parser\Tests\Parser.LogFileReader.Tests\bin\Debug\Parser.LogFileReader.Tests.dll" -output:coverage.xml
 
   - Parser\packages\coveralls.io.1.3.4\tools\coveralls.net.exe --opencover coverage.xml
