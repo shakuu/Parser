@@ -1,4 +1,6 @@
-﻿using Bytes2you.Validation;
+﻿using System.Threading.Tasks;
+
+using Bytes2you.Validation;
 
 using Parser.FileReader.Contracts;
 using Parser.FileReader.Factories;
@@ -32,7 +34,22 @@ namespace Parser.FileReader.Engines
             this.fileReaderInputProviderFactory = fileReaderInputProviderFactory;
         }
 
+        public void StartAsync(string logFilePath)
+        {
+            Task.Run(() => this.Parse(logFilePath));
+        }
+
         public void Start(string logFilePath)
+        {
+            this.Parse(logFilePath);
+        }
+
+        public void Stop()
+        {
+            this.isRunning = false;
+        }
+
+        private void Parse(string logFilePath)
         {
             Guard.WhenArgument(logFilePath, "Invalid log file path.").IsNullOrEmpty().Throw();
 
@@ -58,11 +75,6 @@ namespace Parser.FileReader.Engines
                     }
                 }
             }
-        }
-
-        public void Stop()
-        {
-            this.isRunning = false;
         }
     }
 }

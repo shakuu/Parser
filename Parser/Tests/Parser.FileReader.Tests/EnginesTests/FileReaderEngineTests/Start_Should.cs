@@ -77,7 +77,7 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
             var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Act
-            Task.Run(() => fileReaderEngine.Start(logFilePath));
+            fileReaderEngine.StartAsync(logFilePath);
             Thread.Sleep(50);
             fileReaderEngine.Stop();
 
@@ -108,7 +108,7 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
             var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Act
-            Task.Run(() => fileReaderEngine.Start(logFilePath));
+            fileReaderEngine.StartAsync(logFilePath);
             Thread.Sleep(50);
             fileReaderEngine.Stop();
 
@@ -139,7 +139,7 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
             var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Act
-            Task.Run(() => fileReaderEngine.Start(logFilePath));
+            fileReaderEngine.StartAsync(logFilePath);
             Thread.Sleep(50);
             fileReaderEngine.Stop();
 
@@ -170,7 +170,7 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
             var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Act
-            Task.Run(() => fileReaderEngine.Start(logFilePath));
+            fileReaderEngine.StartAsync(logFilePath);
             Thread.Sleep(50);
             fileReaderEngine.Stop();
 
