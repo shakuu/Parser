@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 
 using Moq;
 using NUnit.Framework;
@@ -11,7 +10,7 @@ using Parser.FileReader.Factories;
 namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
 {
     [TestFixture]
-    public class Start_Should
+    public class StartAsync_Should
     {
         [Test]
         public void InvokeIFileReaderAutoResetEventFactory_CreateFileReaderAutoResetEventMethod_OnceWithCorrectArgument()
