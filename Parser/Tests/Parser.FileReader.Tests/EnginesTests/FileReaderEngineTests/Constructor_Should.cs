@@ -52,22 +52,6 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
         {
             // Arrange
             var commandParsingStrategy = new Mock<ICommandParsingStrategy>();
-            var commandUtilizationStrategy = new Mock<ICommandUtilizationStrategy>();
-            ILogFilePathDiscoveryStrategy logFilePathDiscoveryStrategy = null;
-            var fileReaderAutoResetEventFactory = new Mock<IFileReaderAutoResetEventFactory>();
-            var fileReaderFileSystemWatcherFactory = new Mock<IFileReaderFileSystemWatcherFactory>();
-            var fileReaderInputProviderFactory = new Mock<IFileReaderInputProviderFactory>();
-
-            // Act & Assert
-            Assert.That(
-                () => new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object),
-                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICommandUtilizationStrategy)));
-        }
-
-        public void ThrowArgumentNullException_WhenILogFilePathDiscoveryStrategyIsNull()
-        {
-            // Arrange
-            var commandParsingStrategy = new Mock<ICommandParsingStrategy>();
             ICommandUtilizationStrategy commandUtilizationStrategy = null;
             var logFilePathDiscoveryStrategy = new Mock<ILogFilePathDiscoveryStrategy>();
             var fileReaderAutoResetEventFactory = new Mock<IFileReaderAutoResetEventFactory>();
@@ -77,6 +61,22 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
             // Act & Assert
             Assert.That(
                 () => new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object),
+                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICommandUtilizationStrategy)));
+        }
+
+        public void ThrowArgumentNullException_WhenILogFilePathDiscoveryStrategyIsNull()
+        {
+            // Arrange
+            var commandParsingStrategy = new Mock<ICommandParsingStrategy>();
+            var commandUtilizationStrategy = new Mock<ICommandUtilizationStrategy>();
+            ILogFilePathDiscoveryStrategy logFilePathDiscoveryStrategy = null;
+            var fileReaderAutoResetEventFactory = new Mock<IFileReaderAutoResetEventFactory>();
+            var fileReaderFileSystemWatcherFactory = new Mock<IFileReaderFileSystemWatcherFactory>();
+            var fileReaderInputProviderFactory = new Mock<IFileReaderInputProviderFactory>();
+
+            // Act & Assert
+            Assert.That(
+                () => new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ILogFilePathDiscoveryStrategy)));
         }
 
