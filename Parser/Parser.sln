@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.FileReader.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.WPFClient", "Clients\Parser.WPFClient\Parser.WPFClient.csproj", "{EC89EA7E-4806-49A1-B515-AEAB901DA967}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CIDependencies", "CIDependencies", "{53A091DD-C79C-4843-9461-BB50124AAF4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.CoverallsDependencies", "CIDependencies\Parser.CoverallsDependencies\Parser.CoverallsDependencies.csproj", "{C7C9D1A4-B7B7-493C-90A3-D9B78B928B5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{EC89EA7E-4806-49A1-B515-AEAB901DA967}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC89EA7E-4806-49A1-B515-AEAB901DA967}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC89EA7E-4806-49A1-B515-AEAB901DA967}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7C9D1A4-B7B7-493C-90A3-D9B78B928B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C9D1A4-B7B7-493C-90A3-D9B78B928B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7C9D1A4-B7B7-493C-90A3-D9B78B928B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7C9D1A4-B7B7-493C-90A3-D9B78B928B5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +56,6 @@ Global
 		{BE757824-2C14-425F-9498-38C62C33EF34} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
 		{EFE74609-79ED-444C-B57F-6BFFD39A0276} = {078E0CBC-5CAF-4513-A1D3-4F9F330B1D72}
 		{EC89EA7E-4806-49A1-B515-AEAB901DA967} = {19439B42-E5D2-425F-A7FC-DE3C1E58BBE5}
+		{C7C9D1A4-B7B7-493C-90A3-D9B78B928B5F} = {53A091DD-C79C-4843-9461-BB50124AAF4D}
 	EndGlobalSection
 EndGlobal
