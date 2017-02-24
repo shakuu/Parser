@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnginesTests\FileReaderEngineTests\Constructor_Should.cs" />
+    <Compile Include="EnginesTests\FileReaderEngineTests\Start_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
