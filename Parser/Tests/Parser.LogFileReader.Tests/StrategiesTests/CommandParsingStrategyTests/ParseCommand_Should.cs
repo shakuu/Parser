@@ -93,5 +93,42 @@ namespace Parser.LogFileReader.Tests.StrategiesTests.CommandParsingStrategyTests
             Assert.That(actualCommand.EffectAmount, Is.EqualTo(expectedCommand.EffectAmount));
             Assert.That(actualCommand.EffectEffectiveAmount, Is.EqualTo(expectedCommand.EffectEffectiveAmount));
         }
+
+        [Test]
+        public void ReturnCorrectCommand_WhenApplyingEffects()
+        {
+            // Arrange
+            var commandFactory = new Mock<ICommandFactory>();
+            commandFactory.Setup(f => f.CreateCommand()).Returns(new Command());
+
+            var commandParsingStrategy = new CommandParsingStrategy(commandFactory.Object);
+
+            var input = "[22:33:18.020] [@Morninn'wood] [@Morninn'wood] [Coordination {881945764429824}] [ApplyEffect {836045448945477}: Hunter's Boon {881945764430104}] ()";
+
+            var expectedCommand = new Command();
+            expectedCommand.TimeStamp = DateTime.Parse("22:33:18.020");
+            expectedCommand.AbilityActivatorName = "@Morninn'wood";
+            expectedCommand.AbilityTargetName = "@Morninn'wood";
+            expectedCommand.AbilityName = "Coordination";
+            expectedCommand.AbilityGameId = "881945764429824";
+            expectedCommand.EventType = "ApplyEffect";
+            expectedCommand.EventTypeGameId = "836045448945477";
+            expectedCommand.EventName = "Hunter's Boon";
+            expectedCommand.EventNameGameId = "881945764430104";
+
+            // Act
+            var actualCommand = commandParsingStrategy.ParseCommand(input);
+
+            // Assert
+            Assert.That(actualCommand.TimeStamp, Is.EqualTo(expectedCommand.TimeStamp));
+            Assert.That(actualCommand.AbilityActivatorName, Is.EqualTo(expectedCommand.AbilityActivatorName));
+            Assert.That(actualCommand.AbilityTargetName, Is.EqualTo(expectedCommand.AbilityTargetName));
+            Assert.That(actualCommand.AbilityName, Is.EqualTo(expectedCommand.AbilityName));
+            Assert.That(actualCommand.AbilityGameId, Is.EqualTo(expectedCommand.AbilityGameId));
+            Assert.That(actualCommand.EventType, Is.EqualTo(expectedCommand.EventType));
+            Assert.That(actualCommand.EventTypeGameId, Is.EqualTo(expectedCommand.EventTypeGameId));
+            Assert.That(actualCommand.EventName, Is.EqualTo(expectedCommand.EventName));
+            Assert.That(actualCommand.EventNameGameId, Is.EqualTo(expectedCommand.EventNameGameId));
+        }
     }
 }

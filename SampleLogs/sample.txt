@@ -1,1 +1,1 @@
-[22:34:05.112] [@Morninn'wood] [Operations Training Dummy {2857785339412480}:165053332701] [Orbital Strike {2145301804613632}] [ApplyEffect {836045448945477}: Damage {836045448945501}] (3300 elemental {836045448940875}) <3300>
+[22:33:18.020] [@Morninn'wood] [@Morninn'wood] [Coordination {881945764429824}] [ApplyEffect {836045448945477}: Hunter's Boon {881945764430104}] ()
