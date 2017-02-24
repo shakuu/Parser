@@ -78,6 +78,7 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             Task.Run(() => fileReaderEngine.Start(logFilePath));
+            Thread.Sleep(50);
             fileReaderEngine.Stop();
 
             // Assert
@@ -108,6 +109,7 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             Task.Run(() => fileReaderEngine.Start(logFilePath));
+            Thread.Sleep(50);
             fileReaderEngine.Stop();
 
             // Assert
@@ -138,7 +140,6 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             Task.Run(() => fileReaderEngine.Start(logFilePath));
-
             Thread.Sleep(50);
             fileReaderEngine.Stop();
 
@@ -170,7 +171,6 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             Task.Run(() => fileReaderEngine.Start(logFilePath));
-
             Thread.Sleep(50);
             fileReaderEngine.Stop();
 
