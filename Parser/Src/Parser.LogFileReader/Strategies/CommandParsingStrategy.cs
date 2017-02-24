@@ -86,11 +86,11 @@ namespace Parser.LogFileReader.Strategies
             }
 
             var eventTypeDetails = eventCommandWords[0].Split(new[] { ':', '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
-            command.EventType = eventTypeDetails[0];
+            command.EventType = eventTypeDetails[0].Trim();
             command.EventTypeGameId = eventTypeDetails[1];
 
             var eventNameDetails = eventCommandWords[1].Split(new[] { ':', '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
-            command.EventName = eventNameDetails[0];
+            command.EventName = eventNameDetails[0].Trim();
             command.EventNameGameId = eventNameDetails[1];
 
             return command;
