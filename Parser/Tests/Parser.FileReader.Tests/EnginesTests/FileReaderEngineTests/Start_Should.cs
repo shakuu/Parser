@@ -44,13 +44,13 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
             var fileReaderFileSystemWatcherFactory = new Mock<IFileReaderFileSystemWatcherFactory>();
             var fileReaderInputProviderFactory = new Mock<IFileReaderInputProviderFactory>();
 
-            var actualInstance = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             string invalidLogFilePath = string.Empty;
 
             // Act & Assert
             Assert.That(
-                () => actualInstance.Start(invalidLogFilePath),
+                () => fileReaderEngine.Start(invalidLogFilePath),
                 Throws.InstanceOf<ArgumentException>().With.Message.Contains("Invalid log file path."));
         }
 
@@ -74,16 +74,108 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
 
             var logFilePath = "Fake Log Path";
 
-            var actualInstance = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Act
-            Task.Run(() => actualInstance.Start(logFilePath));
-
-            Thread.Sleep(50);
-            actualInstance.Stop();
+            Task.Run(() => fileReaderEngine.Start(logFilePath));
+            fileReaderEngine.Stop();
 
             // Assert
             fileReaderAutoResetEventFactory.Verify(f => f.CreateFileReaderAutoResetEvent(false), Times.Once());
+        }
+
+        [Test]
+        public void InvokeIFileReaderFileSystemWatcherFactory_CreateFileReaderFileSystemWatcherMethod_OnceWithCorrectArguments()
+        {
+            // Arrange
+            var commandParsingStrategy = new Mock<ICommandParsingStrategy>();
+            var commandUtilizationStrategy = new Mock<ICommandUtilizationStrategy>();
+            var fileReaderAutoResetEventFactory = new Mock<IFileReaderAutoResetEventFactory>();
+            var fileReaderFileSystemWatcherFactory = new Mock<IFileReaderFileSystemWatcherFactory>();
+            var fileReaderInputProviderFactory = new Mock<IFileReaderInputProviderFactory>();
+
+            var fileReaderInputProviderMock = new Mock<IFileReaderInputProvider>();
+            fileReaderInputProviderMock.Setup(i => i.ReadLine()).Returns<string>(null);
+            fileReaderInputProviderFactory.Setup(f => f.CreateFileReaderInputProvider(It.IsAny<string>())).Returns(fileReaderInputProviderMock.Object);
+
+            var fileReaderAutoResetEventMock = new Mock<IFileReaderAutoResetEvent>();
+            fileReaderAutoResetEventMock.Setup(e => e.WaitOne(It.IsAny<int>())).Returns(true);
+            fileReaderAutoResetEventFactory.Setup(f => f.CreateFileReaderAutoResetEvent(It.IsAny<bool>())).Returns(fileReaderAutoResetEventMock.Object);
+
+            var logFilePath = "Fake Log Path";
+
+            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+
+            // Act
+            Task.Run(() => fileReaderEngine.Start(logFilePath));
+            fileReaderEngine.Stop();
+
+            // Assert
+            fileReaderFileSystemWatcherFactory.Verify(f => f.CreateFileReaderFileSystemWatcher(logFilePath, true, fileReaderAutoResetEventMock.Object), Times.Once());
+        }
+
+        [Test]
+        public void InvokeIFileReaderInputProviderFactory_CreateFileReaderInputProviderMethod_OnceWithCorrectArgument()
+        {
+            // Arrange
+            var commandParsingStrategy = new Mock<ICommandParsingStrategy>();
+            var commandUtilizationStrategy = new Mock<ICommandUtilizationStrategy>();
+            var fileReaderAutoResetEventFactory = new Mock<IFileReaderAutoResetEventFactory>();
+            var fileReaderFileSystemWatcherFactory = new Mock<IFileReaderFileSystemWatcherFactory>();
+            var fileReaderInputProviderFactory = new Mock<IFileReaderInputProviderFactory>();
+
+            var fileReaderInputProviderMock = new Mock<IFileReaderInputProvider>();
+            fileReaderInputProviderMock.Setup(i => i.ReadLine()).Returns<string>(null);
+            fileReaderInputProviderFactory.Setup(f => f.CreateFileReaderInputProvider(It.IsAny<string>())).Returns(fileReaderInputProviderMock.Object);
+
+            var fileReaderAutoResetEventMock = new Mock<IFileReaderAutoResetEvent>();
+            fileReaderAutoResetEventMock.Setup(e => e.WaitOne(It.IsAny<int>())).Returns(true);
+            fileReaderAutoResetEventFactory.Setup(f => f.CreateFileReaderAutoResetEvent(It.IsAny<bool>())).Returns(fileReaderAutoResetEventMock.Object);
+
+            var logFilePath = "Fake Log Path";
+
+            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+
+            // Act
+            Task.Run(() => fileReaderEngine.Start(logFilePath));
+
+            Thread.Sleep(50);
+            fileReaderEngine.Stop();
+
+            // Assert
+            fileReaderInputProviderFactory.Verify(f => f.CreateFileReaderInputProvider(logFilePath), Times.Once());
+        }
+
+        [Test]
+        public void InvokeIFileReaderInputProvider_DisposeMethod()
+        {
+            // Arrange
+            var commandParsingStrategy = new Mock<ICommandParsingStrategy>();
+            var commandUtilizationStrategy = new Mock<ICommandUtilizationStrategy>();
+            var fileReaderAutoResetEventFactory = new Mock<IFileReaderAutoResetEventFactory>();
+            var fileReaderFileSystemWatcherFactory = new Mock<IFileReaderFileSystemWatcherFactory>();
+            var fileReaderInputProviderFactory = new Mock<IFileReaderInputProviderFactory>();
+
+            var fileReaderInputProviderMock = new Mock<IFileReaderInputProvider>();
+            fileReaderInputProviderMock.Setup(i => i.ReadLine()).Returns<string>(null);
+            fileReaderInputProviderFactory.Setup(f => f.CreateFileReaderInputProvider(It.IsAny<string>())).Returns(fileReaderInputProviderMock.Object);
+
+            var fileReaderAutoResetEventMock = new Mock<IFileReaderAutoResetEvent>();
+            fileReaderAutoResetEventMock.Setup(e => e.WaitOne(It.IsAny<int>())).Returns(true);
+            fileReaderAutoResetEventFactory.Setup(f => f.CreateFileReaderAutoResetEvent(It.IsAny<bool>())).Returns(fileReaderAutoResetEventMock.Object);
+
+            var logFilePath = "Fake Log Path";
+
+            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+
+            // Act
+            Task.Run(() => fileReaderEngine.Start(logFilePath));
+
+            Thread.Sleep(50);
+            fileReaderEngine.Stop();
+
+            // Assert
+            fileReaderInputProviderMock.Verify(i => i.Dispose(), Times.Once());
         }
     }
 }
