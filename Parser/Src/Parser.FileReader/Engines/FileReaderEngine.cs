@@ -39,12 +39,12 @@ namespace Parser.FileReader.Engines
 
         public void StartAsync()
         {
-            Task.Run(() => this.Parse());
+            Task.Run(() => this.Run());
         }
 
         public void Start()
         {
-            this.Parse();
+            this.Run();
         }
 
         public void Stop()
@@ -52,7 +52,7 @@ namespace Parser.FileReader.Engines
             this.isRunning = false;
         }
 
-        private void Parse()
+        private void Run()
         {
             this.isRunning = true;
 
@@ -69,7 +69,7 @@ namespace Parser.FileReader.Engines
                     nextInputLine = inputProvider.ReadLine();
                     if (nextInputLine != null)
                     {
-                        var nextParsedCommand = this.commandParsingStrategy.ParseInputCommand(nextInputLine);
+                        var nextParsedCommand = this.commandParsingStrategy.ParseCommand(nextInputLine);
                         this.commandUtilizationStrategy.UtilizeCommand(nextParsedCommand);
                     }
                     else

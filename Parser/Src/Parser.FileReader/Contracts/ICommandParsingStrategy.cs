@@ -2,6 +2,6 @@
 {
     public interface ICommandParsingStrategy
     {
-        ICommand ParseInputCommand(string input);
+        ICommand ParseCommand(string input);
     }
 }

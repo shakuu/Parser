@@ -20,7 +20,7 @@ namespace Parser.FileReader.Strategies
             this.commandFactory = commandFactory;
         }
 
-        public ICommand ParseInputCommand(string input)
+        public ICommand ParseCommand(string input)
         {
             var commandWords = input.Split(new[] { '[', ']', '(', ')', '<', '>' }, StringSplitOptions.RemoveEmptyEntries);
             commandWords = commandWords.Where(s => s != " ").ToArray();
