@@ -19,6 +19,8 @@ namespace Parser.ConsoleClient.NinjectModules
 
             this.Bind<ICommandUtilizationStrategy>().To<ConsoleClientCommandUtilizationStrategy>().InSingletonScope();
             this.Kernel.InterceptReplace<ConsoleClientCommandUtilizationStrategy>(s => s.UtilizeCommand(null), this.ICommandUtilizationStrategyUtilizeCommandMethod);
+
+            this.Bind<ILogFilePathDiscoveryStrategy>().To<TestingLogFilePathDiscoveryStrategy>().InSingletonScope();
         }
 
         private void ICommandUtilizationStrategyUtilizeCommandMethod(IInvocation invocation)
