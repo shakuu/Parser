@@ -22,6 +22,8 @@ namespace Parser.LogFileReader.Strategies
 
         public ICommand ParseCommand(string input)
         {
+            Guard.WhenArgument(input, nameof(input)).IsNullOrEmpty().Throw();
+
             var commandWords = input.Split(new[] { '[', ']', '(', ')', '<', '>' }, StringSplitOptions.RemoveEmptyEntries);
             commandWords = commandWords.Where(s => s != " ").ToArray();
 
