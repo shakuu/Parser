@@ -146,6 +146,41 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
         }
 
         [Test]
+        public void InvokeIFileReaderAutoResetEvent_WaitOneMethod()
+        {
+            // Arrange
+            var commandParsingStrategy = new Mock<ICommandParsingStrategy>();
+            var commandUtilizationStrategy = new Mock<ICommandUtilizationStrategy>();
+            var logFilePathDiscoveryStrategy = new Mock<ILogFilePathDiscoveryStrategy>();
+            var fileReaderAutoResetEventFactory = new Mock<IFileReaderAutoResetEventFactory>();
+            var fileReaderFileSystemWatcherFactory = new Mock<IFileReaderFileSystemWatcherFactory>();
+            var fileReaderInputProviderFactory = new Mock<IFileReaderInputProviderFactory>();
+
+            var fileReaderInputProviderMock = new Mock<IFileReaderInputProvider>();
+            fileReaderInputProviderMock.SetupSequence(i => i.ReadLine()).Returns(null);
+            fileReaderInputProviderFactory.Setup(f => f.CreateFileReaderInputProvider(It.IsAny<string>())).Returns(fileReaderInputProviderMock.Object);
+
+            var fileReaderAutoResetEventMock = new Mock<IFileReaderAutoResetEvent>();
+            fileReaderAutoResetEventMock.Setup(e => e.WaitOne(It.IsAny<int>())).Returns(true);
+            fileReaderAutoResetEventFactory.Setup(f => f.CreateFileReaderAutoResetEvent(It.IsAny<bool>())).Returns(fileReaderAutoResetEventMock.Object);
+
+            var logFilePath = "Fake Log Path";
+            logFilePathDiscoveryStrategy.Setup(s => s.DiscoverLogFile()).Returns(logFilePath);
+
+            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+
+            var AutoResetEventWaitTimeoutInMiliseconds = 250;
+
+            // Act
+            fileReaderEngine.StartAsync();
+            Thread.Sleep(50);
+            fileReaderEngine.Stop();
+
+            // Assert
+            fileReaderAutoResetEventMock.Verify(e => e.WaitOne(AutoResetEventWaitTimeoutInMiliseconds), Times.AtLeastOnce());
+        }
+
+        [Test]
         public void InvokeICommandParsingStrategy_ParseInputCommandMethod_WithCorrectArgument_WhenInputProviderProvidesInput()
         {
             // Arrange
