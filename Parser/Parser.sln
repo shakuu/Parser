@@ -9,11 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.ConsoleClient", "Cli
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{7DEE4524-5928-4941-B93C-9F5C4BD5D32C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.FileReader", "Src\Parser.FileReader\Parser.FileReader.csproj", "{BE757824-2C14-425F-9498-38C62C33EF34}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.LogFileReader", "Src\Parser.LogFileReader\Parser.LogFileReader.csproj", "{BE757824-2C14-425F-9498-38C62C33EF34}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{078E0CBC-5CAF-4513-A1D3-4F9F330B1D72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.FileReader.Tests", "Tests\Parser.FileReader.Tests\Parser.FileReader.Tests.csproj", "{EFE74609-79ED-444C-B57F-6BFFD39A0276}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.LogFileReader.Tests", "Tests\Parser.LogFileReader.Tests\Parser.LogFileReader.Tests.csproj", "{EFE74609-79ED-444C-B57F-6BFFD39A0276}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.WPFClient", "Clients\Parser.WPFClient\Parser.WPFClient.csproj", "{EC89EA7E-4806-49A1-B515-AEAB901DA967}"
 EndProject

@@ -6,7 +6,7 @@ using Ninject.Modules;
 
 using Parser.ConsoleClient.FileReaderImplementations;
 
-using Parser.FileReader.Contracts;
+using Parser.LogFileReader.Contracts;
 
 namespace Parser.ConsoleClient.NinjectModules
 {

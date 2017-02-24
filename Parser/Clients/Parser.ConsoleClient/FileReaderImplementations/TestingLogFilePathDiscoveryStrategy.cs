@@ -1,4 +1,4 @@
-﻿using Parser.FileReader.Contracts;
+﻿using Parser.LogFileReader.Contracts;
 
 namespace Parser.ConsoleClient.FileReaderImplementations
 {
