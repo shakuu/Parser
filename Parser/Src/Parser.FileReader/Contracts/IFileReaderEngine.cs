@@ -2,9 +2,9 @@
 {
     public interface IFileReaderEngine
     {
-        void StartAsync(string logFilePath);
+        void StartAsync();
 
-        void Start(string logFilePath);
+        void Start();
 
         void Stop();
     }

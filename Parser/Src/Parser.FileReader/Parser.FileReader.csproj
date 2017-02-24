@@ -57,6 +57,7 @@
     <Compile Include="Contracts\IFileReaderEngine.cs" />
     <Compile Include="Contracts\IFileReaderFileSystemWatcher.cs" />
     <Compile Include="Contracts\IFileReaderInputProvider.cs" />
+    <Compile Include="Contracts\ILogFileDiscoveryStrategy.cs" />
     <Compile Include="Engines\FileReaderEngine.cs" />
     <Compile Include="Factories\ICommandFactory.cs" />
     <Compile Include="Factories\IFileReaderAutoResetEventFactory.cs" />

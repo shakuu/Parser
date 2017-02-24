@@ -15,7 +15,7 @@ namespace Parser.ConsoleClient
         {
             var engine = NinjectStandardKernelProvider.Kernel.Get<IFileReaderEngine>();
 
-            engine.StartAsync(Program.MorninWoodDummyParse);
+            engine.StartAsync();
 
             Thread.Sleep(100);
             engine.Stop();
