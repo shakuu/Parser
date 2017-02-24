@@ -1,10 +1,10 @@
-﻿namespace Parser.FileReader.Contracts
+﻿using System.Threading.Tasks;
+
+namespace Parser.FileReader.Contracts
 {
     public interface IFileReaderEngine
     {
-        void StartAsync();
-
-        void Start();
+        Task StartAsync();
 
         void Stop();
     }

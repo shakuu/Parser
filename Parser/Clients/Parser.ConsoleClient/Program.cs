@@ -12,7 +12,7 @@ namespace Parser.ConsoleClient
         public static void Main()
         {
             var engine = NinjectStandardKernelProvider.Kernel.Get<IFileReaderEngine>();
-            
+
             engine.StartAsync();
             Thread.Sleep(100);
             engine.Stop();

@@ -37,14 +37,9 @@ namespace Parser.FileReader.Engines
             this.fileReaderInputProviderFactory = fileReaderInputProviderFactory;
         }
 
-        public void StartAsync()
+        public Task StartAsync()
         {
-            Task.Run(() => this.Run());
-        }
-
-        public void Start()
-        {
-            this.Run();
+            return Task.Run(() => this.Run());
         }
 
         public void Stop()

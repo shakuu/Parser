@@ -169,7 +169,7 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
 
             var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
-            var AutoResetEventWaitTimeoutInMiliseconds = 250;
+            var autoResetEventWaitTimeoutInMiliseconds = 250;
 
             // Act
             fileReaderEngine.StartAsync();
@@ -177,7 +177,7 @@ namespace Parser.FileReader.Tests.EnginesTests.FileReaderEngineTests
             fileReaderEngine.Stop();
 
             // Assert
-            fileReaderAutoResetEventMock.Verify(e => e.WaitOne(AutoResetEventWaitTimeoutInMiliseconds), Times.AtLeastOnce());
+            fileReaderAutoResetEventMock.Verify(e => e.WaitOne(autoResetEventWaitTimeoutInMiliseconds), Times.AtLeastOnce());
         }
 
         [Test]
