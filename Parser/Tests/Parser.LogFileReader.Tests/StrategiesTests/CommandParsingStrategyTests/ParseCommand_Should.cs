@@ -130,5 +130,36 @@ namespace Parser.LogFileReader.Tests.StrategiesTests.CommandParsingStrategyTests
             Assert.That(actualCommand.EventName, Is.EqualTo(expectedCommand.EventName));
             Assert.That(actualCommand.EventNameGameId, Is.EqualTo(expectedCommand.EventNameGameId));
         }
+
+        [Test]
+        public void ReturnCorrectCommand_WhenSpending()
+        {
+            // Arrange
+            var commandFactory = new Mock<ICommandFactory>();
+            commandFactory.Setup(f => f.CreateCommand()).Returns(new Command());
+
+            var commandParsingStrategy = new CommandParsingStrategy(commandFactory.Object);
+
+            var input = "[22:34:02.247] [@Morninn'wood] [@Morninn'wood] [] [Spend {836045448945473}: energy {836045448938503}] (20)";
+
+            var expectedCommand = new Command();
+            expectedCommand.TimeStamp = DateTime.Parse("22:34:02.247");
+            expectedCommand.AbilityActivatorName = "@Morninn'wood";
+            expectedCommand.AbilityTargetName = "@Morninn'wood";
+            expectedCommand.AbilityName = "Spend";
+            expectedCommand.AbilityGameId = "836045448945473";
+            expectedCommand.AbilityCost = 20;
+
+            // Act
+            var actualCommand = commandParsingStrategy.ParseCommand(input);
+
+            // Assert
+            Assert.That(actualCommand.TimeStamp, Is.EqualTo(expectedCommand.TimeStamp));
+            Assert.That(actualCommand.AbilityActivatorName, Is.EqualTo(expectedCommand.AbilityActivatorName));
+            Assert.That(actualCommand.AbilityTargetName, Is.EqualTo(expectedCommand.AbilityTargetName));
+            Assert.That(actualCommand.AbilityName, Is.EqualTo(expectedCommand.AbilityName));
+            Assert.That(actualCommand.AbilityGameId, Is.EqualTo(expectedCommand.AbilityGameId));
+            Assert.That(actualCommand.AbilityCost, Is.EqualTo(expectedCommand.AbilityCost));
+        }
     }
 }

@@ -1,1 +1,1 @@
-[22:33:18.020] [@Morninn'wood] [@Morninn'wood] [Coordination {881945764429824}] [ApplyEffect {836045448945477}: Hunter's Boon {881945764430104}] ()
+[22:34:02.247] [@Morninn'wood] [@Morninn'wood] [] [Spend {836045448945473}: energy {836045448938503}] (20)
