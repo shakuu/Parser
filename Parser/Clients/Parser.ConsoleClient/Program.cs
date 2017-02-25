@@ -11,10 +11,10 @@ namespace Parser.ConsoleClient
     {
         public static void Main()
         {
-            var engine = NinjectStandardKernelProvider.Kernel.Get<IFileReaderEngine>();
+            var engine = NinjectStandardKernelProvider.Kernel.Get<ILogFileReaderEngine>();
 
             engine.StartAsync();
-            Thread.Sleep(100);
+            Thread.Sleep(1000);
             engine.Stop();
         }
     }

@@ -34,7 +34,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
             var logFilePath = "Fake Log Path";
             logFilePathDiscoveryStrategy.Setup(s => s.DiscoverLogFile()).Returns(logFilePath);
 
-            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+            var fileReaderEngine = new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Act
             fileReaderEngine.StartAsync();
@@ -67,7 +67,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
             var logFilePath = "Fake Log Path";
             logFilePathDiscoveryStrategy.Setup(s => s.DiscoverLogFile()).Returns(logFilePath);
 
-            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+            var fileReaderEngine = new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Act
             fileReaderEngine.StartAsync();
@@ -100,7 +100,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
             var logFilePath = "Fake Log Path";
             logFilePathDiscoveryStrategy.Setup(s => s.DiscoverLogFile()).Returns(logFilePath);
 
-            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+            var fileReaderEngine = new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Act
             fileReaderEngine.StartAsync();
@@ -133,7 +133,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
             var logFilePath = "Fake Log Path";
             logFilePathDiscoveryStrategy.Setup(s => s.DiscoverLogFile()).Returns(logFilePath);
 
-            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+            var fileReaderEngine = new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Act
             fileReaderEngine.StartAsync();
@@ -166,7 +166,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
             var logFilePath = "Fake Log Path";
             logFilePathDiscoveryStrategy.Setup(s => s.DiscoverLogFile()).Returns(logFilePath);
 
-            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+            var fileReaderEngine = new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             var autoResetEventWaitTimeoutInMiliseconds = 250;
 
@@ -202,7 +202,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
             var logFilePath = "Fake Log Path";
             logFilePathDiscoveryStrategy.Setup(s => s.DiscoverLogFile()).Returns(logFilePath);
 
-            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+            var fileReaderEngine = new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Act
             fileReaderEngine.StartAsync();
@@ -239,7 +239,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
             var fakeParsedCommand = new Mock<ICommand>();
             commandParsingStrategy.Setup(p => p.ParseCommand(It.IsAny<string>())).Returns(fakeParsedCommand.Object);
 
-            var fileReaderEngine = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+            var fileReaderEngine = new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Act
             fileReaderEngine.StartAsync();

@@ -7,10 +7,11 @@ using Ninject.Modules;
 using Parser.ConsoleClient.FileReaderImplementations;
 
 using Parser.LogFileReader.Contracts;
+using Parser.LogFileReader.Strategies;
 
 namespace Parser.ConsoleClient.NinjectModules
 {
-    internal class FileReaderNinjectModule : NinjectModule
+    internal class LogFileReaderNinjectModule : NinjectModule
     {
         public override void Load()
         {
@@ -19,8 +20,6 @@ namespace Parser.ConsoleClient.NinjectModules
 
             this.Bind<ICommandUtilizationStrategy>().To<ConsoleClientCommandUtilizationStrategy>().InSingletonScope();
             this.Kernel.InterceptReplace<ConsoleClientCommandUtilizationStrategy>(s => s.UtilizeCommand(null), this.ICommandUtilizationStrategyUtilizeCommandMethod);
-
-            this.Bind<ILogFilePathDiscoveryStrategy>().To<TestingLogFilePathDiscoveryStrategy>().InSingletonScope();
         }
 
         private void ICommandUtilizationStrategyUtilizeCommandMethod(IInvocation invocation)
@@ -43,7 +42,8 @@ namespace Parser.ConsoleClient.NinjectModules
             bind
                 .FromAssembliesMatching("*.LogFileReader.*")
                 .SelectAllClasses()
-                .BindDefaultInterface();
+                .BindDefaultInterface()
+                .ConfigureFor<LogFilePathDiscoveryStrategy>(s => s.Intercept().With<LogFilePathDiscoveryStrategyTestingInterceptor>());
         }
     }
 }
