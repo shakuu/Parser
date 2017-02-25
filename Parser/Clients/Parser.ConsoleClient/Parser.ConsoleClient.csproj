@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileReaderImplementations\ConsoleClientCommandUtilizationStrategy.cs" />
-    <Compile Include="FileReaderImplementations\TestingLogFilePathDiscoveryStrategy.cs" />
+    <Compile Include="FileReaderImplementations\LogFilePathDiscoveryStrategyTestingInterceptor.cs" />
     <Compile Include="NinjectModules\LogFileReaderNinjectModule.cs" />
     <Compile Include="NinjectModules\NinjectStandardKernelProvider.cs" />
     <Compile Include="Program.cs" />
