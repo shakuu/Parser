@@ -10,7 +10,7 @@ using Parser.LogFileReader.Contracts;
 
 namespace Parser.ConsoleClient.NinjectModules
 {
-    internal class FileReaderNinjectModule : NinjectModule
+    internal class LogFileReaderNinjectModule : NinjectModule
     {
         public override void Load()
         {
