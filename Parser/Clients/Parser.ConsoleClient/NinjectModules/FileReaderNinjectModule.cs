@@ -31,7 +31,7 @@ namespace Parser.ConsoleClient.NinjectModules
         private void BindFactoriesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.FileReader.*")
+                .FromAssembliesMatching("*.LogFileReader.*")
                 .SelectAllInterfaces()
                 .EndingWith("Factory")
                 .BindToFactory()
@@ -41,7 +41,7 @@ namespace Parser.ConsoleClient.NinjectModules
         private void BindAllClassesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.FileReader.*")
+                .FromAssembliesMatching("*.LogFileReader.*")
                 .SelectAllClasses()
                 .BindDefaultInterface();
         }
