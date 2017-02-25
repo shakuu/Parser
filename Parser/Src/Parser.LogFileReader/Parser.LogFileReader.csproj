@@ -53,6 +53,7 @@
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandParsingStrategy.cs" />
     <Compile Include="Contracts\ICommandUtilizationStrategy.cs" />
+    <Compile Include="Contracts\IDirectoryFilesProvider.cs" />
     <Compile Include="Contracts\IEnvironmentFolderPathProvider.cs" />
     <Compile Include="Contracts\IFileReaderAutoResetEvent.cs" />
     <Compile Include="Contracts\IFileReaderEngine.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Factories\IFileReaderAutoResetEventFactory.cs" />
     <Compile Include="Factories\IFileReaderFileSystemWatcherFactory.cs" />
     <Compile Include="Factories\IFileReaderInputProviderFactory.cs" />
+    <Compile Include="FileSystemProviders\DirectoryFilesProvider.cs" />
     <Compile Include="FileSystemProviders\EnvironmentFolderPathProvider.cs" />
     <Compile Include="FileSystemProviders\FileReaderAutoResetEvent.cs" />
     <Compile Include="FileSystemProviders\FileReaderFileSystemWatcher.cs" />
