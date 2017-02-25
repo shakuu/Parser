@@ -33,5 +33,7 @@ namespace Parser.LogFileReader.Contracts
         decimal EffectEffectiveAmount { get; set; }
 
         bool IsCritical { get; set; }
+
+        string OriginalString { get; set; }
     }
 }

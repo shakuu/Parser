@@ -28,6 +28,7 @@ namespace Parser.LogFileReader.Strategies
             commandWords = commandWords.Where(s => s != " ").ToArray();
 
             var nextCommand = this.commandFactory.CreateCommand();
+
             if (commandWords.Length == 0)
             {
                 return nextCommand;
@@ -42,6 +43,8 @@ namespace Parser.LogFileReader.Strategies
             nextCommand = this.GetEffectAmountDetails(commandWords, nextCommand);
 
             nextCommand.EffectEffectiveAmount = this.GetEffectEffectiveAmount(commandWords);
+
+            nextCommand.OriginalString = input;
 
             return nextCommand;
         }
