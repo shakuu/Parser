@@ -9,7 +9,7 @@ namespace Parser.LogFileReader.Strategies
     public class LogFilePathDiscoveryStrategy : ILogFilePathDiscoveryStrategy
     {
         private const string MyDocumentsFolderName = "MyDocuments";
-        private const string SwtorDefaultPath = "\\Star Wars - The Old Republic\\CombatLogs";
+        private const string DefaultCombatLogsPath = "\\Star Wars - The Old Republic\\CombatLogs";
 
         private readonly IEnvironmentFolderPathProvider environmentFolderPathProvider;
         private readonly IDirectoryFilesProvider directoryFilesProvider;
@@ -26,7 +26,7 @@ namespace Parser.LogFileReader.Strategies
         public string DiscoverLogFile()
         {
             var documentsFolderPath = this.environmentFolderPathProvider.GetEnvironmentFolderPath(LogFilePathDiscoveryStrategy.MyDocumentsFolderName);
-            var combatLogsPath = documentsFolderPath + LogFilePathDiscoveryStrategy.SwtorDefaultPath;
+            var combatLogsPath = documentsFolderPath + LogFilePathDiscoveryStrategy.DefaultCombatLogsPath;
             var allLogFiles = this.directoryFilesProvider.GetDirectoryFiles(combatLogsPath);
 
             return allLogFiles.Last();
