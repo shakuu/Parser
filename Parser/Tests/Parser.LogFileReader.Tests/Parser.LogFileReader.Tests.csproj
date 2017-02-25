@@ -58,6 +58,7 @@
     <Compile Include="StrategiesTests\CommandParsingStrategyTests\Constructor_Should.cs" />
     <Compile Include="StrategiesTests\CommandParsingStrategyTests\ParseCommand_Should.cs" />
     <Compile Include="StrategiesTests\LogFilePathDiscoveryStrategyTests\Constructor_Should.cs" />
+    <Compile Include="StrategiesTests\LogFilePathDiscoveryStrategyTests\DiscoverLogFile_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

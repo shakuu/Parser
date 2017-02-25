@@ -26,10 +26,10 @@ namespace Parser.LogFileReader.Strategies
         public string DiscoverLogFile()
         {
             var documentsFolderPath = this.environmentFolderPathProvider.GetEnvironmentFolderPath(LogFilePathDiscoveryStrategy.MyDocumentsFolderName);
-            var combatLogsPath = documentsFolderPath + LogFilePathDiscoveryStrategy.DefaultCombatLogsPath;
+            var combatLogsPath = (documentsFolderPath ?? string.Empty) + LogFilePathDiscoveryStrategy.DefaultCombatLogsPath;
             var allLogFiles = this.directoryFilesProvider.GetDirectoryFiles(combatLogsPath);
 
-            return allLogFiles.Last();
+            return allLogFiles?.LastOrDefault();
         }
     }
 }
