@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 
 using Bytes2you.Validation;
 
@@ -13,21 +12,24 @@ namespace Parser.LogFileReader.Strategies
         private const string SwtorDefaultPath = "\\Star Wars - The Old Republic\\CombatLogs";
 
         private readonly IEnvironmentFolderPathProvider environmentFolderPathProvider;
+        private readonly IDirectoryFilesProvider directoryFilesProvider;
 
-        public LogFilePathDiscoveryStrategy(IEnvironmentFolderPathProvider environmentFolderPathProvider)
+        public LogFilePathDiscoveryStrategy(IEnvironmentFolderPathProvider environmentFolderPathProvider, IDirectoryFilesProvider directoryFilesProvider)
         {
             Guard.WhenArgument(environmentFolderPathProvider, nameof(IEnvironmentFolderPathProvider)).IsNull().Throw();
+            Guard.WhenArgument(directoryFilesProvider, nameof(IDirectoryFilesProvider)).IsNull().Throw();
 
             this.environmentFolderPathProvider = environmentFolderPathProvider;
+            this.directoryFilesProvider = directoryFilesProvider;
         }
 
         public string DiscoverLogFile()
         {
             var documentsFolderPath = this.environmentFolderPathProvider.GetEnvironmentFolderPath(LogFilePathDiscoveryStrategy.MyDocumentsName);
             var combatLogsPath = documentsFolderPath + LogFilePathDiscoveryStrategy.SwtorDefaultPath;
-            var logFilePath = Directory.GetFiles(combatLogsPath);
+            var allLogFiles = this.directoryFilesProvider.GetDirectoryFiles(combatLogsPath);
 
-            return logFilePath.Last();
+            return allLogFiles.Last();
         }
     }
 }
