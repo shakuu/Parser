@@ -7,7 +7,7 @@ using Parser.LogFileReader.Factories;
 
 namespace Parser.LogFileReader.Engines
 {
-    public class FileReaderEngine : IFileReaderEngine
+    public class LogFileReaderEngine : ILogFileReaderEngine
     {
         private const int AutoResetEventWaitTimeoutInMiliseconds = 250;
 
@@ -20,7 +20,7 @@ namespace Parser.LogFileReader.Engines
 
         private bool isRunning = false;
 
-        public FileReaderEngine(ICommandParsingStrategy commandParsingStrategy, ICommandUtilizationStrategy commandUtilizationStrategy, ILogFilePathDiscoveryStrategy logFilePathDiscoveryStrategy, IFileReaderAutoResetEventFactory fileReaderAutoResetEventFactory, IFileReaderFileSystemWatcherFactory fileReaderFileSystemWatcherFactory, IFileReaderInputProviderFactory fileReaderInputProviderFactory)
+        public LogFileReaderEngine(ICommandParsingStrategy commandParsingStrategy, ICommandUtilizationStrategy commandUtilizationStrategy, ILogFilePathDiscoveryStrategy logFilePathDiscoveryStrategy, IFileReaderAutoResetEventFactory fileReaderAutoResetEventFactory, IFileReaderFileSystemWatcherFactory fileReaderFileSystemWatcherFactory, IFileReaderInputProviderFactory fileReaderInputProviderFactory)
         {
             Guard.WhenArgument(commandParsingStrategy, nameof(ICommandParsingStrategy)).IsNull().Throw();
             Guard.WhenArgument(commandUtilizationStrategy, nameof(ICommandUtilizationStrategy)).IsNull().Throw();
@@ -69,7 +69,7 @@ namespace Parser.LogFileReader.Engines
                     }
                     else
                     {
-                        autoResetEvent.WaitOne(FileReaderEngine.AutoResetEventWaitTimeoutInMiliseconds);
+                        autoResetEvent.WaitOne(LogFileReaderEngine.AutoResetEventWaitTimeoutInMiliseconds);
                     }
                 }
             }

@@ -24,10 +24,10 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
             var fileReaderInputProviderFactory = new Mock<IFileReaderInputProviderFactory>();
 
             // Act 
-            var actualInstance = new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
+            var actualInstance = new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object);
 
             // Assert
-            Assert.That(actualInstance, Is.Not.Null.And.InstanceOf<IFileReaderEngine>());
+            Assert.That(actualInstance, Is.Not.Null.And.InstanceOf<ILogFileReaderEngine>());
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act & Assert
             Assert.That(
-                () => new FileReaderEngine(commandParsingStrategy, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object),
+                () => new LogFileReaderEngine(commandParsingStrategy, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICommandParsingStrategy)));
         }
 
@@ -60,7 +60,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act & Assert
             Assert.That(
-                () => new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object),
+                () => new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICommandUtilizationStrategy)));
         }
 
@@ -76,7 +76,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act & Assert
             Assert.That(
-                () => new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object),
+                () => new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ILogFilePathDiscoveryStrategy)));
         }
 
@@ -93,7 +93,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act & Assert
             Assert.That(
-                () => new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object),
+                () => new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IFileReaderAutoResetEventFactory)));
         }
 
@@ -110,7 +110,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act & Assert
             Assert.That(
-                () => new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory, fileReaderInputProviderFactory.Object),
+                () => new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory, fileReaderInputProviderFactory.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IFileReaderFileSystemWatcherFactory)));
         }
 
@@ -127,7 +127,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act & Assert
             Assert.That(
-                () => new FileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory),
+                () => new LogFileReaderEngine(commandParsingStrategy.Object, commandUtilizationStrategy.Object, logFilePathDiscoveryStrategy.Object, fileReaderAutoResetEventFactory.Object, fileReaderFileSystemWatcherFactory.Object, fileReaderInputProviderFactory),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IFileReaderInputProviderFactory)));
         }
     }

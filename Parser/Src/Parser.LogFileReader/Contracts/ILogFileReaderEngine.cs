@@ -2,7 +2,7 @@
 
 namespace Parser.LogFileReader.Contracts
 {
-    public interface IFileReaderEngine
+    public interface ILogFileReaderEngine
     {
         Task StartAsync();
 
