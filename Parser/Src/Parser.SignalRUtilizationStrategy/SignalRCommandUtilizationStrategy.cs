@@ -40,12 +40,12 @@ namespace Parser.SignalRUtilizationStrategy
 
         private async Task<IHubProxy> InitializeLogFileParserHubProxy(string url)
         {
-            var connection = this.hubConnectionProviderFactory.CreateHubConnectionProvider(url);
+            var hubConnectionProvider = this.hubConnectionProviderFactory.CreateHubConnectionProvider(url);
 
-            var logFileParserHubProxy = connection.CreateHubProxy("LogFileParserHub");
+            var logFileParserHubProxy = hubConnectionProvider.CreateHubProxy("LogFileParserHub");
             logFileParserHubProxy.On<string>("UpdateParsingSessionId", this.OnUpdateParsingSessionId);
 
-            await connection.Start();
+            await hubConnectionProvider.Start();
             await logFileParserHubProxy.Invoke("GetParsingSessionId");
 
             return logFileParserHubProxy;
