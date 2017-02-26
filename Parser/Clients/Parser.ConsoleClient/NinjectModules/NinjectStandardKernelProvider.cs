@@ -10,6 +10,8 @@ namespace Parser.ConsoleClient.NinjectModules
         {
             NinjectStandardKernelProvider.Kernel = new StandardKernel();
             NinjectStandardKernelProvider.Kernel.Load(new LogFileReaderNinjectModule());
+            NinjectStandardKernelProvider.Kernel.Load(new SignalRNinjectModule());
+            NinjectStandardKernelProvider.Kernel.Load(new CommonNinjectModule());
         }
     }
 }
