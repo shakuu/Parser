@@ -25,19 +25,35 @@ namespace Parser.SignalR.Services
             this.hubProxyProviderFactory = hubProxyProviderFactory;
 
             this.hubProxyProviders = new Dictionary<string, IHubProxyProvider>();
+
+            this.StartHubConnection(this.hubConnectionProvider);
         }
 
         public IHubProxyProvider GetHubProxyProvider(string hubName)
         {
             if (this.hubProxyProviders.ContainsKey(hubName) == false)
             {
+                this.StopHubConnection(this.hubConnectionProvider);
+
                 var newHubProxy = this.hubConnectionProvider.CreateHubProxy(hubName);
                 var newHubProxyProvider = this.hubProxyProviderFactory.CreateHubProxyProvider(newHubProxy);
 
                 this.hubProxyProviders.Add(hubName, newHubProxyProvider);
+
+                this.StartHubConnection(this.hubConnectionProvider);
             }
 
             return this.hubProxyProviders[hubName];
+        }
+
+        private void StartHubConnection(IHubConnectionProvider hubConnectionProvider)
+        {
+            hubConnectionProvider.Start().Wait();
+        }
+
+        private void StopHubConnection(IHubConnectionProvider hubConnectionProvider)
+        {
+            hubConnectionProvider.Stop();
         }
     }
 }

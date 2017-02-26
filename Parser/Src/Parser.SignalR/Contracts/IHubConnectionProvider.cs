@@ -7,6 +7,8 @@ namespace Parser.SignalR.Contracts
     {
         Task Start();
 
+        void Stop();
+
         IHubProxy CreateHubProxy(string hubName);
     }
 }

@@ -38,6 +38,8 @@ namespace Parser.CommandUtilizationStrategies
 
         private async void InitializeLogFileParserHubProxy(IHubProxyProvider logFileParserHubProxy)
         {
+            // TODO: DELETE CW
+            //logFileParserHubProxy.On<string>("ReceiveStatus", (update) => System.Console.WriteLine(update));
             logFileParserHubProxy.On<string>("UpdateParsingSessionId", this.OnUpdateParsingSessionId);
             await logFileParserHubProxy.Invoke("GetParsingSessionId");
         }

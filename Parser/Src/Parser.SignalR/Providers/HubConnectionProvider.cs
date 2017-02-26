@@ -25,6 +25,11 @@ namespace Parser.SignalR.Providers
             return this.hubConnection.Start();
         }
 
+        public void Stop()
+        {
+            this.hubConnection.Stop();
+        }
+
         public IHubProxy CreateHubProxy(string hubName)
         {
             Guard.WhenArgument(hubName, nameof(hubName)).IsNullOrEmpty().Throw();
