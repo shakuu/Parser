@@ -52,8 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IHubConnectionProvider.cs" />
+    <Compile Include="Contracts\IHubConnectionProviderFactory.cs" />
     <Compile Include="Contracts\IJsonConvertProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\HubConnectionProvider.cs" />
     <Compile Include="Providers\JsonConvertProvider.cs" />
     <Compile Include="SignalRCommandUtilizationStrategy.cs" />
   </ItemGroup>
