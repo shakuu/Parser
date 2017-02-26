@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-using Bytes2you.Validation;
-
 using Microsoft.AspNet.SignalR.Client;
+
+using Bytes2you.Validation;
 
 using Parser.SignalRUtilizationStrategy.Contracts;
 
@@ -10,7 +10,7 @@ namespace Parser.SignalRUtilizationStrategy.Providers
 {
     public class HubConnectionProvider : IHubConnectionProvider
     {
-        // IHubConnect/ IConnection do NOT contain a .Start() method.
+        // IHubConnect and IConnection do NOT contain a .Start() method.
         private readonly HubConnection hubConnection;
 
         public HubConnectionProvider(string url)
