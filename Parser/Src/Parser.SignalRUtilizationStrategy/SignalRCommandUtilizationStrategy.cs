@@ -7,11 +7,12 @@ using Newtonsoft.Json;
 
 using Parser.LogFileReader.Contracts;
 
-namespace Parser.LogFileReader.Strategies
+namespace Parser.SignalRUtilizationStrategy
 {
     public class SignalRCommandUtilizationStrategy : ICommandUtilizationStrategy
     {
         private readonly IHubProxy logFileParserHubProxy;
+        private string assignedId;
 
         public SignalRCommandUtilizationStrategy()
         {
@@ -22,12 +23,13 @@ namespace Parser.LogFileReader.Strategies
         {
             var serializedCommand = JsonConvert.SerializeObject(command);
 
-            this.logFileParserHubProxy.Invoke("SendCommand", serializedCommand);
+            this.logFileParserHubProxy.Invoke("SendCommand", this.assignedId, serializedCommand);
         }
 
         private async Task<IHubProxy> CreateProxy(string url)
         {
             var connection = new HubConnection(url);
+            //connection.TraceWriter = Console.Out;
 
             var logFileParserHubProxy = connection.CreateHubProxy("LogFileParserHub");
 
@@ -36,9 +38,17 @@ namespace Parser.LogFileReader.Strategies
                 Console.WriteLine(status);
             });
 
+            logFileParserHubProxy.On<string>("UpdateUserId", this.OnUpdateUserId);
+
             await connection.Start();
+            await logFileParserHubProxy.Invoke("GetUserId");
 
             return logFileParserHubProxy;
+        }
+
+        private void OnUpdateUserId(string userId)
+        {
+            this.assignedId = userId;
         }
     }
 }
