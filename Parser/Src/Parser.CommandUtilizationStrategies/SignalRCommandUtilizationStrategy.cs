@@ -29,6 +29,8 @@ namespace Parser.CommandUtilizationStrategies
 
         public void UtilizeCommand(ICommand command)
         {
+            Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
+
             var serializedCommand = this.jsonConvertProvider.SerializeObject(command);
 
             this.logFileParserHubProxy.Invoke("SendCommand", this.parsingSessionId, serializedCommand);
