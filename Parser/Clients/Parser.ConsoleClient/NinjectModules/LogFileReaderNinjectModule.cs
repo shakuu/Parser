@@ -18,7 +18,7 @@ namespace Parser.ConsoleClient.NinjectModules
             this.Bind(this.BindFactoriesByConvention);
             this.Bind(this.BindAllClassesByConvention);
 
-            this.Bind<ICommandUtilizationStrategy>().To<ConsoleClientCommandUtilizationStrategy>().InSingletonScope();
+            this.Bind<ICommandUtilizationStrategy>().To<SignalRCommandUtilizationStrategy>().InSingletonScope();
             this.Kernel.InterceptReplace<ConsoleClientCommandUtilizationStrategy>(s => s.UtilizeCommand(null), this.ICommandUtilizationStrategyUtilizeCommandMethod);
         }
 
