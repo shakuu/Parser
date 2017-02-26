@@ -4,11 +4,11 @@ using Ninject.Extensions.Interception;
 using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 
+using Parser.CommandUtilizationStrategies;
 using Parser.ConsoleClient.FileReaderImplementations;
 
 using Parser.LogFileReader.Contracts;
 using Parser.LogFileReader.Strategies;
-using Parser.SignalRUtilizationStrategy;
 
 namespace Parser.ConsoleClient.NinjectModules
 {

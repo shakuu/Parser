@@ -79,13 +79,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Src\Parser.CommandUtilizationStrategies\Parser.CommandUtilizationStrategies.csproj">
+      <Project>{26956103-9852-416b-a654-96191ea2c916}</Project>
+      <Name>Parser.CommandUtilizationStrategies</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.LogFileReader\Parser.LogFileReader.csproj">
       <Project>{be757824-2c14-425f-9498-38c62c33ef34}</Project>
       <Name>Parser.LogFileReader</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Src\Parser.SignalRUtilizationStrategy\Parser.SignalRUtilizationStrategy.csproj">
-      <Project>{e057e57c-fdee-41ee-a047-d807037a84df}</Project>
-      <Name>Parser.SignalRUtilizationStrategy</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
