@@ -17,9 +17,9 @@ namespace Clients.MvcClient.SignalRHubs
             Clients.Caller.ReceiveStatus(command.TimeStamp.ToShortTimeString());
         }
 
-        public void GetUserId()
+        public void GetParsingSessionId()
         {
-            Clients.Caller.UpdateUserId(Guid.NewGuid());
+            Clients.Caller.UpdateParsingSessionId(Guid.NewGuid());
         }
     }
 }
