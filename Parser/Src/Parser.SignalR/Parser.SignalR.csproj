@@ -63,6 +63,7 @@
     <Compile Include="Providers\HubConnectionProvider.cs" />
     <Compile Include="Providers\HubProxyProvider.cs" />
     <Compile Include="Providers\JsonConvertProvider.cs" />
+    <Compile Include="Services\LogFileParserHubService.cs" />
     <Compile Include="Services\SignalRHubConnectionService.cs" />
     <Compile Include="Strategies\SignalRCommandUtilizationStrategy.cs" />
   </ItemGroup>

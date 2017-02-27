@@ -9,7 +9,7 @@ namespace Parser.SignalR.Services
 {
     public class SignalRHubConnectionService : ISignalRHubConnectionService
     {
-        private const string HubConnectionUrl = "http://localhost:52589";
+        private const string HubConnectionUrl = "http://localhost:50800";
 
         private readonly IHubConnectionProvider hubConnectionProvider;
         private readonly IHubProxyProviderFactory hubProxyProviderFactory;
