@@ -10,5 +10,10 @@ namespace Parser.Common.Providers
         {
             return JsonConvert.SerializeObject(value);
         }
+
+        public T DeserializeObject<T>(string value)
+        {
+            return JsonConvert.DeserializeObject<T>(value);
+        }
     }
 }
