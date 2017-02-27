@@ -29,8 +29,15 @@ namespace Parser.SignalR.Services
             this.StartHubConnection(this.hubConnectionProvider);
         }
 
+        /// <summary>
+        /// Created for testing.
+        /// </summary>
+        protected IDictionary<string, IHubProxyProvider> HubProxyProviders { get { return this.hubProxyProviders; } }
+
         public IHubProxyProvider GetHubProxyProvider(string hubName)
         {
+            Guard.WhenArgument(hubName, nameof(hubName)).IsNullOrEmpty().Throw();
+
             if (this.hubProxyProviders.ContainsKey(hubName) == false)
             {
                 this.StopHubConnection(this.hubConnectionProvider);
