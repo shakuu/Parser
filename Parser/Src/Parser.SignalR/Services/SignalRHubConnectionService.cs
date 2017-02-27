@@ -36,6 +36,8 @@ namespace Parser.SignalR.Services
 
         public IHubProxyProvider GetHubProxyProvider(string hubName)
         {
+            Guard.WhenArgument(hubName, nameof(hubName)).IsNullOrEmpty().Throw();
+
             if (this.hubProxyProviders.ContainsKey(hubName) == false)
             {
                 this.StopHubConnection(this.hubConnectionProvider);

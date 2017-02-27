@@ -104,8 +104,8 @@ namespace Parser.SignalR.Tests.ServicesTests.SignalRHubConnectionServiceTests
             hubConnectionProviderFactory.Setup(f => f.CreateHubConnectionProvider(It.IsAny<string>())).Returns(hubConnectionProvider.Object);
 
             // Act
-            var mockSignalRHubConnectionService = new MockSignalRHubConnectionService(hubConnectionProviderFactory.Object, hubProxyProviderFactory.Object);
-            var actualHubProxyProvidersDictionaryValue = mockSignalRHubConnectionService.HubProxyProviders;
+            var signalRHubConnectionService = new MockSignalRHubConnectionService(hubConnectionProviderFactory.Object, hubProxyProviderFactory.Object);
+            var actualHubProxyProvidersDictionaryValue = signalRHubConnectionService.HubProxyProviders;
 
             // Assert
             Assert.That(actualHubProxyProvidersDictionaryValue, Is.Not.Null.And.InstanceOf<IDictionary<string, IHubProxyProvider>>());
