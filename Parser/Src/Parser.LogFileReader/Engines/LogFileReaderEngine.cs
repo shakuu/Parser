@@ -72,8 +72,6 @@ namespace Parser.LogFileReader.Engines
                         autoResetEvent.WaitOne(LogFileReaderEngine.AutoResetEventWaitTimeoutInMiliseconds);
                     }
                 }
-
-                inputProvider.Dispose();
             }
         }
     }
