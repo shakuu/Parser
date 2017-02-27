@@ -89,6 +89,7 @@
     <Compile Include="ServicesTests\SignalRHubConnectionServiceTests\Constructor_Should.cs" />
     <Compile Include="ServicesTests\SignalRHubConnectionServiceTests\GetHubProxyProvider_Should.cs" />
     <Compile Include="Strategies\SignalRCommandUtilizationStrategyTests\Constructor_Should.cs" />
+    <Compile Include="Strategies\SignalRCommandUtilizationStrategyTests\UtilizeCommand_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
