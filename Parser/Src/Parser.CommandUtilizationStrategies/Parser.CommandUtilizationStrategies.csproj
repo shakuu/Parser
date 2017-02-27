@@ -48,10 +48,6 @@
     <Compile Include="SignalRCommandUtilizationStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">
-      <Project>{eebfc723-3255-48b6-9991-4e848c9498a6}</Project>
-      <Name>Parser.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Parser.LogFileReader\Parser.LogFileReader.csproj">
       <Project>{be757824-2c14-425f-9498-38c62c33ef34}</Project>
       <Name>Parser.LogFileReader</Name>

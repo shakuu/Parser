@@ -1,19 +1,19 @@
-﻿using Newtonsoft.Json;
+﻿//using Newtonsoft.Json;
 
-using Parser.Common.Contracts;
+//using Parser.Common.Contracts;
 
-namespace Parser.Common.Providers
-{
-    public class JsonConvertProvider : IJsonConvertProvider
-    {
-        public string SerializeObject(object value)
-        {
-            return JsonConvert.SerializeObject(value);
-        }
+//namespace Parser.Common.Providers
+//{
+//    public class JsonConvertProvider : IJsonConvertProvider
+//    {
+//        public string SerializeObject(object value)
+//        {
+//            return JsonConvert.SerializeObject(value);
+//        }
 
-        public T DeserializeObject<T>(string value)
-        {
-            return JsonConvert.DeserializeObject<T>(value);
-        }
-    }
-}
+//        public T DeserializeObject<T>(string value)
+//        {
+//            return JsonConvert.DeserializeObject<T>(value);
+//        }
+//    }
+//}
