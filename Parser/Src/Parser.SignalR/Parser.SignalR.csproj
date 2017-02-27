@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IHubConnectionProvider.cs" />
+    <Compile Include="Contracts\IJsonConvertProvider.cs" />
+    <Compile Include="Contracts\ILogFileParserHubService.cs" />
     <Compile Include="Factories\IHubConnectionProviderFactory.cs" />
     <Compile Include="Contracts\IHubProxyProvider.cs" />
     <Compile Include="Contracts\ISignalRHubConnectionService.cs" />
@@ -60,12 +62,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\HubConnectionProvider.cs" />
     <Compile Include="Providers\HubProxyProvider.cs" />
+    <Compile Include="Providers\JsonConvertProvider.cs" />
+    <Compile Include="Services\LogFileParserHubService.cs" />
     <Compile Include="Services\SignalRHubConnectionService.cs" />
+    <Compile Include="Strategies\SignalRCommandUtilizationStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Parser.LogFileReader\Parser.LogFileReader.csproj">
+      <Project>{be757824-2c14-425f-9498-38c62c33ef34}</Project>
+      <Name>Parser.LogFileReader</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
