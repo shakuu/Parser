@@ -88,7 +88,7 @@ namespace Parser.SignalR.Tests.ServicesTests.SignalRHubConnectionServiceTests
             var hubConnectionProvider = new Mock<IHubConnectionProvider>();
             hubConnectionProviderFactory.Setup(f => f.CreateHubConnectionProvider(It.IsAny<string>())).Returns(hubConnectionProvider.Object);
 
-            var unexistingIHubProxyProviderHubName = "existing hubName";
+            var unexistingIHubProxyProviderHubName = "unexisting hubName";
 
             var signalRHubConnectionService = new SignalRHubConnectionService(hubConnectionProviderFactory.Object, hubProxyProviderFactory.Object);
 
@@ -109,7 +109,7 @@ namespace Parser.SignalR.Tests.ServicesTests.SignalRHubConnectionServiceTests
             var hubConnectionProvider = new Mock<IHubConnectionProvider>();
             hubConnectionProviderFactory.Setup(f => f.CreateHubConnectionProvider(It.IsAny<string>())).Returns(hubConnectionProvider.Object);
 
-            var unexistingIHubProxyProviderHubName = "existing hubName";
+            var unexistingIHubProxyProviderHubName = "unexisting hubName";
 
             var signalRHubConnectionService = new SignalRHubConnectionService(hubConnectionProviderFactory.Object, hubProxyProviderFactory.Object);
 
@@ -133,7 +133,7 @@ namespace Parser.SignalR.Tests.ServicesTests.SignalRHubConnectionServiceTests
             var hubProxy = new Mock<IHubProxy>();
             hubConnectionProvider.Setup(p => p.CreateHubProxy(It.IsAny<string>())).Returns(hubProxy.Object);
 
-            var unexistingIHubProxyProviderHubName = "existing hubName";
+            var unexistingIHubProxyProviderHubName = "unexisting hubName";
 
             var signalRHubConnectionService = new SignalRHubConnectionService(hubConnectionProviderFactory.Object, hubProxyProviderFactory.Object);
 
@@ -160,7 +160,7 @@ namespace Parser.SignalR.Tests.ServicesTests.SignalRHubConnectionServiceTests
             var hubProxyProvider = new Mock<IHubProxyProvider>();
             hubProxyProviderFactory.Setup(f => f.CreateHubProxyProvider(It.IsAny<IHubProxy>())).Returns(hubProxyProvider.Object);
 
-            var unexistingIHubProxyProviderHubName = "existing hubName";
+            var unexistingIHubProxyProviderHubName = "unexisting hubName";
 
             var signalRHubConnectionService = new MockSignalRHubConnectionService(hubConnectionProviderFactory.Object, hubProxyProviderFactory.Object);
 
@@ -191,7 +191,7 @@ namespace Parser.SignalR.Tests.ServicesTests.SignalRHubConnectionServiceTests
             var hubProxyProvider = new Mock<IHubProxyProvider>();
             hubProxyProviderFactory.Setup(f => f.CreateHubProxyProvider(It.IsAny<IHubProxy>())).Returns(hubProxyProvider.Object);
 
-            var unexistingIHubProxyProviderHubName = "existing hubName";
+            var unexistingIHubProxyProviderHubName = "unexisting hubName";
 
             var signalRHubConnectionService = new MockSignalRHubConnectionService(hubConnectionProviderFactory.Object, hubProxyProviderFactory.Object);
 
