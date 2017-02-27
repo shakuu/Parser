@@ -245,6 +245,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectModules\CommonNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -327,7 +328,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\AutomapperProfiles\" />
     <Folder Include="App_Start\ControllerFactories\" />
-    <Folder Include="App_Start\NinjectModules\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -338,6 +338,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
+      <Project>{eebfc723-3255-48b6-9991-4e848c9498a6}</Project>
+      <Name>Parser.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.LogFileReader\Parser.LogFileReader.csproj">
       <Project>{be757824-2c14-425f-9498-38c62c33ef34}</Project>
       <Name>Parser.LogFileReader</Name>
