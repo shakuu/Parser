@@ -137,7 +137,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             fileReaderEngine.StartAsync();
-            Thread.Sleep(50);
+            Thread.Sleep(150);
             fileReaderEngine.Stop();
 
             // Assert
