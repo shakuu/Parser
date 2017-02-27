@@ -1,32 +1,33 @@
-﻿using System;
+﻿using Microsoft.AspNet.SignalR;
 
-using Microsoft.AspNet.SignalR;
+using Ninject;
 
-using Newtonsoft.Json;
-
-using Parser.LogFileReader.Models;
+using Clients.MvcClient.App_Start;
+using Parser.SignalR.Contracts;
 
 namespace Clients.MvcClient.SignalRHubs
 {
     public class LogFileParserHub : Hub
     {
-        //private readonly IJsonConvertProvider jsonConvertProvider;
+        private readonly ILogFileParserHubService logFileParserHubService;
 
         public LogFileParserHub()
         {
-            //this.jsonConvertProvider = NinjectWebCommon.Kernel.Get<IJsonConvertProvider>();
+            this.logFileParserHubService = NinjectWebCommon.Kernel.Get<ILogFileParserHubService>();
         }
 
         public void SendCommand(string userId, string serializedCommand)
         {
-            var command = JsonConvert.DeserializeObject<Command>(serializedCommand);
+            var message = this.logFileParserHubService.SendCommand(userId, serializedCommand);
 
-            Clients.Caller.ReceiveStatus(command.TimeStamp.ToShortTimeString());
+            Clients.Caller.ReceiveStatus(message);
         }
 
         public void GetParsingSessionId()
         {
-            Clients.Caller.UpdateParsingSessionId(Guid.NewGuid());
+            var message = this.logFileParserHubService.GetParsingSessionId();
+
+            Clients.Caller.UpdateParsingSessionId(message);
         }
     }
 }

@@ -342,6 +342,10 @@
       <Project>{be757824-2c14-425f-9498-38c62c33ef34}</Project>
       <Name>Parser.LogFileReader</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.SignalR\Parser.SignalR.csproj">
+      <Project>{69e17fbf-a00b-42cb-a3d6-b429536e50d7}</Project>
+      <Name>Parser.SignalR</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
