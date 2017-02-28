@@ -46,6 +46,7 @@
     <Compile Include="Factories\ICommandFactory.cs" />
     <Compile Include="Factories\IParseResultFactory.cs" />
     <Compile Include="Models\Command.cs" />
+    <Compile Include="Models\ParseResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\GuidProvider.cs" />
   </ItemGroup>
