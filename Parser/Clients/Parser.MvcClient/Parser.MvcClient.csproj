@@ -245,6 +245,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectModules\CommonNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\LogFileParserNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\SignalRNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
