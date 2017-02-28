@@ -7,11 +7,11 @@ namespace Parser.SignalR.Strategies
 {
     public class SignalRCommandUtilizationStrategy : ICommandUtilizationStrategy
     {
-        private const string HubConnectionUrl = "http://localhost:52589";
+        private const string HubName = "LogFileParserHub";
 
         private readonly IJsonConvertProvider jsonConvertProvider;
 
-        private readonly IHubProxyProvider logFileParserHubProxy;
+        private readonly IHubProxyProvider logFileParserHubProxyProvider;
 
         private string parsingSessionId;
 
@@ -22,9 +22,14 @@ namespace Parser.SignalR.Strategies
 
             this.jsonConvertProvider = jsonConvertProvider;
 
-            this.logFileParserHubProxy = signalRHubConnectionService.GetHubProxyProvider("LogFileParserHub");
-            this.InitializeLogFileParserHubProxy(this.logFileParserHubProxy);
+            this.logFileParserHubProxyProvider = signalRHubConnectionService.GetHubProxyProvider(SignalRCommandUtilizationStrategy.HubName);
+            this.InitializeLogFileParserHubProxy(this.logFileParserHubProxyProvider);
         }
+
+        /// <summary>
+        /// Created for testing.
+        /// </summary>
+        protected string ParsingSessionId { get { return this.parsingSessionId; } set { this.parsingSessionId = value; } }
 
         public void UtilizeCommand(ICommand command)
         {
@@ -32,15 +37,15 @@ namespace Parser.SignalR.Strategies
 
             var serializedCommand = this.jsonConvertProvider.SerializeObject(command);
 
-            this.logFileParserHubProxy.Invoke("SendCommand", this.parsingSessionId, serializedCommand);
+            this.logFileParserHubProxyProvider.Invoke("SendCommand", this.parsingSessionId, serializedCommand);
         }
 
-        private async void InitializeLogFileParserHubProxy(IHubProxyProvider logFileParserHubProxy)
+        private void InitializeLogFileParserHubProxy(IHubProxyProvider logFileParserHubProxyProvider)
         {
             // TODO: DELETE CW
-            logFileParserHubProxy.On<string>("ReceiveStatus", (update) => System.Console.WriteLine(update));
-            logFileParserHubProxy.On<string>("UpdateParsingSessionId", this.OnUpdateParsingSessionId);
-            await logFileParserHubProxy.Invoke("GetParsingSessionId");
+            logFileParserHubProxyProvider.On<string>("ReceiveStatus", (update) => System.Console.WriteLine(update));
+            logFileParserHubProxyProvider.On<string>("UpdateParsingSessionId", this.OnUpdateParsingSessionId);
+            logFileParserHubProxyProvider.Invoke("GetParsingSessionId").Wait();
         }
 
         private void OnUpdateParsingSessionId(string parsingSessionId)
