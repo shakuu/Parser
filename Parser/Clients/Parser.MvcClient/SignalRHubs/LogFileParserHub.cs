@@ -16,9 +16,9 @@ namespace Parser.MvcClient.SignalRHubs
             this.logFileParserHubService = NinjectWebCommon.Kernel.Get<ILogFileParserHubService>();
         }
 
-        public void SendCommand(string userId, string serializedCommand)
+        public void SendCommand(string emgineId, string serializedCommand)
         {
-            var message = this.logFileParserHubService.SendCommand(userId, serializedCommand);
+            var message = this.logFileParserHubService.SendCommand(emgineId, serializedCommand);
 
             Clients.Caller.ReceiveStatus(message);
         }

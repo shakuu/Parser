@@ -2,6 +2,8 @@
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
+using Parser.LogFileParser.Managers;
+
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
     public class LogFileParserNinjectModule : NinjectModule
@@ -17,7 +19,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             bind
                 .FromAssembliesMatching("*.LogFileParser.*")
                 .SelectAllClasses()
-                .BindDefaultInterface();
+                .BindDefaultInterface()
+                .ConfigureFor<LogFileParserEngineManager>(m => m.InSingletonScope());
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)

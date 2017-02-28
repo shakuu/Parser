@@ -338,6 +338,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Src\Parser.LogFileParser\Parser.LogFileParser.csproj">
+      <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>
+      <Name>Parser.LogFileParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.SignalR\Parser.SignalR.csproj">
       <Project>{69e17fbf-a00b-42cb-a3d6-b429536e50d7}</Project>
       <Name>Parser.SignalR</Name>
