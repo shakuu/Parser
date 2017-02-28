@@ -8,12 +8,12 @@ namespace Parser.SignalR.Services
 {
     public class LogFileParserHubService : ILogFileParserHubService
     {
-        private readonly ILogFileParserEngineService logFileParserEngineService;
+        private readonly ILogFileParserEngineManager logFileParserEngineService;
         private readonly IJsonConvertProvider jsonConvertProvider;
 
-        public LogFileParserHubService(ILogFileParserEngineService logFileParserEngineService, IJsonConvertProvider jsonConvertProvider)
+        public LogFileParserHubService(ILogFileParserEngineManager logFileParserEngineService, IJsonConvertProvider jsonConvertProvider)
         {
-            Guard.WhenArgument(logFileParserEngineService, nameof(ILogFileParserEngineService)).IsNull().Throw();
+            Guard.WhenArgument(logFileParserEngineService, nameof(ILogFileParserEngineManager)).IsNull().Throw();
             Guard.WhenArgument(jsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
 
             this.logFileParserEngineService = logFileParserEngineService;

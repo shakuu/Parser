@@ -2,7 +2,7 @@
 
 namespace Parser.LogFileParser.Contracts
 {
-    public interface ILogFileParserEngineService
+    public interface ILogFileParserEngineManager
     {
         string StartNewLogFileParserEngine();
 

@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Contracts\ILogFileParserEngine.cs" />
     <Compile Include="Factories\ILogFileParserEngineFactory.cs" />
-    <Compile Include="Contracts\ILogFileParserEngineService.cs" />
+    <Compile Include="Contracts\ILogFileParserEngineManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
