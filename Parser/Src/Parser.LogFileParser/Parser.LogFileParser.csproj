@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ILogFileParserEngine.cs" />
-    <Compile Include="Contracts\ILogFileParserEngineFactory.cs" />
+    <Compile Include="Factories\ILogFileParserEngineFactory.cs" />
     <Compile Include="Contracts\ILogFileParserEngineService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
