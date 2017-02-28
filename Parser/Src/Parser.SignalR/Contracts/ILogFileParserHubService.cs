@@ -8,7 +8,7 @@ namespace Parser.SignalR.Contracts
 {
     public interface ILogFileParserHubService
     {
-        string SendCommand(string userId, string serializedCommand);
+        string SendCommand(string engineId, string serializedCommand);
 
         string GetParsingSessionId();
     }

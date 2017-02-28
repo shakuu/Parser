@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.LogFileParser", "Src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.SignalR.Tests", "Tests\Parser.SignalR.Tests\Parser.SignalR.Tests.csproj", "{37CEDE73-5DBB-44D0-B0E0-4C2AC921291E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common", "Src\Parser.Common\Parser.Common.csproj", "{CE041571-30B1-4F40-B526-DC58E888F32B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{37CEDE73-5DBB-44D0-B0E0-4C2AC921291E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37CEDE73-5DBB-44D0-B0E0-4C2AC921291E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37CEDE73-5DBB-44D0-B0E0-4C2AC921291E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE041571-30B1-4F40-B526-DC58E888F32B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE041571-30B1-4F40-B526-DC58E888F32B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE041571-30B1-4F40-B526-DC58E888F32B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE041571-30B1-4F40-B526-DC58E888F32B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,5 +91,6 @@ Global
 		{D9F745DB-11AA-4214-80BC-065E0BC813AC} = {19439B42-E5D2-425F-A7FC-DE3C1E58BBE5}
 		{3510B5AE-3B17-45A0-8786-BCB569CB592B} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
 		{37CEDE73-5DBB-44D0-B0E0-4C2AC921291E} = {078E0CBC-5CAF-4513-A1D3-4F9F330B1D72}
+		{CE041571-30B1-4F40-B526-DC58E888F32B} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
 	EndGlobalSection
 EndGlobal

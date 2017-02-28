@@ -1,7 +1,8 @@
 ﻿using Bytes2you.Validation;
 
-using Parser.SignalR.Contracts;
+using Parser.Common.Contracts;
 using Parser.LogFileReader.Contracts;
+using Parser.SignalR.Contracts;
 
 namespace Parser.SignalR.Strategies
 {

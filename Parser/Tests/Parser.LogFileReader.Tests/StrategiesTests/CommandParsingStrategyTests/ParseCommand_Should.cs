@@ -3,9 +3,9 @@
 using Moq;
 using NUnit.Framework;
 
-using Parser.LogFileReader.Contracts;
-using Parser.LogFileReader.Factories;
-using Parser.LogFileReader.Models;
+using Parser.Common.Contracts;
+using Parser.Common.Factories;
+using Parser.Common.Models;
 using Parser.LogFileReader.Strategies;
 
 namespace Parser.LogFileReader.Tests.StrategiesTests.CommandParsingStrategyTests

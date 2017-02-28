@@ -4,8 +4,9 @@ using System.Linq;
 
 using Bytes2you.Validation;
 
+using Parser.Common.Contracts;
+using Parser.Common.Factories;
 using Parser.LogFileReader.Contracts;
-using Parser.LogFileReader.Factories;
 
 namespace Parser.LogFileReader.Strategies
 {

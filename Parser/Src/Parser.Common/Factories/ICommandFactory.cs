@@ -1,6 +1,6 @@
-﻿using Parser.LogFileReader.Contracts;
+﻿using Parser.Common.Contracts;
 
-namespace Parser.LogFileReader.Factories
+namespace Parser.Common.Factories
 {
     public interface ICommandFactory
     {

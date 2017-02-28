@@ -2,9 +2,11 @@
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
-namespace Parser.ConsoleClient.NinjectModules
+using Parser.LogFileParser.Managers;
+
+namespace Parser.MvcClient.App_Start.NinjectModules
 {
-    internal class CommonNinjectModule : NinjectModule
+    public class LogFileParserNinjectModule : NinjectModule
     {
         public override void Load()
         {
@@ -15,15 +17,16 @@ namespace Parser.ConsoleClient.NinjectModules
         private void BindAllClassesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.Common.*")
+                .FromAssembliesMatching("*.LogFileParser.*")
                 .SelectAllClasses()
-                .BindDefaultInterface();
+                .BindDefaultInterface()
+                .ConfigureFor<LogFileParserEngineManager>(m => m.InSingletonScope());
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.Common.*")
+                .FromAssembliesMatching("*.LogFileParser.*")
                 .SelectAllInterfaces()
                 .EndingWith("Factory")
                 .BindToFactory()

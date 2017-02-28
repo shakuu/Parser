@@ -2,9 +2,9 @@
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
-namespace Parser.ConsoleClient.NinjectModules
+namespace Parser.MvcClient.App_Start.NinjectModules
 {
-    internal class CommonNinjectModule : NinjectModule
+    public class CommonNinjectModule : NinjectModule
     {
         public override void Load()
         {

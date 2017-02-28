@@ -1,8 +1,8 @@
 ﻿using System;
 
-using Parser.LogFileReader.Contracts;
+using Parser.Common.Contracts;
 
-namespace Parser.LogFileReader.Models
+namespace Parser.Common.Models
 {
     public class Command : ICommand
     {

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EFE74609-79ED-444C-B57F-6BFFD39A0276}</ProjectGuid>
+    <ProjectGuid>{CE041571-30B1-4F40-B526-DC58E888F32B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parser.LogFileReader.Tests</RootNamespace>
-    <AssemblyName>Parser.LogFileReader.Tests</AssemblyName>
+    <RootNamespace>Parser.Common</RootNamespace>
+    <AssemblyName>Parser.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,18 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Moq, Version=4.7.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Moq.4.7.0\lib\net45\Moq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,29 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnginesTests\FileReaderEngineTests\Constructor_Should.cs" />
-    <Compile Include="EnginesTests\FileReaderEngineTests\StartAsync_Should.cs" />
+    <Compile Include="Contracts\ICommand.cs" />
+    <Compile Include="Contracts\IGuidStringProvider.cs" />
+    <Compile Include="Contracts\IParseResult.cs" />
+    <Compile Include="Factories\ICommandFactory.cs" />
+    <Compile Include="Factories\IParseResultFactory.cs" />
+    <Compile Include="Models\Command.cs" />
+    <Compile Include="Models\ParseResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StrategiesTests\CommandParsingStrategyTests\Constructor_Should.cs" />
-    <Compile Include="StrategiesTests\CommandParsingStrategyTests\ParseCommand_Should.cs" />
-    <Compile Include="StrategiesTests\LogFilePathDiscoveryStrategyTests\Constructor_Should.cs" />
-    <Compile Include="StrategiesTests\LogFilePathDiscoveryStrategyTests\DiscoverLogFile_Should.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
-      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
-      <Name>Parser.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Src\Parser.LogFileReader\Parser.LogFileReader.csproj">
-      <Project>{be757824-2c14-425f-9498-38c62c33ef34}</Project>
-      <Name>Parser.LogFileReader</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <Compile Include="Providers\GuidStringProvider.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

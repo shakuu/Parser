@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Parser.LogFileReader.Contracts
+namespace Parser.Common.Contracts
 {
     public interface ICommand
     {
