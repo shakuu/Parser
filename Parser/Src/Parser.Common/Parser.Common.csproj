@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICommand.cs" />
+    <Compile Include="Contracts\IParseResult.cs" />
     <Compile Include="Factories\ICommandFactory.cs" />
     <Compile Include="Models\Command.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

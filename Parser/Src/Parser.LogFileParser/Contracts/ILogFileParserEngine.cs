@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Parser.Common.Contracts;
 
 namespace Parser.LogFileParser.Contracts
 {
     public interface ILogFileParserEngine
     {
-        //void ParseCommand(ICommand)
+        void EnqueueCommand(ICommand command);
+
+        IParseResult GetParseResult();
     }
 }

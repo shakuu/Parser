@@ -41,7 +41,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ILogFileParserEngine.cs" />
+    <Compile Include="Contracts\ILogFileParserEngineFactory.cs" />
+    <Compile Include="Contracts\ILogFileParserEngineService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">
+      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
+      <Name>Parser.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
