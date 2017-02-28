@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Parser.Common.Contracts;
 using Parser.LogFileReader.Contracts;
 
 namespace Parser.ConsoleClient.FileReaderImplementations

@@ -4,8 +4,8 @@ using Ninject.Extensions.Interception;
 using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 
+using Parser.Common.Contracts;
 using Parser.ConsoleClient.FileReaderImplementations;
-
 using Parser.LogFileReader.Contracts;
 using Parser.LogFileReader.Strategies;
 using Parser.SignalR.Strategies;

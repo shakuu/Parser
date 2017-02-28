@@ -3,8 +3,8 @@
 using Moq;
 using NUnit.Framework;
 
+using Parser.Common.Factories;
 using Parser.LogFileReader.Contracts;
-using Parser.LogFileReader.Factories;
 using Parser.LogFileReader.Strategies;
 
 namespace Parser.LogFileReader.Tests.StrategiesTests.CommandParsingStrategyTests

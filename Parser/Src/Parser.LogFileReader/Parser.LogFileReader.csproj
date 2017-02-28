@@ -50,7 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandParsingStrategy.cs" />
     <Compile Include="Contracts\ICommandUtilizationStrategy.cs" />
     <Compile Include="Contracts\IDirectoryFilesProvider.cs" />
@@ -61,7 +60,6 @@
     <Compile Include="Contracts\IFileReaderInputProvider.cs" />
     <Compile Include="Contracts\ILogFileDiscoveryStrategy.cs" />
     <Compile Include="Engines\LogFileReaderEngine.cs" />
-    <Compile Include="Factories\ICommandFactory.cs" />
     <Compile Include="Factories\IFileReaderAutoResetEventFactory.cs" />
     <Compile Include="Factories\IFileReaderFileSystemWatcherFactory.cs" />
     <Compile Include="Factories\IFileReaderInputProviderFactory.cs" />
@@ -70,7 +68,6 @@
     <Compile Include="FileSystemProviders\FileReaderAutoResetEvent.cs" />
     <Compile Include="FileSystemProviders\FileReaderFileSystemWatcher.cs" />
     <Compile Include="FileSystemProviders\FileReaderInputProvider.cs" />
-    <Compile Include="Models\Command.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strategies\CommandParsingStrategy.cs" />
     <Compile Include="Strategies\LogFilePathDiscoveryStrategy.cs" />
@@ -79,7 +76,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">
+      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
+      <Name>Parser.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -2,7 +2,7 @@
 
 using Bytes2you.Validation;
 
-using Parser.LogFileReader.Models;
+using Parser.Common.Models;
 using Parser.SignalR.Contracts;
 
 namespace Parser.SignalR.Services

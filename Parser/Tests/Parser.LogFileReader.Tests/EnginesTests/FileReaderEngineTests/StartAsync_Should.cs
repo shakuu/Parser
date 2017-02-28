@@ -3,6 +3,7 @@
 using Moq;
 using NUnit.Framework;
 
+using Parser.Common.Contracts;
 using Parser.LogFileReader.Contracts;
 using Parser.LogFileReader.Engines;
 using Parser.LogFileReader.Factories;
