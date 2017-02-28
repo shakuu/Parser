@@ -9,6 +9,7 @@ namespace Parser.ConsoleClient.NinjectModules
         public override void Load()
         {
             this.Bind(this.BindAllClassesByConvention);
+            this.Bind(this.BindFactoriesByConvention);
         }
 
         private void BindAllClassesByConvention(IFromSyntax bind)
@@ -17,6 +18,16 @@ namespace Parser.ConsoleClient.NinjectModules
                 .FromAssembliesMatching("*.Common.*")
                 .SelectAllClasses()
                 .BindDefaultInterface();
+        }
+
+        private void BindFactoriesByConvention(IFromSyntax bind)
+        {
+            bind
+                .FromAssembliesMatching("*.Common.*")
+                .SelectAllInterfaces()
+                .EndingWith("Factory")
+                .BindToFactory()
+                .Configure(f => f.InSingletonScope());
         }
     }
 }
