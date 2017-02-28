@@ -26,6 +26,11 @@ namespace Parser.SignalR.Strategies
             this.InitializeLogFileParserHubProxy(this.logFileParserHubProxyProvider);
         }
 
+        /// <summary>
+        /// Created for testing.
+        /// </summary>
+        protected string ParsingSessionId { get { return this.parsingSessionId; } set { this.parsingSessionId = value; } }
+
         public void UtilizeCommand(ICommand command)
         {
             Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
