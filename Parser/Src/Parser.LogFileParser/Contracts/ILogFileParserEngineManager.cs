@@ -6,6 +6,6 @@ namespace Parser.LogFileParser.Contracts
     {
         string StartNewLogFileParserEngine();
 
-        string EnqueueCommandToEngineWithId(string engineId, ICommand command);
+        void EnqueueCommandToEngineWithId(string engineId, ICommand command);
     }
 }

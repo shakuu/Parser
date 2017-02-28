@@ -29,7 +29,9 @@ namespace Parser.SignalR.Services
         {
             var command = this.jsonConvertProvider.DeserializeObject<Command>(serializedCommand);
 
-            return this.logFileParserEngineService.EnqueueCommandToEngineWithId(engineId, command);
+            this.logFileParserEngineService.EnqueueCommandToEngineWithId(engineId, command);
+
+            return "success";
         }
     }
 }
