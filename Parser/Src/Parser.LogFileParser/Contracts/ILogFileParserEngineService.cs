@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Parser.Common.Contracts;
 
 namespace Parser.LogFileParser.Contracts
 {
     public interface ILogFileParserEngineService
     {
-        Guid StartNewLogFileParserEngine();
+        string StartNewLogFileParserEngine();
+
+        string EnqueueCommandToEngineWithId(string engineId, ICommand command);
     }
 }
