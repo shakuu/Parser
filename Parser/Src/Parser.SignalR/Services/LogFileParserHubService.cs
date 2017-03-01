@@ -31,7 +31,7 @@ namespace Parser.SignalR.Services
 
             this.logFileParserEngineService.EnqueueCommandToEngineWithId(engineId, command);
 
-            return "success";
+            return command.TimeStamp.ToShortTimeString();
         }
     }
 }
