@@ -41,13 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICommand.cs" />
-    <Compile Include="Contracts\IGuidProvider.cs" />
+    <Compile Include="Contracts\IGuidStringProvider.cs" />
     <Compile Include="Contracts\IParseResult.cs" />
     <Compile Include="Factories\ICommandFactory.cs" />
     <Compile Include="Factories\IParseResultFactory.cs" />
     <Compile Include="Models\Command.cs" />
+    <Compile Include="Models\ParseResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\GuidProvider.cs" />
+    <Compile Include="Providers\GuidStringProvider.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

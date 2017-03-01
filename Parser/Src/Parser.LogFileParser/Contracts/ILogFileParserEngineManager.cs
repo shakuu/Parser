@@ -2,10 +2,10 @@
 
 namespace Parser.LogFileParser.Contracts
 {
-    public interface ILogFileParserEngineService
+    public interface ILogFileParserEngineManager
     {
         string StartNewLogFileParserEngine();
 
-        string EnqueueCommandToEngineWithId(string engineId, ICommand command);
+        void EnqueueCommandToEngineWithId(string engineId, ICommand command);
     }
 }
