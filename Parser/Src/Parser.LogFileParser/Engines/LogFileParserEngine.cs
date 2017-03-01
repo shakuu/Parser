@@ -10,17 +10,17 @@ namespace Parser.LogFileParser.Engines
 {
     public class LogFileParserEngine : ILogFileParserEngine
     {
-        private readonly ICommandResolutionHandler commandResolutionStrategy;
+        private readonly ICommandResolutionHandler commandResolutionHandler;
         private readonly ICombatStatisticsContainer combatStatisticsContainer;
 
         private readonly Queue<ICommand> commandsQueue;
 
-        public LogFileParserEngine(ICommandResolutionHandler commandResolutionStrategy, ICombatStatisticsContainerFactory combatStatisticsContainerFactory)
+        public LogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainerFactory combatStatisticsContainerFactory)
         {
-            Guard.WhenArgument(commandResolutionStrategy, nameof(ICommandResolutionHandler)).IsNull().Throw();
+            Guard.WhenArgument(commandResolutionHandler, nameof(ICommandResolutionHandler)).IsNull().Throw();
             Guard.WhenArgument(combatStatisticsContainer, nameof(ICombatStatisticsContainer)).IsNull().Throw();
 
-            this.commandResolutionStrategy = commandResolutionStrategy;
+            this.commandResolutionHandler = commandResolutionHandler;
             this.combatStatisticsContainer = combatStatisticsContainerFactory.CreateCombatStatisticsContainer();
 
             this.commandsQueue = new Queue<ICommand>();
