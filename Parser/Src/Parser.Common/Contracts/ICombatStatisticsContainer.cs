@@ -1,11 +1,11 @@
-﻿namespace Parser.Common.Contracts
+﻿using System.Collections.Generic;
+
+namespace Parser.Common.Contracts
 {
     public interface ICombatStatisticsContainer
     {
-        decimal DamageDone { get; set; }
+        IEnumerable<ICombatStatistics> AllComabtStatistics { get; set; }
 
-        decimal HealingDone { get; set; }
-
-        bool IsCompleted { get; set; }
+        ICombatStatistics CurrentComabtStatistics { get; set; }
     }
 }

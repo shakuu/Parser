@@ -10,15 +10,18 @@ namespace Parser.LogFileParser.Engines
 {
     public class LogFileParserEngine : ILogFileParserEngine
     {
-        private readonly ICombatStatisticsContainerFactory parseResultFactory;
+        private readonly ICombatStatisticsFactory parseResultFactory;
+        private readonly ICombatStatisticsContainer combatStatisticsContainer;
 
         private readonly Queue<ICommand> commandsQueue;
 
-        public LogFileParserEngine(ICombatStatisticsContainerFactory parseResultFactory)
+        public LogFileParserEngine(ICombatStatisticsFactory parseResultFactory, ICombatStatisticsContainerFactory combatStatisticsContainerFactory)
         {
-            Guard.WhenArgument(parseResultFactory, nameof(ICombatStatisticsContainerFactory)).IsNull().Throw();
+            Guard.WhenArgument(parseResultFactory, nameof(ICombatStatisticsFactory)).IsNull().Throw();
+            Guard.WhenArgument(combatStatisticsContainer, nameof(ICombatStatisticsContainer)).IsNull().Throw();
 
             this.parseResultFactory = parseResultFactory;
+            this.combatStatisticsContainer = combatStatisticsContainerFactory.CreateCombatStatisticsContainer();
 
             this.commandsQueue = new Queue<ICommand>();
 
@@ -32,10 +35,10 @@ namespace Parser.LogFileParser.Engines
             this.commandsQueue.Enqueue(command);
         }
 
-        public IEnumerable<ICombatStatisticsContainer> GetComabtStatistics()
+        public ICombatStatisticsContainer GetComabtStatistics()
         {
             // TODO: 
-            return new[] { this.parseResultFactory.CreateParseResult() };
+            return this.combatStatisticsContainer;
         }
     }
 }

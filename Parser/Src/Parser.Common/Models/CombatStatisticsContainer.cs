@@ -1,13 +1,13 @@
-﻿using Parser.Common.Contracts;
+﻿using System.Collections.Generic;
+
+using Parser.Common.Contracts;
 
 namespace Parser.Common.Models
 {
     public class CombatStatisticsContainer : ICombatStatisticsContainer
     {
-        public decimal DamageDone { get; set; }
+        public IEnumerable<ICombatStatistics> AllComabtStatistics { get; set; }
 
-        public decimal HealingDone { get; set; }
-
-        public bool IsCompleted { get; set; }
+        public ICombatStatistics CurrentComabtStatistics { get; set; }
     }
 }

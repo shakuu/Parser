@@ -4,6 +4,6 @@ namespace Parser.LogFileParser.Contracts
 {
     public interface ICommandResolutionStrategy
     {
-        void ResolveCommand(ICommand command);
+        void ResolveCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer);
     }
 }
