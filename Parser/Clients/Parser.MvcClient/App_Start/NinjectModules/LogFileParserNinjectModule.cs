@@ -1,7 +1,11 @@
-﻿using Ninject.Extensions.Conventions;
+﻿using Ninject;
+using Ninject.Activation;
+using Ninject.Extensions.Conventions;
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
+using Parser.LogFileParser.CommandResolutionHandlers;
+using Parser.LogFileParser.Contracts;
 using Parser.LogFileParser.Managers;
 
 namespace Parser.MvcClient.App_Start.NinjectModules
@@ -12,6 +16,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         {
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
+
+            this.Bind<ICommandResolutionHandler>().ToMethod(this.CommandResolutionHandlerChainFactoryMethod);
         }
 
         private void BindAllClassesByConvention(IFromSyntax bind)
@@ -31,6 +37,13 @@ namespace Parser.MvcClient.App_Start.NinjectModules
                 .EndingWith("Factory")
                 .BindToFactory()
                 .Configure(f => f.InSingletonScope());
+        }
+
+        private ICommandResolutionHandler CommandResolutionHandlerChainFactoryMethod(IContext context)
+        {
+            var enterCombatCommandResolutionHandler = context.Kernel.Get<EnterCombatCommandResolutionHandler>();
+
+            return enterCombatCommandResolutionHandler;
         }
     }
 }
