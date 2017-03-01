@@ -13,6 +13,8 @@ namespace Parser.MvcClient
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.LowercaseUrls = true;
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
