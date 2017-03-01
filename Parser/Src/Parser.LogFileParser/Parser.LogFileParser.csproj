@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ICommandResolutionStrategy.cs" />
+    <Compile Include="CommandResolutionHandlers\Base\CommandResolutionHandler.cs" />
+    <Compile Include="Contracts\ICommandResolutionHandler.cs" />
     <Compile Include="Contracts\IEngineCommandExecutionManagementStrategy.cs" />
     <Compile Include="Contracts\ILogFileParserEngine.cs" />
     <Compile Include="Engines\LogFileParserEngine.cs" />
