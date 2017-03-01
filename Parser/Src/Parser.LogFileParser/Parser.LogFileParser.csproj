@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IEngineCommandExecutionManagementStrategy.cs" />
     <Compile Include="Contracts\ILogFileParserEngine.cs" />
     <Compile Include="Engines\LogFileParserEngine.cs" />
     <Compile Include="Factories\ILogFileParserEngineFactory.cs" />
