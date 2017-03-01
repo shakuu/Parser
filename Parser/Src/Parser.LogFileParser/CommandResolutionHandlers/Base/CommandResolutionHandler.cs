@@ -1,4 +1,6 @@
-﻿using Parser.Common.Contracts;
+﻿using Bytes2you.Validation;
+
+using Parser.Common.Contracts;
 using Parser.LogFileParser.Contracts;
 
 namespace Parser.LogFileParser.CommandResolutionHandlers.Base
@@ -14,6 +16,9 @@ namespace Parser.LogFileParser.CommandResolutionHandlers.Base
 
         public ICombatStatisticsContainer ResolveCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
+            Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
+            Guard.WhenArgument(combatStatisticsContainer, nameof(ICombatStatisticsContainer)).IsNull().Throw();
+
             if (this.CanHandleCommand(command))
             {
                 return this.HandleCommand(command, combatStatisticsContainer);

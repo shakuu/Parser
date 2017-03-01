@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandResolutionHandlers\Base\CommandResolutionHandler.cs" />
+    <Compile Include="CommandResolutionHandlers\EnterCombatCommandResolutionHandler.cs" />
     <Compile Include="Contracts\ICommandResolutionHandler.cs" />
     <Compile Include="Contracts\IEngineCommandExecutionManagementStrategy.cs" />
     <Compile Include="Contracts\ILogFileParserEngine.cs" />

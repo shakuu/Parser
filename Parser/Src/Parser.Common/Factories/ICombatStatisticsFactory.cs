@@ -4,6 +4,6 @@ namespace Parser.Common.Factories
 {
     public interface ICombatStatisticsFactory
     {
-        ICombatStatistics CreateParseResult();
+        ICombatStatistics CreateCombatStatistics();
     }
 }

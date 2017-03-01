@@ -6,7 +6,7 @@ namespace Parser.Common.Models
 {
     public class CombatStatisticsContainer : ICombatStatisticsContainer
     {
-        public IEnumerable<ICombatStatistics> AllComabtStatistics { get; set; }
+        public ICollection<ICombatStatistics> AllComabtStatistics { get; set; }
 
         public ICombatStatistics CurrentComabtStatistics { get; set; }
     }
