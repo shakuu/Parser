@@ -7,5 +7,7 @@ namespace Parser.Common.Models
         public decimal DamageDone { get; set; }
 
         public decimal HealingDone { get; set; }
+
+        public bool IsCompleted { get; set; }
     }
 }
