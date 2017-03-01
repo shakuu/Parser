@@ -10,13 +10,13 @@ namespace Parser.LogFileParser.Engines
 {
     public class LogFileParserEngine : ILogFileParserEngine
     {
-        private readonly IParseResultFactory parseResultFactory;
+        private readonly ICombatStatisticsContainerFactory parseResultFactory;
 
         private readonly Queue<ICommand> commandsQueue;
 
-        public LogFileParserEngine(IParseResultFactory parseResultFactory)
+        public LogFileParserEngine(ICombatStatisticsContainerFactory parseResultFactory)
         {
-            Guard.WhenArgument(parseResultFactory, nameof(IParseResultFactory)).IsNull().Throw();
+            Guard.WhenArgument(parseResultFactory, nameof(ICombatStatisticsContainerFactory)).IsNull().Throw();
 
             this.parseResultFactory = parseResultFactory;
 
@@ -32,10 +32,10 @@ namespace Parser.LogFileParser.Engines
             this.commandsQueue.Enqueue(command);
         }
 
-        public IParseResult GetParseResult()
+        public IEnumerable<ICombatStatisticsContainer> GetComabtStatistics()
         {
             // TODO: 
-            return this.parseResultFactory.CreateParseResult();
+            return new[] { this.parseResultFactory.CreateParseResult() };
         }
     }
 }
