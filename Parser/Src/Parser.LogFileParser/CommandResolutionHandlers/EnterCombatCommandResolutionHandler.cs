@@ -13,8 +13,7 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
         private readonly ICombatStatisticsFactory combatStatisticsFactory;
 
-        public EnterCombatCommandResolutionHandler(ICommandResolutionHandler nextCommandResolutionHandler, ICombatStatisticsFactory combatStatisticsFactory)
-            : base(nextCommandResolutionHandler)
+        public EnterCombatCommandResolutionHandler(ICombatStatisticsFactory combatStatisticsFactory)
         {
             Guard.WhenArgument(combatStatisticsFactory, nameof(ICombatStatisticsFactory)).IsNull().Throw();
 

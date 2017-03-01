@@ -5,14 +5,9 @@ using Parser.LogFileParser.Contracts;
 
 namespace Parser.LogFileParser.CommandResolutionHandlers.Base
 {
-    public abstract class CommandResolutionHandler : ICommandResolutionHandler
+    public abstract class CommandResolutionHandler : ICommandResolutionHandler, ICommandResolutionHandlerChain
     {
-        public CommandResolutionHandler(ICommandResolutionHandler nextCommandResolutionHandler)
-        {
-            this.NextCommandResolutionHandler = nextCommandResolutionHandler;
-        }
-
-        private ICommandResolutionHandler NextCommandResolutionHandler { get; set; }
+        public ICommandResolutionHandler NextCommandResolutionHandler { get; set; }
 
         public ICombatStatisticsContainer ResolveCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
