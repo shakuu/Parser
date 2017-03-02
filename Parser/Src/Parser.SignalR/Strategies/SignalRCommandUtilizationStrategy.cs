@@ -26,8 +26,9 @@ namespace Parser.SignalR.Strategies
             this.jsonConvertProvider = jsonConvertProvider;
 
             this.logFileParserHubProxyProvider = signalRHubConnectionService.GetHubProxyProvider(SignalRCommandUtilizationStrategy.HubName);
+
             this.InitializeLogFileParserHubProxy(this.logFileParserHubProxyProvider);
-            this.GetParsingSessionid();
+            this.GetParsingSessionid(this.logFileParserHubProxyProvider);
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace Parser.SignalR.Strategies
 
             while (string.IsNullOrEmpty(this.parsingSessionId))
             {
-                this.GetParsingSessionid();
+                this.GetParsingSessionid(this.logFileParserHubProxyProvider);
             }
 
             var serializedCommand = this.jsonConvertProvider.SerializeObject(command);
@@ -56,7 +57,7 @@ namespace Parser.SignalR.Strategies
             logFileParserHubProxyProvider.On<string>("UpdateParsingSessionId", this.OnUpdateParsingSessionId);
         }
 
-        private void GetParsingSessionid()
+        private void GetParsingSessionid(IHubProxyProvider logFileParserHubProxyProvider)
         {
             logFileParserHubProxyProvider.Invoke("GetParsingSessionId").Wait();
             Thread.Sleep(500);
