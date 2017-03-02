@@ -11,7 +11,8 @@ namespace Parser.LogFileParser.Engines
     public class LogFileParserEngine : ILogFileParserEngine
     {
         private readonly ICommandResolutionHandler commandResolutionHandler;
-        private readonly ICombatStatisticsContainer combatStatisticsContainer;
+
+        private ICombatStatisticsContainer combatStatisticsContainer;
 
         private readonly Queue<ICommand> commandsQueue;
 
@@ -33,6 +34,9 @@ namespace Parser.LogFileParser.Engines
             Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
 
             this.commandsQueue.Enqueue(command);
+
+            // TODO: 
+            this.combatStatisticsContainer = this.commandResolutionHandler.ResolveCommand(command, this.combatStatisticsContainer);
         }
 
         public ICombatStatisticsContainer GetComabtStatistics()
