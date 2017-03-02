@@ -22,7 +22,7 @@ namespace Parser.ConsoleClient.FileReaderImplementations
             }
 
             // Returning sample data for controlled input.
-            invocation.ReturnValue = LogFilePathDiscoveryStrategyTestingInterceptor.SampleParse;
+            invocation.ReturnValue = LogFilePathDiscoveryStrategyTestingInterceptor.MorninWoodDummyParse;
         }
     }
 }
