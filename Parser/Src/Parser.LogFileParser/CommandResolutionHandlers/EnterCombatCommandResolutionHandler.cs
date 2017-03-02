@@ -1,6 +1,4 @@
-﻿using System;
-
-using Bytes2you.Validation;
+﻿using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
 using Parser.Common.Factories;
@@ -14,12 +12,15 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
         private const string ViableEventName = "EnterCombat";
 
         private readonly ICombatStatisticsFactory combatStatisticsFactory;
+        private readonly IDateTimeProvider dateTimeProvider;
 
-        public EnterCombatCommandResolutionHandler(ICombatStatisticsFactory combatStatisticsFactory)
+        public EnterCombatCommandResolutionHandler(ICombatStatisticsFactory combatStatisticsFactory, IDateTimeProvider dateTimeProvider)
         {
             Guard.WhenArgument(combatStatisticsFactory, nameof(ICombatStatisticsFactory)).IsNull().Throw();
+            Guard.WhenArgument(dateTimeProvider, nameof(IDateTimeProvider)).IsNull().Throw();
 
             this.combatStatisticsFactory = combatStatisticsFactory;
+            this.dateTimeProvider = dateTimeProvider;
         }
 
         protected override bool CanHandleCommand(ICommand command)
@@ -30,8 +31,8 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
             combatStatisticsContainer.CurrentComabtStatistics = this.combatStatisticsFactory.CreateCombatStatistics();
+            combatStatisticsContainer.CurrentComabtStatistics.EnterCombatTime = this.dateTimeProvider.GetUtcNow();
             combatStatisticsContainer.AllComabtStatistics.Add(combatStatisticsContainer.CurrentComabtStatistics);
-            combatStatisticsContainer.CurrentComabtStatistics.EnterCombatTime = DateTime.UtcNow;
 
             return combatStatisticsContainer;
         }
