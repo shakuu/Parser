@@ -21,7 +21,14 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
         protected override bool CanHandleCommand(ICommand command)
         {
-            return command.EventName == ExitCombatCommandResolutionHandler.ViableEventName;
+            if (string.IsNullOrEmpty(command.EventName))
+            {
+                return false;
+            }
+            else
+            {
+                return command.EventName == ExitCombatCommandResolutionHandler.ViableEventName;
+            }
         }
 
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
