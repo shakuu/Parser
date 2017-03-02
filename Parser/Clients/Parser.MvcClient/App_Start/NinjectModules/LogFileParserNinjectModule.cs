@@ -42,6 +42,9 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         private ICommandResolutionHandler CommandResolutionHandlerChainFactoryMethod(IContext context)
         {
             var enterCombatCommandResolutionHandler = context.Kernel.Get<EnterCombatCommandResolutionHandler>();
+            var exitCombatCommandResolutionHandler = context.Kernel.Get<ExitCombatCommandResolutionHandler>();
+
+            enterCombatCommandResolutionHandler.NextCommandResolutionHandler = exitCombatCommandResolutionHandler;
 
             return enterCombatCommandResolutionHandler;
         }
