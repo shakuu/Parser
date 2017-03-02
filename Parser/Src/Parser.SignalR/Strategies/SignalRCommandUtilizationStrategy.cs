@@ -27,6 +27,7 @@ namespace Parser.SignalR.Strategies
 
             this.logFileParserHubProxyProvider = signalRHubConnectionService.GetHubProxyProvider(SignalRCommandUtilizationStrategy.HubName);
             this.InitializeLogFileParserHubProxy(this.logFileParserHubProxyProvider);
+            this.GetParsingSessionid();
         }
 
         /// <summary>
@@ -40,8 +41,7 @@ namespace Parser.SignalR.Strategies
 
             while (string.IsNullOrEmpty(this.parsingSessionId))
             {
-                logFileParserHubProxyProvider.Invoke("GetParsingSessionId").Wait();
-                Thread.Sleep(500);
+                this.GetParsingSessionid();
             }
 
             var serializedCommand = this.jsonConvertProvider.SerializeObject(command);
@@ -54,7 +54,12 @@ namespace Parser.SignalR.Strategies
             // TODO: DELETE CW
             logFileParserHubProxyProvider.On<string>("UpdateStatus", (update) => System.Console.WriteLine(update));
             logFileParserHubProxyProvider.On<string>("UpdateParsingSessionId", this.OnUpdateParsingSessionId);
+        }
+
+        private void GetParsingSessionid()
+        {
             logFileParserHubProxyProvider.Invoke("GetParsingSessionId").Wait();
+            Thread.Sleep(500);
         }
 
         private void OnUpdateParsingSessionId(string parsingSessionId)
