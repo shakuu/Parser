@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 using Bytes2you.Validation;
@@ -24,7 +25,7 @@ namespace Parser.LogFileParser.Managers
             this.guidStringProvider = guidStringProvider;
             this.logFileParserEngineFactory = logFileParserEngineFactory;
 
-            this.logFileParserEngines = new Dictionary<string, ILogFileParserEngine>();
+            this.logFileParserEngines = new ConcurrentDictionary<string, ILogFileParserEngine>();
         }
 
         public void EnqueueCommandToEngineWithId(string engineId, ICommand command)

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Contracts\ICombatStatisticsContainer.cs" />
     <Compile Include="Contracts\ICommand.cs" />
+    <Compile Include="Contracts\IDateTimeProvider.cs" />
     <Compile Include="Contracts\IGuidStringProvider.cs" />
     <Compile Include="Contracts\ICombatStatistics.cs" />
     <Compile Include="Factories\ICombatStatisticsContainerFactory.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Models\Command.cs" />
     <Compile Include="Models\CombatStatistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\DateTimeProvider.cs" />
     <Compile Include="Providers\GuidStringProvider.cs" />
   </ItemGroup>
   <ItemGroup />
