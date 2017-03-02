@@ -38,8 +38,8 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
             combatStatisticsContainer.CurrentComabtStatistics = this.combatStatisticsFactory.CreateCombatStatistics();
-            combatStatisticsContainer.CurrentComabtStatistics.EnterCombatTime = this.dateTimeProvider.GetUtcNow();
             combatStatisticsContainer.AllComabtStatistics.Add(combatStatisticsContainer.CurrentComabtStatistics);
+            combatStatisticsContainer.CurrentComabtStatistics.EnterCombatTime = command.TimeStamp;
 
             return combatStatisticsContainer;
         }
