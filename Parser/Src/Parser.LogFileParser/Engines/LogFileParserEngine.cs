@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
 
 using Bytes2you.Validation;
 
@@ -14,7 +14,7 @@ namespace Parser.LogFileParser.Engines
 
         private ICombatStatisticsContainer combatStatisticsContainer;
 
-        private readonly Queue<ICommand> commandsQueue;
+        private readonly ConcurrentQueue<ICommand> commandsQueue;
 
         public LogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainerFactory combatStatisticsContainerFactory)
         {
@@ -24,7 +24,7 @@ namespace Parser.LogFileParser.Engines
             this.commandResolutionHandler = commandResolutionHandler;
             this.combatStatisticsContainer = combatStatisticsContainerFactory.CreateCombatStatisticsContainer();
 
-            this.commandsQueue = new Queue<ICommand>();
+            this.commandsQueue = new ConcurrentQueue<ICommand>();
 
             // TODO: Async parsing
         }
