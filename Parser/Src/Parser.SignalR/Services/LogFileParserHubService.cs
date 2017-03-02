@@ -8,30 +8,30 @@ namespace Parser.SignalR.Services
 {
     public class LogFileParserHubService : ILogFileParserHubService
     {
-        private readonly ILogFileParserEngineManager logFileParserEngineService;
+        private readonly ILogFileParserEngineManager logFileParserEngineManager;
         private readonly IJsonConvertProvider jsonConvertProvider;
 
-        public LogFileParserHubService(ILogFileParserEngineManager logFileParserEngineService, IJsonConvertProvider jsonConvertProvider)
+        public LogFileParserHubService(ILogFileParserEngineManager logFileParserEngineManager, IJsonConvertProvider jsonConvertProvider)
         {
-            Guard.WhenArgument(logFileParserEngineService, nameof(ILogFileParserEngineManager)).IsNull().Throw();
+            Guard.WhenArgument(logFileParserEngineManager, nameof(ILogFileParserEngineManager)).IsNull().Throw();
             Guard.WhenArgument(jsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
 
-            this.logFileParserEngineService = logFileParserEngineService;
+            this.logFileParserEngineManager = logFileParserEngineManager;
             this.jsonConvertProvider = jsonConvertProvider;
         }
 
         public string GetParsingSessionId()
         {
-            return this.logFileParserEngineService.StartNewLogFileParserEngine();
+            return this.logFileParserEngineManager.StartNewLogFileParserEngine();
         }
 
         public string SendCommand(string engineId, string serializedCommand)
         {
             var command = this.jsonConvertProvider.DeserializeObject<Command>(serializedCommand);
 
-            this.logFileParserEngineService.EnqueueCommandToEngineWithId(engineId, command);
+            this.logFileParserEngineManager.EnqueueCommandToEngineWithId(engineId, command);
 
-            return "success";
+            return command.TimeStamp.ToShortTimeString();
         }
     }
 }

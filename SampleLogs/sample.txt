@@ -1,1 +1,2 @@
-[22:34:02.247] [@Morninn'wood] [@Morninn'wood] [] [Spend {836045448945473}: energy {836045448938503}] (20)
+[22:36:05.654] [@Morninn'wood] [@Morninn'wood] [] [Event {836045448945472}: EnterCombat {836045448945489}] ()
+

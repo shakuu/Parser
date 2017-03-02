@@ -72,6 +72,12 @@ namespace Parser.LogFileReader.Strategies
             command.AbilityName = abilityDetails[0].Trim();
             command.AbilityGameId = abilityDetails[1].Trim();
 
+            if (abilityDetails.Length > 2)
+            {
+                command.EventName = abilityDetails[2].Trim();
+                command.EventNameGameId = abilityDetails[3];
+            }
+
             return command;
         }
 

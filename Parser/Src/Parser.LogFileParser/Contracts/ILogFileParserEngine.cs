@@ -1,4 +1,6 @@
-﻿using Parser.Common.Contracts;
+﻿using System.Collections.Generic;
+
+using Parser.Common.Contracts;
 
 namespace Parser.LogFileParser.Contracts
 {
@@ -6,6 +8,6 @@ namespace Parser.LogFileParser.Contracts
     {
         void EnqueueCommand(ICommand command);
 
-        IParseResult GetParseResult();
+        ICombatStatisticsContainer GetComabtStatistics();
     }
 }
