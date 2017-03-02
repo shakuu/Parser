@@ -35,7 +35,7 @@ namespace Parser.LogFileParser.Engines
 
             this.commandsQueue.Enqueue(command);
 
-            // TODO: 
+            // TODO: Async Sockets ? 
             this.combatStatisticsContainer = this.commandResolutionHandler.ResolveCommand(command, this.combatStatisticsContainer);
         }
 
