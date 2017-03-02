@@ -1,4 +1,6 @@
-﻿using Bytes2you.Validation;
+﻿using System;
+
+using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
 using Parser.Common.Factories;
@@ -29,6 +31,7 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
         {
             combatStatisticsContainer.CurrentComabtStatistics = this.combatStatisticsFactory.CreateCombatStatistics();
             combatStatisticsContainer.AllComabtStatistics.Add(combatStatisticsContainer.CurrentComabtStatistics);
+            combatStatisticsContainer.CurrentComabtStatistics.EnterCombatTime = DateTime.UtcNow;
 
             return combatStatisticsContainer;
         }

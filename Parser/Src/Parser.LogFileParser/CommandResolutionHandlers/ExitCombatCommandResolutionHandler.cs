@@ -1,4 +1,6 @@
-﻿using Parser.Common.Contracts;
+﻿using System;
+
+using Parser.Common.Contracts;
 using Parser.LogFileParser.CommandResolutionHandlers.Base;
 using Parser.LogFileParser.Contracts;
 
@@ -15,6 +17,7 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
+            combatStatisticsContainer.CurrentComabtStatistics.ExitCombatTime = DateTime.UtcNow;
             combatStatisticsContainer.CurrentComabtStatistics.IsCompleted = true;
             combatStatisticsContainer.CurrentComabtStatistics = null;
 
