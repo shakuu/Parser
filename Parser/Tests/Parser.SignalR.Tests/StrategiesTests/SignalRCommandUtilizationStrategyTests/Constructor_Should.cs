@@ -7,7 +7,7 @@ using Parser.LogFileReader.Contracts;
 using Parser.SignalR.Contracts;
 using Parser.SignalR.Strategies;
 
-namespace Parser.SignalR.Tests.Strategies.SignalRCommandUtilizationStrategyTests
+namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategyTests
 {
     [TestFixture]
     public class Constructor_Should

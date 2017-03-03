@@ -8,7 +8,7 @@ using Parser.SignalR.Contracts;
 using Parser.SignalR.Strategies;
 using Parser.SignalR.Tests.Mocks;
 
-namespace Parser.SignalR.Tests.Strategies.SignalRCommandUtilizationStrategyTests
+namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategyTests
 {
     [TestFixture]
     public class UtilizeCommand_Should
