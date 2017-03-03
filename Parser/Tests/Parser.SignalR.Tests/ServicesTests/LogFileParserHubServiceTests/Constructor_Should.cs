@@ -18,10 +18,10 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
             // Act
-            var actualInstance = new LogFileParserHubService(logFileParserEngineManager.Object, jsonConvertProvider.Object);
+            var actualInstance = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
             // Assert
             Assert.That(actualInstance, Is.Not.Null.And.InstanceOf<ILogFileParserHubService>());
@@ -32,11 +32,11 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
         {
             // Arrange
             ILogFileParserEngineManager logFileParserEngineManager = null;
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
             // Act & Assert
             Assert.That(
-                () => new LogFileParserHubService(logFileParserEngineManager, jsonConvertProvider.Object),
+                () => new LogFileParserHubService(logFileParserEngineManager, commandJsonConvertProvider.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ILogFileParserEngineManager)));
         }
 
@@ -45,11 +45,11 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            IJsonConvertProvider jsonConvertProvider = null;
+            ICommandJsonConvertProvider commandJsonConvertProvider = null;
 
             // Act & Assert
             Assert.That(
-                () => new LogFileParserHubService(logFileParserEngineManager.Object, jsonConvertProvider),
+                () => new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IJsonConvertProvider)));
         }
     }

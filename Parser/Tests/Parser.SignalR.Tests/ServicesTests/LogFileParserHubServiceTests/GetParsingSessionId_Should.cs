@@ -15,9 +15,9 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
-            var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, jsonConvertProvider.Object);
+            var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
             // Act
             logFileParserHubService.GetParsingSessionId();
@@ -31,9 +31,9 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
-            var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, jsonConvertProvider.Object);
+            var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
             var expectedReturnValue = "expected return value";
             logFileParserEngineManager.Setup(m => m.StartNewLogFileParserEngine()).Returns(expectedReturnValue);

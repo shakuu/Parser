@@ -3,7 +3,6 @@
 using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
-using Parser.Common.Models;
 using Parser.LogFileParser.Contracts;
 using Parser.SignalR.Contracts;
 
@@ -12,15 +11,15 @@ namespace Parser.SignalR.Services
     public class LogFileParserHubService : ILogFileParserHubService
     {
         private readonly ILogFileParserEngineManager logFileParserEngineManager;
-        private readonly IJsonConvertProvider jsonConvertProvider;
+        private readonly ICommandJsonConvertProvider commandJsonConvertProvider;
 
-        public LogFileParserHubService(ILogFileParserEngineManager logFileParserEngineManager, IJsonConvertProvider jsonConvertProvider)
+        public LogFileParserHubService(ILogFileParserEngineManager logFileParserEngineManager, ICommandJsonConvertProvider commandJsonConvertProvider)
         {
             Guard.WhenArgument(logFileParserEngineManager, nameof(ILogFileParserEngineManager)).IsNull().Throw();
-            Guard.WhenArgument(jsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
+            Guard.WhenArgument(commandJsonConvertProvider, nameof(ICommandJsonConvertProvider)).IsNull().Throw();
 
             this.logFileParserEngineManager = logFileParserEngineManager;
-            this.jsonConvertProvider = jsonConvertProvider;
+            this.commandJsonConvertProvider = commandJsonConvertProvider;
         }
 
         public string GetParsingSessionId()
@@ -32,7 +31,7 @@ namespace Parser.SignalR.Services
         {
             Guard.WhenArgument(engineId, nameof(engineId)).IsNullOrEmpty().Throw();
 
-            var command = this.jsonConvertProvider.DeserializeObject<Command>(serializedCommand);
+            var command = this.commandJsonConvertProvider.DeserializeCommand(serializedCommand);
             if (command == null)
             {
                 throw new ArgumentException(nameof(serializedCommand));

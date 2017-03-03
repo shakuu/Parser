@@ -18,9 +18,9 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
-            var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, jsonConvertProvider.Object);
+            var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
             string engineId = null;
             var serializedCommand = "serialized command";
@@ -36,9 +36,9 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
-            var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, jsonConvertProvider.Object);
+            var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
             var engineId = string.Empty;
             var serializedCommand = "serialized command";
@@ -54,12 +54,12 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
-            var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, jsonConvertProvider.Object);
+            var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
             var deserializedCommand = new Mock<Command>();
-            jsonConvertProvider.Setup(p => p.DeserializeObject<Command>(It.IsAny<string>())).Returns(deserializedCommand.Object);
+            commandJsonConvertProvider.Setup(p => p.DeserializeCommand(It.IsAny<string>())).Returns(deserializedCommand.Object);
 
             var engineId = "any engine id";
             var serializedCommand = "serialized command";
@@ -68,7 +68,7 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
             logFileParserHubService.SendCommand(engineId, serializedCommand);
 
             // Assert
-            jsonConvertProvider.Verify(p => p.DeserializeObject<Command>(serializedCommand), Times.Once);
+            commandJsonConvertProvider.Verify(p => p.DeserializeCommand(serializedCommand), Times.Once);
         }
     }
 }
