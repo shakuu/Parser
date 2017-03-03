@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common", "Src\Parser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common.Tests", "Tests\Parser.Common.Tests\Parser.Common.Tests.csproj", "{FE3C9C62-547D-4274-8DE0-EA81C817E579}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.LogFileParser.Tests", "Tests\Parser.LogFileParser.Tests\Parser.LogFileParser.Tests.csproj", "{5DD0005C-8452-4826-B196-72EDC0FF39A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{FE3C9C62-547D-4274-8DE0-EA81C817E579}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE3C9C62-547D-4274-8DE0-EA81C817E579}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE3C9C62-547D-4274-8DE0-EA81C817E579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DD0005C-8452-4826-B196-72EDC0FF39A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DD0005C-8452-4826-B196-72EDC0FF39A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DD0005C-8452-4826-B196-72EDC0FF39A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DD0005C-8452-4826-B196-72EDC0FF39A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,5 +105,6 @@ Global
 		{37CEDE73-5DBB-44D0-B0E0-4C2AC921291E} = {078E0CBC-5CAF-4513-A1D3-4F9F330B1D72}
 		{CE041571-30B1-4F40-B526-DC58E888F32B} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
 		{FE3C9C62-547D-4274-8DE0-EA81C817E579} = {078E0CBC-5CAF-4513-A1D3-4F9F330B1D72}
+		{5DD0005C-8452-4826-B196-72EDC0FF39A1} = {078E0CBC-5CAF-4513-A1D3-4F9F330B1D72}
 	EndGlobalSection
 EndGlobal
