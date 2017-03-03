@@ -28,6 +28,8 @@ namespace Parser.LogFileParser.Managers
             this.logFileParserEngines = new ConcurrentDictionary<string, ILogFileParserEngine>();
         }
 
+        protected IDictionary<string, ILogFileParserEngine> LogFileParserEngines { get { return this.logFileParserEngines; } }
+
         public void EnqueueCommandToEngineWithId(string engineId, ICommand command)
         {
             Guard.WhenArgument(engineId, nameof(engineId)).IsNullOrEmpty().Throw();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 
 using Moq;
 using NUnit.Framework;
@@ -7,6 +8,7 @@ using Parser.Common.Contracts;
 using Parser.LogFileParser.Contracts;
 using Parser.LogFileParser.Factories;
 using Parser.LogFileParser.Managers;
+using Parser.LogFileParser.Tests.Mock;
 
 namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTests
 {
@@ -51,6 +53,21 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             Assert.That(
                 () => new LogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ILogFileParserEngineFactory)));
+        }
+
+        [Test]
+        public void InitializeLogFileParserEnginesField_ToConcurrentDictionary()
+        {
+            // Arrange
+            var guidStringProvider = new Mock<IGuidStringProvider>();
+            var logFileParserEngineFactory = new Mock<ILogFileParserEngineFactory>();
+
+            // Act
+            var logFileParserEngineManager = new MockLogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory.Object);
+            var actualLogFileParserEnginesField = logFileParserEngineManager.LogFileParserEngines;
+
+            // Assert
+            Assert.That(actualLogFileParserEnginesField, Is.Not.Null.And.InstanceOf<ConcurrentDictionary<string, ILogFileParserEngine>>());
         }
     }
 }
