@@ -4,8 +4,10 @@ using Moq;
 using NUnit.Framework;
 
 using Parser.Common.Contracts;
+using Parser.LogFileParser.Contracts;
 using Parser.LogFileParser.Factories;
 using Parser.LogFileParser.Managers;
+using Parser.LogFileParser.Tests.Mocks;
 
 namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTests
 {
@@ -82,6 +84,28 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             Assert.That(
                 () => logFileParserEngineManager.EnqueueCommandToEngineWithId(engineId, command.Object),
                 Throws.InstanceOf<ArgumentException>().With.Message.Contains("Requested engine not found."));
+        }
+
+        [Test]
+        public void InvokeEnqueueCommandMethod_OfTheCorrectILogFileParserEngineInstance()
+        {
+            // Arrange
+            var guidStringProvider = new Mock<IGuidStringProvider>();
+            var logFileParserEngineFactory = new Mock<ILogFileParserEngineFactory>();
+
+            var engineId = "any engine id";
+            var command = new Mock<ICommand>();
+
+            var logFileParserEngine = new Mock<ILogFileParserEngine>();
+
+            var logFileParserEngineManager = new MockLogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory.Object);
+            logFileParserEngineManager.LogFileParserEngines.Add(engineId, logFileParserEngine.Object);
+
+            // Act 
+            logFileParserEngineManager.EnqueueCommandToEngineWithId(engineId, command.Object);
+
+            // Assert
+            logFileParserEngine.Verify(e => e.EnqueueCommand(command.Object), Times.Once);
         }
     }
 }
