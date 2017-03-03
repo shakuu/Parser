@@ -1,4 +1,6 @@
-﻿using Bytes2you.Validation;
+﻿using System;
+
+using Bytes2you.Validation;
 
 using Parser.Common.Models;
 using Parser.LogFileParser.Contracts;
@@ -27,7 +29,13 @@ namespace Parser.SignalR.Services
 
         public string SendCommand(string engineId, string serializedCommand)
         {
+            Guard.WhenArgument(engineId, nameof(engineId)).IsNullOrEmpty().Throw();
+
             var command = this.jsonConvertProvider.DeserializeObject<Command>(serializedCommand);
+            if (command == null)
+            {
+                throw new ArgumentException(nameof(serializedCommand));
+            }
 
             this.logFileParserEngineManager.EnqueueCommandToEngineWithId(engineId, command);
 
