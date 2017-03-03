@@ -28,7 +28,7 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             var logFileParserEngineManager = new LogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory.Object);
 
             // Act
-            logFileParserEngineManager.StartNewLogFileParserEngine();
+            logFileParserEngineManager.StartLogFileParserEngine();
 
             // Assert
             guidStringProvider.Verify(p => p.NewGuidString(), Times.Once);
@@ -50,7 +50,7 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             var logFileParserEngineManager = new LogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory.Object);
 
             // Act
-            logFileParserEngineManager.StartNewLogFileParserEngine();
+            logFileParserEngineManager.StartLogFileParserEngine();
 
             // Assert
             logFileParserEngineFactory.Verify(f => f.CreateLogFileParserEngine(), Times.Once);
@@ -74,7 +74,7 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             var expectedAddedEngine = logFileParserEngine.Object;
 
             // Act
-            logFileParserEngineManager.StartNewLogFileParserEngine();
+            logFileParserEngineManager.StartLogFileParserEngine();
 
             var logFileParserEnginesDictionaryContainsKey = logFileParserEngineManager.LogFileParserEngines.ContainsKey(guidString);
             var actuallogFileParserEnginesDictionaryEngine = logFileParserEngineManager.LogFileParserEngines[guidString];
@@ -100,7 +100,7 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             var logFileParserEngineManager = new LogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory.Object);
 
             // Act 
-            var actualResult = logFileParserEngineManager.StartNewLogFileParserEngine();
+            var actualResult = logFileParserEngineManager.StartLogFileParserEngine();
 
             // Assert
             Assert.That(actualResult, Is.EqualTo(guidString));

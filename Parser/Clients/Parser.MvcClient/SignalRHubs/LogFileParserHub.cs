@@ -7,7 +7,7 @@ using Parser.SignalR.Contracts;
 
 namespace Parser.MvcClient.SignalRHubs
 {
-    public class LogFileParserHub : Hub, ILogFileParseHub
+    public class LogFileParserHub : Hub, ILogFileParserHub
     {
         private readonly ILogFileParserHubService logFileParserHubService;
 

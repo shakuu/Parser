@@ -23,7 +23,7 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
             logFileParserHubService.GetParsingSessionId();
 
             // Assert
-            logFileParserEngineManager.Verify(m => m.StartNewLogFileParserEngine(), Times.Once);
+            logFileParserEngineManager.Verify(m => m.StartLogFileParserEngine(), Times.Once);
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
             var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
             var expectedReturnValue = "expected return value";
-            logFileParserEngineManager.Setup(m => m.StartNewLogFileParserEngine()).Returns(expectedReturnValue);
+            logFileParserEngineManager.Setup(m => m.StartLogFileParserEngine()).Returns(expectedReturnValue);
 
             // Act
             var actualReturnValue = logFileParserHubService.GetParsingSessionId();

@@ -1,6 +1,6 @@
 ﻿namespace Parser.SignalR.Contracts
 {
-    public interface ILogFileParseHub
+    public interface ILogFileParserHub
     {
         void SendCommand(string engineId, string serializedCommand);
 
