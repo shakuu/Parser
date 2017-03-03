@@ -4,7 +4,6 @@ using Moq;
 using NUnit.Framework;
 
 using Parser.Common.Contracts;
-using Parser.Common.Models;
 using Parser.LogFileParser.Contracts;
 using Parser.SignalR.Services;
 
@@ -58,7 +57,7 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
 
             var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
-            var deserializedCommand = new Mock<Command>();
+            var deserializedCommand = new Mock<ICommand>();
             commandJsonConvertProvider.Setup(p => p.DeserializeCommand(It.IsAny<string>())).Returns(deserializedCommand.Object);
 
             var engineId = "any engine id";

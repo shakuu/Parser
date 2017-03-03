@@ -50,7 +50,7 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
             // Act & Assert
             Assert.That(
                 () => new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider),
-                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IJsonConvertProvider)));
+                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICommandJsonConvertProvider)));
         }
     }
 }
