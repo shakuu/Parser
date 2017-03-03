@@ -27,6 +27,11 @@ namespace Parser.SignalR.Services
             return this.logFileParserEngineManager.StartNewLogFileParserEngine();
         }
 
+        public string EndParsingSession(string engineId)
+        {
+            return "not implemented";
+        }
+
         public string SendCommand(string engineId, string serializedCommand)
         {
             Guard.WhenArgument(engineId, nameof(engineId)).IsNullOrEmpty().Throw();

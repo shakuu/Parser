@@ -4,6 +4,8 @@
     {
         string SendCommand(string engineId, string serializedCommand);
 
+        string EndParsingSession(string engineId);
+
         string GetParsingSessionId();
     }
 }
