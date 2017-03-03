@@ -31,15 +31,16 @@ namespace Parser.SignalR.Services
         {
             Guard.WhenArgument(engineId, nameof(engineId)).IsNullOrEmpty().Throw();
 
-            var command = this.commandJsonConvertProvider.DeserializeCommand(serializedCommand);
-            if (command == null)
+            var deserializedCommand = this.commandJsonConvertProvider.DeserializeCommand(serializedCommand);
+            if (deserializedCommand == null)
             {
                 throw new ArgumentException(nameof(serializedCommand));
             }
 
-            this.logFileParserEngineManager.EnqueueCommandToEngineWithId(engineId, command);
+            this.logFileParserEngineManager.EnqueueCommandToEngineWithId(engineId, deserializedCommand);
 
-            return command.TimeStamp.ToShortTimeString();
+            // TODO: Remove? Replace with something meaningful?
+            return deserializedCommand.TimeStamp.ToShortTimeString();
         }
     }
 }
