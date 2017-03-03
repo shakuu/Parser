@@ -20,7 +20,7 @@ namespace Parser.MvcClient.SignalRHubs
         {
             var message = this.logFileParserHubService.SendCommand(emgineId, serializedCommand);
 
-            Clients.Caller.ReceiveStatus(message);
+            Clients.Caller.UpdateStatus(message);
         }
 
         public void GetParsingSessionId()

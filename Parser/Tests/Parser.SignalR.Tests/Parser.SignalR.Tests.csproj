@@ -87,10 +87,13 @@
     <Compile Include="Mocks\MockSignalRCommandUtilizationStrategy.cs" />
     <Compile Include="Mocks\MockSignalRHubConnectionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicesTests\LogFileParserHubServiceTests\Constructor_Should.cs" />
+    <Compile Include="ServicesTests\LogFileParserHubServiceTests\GetParsingSessionId_Should.cs" />
+    <Compile Include="ServicesTests\LogFileParserHubServiceTests\SendCommand_Should.cs" />
     <Compile Include="ServicesTests\SignalRHubConnectionServiceTests\Constructor_Should.cs" />
     <Compile Include="ServicesTests\SignalRHubConnectionServiceTests\GetHubProxyProvider_Should.cs" />
-    <Compile Include="Strategies\SignalRCommandUtilizationStrategyTests\Constructor_Should.cs" />
-    <Compile Include="Strategies\SignalRCommandUtilizationStrategyTests\UtilizeCommand_Should.cs" />
+    <Compile Include="StrategiesTests\SignalRCommandUtilizationStrategyTests\Constructor_Should.cs" />
+    <Compile Include="StrategiesTests\SignalRCommandUtilizationStrategyTests\UtilizeCommand_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -99,6 +102,10 @@
     <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
       <Name>Parser.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.LogFileParser\Parser.LogFileParser.csproj">
+      <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>
+      <Name>Parser.LogFileParser</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.LogFileReader\Parser.LogFileReader.csproj">
       <Project>{be757824-2c14-425f-9498-38c62c33ef34}</Project>

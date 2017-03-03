@@ -33,7 +33,7 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
-            combatStatisticsContainer.CurrentComabtStatistics.ExitCombatTime = this.dateTimeProvider.GetUtcNow();
+            combatStatisticsContainer.CurrentComabtStatistics.ExitCombatTime = command.TimeStamp;
             combatStatisticsContainer.CurrentComabtStatistics.IsCompleted = true;
             combatStatisticsContainer.CurrentComabtStatistics = null;
 

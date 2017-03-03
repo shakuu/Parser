@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-
-using Bytes2you.Validation;
+﻿using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
 using Parser.Common.Factories;
@@ -14,8 +12,6 @@ namespace Parser.LogFileParser.Engines
 
         private ICombatStatisticsContainer combatStatisticsContainer;
 
-        private readonly ConcurrentQueue<ICommand> commandsQueue;
-
         public LogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainerFactory combatStatisticsContainerFactory)
         {
             Guard.WhenArgument(commandResolutionHandler, nameof(ICommandResolutionHandler)).IsNull().Throw();
@@ -23,25 +19,19 @@ namespace Parser.LogFileParser.Engines
 
             this.commandResolutionHandler = commandResolutionHandler;
             this.combatStatisticsContainer = combatStatisticsContainerFactory.CreateCombatStatisticsContainer();
-
-            this.commandsQueue = new ConcurrentQueue<ICommand>();
-
-            // TODO: Async parsing
         }
+
+        protected ICombatStatisticsContainer CombatStatisticsContainer { get { return this.combatStatisticsContainer; } set { this.combatStatisticsContainer = value; } }
 
         public void EnqueueCommand(ICommand command)
         {
             Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
 
-            this.commandsQueue.Enqueue(command);
-
-            // TODO: Async Sockets ? 
             this.combatStatisticsContainer = this.commandResolutionHandler.ResolveCommand(command, this.combatStatisticsContainer);
         }
 
         public ICombatStatisticsContainer GetComabtStatistics()
         {
-            // TODO: 
             return this.combatStatisticsContainer;
         }
     }

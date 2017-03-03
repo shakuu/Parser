@@ -1,6 +1,8 @@
-﻿using Bytes2you.Validation;
+﻿using System;
 
-using Parser.Common.Models;
+using Bytes2you.Validation;
+
+using Parser.Common.Contracts;
 using Parser.LogFileParser.Contracts;
 using Parser.SignalR.Contracts;
 
@@ -9,15 +11,15 @@ namespace Parser.SignalR.Services
     public class LogFileParserHubService : ILogFileParserHubService
     {
         private readonly ILogFileParserEngineManager logFileParserEngineManager;
-        private readonly IJsonConvertProvider jsonConvertProvider;
+        private readonly ICommandJsonConvertProvider commandJsonConvertProvider;
 
-        public LogFileParserHubService(ILogFileParserEngineManager logFileParserEngineManager, IJsonConvertProvider jsonConvertProvider)
+        public LogFileParserHubService(ILogFileParserEngineManager logFileParserEngineManager, ICommandJsonConvertProvider commandJsonConvertProvider)
         {
             Guard.WhenArgument(logFileParserEngineManager, nameof(ILogFileParserEngineManager)).IsNull().Throw();
-            Guard.WhenArgument(jsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
+            Guard.WhenArgument(commandJsonConvertProvider, nameof(ICommandJsonConvertProvider)).IsNull().Throw();
 
             this.logFileParserEngineManager = logFileParserEngineManager;
-            this.jsonConvertProvider = jsonConvertProvider;
+            this.commandJsonConvertProvider = commandJsonConvertProvider;
         }
 
         public string GetParsingSessionId()
@@ -27,11 +29,18 @@ namespace Parser.SignalR.Services
 
         public string SendCommand(string engineId, string serializedCommand)
         {
-            var command = this.jsonConvertProvider.DeserializeObject<Command>(serializedCommand);
+            Guard.WhenArgument(engineId, nameof(engineId)).IsNullOrEmpty().Throw();
 
-            this.logFileParserEngineManager.EnqueueCommandToEngineWithId(engineId, command);
+            var deserializedCommand = this.commandJsonConvertProvider.DeserializeCommand(serializedCommand);
+            if (deserializedCommand == null)
+            {
+                throw new ArgumentException(nameof(serializedCommand));
+            }
 
-            return command.TimeStamp.ToShortTimeString();
+            this.logFileParserEngineManager.EnqueueCommandToEngineWithId(engineId, deserializedCommand);
+
+            // TODO: Remove? Replace with something meaningful?
+            return deserializedCommand.TimeStamp.ToShortTimeString();
         }
     }
 }

@@ -8,7 +8,7 @@ using Parser.SignalR.Contracts;
 using Parser.SignalR.Strategies;
 using Parser.SignalR.Tests.Mocks;
 
-namespace Parser.SignalR.Tests.Strategies.SignalRCommandUtilizationStrategyTests
+namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategyTests
 {
     [TestFixture]
     public class UtilizeCommand_Should
@@ -18,12 +18,12 @@ namespace Parser.SignalR.Tests.Strategies.SignalRCommandUtilizationStrategyTests
         {
             // Arrange
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
             var hubProxyProvider = new Mock<IHubProxyProvider>();
             signalRHubConnectionService.Setup(s => s.GetHubProxyProvider(It.IsAny<string>())).Returns(hubProxyProvider.Object);
 
-            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, jsonConvertProvider.Object);
+            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider.Object);
 
             ICommand invalidCommand = null;
 
@@ -38,12 +38,13 @@ namespace Parser.SignalR.Tests.Strategies.SignalRCommandUtilizationStrategyTests
         {
             // Arrange
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
             var hubProxyProvider = new Mock<IHubProxyProvider>();
             signalRHubConnectionService.Setup(s => s.GetHubProxyProvider(It.IsAny<string>())).Returns(hubProxyProvider.Object);
 
-            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, jsonConvertProvider.Object);
+            var signalRCommandUtilizationStrategy = new MockSignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider.Object);
+            signalRCommandUtilizationStrategy.ParsingSessionId = "fake parsing session id";
 
             var command = new Mock<ICommand>();
 
@@ -51,7 +52,7 @@ namespace Parser.SignalR.Tests.Strategies.SignalRCommandUtilizationStrategyTests
             signalRCommandUtilizationStrategy.UtilizeCommand(command.Object);
 
             // Assert
-            jsonConvertProvider.Verify(p => p.SerializeObject(command.Object), Times.Once);
+            commandJsonConvertProvider.Verify(p => p.SerializeCommand(command.Object), Times.Once);
         }
 
         [Test]
@@ -59,12 +60,12 @@ namespace Parser.SignalR.Tests.Strategies.SignalRCommandUtilizationStrategyTests
         {
             // Arrange
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
             var hubProxyProvider = new Mock<IHubProxyProvider>();
             signalRHubConnectionService.Setup(s => s.GetHubProxyProvider(It.IsAny<string>())).Returns(hubProxyProvider.Object);
 
-            var signalRCommandUtilizationStrategy = new MockSignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, jsonConvertProvider.Object);
+            var signalRCommandUtilizationStrategy = new MockSignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider.Object);
 
             var command = new Mock<ICommand>();
 
@@ -72,7 +73,7 @@ namespace Parser.SignalR.Tests.Strategies.SignalRCommandUtilizationStrategyTests
             var expectedParsingSessionId = Guid.NewGuid().ToString();
             var expectedSerializedCommand = "serialized command";
 
-            jsonConvertProvider.Setup(p => p.SerializeObject(It.IsAny<object>())).Returns(expectedSerializedCommand);
+            commandJsonConvertProvider.Setup(p => p.SerializeCommand(It.IsAny<ICommand>())).Returns(expectedSerializedCommand);
             signalRCommandUtilizationStrategy.ParsingSessionId = expectedParsingSessionId;
 
             // Act

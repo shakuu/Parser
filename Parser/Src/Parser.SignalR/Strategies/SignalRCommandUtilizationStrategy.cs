@@ -1,4 +1,6 @@
-﻿using Bytes2you.Validation;
+﻿using System.Threading;
+
+using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
 using Parser.LogFileReader.Contracts;
@@ -10,21 +12,23 @@ namespace Parser.SignalR.Strategies
     {
         private const string HubName = "LogFileParserHub";
 
-        private readonly IJsonConvertProvider jsonConvertProvider;
+        private readonly ICommandJsonConvertProvider commandJsonConvertProvider;
 
         private readonly IHubProxyProvider logFileParserHubProxyProvider;
 
         private string parsingSessionId;
 
-        public SignalRCommandUtilizationStrategy(ISignalRHubConnectionService signalRHubConnectionService, IJsonConvertProvider jsonConvertProvider)
+        public SignalRCommandUtilizationStrategy(ISignalRHubConnectionService signalRHubConnectionService, ICommandJsonConvertProvider commandJsonConvertProvider)
         {
             Guard.WhenArgument(signalRHubConnectionService, nameof(ISignalRHubConnectionService)).IsNull().Throw();
-            Guard.WhenArgument(jsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
+            Guard.WhenArgument(commandJsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
 
-            this.jsonConvertProvider = jsonConvertProvider;
+            this.commandJsonConvertProvider = commandJsonConvertProvider;
 
             this.logFileParserHubProxyProvider = signalRHubConnectionService.GetHubProxyProvider(SignalRCommandUtilizationStrategy.HubName);
+
             this.InitializeLogFileParserHubProxy(this.logFileParserHubProxyProvider);
+            this.GetParsingSessionid(this.logFileParserHubProxyProvider);
         }
 
         /// <summary>
@@ -36,7 +40,12 @@ namespace Parser.SignalR.Strategies
         {
             Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
 
-            var serializedCommand = this.jsonConvertProvider.SerializeObject(command);
+            while (string.IsNullOrEmpty(this.parsingSessionId))
+            {
+                this.GetParsingSessionid(this.logFileParserHubProxyProvider);
+            }
+
+            var serializedCommand = this.commandJsonConvertProvider.SerializeCommand(command);
 
             this.logFileParserHubProxyProvider.Invoke("SendCommand", this.parsingSessionId, serializedCommand);
         }
@@ -44,9 +53,14 @@ namespace Parser.SignalR.Strategies
         private void InitializeLogFileParserHubProxy(IHubProxyProvider logFileParserHubProxyProvider)
         {
             // TODO: DELETE CW
-            logFileParserHubProxyProvider.On<string>("ReceiveStatus", (update) => System.Console.WriteLine(update));
+            logFileParserHubProxyProvider.On<string>("UpdateStatus", (update) => System.Console.WriteLine(update));
             logFileParserHubProxyProvider.On<string>("UpdateParsingSessionId", this.OnUpdateParsingSessionId);
+        }
+
+        private void GetParsingSessionid(IHubProxyProvider logFileParserHubProxyProvider)
+        {
             logFileParserHubProxyProvider.Invoke("GetParsingSessionId").Wait();
+            Thread.Sleep(500);
         }
 
         private void OnUpdateParsingSessionId(string parsingSessionId)

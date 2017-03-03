@@ -2,6 +2,8 @@
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
+using Parser.SignalR.Services;
+
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
     public class SignalRNinjectModule : NinjectModule
@@ -16,7 +18,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             bind
                 .FromAssembliesMatching("*.SignalR.*")
                 .SelectAllClasses()
-                .BindDefaultInterface();
+                .BindDefaultInterface()
+                .ConfigureFor<LogFileParserHubService>(s => s.InSingletonScope());
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Parser.SignalR.Contracts
+﻿namespace Parser.Common.Contracts
 {
     public interface IJsonConvertProvider
     {

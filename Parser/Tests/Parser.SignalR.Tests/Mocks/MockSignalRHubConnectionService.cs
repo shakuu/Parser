@@ -8,11 +8,11 @@ namespace Parser.SignalR.Tests.Mocks
 {
     internal class MockSignalRHubConnectionService : SignalRHubConnectionService, ISignalRHubConnectionService
     {
-        public MockSignalRHubConnectionService(IHubConnectionProviderFactory hubConnectionProviderFactory, IHubProxyProviderFactory hubProxyProviderFactory)
+        internal MockSignalRHubConnectionService(IHubConnectionProviderFactory hubConnectionProviderFactory, IHubProxyProviderFactory hubProxyProviderFactory)
             : base(hubConnectionProviderFactory, hubProxyProviderFactory)
         {
         }
 
-        public new IDictionary<string, IHubProxyProvider> HubProxyProviders { get { return base.HubProxyProviders; } }
+        internal new IDictionary<string, IHubProxyProvider> HubProxyProviders { get { return base.HubProxyProviders; } }
     }
 }

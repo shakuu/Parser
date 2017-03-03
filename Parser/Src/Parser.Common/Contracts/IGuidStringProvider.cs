@@ -2,6 +2,6 @@
 {
     public interface IGuidStringProvider
     {
-        string NewGuid();
+        string NewGuidString();
     }
 }

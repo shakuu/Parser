@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-using Parser.SignalR.Contracts;
+using Parser.Common.Contracts;
 
-namespace Parser.SignalR.Providers
+namespace Parser.Common.Providers
 {
     public class JsonConvertProvider : IJsonConvertProvider
     {
