@@ -6,7 +6,7 @@ namespace Parser.Common.Providers
 {
     public class GuidStringProvider : IGuidStringProvider
     {
-        public string NewGuid()
+        public string NewGuidString()
         {
             return Guid.NewGuid().ToString();
         }

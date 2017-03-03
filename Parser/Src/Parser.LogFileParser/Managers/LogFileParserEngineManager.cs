@@ -49,7 +49,7 @@ namespace Parser.LogFileParser.Managers
 
         public string StartNewLogFileParserEngine()
         {
-            var newEngineId = this.guidStringProvider.NewGuid();
+            var newEngineId = this.guidStringProvider.NewGuidString();
             var newEngine = this.logFileParserEngineFactory.CreateLogFileParserEngine();
 
             this.logFileParserEngines.Add(newEngineId, newEngine);

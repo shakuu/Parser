@@ -20,7 +20,7 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             var logFileParserEngineFactory = new Mock<ILogFileParserEngineFactory>();
 
             var guidString = "any string";
-            guidStringProvider.Setup(p => p.NewGuid()).Returns(guidString);
+            guidStringProvider.Setup(p => p.NewGuidString()).Returns(guidString);
 
             var logFileParserEngine = new Mock<ILogFileParserEngine>();
             logFileParserEngineFactory.Setup(f => f.CreateLogFileParserEngine()).Returns(logFileParserEngine.Object);
@@ -31,7 +31,7 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             logFileParserEngineManager.StartNewLogFileParserEngine();
 
             // Assert
-            guidStringProvider.Verify(p => p.NewGuid(), Times.Once);
+            guidStringProvider.Verify(p => p.NewGuidString(), Times.Once);
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             var logFileParserEngineFactory = new Mock<ILogFileParserEngineFactory>();
 
             var guidString = "any string";
-            guidStringProvider.Setup(p => p.NewGuid()).Returns(guidString);
+            guidStringProvider.Setup(p => p.NewGuidString()).Returns(guidString);
 
             var logFileParserEngine = new Mock<ILogFileParserEngine>();
             logFileParserEngineFactory.Setup(f => f.CreateLogFileParserEngine()).Returns(logFileParserEngine.Object);
@@ -64,7 +64,7 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             var logFileParserEngineFactory = new Mock<ILogFileParserEngineFactory>();
 
             var guidString = "any string";
-            guidStringProvider.Setup(p => p.NewGuid()).Returns(guidString);
+            guidStringProvider.Setup(p => p.NewGuidString()).Returns(guidString);
 
             var logFileParserEngine = new Mock<ILogFileParserEngine>();
             logFileParserEngineFactory.Setup(f => f.CreateLogFileParserEngine()).Returns(logFileParserEngine.Object);
@@ -92,7 +92,7 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             var logFileParserEngineFactory = new Mock<ILogFileParserEngineFactory>();
 
             var guidString = "any string";
-            guidStringProvider.Setup(p => p.NewGuid()).Returns(guidString);
+            guidStringProvider.Setup(p => p.NewGuidString()).Returns(guidString);
 
             var logFileParserEngine = new Mock<ILogFileParserEngine>();
             logFileParserEngineFactory.Setup(f => f.CreateLogFileParserEngine()).Returns(logFileParserEngine.Object);
