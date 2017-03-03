@@ -18,13 +18,13 @@ namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategy
         {
             // Arrange
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
             var hubProxyProvider = new Mock<IHubProxyProvider>();
             signalRHubConnectionService.Setup(s => s.GetHubProxyProvider(It.IsAny<string>())).Returns(hubProxyProvider.Object);
 
             // Act
-            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, jsonConvertProvider.Object);
+            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider.Object);
 
             // Assert
             Assert.That(signalRCommandUtilizationStrategy, Is.Not.Null.And.InstanceOf<ICommandUtilizationStrategy>());
@@ -35,11 +35,11 @@ namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategy
         {
             // Arrange
             ISignalRHubConnectionService signalRHubConnectionService = null;
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
             // Act & Assert
             Assert.That(
-                () => new SignalRCommandUtilizationStrategy(signalRHubConnectionService, jsonConvertProvider.Object),
+                () => new SignalRCommandUtilizationStrategy(signalRHubConnectionService, commandJsonConvertProvider.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ISignalRHubConnectionService)));
         }
 
@@ -48,11 +48,11 @@ namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategy
         {
             // Arrange
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
-            IJsonConvertProvider jsonConvertProvider = null;
+            ICommandJsonConvertProvider commandJsonConvertProvider = null;
 
             // Act & Assert
             Assert.That(
-                () => new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, jsonConvertProvider),
+                () => new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IJsonConvertProvider)));
         }
 
@@ -61,7 +61,7 @@ namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategy
         {
             // Arrange
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
             var hubProxyProvider = new Mock<IHubProxyProvider>();
             signalRHubConnectionService.Setup(s => s.GetHubProxyProvider(It.IsAny<string>())).Returns(hubProxyProvider.Object);
@@ -69,7 +69,7 @@ namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategy
             var expectedHubName = "LogFileParserHub";
 
             // Act
-            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, jsonConvertProvider.Object);
+            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider.Object);
 
             // Assert
             signalRHubConnectionService.Verify(s => s.GetHubProxyProvider(expectedHubName), Times.Once);
@@ -80,7 +80,7 @@ namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategy
         {
             // Arrange
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
             var hubProxyProvider = new Mock<IHubProxyProvider>();
             signalRHubConnectionService.Setup(s => s.GetHubProxyProvider(It.IsAny<string>())).Returns(hubProxyProvider.Object);
@@ -88,7 +88,7 @@ namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategy
             var expectedHubMethodName = "UpdateParsingSessionId";
 
             // Act
-            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, jsonConvertProvider.Object);
+            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider.Object);
 
             // Assert
             hubProxyProvider.Verify(p => p.On<string>(expectedHubMethodName, It.IsAny<Action<string>>()), Times.Once);
@@ -99,7 +99,7 @@ namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategy
         {
             // Arrange
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
-            var jsonConvertProvider = new Mock<IJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
 
             var hubProxyProvider = new Mock<IHubProxyProvider>();
             signalRHubConnectionService.Setup(s => s.GetHubProxyProvider(It.IsAny<string>())).Returns(hubProxyProvider.Object);
@@ -107,7 +107,7 @@ namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategy
             var expectedHubMethodName = "GetParsingSessionId";
 
             // Act
-            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, jsonConvertProvider.Object);
+            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider.Object);
 
             // Assert
             hubProxyProvider.Verify(p => p.Invoke(expectedHubMethodName), Times.Once);

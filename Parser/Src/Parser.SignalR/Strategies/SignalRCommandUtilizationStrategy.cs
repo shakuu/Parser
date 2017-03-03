@@ -12,18 +12,18 @@ namespace Parser.SignalR.Strategies
     {
         private const string HubName = "LogFileParserHub";
 
-        private readonly IJsonConvertProvider jsonConvertProvider;
+        private readonly ICommandJsonConvertProvider commandJsonConvertProvider;
 
         private readonly IHubProxyProvider logFileParserHubProxyProvider;
 
         private string parsingSessionId;
 
-        public SignalRCommandUtilizationStrategy(ISignalRHubConnectionService signalRHubConnectionService, IJsonConvertProvider jsonConvertProvider)
+        public SignalRCommandUtilizationStrategy(ISignalRHubConnectionService signalRHubConnectionService, ICommandJsonConvertProvider commandJsonConvertProvider)
         {
             Guard.WhenArgument(signalRHubConnectionService, nameof(ISignalRHubConnectionService)).IsNull().Throw();
-            Guard.WhenArgument(jsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
+            Guard.WhenArgument(commandJsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
 
-            this.jsonConvertProvider = jsonConvertProvider;
+            this.commandJsonConvertProvider = commandJsonConvertProvider;
 
             this.logFileParserHubProxyProvider = signalRHubConnectionService.GetHubProxyProvider(SignalRCommandUtilizationStrategy.HubName);
 
@@ -45,7 +45,7 @@ namespace Parser.SignalR.Strategies
                 this.GetParsingSessionid(this.logFileParserHubProxyProvider);
             }
 
-            var serializedCommand = this.jsonConvertProvider.SerializeObject(command);
+            var serializedCommand = this.commandJsonConvertProvider.SerializeCommand(command);
 
             this.logFileParserHubProxyProvider.Invoke("SendCommand", this.parsingSessionId, serializedCommand);
         }

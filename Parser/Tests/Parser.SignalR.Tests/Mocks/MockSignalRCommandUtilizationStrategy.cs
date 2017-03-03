@@ -6,8 +6,8 @@ namespace Parser.SignalR.Tests.Mocks
 {
     internal class MockSignalRCommandUtilizationStrategy : SignalRCommandUtilizationStrategy
     {
-        public MockSignalRCommandUtilizationStrategy(ISignalRHubConnectionService signalRHubConnectionService, IJsonConvertProvider jsonConvertProvider)
-            : base(signalRHubConnectionService, jsonConvertProvider)
+        public MockSignalRCommandUtilizationStrategy(ISignalRHubConnectionService signalRHubConnectionService, ICommandJsonConvertProvider commandJsonConvertProvider)
+            : base(signalRHubConnectionService, commandJsonConvertProvider)
         {
         }
 
