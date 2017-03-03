@@ -83,5 +83,27 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             Assert.That(logFileParserEnginesDictionaryContainsKey, Is.True);
             Assert.That(actuallogFileParserEnginesDictionaryEngine, Is.SameAs(expectedAddedEngine));
         }
+
+        [Test]
+        public void ReturnCorrectResult()
+        {
+            // Arrange
+            var guidStringProvider = new Mock<IGuidStringProvider>();
+            var logFileParserEngineFactory = new Mock<ILogFileParserEngineFactory>();
+
+            var guidString = "any string";
+            guidStringProvider.Setup(p => p.NewGuid()).Returns(guidString);
+
+            var logFileParserEngine = new Mock<ILogFileParserEngine>();
+            logFileParserEngineFactory.Setup(f => f.CreateLogFileParserEngine()).Returns(logFileParserEngine.Object);
+
+            var logFileParserEngineManager = new LogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory.Object);
+
+            // Act 
+            var actualResult = logFileParserEngineManager.StartNewLogFileParserEngine();
+
+            // Assert
+            Assert.That(actualResult, Is.EqualTo(guidString));
+        }
     }
 }
