@@ -43,7 +43,8 @@ namespace Parser.SignalR.Tests.Strategies.SignalRCommandUtilizationStrategyTests
             var hubProxyProvider = new Mock<IHubProxyProvider>();
             signalRHubConnectionService.Setup(s => s.GetHubProxyProvider(It.IsAny<string>())).Returns(hubProxyProvider.Object);
 
-            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, jsonConvertProvider.Object);
+            var signalRCommandUtilizationStrategy = new MockSignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, jsonConvertProvider.Object);
+            signalRCommandUtilizationStrategy.ParsingSessionId = "fake parsing session id";
 
             var command = new Mock<ICommand>();
 
