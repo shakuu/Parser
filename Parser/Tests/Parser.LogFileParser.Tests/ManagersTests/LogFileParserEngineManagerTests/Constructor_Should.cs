@@ -8,7 +8,7 @@ using Parser.Common.Contracts;
 using Parser.LogFileParser.Contracts;
 using Parser.LogFileParser.Factories;
 using Parser.LogFileParser.Managers;
-using Parser.LogFileParser.Tests.Mock;
+using Parser.LogFileParser.Tests.Mocks;
 
 namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTests
 {

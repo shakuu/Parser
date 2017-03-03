@@ -5,7 +5,7 @@ using Parser.LogFileParser.Contracts;
 using Parser.LogFileParser.Factories;
 using Parser.LogFileParser.Managers;
 
-namespace Parser.LogFileParser.Tests.Mock
+namespace Parser.LogFileParser.Tests.Mocks
 {
     internal class MockLogFileParserEngineManager : LogFileParserEngineManager
     {

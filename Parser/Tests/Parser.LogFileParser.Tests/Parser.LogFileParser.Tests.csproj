@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ManagersTests\LogFileParserEngineManagerTests\Constructor_Should.cs" />
-    <Compile Include="Mock\MockLogFileParserEngineManager.cs" />
+    <Compile Include="Mocks\MockLogFileParserEngineManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
