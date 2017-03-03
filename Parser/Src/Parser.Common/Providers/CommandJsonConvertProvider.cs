@@ -15,6 +15,16 @@ namespace Parser.Common.Providers
 
             this.jsonConvertProvider = jsonConvertProvider;
         }
+        
+        public string SerializeCommand(ICommand command)
+        {
+            if (command == null)
+            {
+                return null;
+            }
+
+            return this.jsonConvertProvider.SerializeObject(command);
+        }
 
         public ICommand DeserializeCommand(string value)
         {
@@ -24,16 +34,6 @@ namespace Parser.Common.Providers
             }
 
             return this.jsonConvertProvider.DeserializeObject<Command>(value);
-        }
-
-        public string SerializeCommand(ICommand command)
-        {
-            if (command == null)
-            {
-                return null;
-            }
-
-            return this.jsonConvertProvider.SerializeObject(command);
         }
     }
 }
