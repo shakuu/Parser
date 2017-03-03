@@ -1,4 +1,5 @@
-﻿using Parser.SignalR.Contracts;
+﻿using Parser.Common.Contracts;
+using Parser.SignalR.Contracts;
 using Parser.SignalR.Strategies;
 
 namespace Parser.SignalR.Tests.Mocks

@@ -2,6 +2,7 @@
 
 using Bytes2you.Validation;
 
+using Parser.Common.Contracts;
 using Parser.Common.Models;
 using Parser.LogFileParser.Contracts;
 using Parser.SignalR.Contracts;

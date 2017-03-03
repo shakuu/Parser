@@ -2,9 +2,10 @@
 
 using Moq;
 using NUnit.Framework;
+
+using Parser.Common.Contracts;
 using Parser.Common.Models;
 using Parser.LogFileParser.Contracts;
-using Parser.SignalR.Contracts;
 using Parser.SignalR.Services;
 
 namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
