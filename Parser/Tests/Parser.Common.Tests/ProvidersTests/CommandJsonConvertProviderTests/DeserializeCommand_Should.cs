@@ -2,65 +2,66 @@
 using NUnit.Framework;
 
 using Parser.Common.Contracts;
+using Parser.Common.Models;
 using Parser.Common.Providers;
 
 namespace Parser.Common.Tests.ProvidersTests.CommandJsonConvertProviderTests
 {
     [TestFixture]
-    public class SerializeCommand_Should
+    public class DeserializeCommand_Should
     {
         [Test]
-        public void ReturnNull_WhenICommandParameterIsNull()
+        public void ReturnNull_WhenValueParameterIsNull()
         {
             // Arrange
             var jsonConvertProvider = new Mock<IJsonConvertProvider>();
 
             var commandJsonConvertProvider = new CommandJsonConvertProvider(jsonConvertProvider.Object);
 
-            ICommand command = null;
+            string value = null;
 
             // Act
-            var actualResult = commandJsonConvertProvider.SerializeCommand(command);
+            var actualResult = commandJsonConvertProvider.DeserializeCommand(value);
 
             // Assert
             Assert.That(actualResult, Is.Null);
         }
 
         [Test]
-        public void InvokeIJsonConvertProvider_SerializeObjectMethodOnceWithCorrectParameter_WhenICommandIsValid()
+        public void InvokeIJsonConvertProvider_DeserializeObjectMethodOnceWithCorrectParameter_WhenICommandIsValid()
         {
             // Arrange
             var jsonConvertProvider = new Mock<IJsonConvertProvider>();
 
             var commandJsonConvertProvider = new CommandJsonConvertProvider(jsonConvertProvider.Object);
 
-            var command = new Mock<ICommand>();
+            var value = "any string";
 
             // Act
-            commandJsonConvertProvider.SerializeCommand(command.Object);
+            commandJsonConvertProvider.DeserializeCommand(value);
 
             // Assert
-            jsonConvertProvider.Verify(p => p.SerializeObject(command.Object), Times.Once);
+            jsonConvertProvider.Verify(p => p.DeserializeObject<Command>(value), Times.Once);
         }
 
         [Test]
-        public void ReturnCorrectResult_WhenICommandParameterIsValid()
+        public void ReturnCorrectResult_WhenValueParameterIsValid()
         {
             // Arrange
             var jsonConvertProvider = new Mock<IJsonConvertProvider>();
 
             var commandJsonConvertProvider = new CommandJsonConvertProvider(jsonConvertProvider.Object);
 
-            var command = new Mock<ICommand>();
+            var value = "any string";
 
-            var expectedResult = "expected result";
-            jsonConvertProvider.Setup(p => p.SerializeObject(It.IsAny<ICommand>())).Returns(expectedResult);
+            var expectedResult = new Mock<Command>();
+            jsonConvertProvider.Setup(p => p.DeserializeObject<Command>(It.IsAny<string>())).Returns(expectedResult.Object);
 
             // Act
-            var actualResult = commandJsonConvertProvider.SerializeCommand(command.Object);
+            var actualResult = commandJsonConvertProvider.DeserializeCommand(value);
 
             // Assert
-            Assert.That(actualResult, Is.EqualTo(expectedResult));
+            Assert.That(actualResult, Is.EqualTo(expectedResult.Object).And.InstanceOf<ICommand>());
         }
     }
 }
