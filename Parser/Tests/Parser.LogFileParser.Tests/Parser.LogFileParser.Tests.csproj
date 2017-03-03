@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="EnginesTests\LogFileParserEngineTests\Constructor_Should.cs" />
     <Compile Include="EnginesTests\LogFileParserEngineTests\EnqueueCommand_Should.cs" />
+    <Compile Include="EnginesTests\LogFileParserEngineTests\GetComabtStatistics_Should.cs" />
     <Compile Include="ManagersTests\LogFileParserEngineManagerTests\Constructor_Should.cs" />
     <Compile Include="ManagersTests\LogFileParserEngineManagerTests\EnqueueCommandToEngineWithId_Should.cs" />
     <Compile Include="ManagersTests\LogFileParserEngineManagerTests\StartNewLogFileParserEngine_Should.cs" />
