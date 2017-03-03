@@ -7,13 +7,13 @@ using Parser.LogFileParser.Managers;
 
 namespace Parser.LogFileParser.Tests.Mock
 {
-    public class MockLogFileParserEngineManager : LogFileParserEngineManager
+    internal class MockLogFileParserEngineManager : LogFileParserEngineManager
     {
-        public MockLogFileParserEngineManager(IGuidStringProvider guidStringProvider, ILogFileParserEngineFactory logFileParserEngineFactory)
+        internal MockLogFileParserEngineManager(IGuidStringProvider guidStringProvider, ILogFileParserEngineFactory logFileParserEngineFactory)
             : base(guidStringProvider, logFileParserEngineFactory)
         {
         }
 
-        public new IDictionary<string, ILogFileParserEngine> LogFileParserEngines { get { return base.LogFileParserEngines; } }
+        internal new IDictionary<string, ILogFileParserEngine> LogFileParserEngines { get { return base.LogFileParserEngines; } }
     }
 }
