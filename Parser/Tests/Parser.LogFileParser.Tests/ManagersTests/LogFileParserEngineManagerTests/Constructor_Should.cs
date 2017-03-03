@@ -62,8 +62,9 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             var guidStringProvider = new Mock<IGuidStringProvider>();
             var logFileParserEngineFactory = new Mock<ILogFileParserEngineFactory>();
 
-            // Act
             var logFileParserEngineManager = new MockLogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory.Object);
+            
+            // Act
             var actualLogFileParserEnginesField = logFileParserEngineManager.LogFileParserEngines;
 
             // Assert
