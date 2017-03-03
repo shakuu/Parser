@@ -13,7 +13,6 @@ namespace Parser.Common.Providers
 
         public T DeserializeObject<T>(string value)
         {
-            // TODO: Return null on unable to deserialize
             return JsonConvert.DeserializeObject<T>(value);
         }
     }
