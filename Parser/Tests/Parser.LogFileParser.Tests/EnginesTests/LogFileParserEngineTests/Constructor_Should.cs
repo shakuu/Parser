@@ -23,7 +23,7 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             var actualInstance = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainerFactory.Object);
 
             // Assert
-            Assert.That(actualInstance, Is.Not.Null.And.InstanceOf<ICombatStatisticsContainerFactory>());
+            Assert.That(actualInstance, Is.Not.Null.And.InstanceOf<ILogFileParserEngine>());
         }
 
         [Test]

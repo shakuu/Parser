@@ -21,6 +21,8 @@ namespace Parser.LogFileParser.Engines
             this.combatStatisticsContainer = combatStatisticsContainerFactory.CreateCombatStatisticsContainer();
         }
 
+        protected ICombatStatisticsContainer CombatStatisticsContainer { get { return this.combatStatisticsContainer; } set { this.combatStatisticsContainer = value; } }
+
         public void EnqueueCommand(ICommand command)
         {
             Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();

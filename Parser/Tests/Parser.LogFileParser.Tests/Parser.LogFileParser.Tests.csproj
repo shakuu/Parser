@@ -53,9 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnginesTests\LogFileParserEngineTests\Constructor_Should.cs" />
+    <Compile Include="EnginesTests\LogFileParserEngineTests\EnqueueCommand_Should.cs" />
     <Compile Include="ManagersTests\LogFileParserEngineManagerTests\Constructor_Should.cs" />
     <Compile Include="ManagersTests\LogFileParserEngineManagerTests\EnqueueCommandToEngineWithId_Should.cs" />
     <Compile Include="ManagersTests\LogFileParserEngineManagerTests\StartNewLogFileParserEngine_Should.cs" />
+    <Compile Include="Mocks\MockLogFileParserEngine.cs" />
     <Compile Include="Mocks\MockLogFileParserEngineManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
