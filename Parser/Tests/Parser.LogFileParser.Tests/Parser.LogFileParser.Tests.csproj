@@ -65,6 +65,7 @@
     <Compile Include="ManagersTests\LogFileParserEngineManagerTests\StopLogFileParserEngine_Should.cs" />
     <Compile Include="Mocks\MockCommandResolutionHandler.cs" />
     <Compile Include="Mocks\MockEnterCombatCommandResolutionHandler.cs" />
+    <Compile Include="Mocks\MockExitCombatCommandResolutionHandler.cs" />
     <Compile Include="Mocks\MockLogFileParserEngine.cs" />
     <Compile Include="Mocks\MockLogFileParserEngineManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
