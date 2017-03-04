@@ -7,6 +7,15 @@ namespace Parser.LogFileParser.CommandResolutionHandlers.Base
 {
     public abstract class CommandResolutionHandler : ICommandResolutionHandler, ICommandResolutionHandlerChain
     {
+        private readonly string matchingEventName;
+
+        public CommandResolutionHandler(string matchingEventName)
+        {
+            Guard.WhenArgument(matchingEventName, nameof(matchingEventName)).IsNullOrEmpty().Throw();
+
+            this.matchingEventName = matchingEventName;
+        }
+
         public ICommandResolutionHandler NextCommandResolutionHandler { get; set; }
 
         public ICombatStatisticsContainer ResolveCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
@@ -28,7 +37,19 @@ namespace Parser.LogFileParser.CommandResolutionHandlers.Base
             }
         }
 
-        protected abstract bool CanHandleCommand(ICommand command);
+        protected virtual bool CanHandleCommand(ICommand command)
+        {
+            Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
+
+            if (string.IsNullOrEmpty(command.EventName))
+            {
+                return false;
+            }
+            else
+            {
+                return command.EventName == this.matchingEventName;
+            }
+        }
 
         protected abstract ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer);
     }

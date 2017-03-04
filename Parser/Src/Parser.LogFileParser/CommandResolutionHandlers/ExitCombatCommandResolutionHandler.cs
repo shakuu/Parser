@@ -6,18 +6,12 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 {
     public class ExitCombatCommandResolutionHandler : CommandResolutionHandler, ICommandResolutionHandler, ICommandResolutionHandlerChain
     {
-        private const string ViableEventName = "ExitCombat";
+        private const string MatchingEventName = "ExitCombat";
 
-        protected override bool CanHandleCommand(ICommand command)
+        public ExitCombatCommandResolutionHandler()
+            : base(ExitCombatCommandResolutionHandler.MatchingEventName)
         {
-            if (string.IsNullOrEmpty(command.EventName))
-            {
-                return false;
-            }
-            else
-            {
-                return command.EventName == ExitCombatCommandResolutionHandler.ViableEventName;
-            }
+
         }
 
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)

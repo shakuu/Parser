@@ -16,7 +16,7 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.BaseTests.Co
         public void ThrowArgumentNullException_WhenICommandParameterIsNull()
         {
             // Arrange
-            var commandResolutionHandler = new MockCommandResolutionHandler();
+            var commandResolutionHandler = new OverriddenCanHandleCommandMethodMockCommandResolutionHandler();
 
             ICommand command = null;
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
@@ -31,7 +31,7 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.BaseTests.Co
         public void ThrowArgumentNullException_WhenICombatStatisticsContainerParameterIsNull()
         {
             // Arrange
-            var commandResolutionHandler = new MockCommandResolutionHandler();
+            var commandResolutionHandler = new OverriddenCanHandleCommandMethodMockCommandResolutionHandler();
 
             var command = new Mock<ICommand>();
             ICombatStatisticsContainer combatStatisticsContainer = null;
@@ -46,7 +46,7 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.BaseTests.Co
         public void InvokeCanHandleCommandMethod()
         {
             // Arrange
-            var commandResolutionHandler = new MockCommandResolutionHandler();
+            var commandResolutionHandler = new OverriddenCanHandleCommandMethodMockCommandResolutionHandler();
 
             var command = new Mock<ICommand>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
@@ -62,7 +62,7 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.BaseTests.Co
         public void InvokeCanHandleCommandMethod_WithCorrectParameter()
         {
             // Arrange
-            var commandResolutionHandler = new MockCommandResolutionHandler();
+            var commandResolutionHandler = new OverriddenCanHandleCommandMethodMockCommandResolutionHandler();
 
             var command = new Mock<ICommand>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
@@ -78,7 +78,7 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.BaseTests.Co
         public void InvokeHandleCommandMethod_WhenCanHandleMethodReturnsTrue()
         {
             // Arrange
-            var commandResolutionHandler = new MockCommandResolutionHandler();
+            var commandResolutionHandler = new OverriddenCanHandleCommandMethodMockCommandResolutionHandler();
 
             var command = new Mock<ICommand>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
@@ -96,7 +96,7 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.BaseTests.Co
         public void InvokeHandleCommandMethodWithCorrectParameters_WhenCanHandleMethodReturnsTrue()
         {
             // Arrange
-            var commandResolutionHandler = new MockCommandResolutionHandler();
+            var commandResolutionHandler = new OverriddenCanHandleCommandMethodMockCommandResolutionHandler();
 
             var command = new Mock<ICommand>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
@@ -115,7 +115,7 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.BaseTests.Co
         public void InvokeNextCommandResolutionHandler_ResolveCommandMethodWithCorrectParameters_WhenCanHandleMethodReturnsFalse()
         {
             // Arrange
-            var commandResolutionHandler = new MockCommandResolutionHandler();
+            var commandResolutionHandler = new OverriddenCanHandleCommandMethodMockCommandResolutionHandler();
 
             var command = new Mock<ICommand>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
@@ -136,7 +136,7 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.BaseTests.Co
         public void ReturnCorrectValue_WhenCanHandlerReturnsFalse_AndNextCommandResolutionHandlerIsNull()
         {
             // Arrange
-            var commandResolutionHandler = new MockCommandResolutionHandler();
+            var commandResolutionHandler = new OverriddenCanHandleCommandMethodMockCommandResolutionHandler();
 
             var command = new Mock<ICommand>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
