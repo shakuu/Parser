@@ -12,15 +12,12 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
         private const string ViableEventName = "EnterCombat";
 
         private readonly ICombatStatisticsFactory combatStatisticsFactory;
-        private readonly IDateTimeProvider dateTimeProvider;
 
-        public EnterCombatCommandResolutionHandler(ICombatStatisticsFactory combatStatisticsFactory, IDateTimeProvider dateTimeProvider)
+        public EnterCombatCommandResolutionHandler(ICombatStatisticsFactory combatStatisticsFactory)
         {
             Guard.WhenArgument(combatStatisticsFactory, nameof(ICombatStatisticsFactory)).IsNull().Throw();
-            Guard.WhenArgument(dateTimeProvider, nameof(IDateTimeProvider)).IsNull().Throw();
 
             this.combatStatisticsFactory = combatStatisticsFactory;
-            this.dateTimeProvider = dateTimeProvider;
         }
 
         protected override bool CanHandleCommand(ICommand command)
