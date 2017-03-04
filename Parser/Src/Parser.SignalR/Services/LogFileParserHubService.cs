@@ -22,7 +22,7 @@ namespace Parser.SignalR.Services
             this.commandJsonConvertProvider = commandJsonConvertProvider;
         }
 
-        public string GetParsingSessionId()
+        public string GetParsingSessionId(string username)
         {
             return this.logFileParserEngineManager.StartLogFileParserEngine();
         }
