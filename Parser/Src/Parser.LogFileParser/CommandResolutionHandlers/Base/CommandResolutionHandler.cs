@@ -24,7 +24,6 @@ namespace Parser.LogFileParser.CommandResolutionHandlers.Base
             }
             else
             {
-                // TODO: Throw
                 return combatStatisticsContainer;
             }
         }
