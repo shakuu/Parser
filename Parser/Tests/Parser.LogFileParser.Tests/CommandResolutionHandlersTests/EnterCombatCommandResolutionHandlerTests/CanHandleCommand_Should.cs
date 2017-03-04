@@ -1,8 +1,9 @@
 ﻿using Moq;
 using NUnit.Framework;
+
 using Parser.Common.Contracts;
 using Parser.Common.Factories;
-using Parser.LogFileParser.CommandResolutionHandlers;
+using Parser.LogFileParser.Tests.Mocks;
 
 namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.EnterCombatCommandResolutionHandlerTests
 {
@@ -11,18 +12,61 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.EnterCombatC
     {
         [TestCase("")]
         [TestCase(null)]
-        public void ReturnFalse_WhenICommandObjectEventNamePropertyIsANullOrEmptyString(string eventName)
+        public void ReturnFalse_WhenICommandParameterEventNamePropertyIsANullOrEmptyString(string eventName)
         {
             // Arrange
             var combatStatisticsFactory = new Mock<ICombatStatisticsFactory>();
 
-            var enterCombatCommandResolutionHandler = new EnterCombatCommandResolutionHandler(combatStatisticsFactory.Object);
+            var enterCombatCommandResolutionHandler = new MockEnterCombatCommandResolutionHandler(combatStatisticsFactory.Object);
 
             var command = new Mock<ICommand>();
             command.SetupGet(c => c.EventName).Returns(eventName);
 
             // Act 
-            //var actualResult = enterCombatCommandResolutionHandler.
+            var actualResult = enterCombatCommandResolutionHandler.CanHandleCommand(command.Object);
+
+            // Assert
+            Assert.That(actualResult, Is.False);
+        }
+
+        [TestCase("random value")]
+        [TestCase("abcdefghijklmnopqrstuvxyz")]
+        [TestCase("ExitCombat")]
+        [TestCase("enterCombat")]
+        public void ReturnFalse_WhenICommandParameterEventNamePropertyIsDifferentComparedToEnterCombat(string eventName)
+        {
+            // Arrange
+            var combatStatisticsFactory = new Mock<ICombatStatisticsFactory>();
+
+            var enterCombatCommandResolutionHandler = new MockEnterCombatCommandResolutionHandler(combatStatisticsFactory.Object);
+
+            var command = new Mock<ICommand>();
+            command.SetupGet(c => c.EventName).Returns(eventName);
+
+            // Act 
+            var actualResult = enterCombatCommandResolutionHandler.CanHandleCommand(command.Object);
+
+            // Assert
+            Assert.That(actualResult, Is.False);
+        }
+
+        [Test]
+        public void ReturnTrue_WhenICommandParameterEventNamePropertyIsIdenticalToEnterCombat()
+        {
+            // Arrange
+            var combatStatisticsFactory = new Mock<ICombatStatisticsFactory>();
+
+            var enterCombatCommandResolutionHandler = new MockEnterCombatCommandResolutionHandler(combatStatisticsFactory.Object);
+
+            var viableEventName = "EnterCombat";
+            var command = new Mock<ICommand>();
+            command.SetupGet(c => c.EventName).Returns(viableEventName);
+
+            // Act 
+            var actualResult = enterCombatCommandResolutionHandler.CanHandleCommand(command.Object);
+
+            // Assert
+            Assert.That(actualResult, Is.True);
         }
     }
 }
