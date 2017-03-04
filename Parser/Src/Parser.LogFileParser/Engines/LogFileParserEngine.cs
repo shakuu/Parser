@@ -1,4 +1,6 @@
-﻿using Bytes2you.Validation;
+﻿using System;
+
+using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
 using Parser.Common.Factories;
@@ -8,6 +10,8 @@ namespace Parser.LogFileParser.Engines
 {
     public class LogFileParserEngine : ILogFileParserEngine
     {
+        public event EventHandler OnExitCombat;
+        
         private readonly ICommandResolutionHandler commandResolutionHandler;
 
         private ICombatStatisticsContainer combatStatisticsContainer;
