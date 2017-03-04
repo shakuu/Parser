@@ -7,9 +7,13 @@ namespace Parser.ConsoleClient.FileReaderImplementations
 {
     internal class ConsoleClientCommandUtilizationStrategy : ICommandUtilizationStrategy
     {
-        public void UtilizeCommand(ICommand command)
+        public void Dispose()
         {
             throw new NotImplementedException();
+        }
+
+        public void UtilizeCommand(ICommand command)
+        {
         }
     }
 }
