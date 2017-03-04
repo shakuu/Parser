@@ -56,6 +56,7 @@
     <Compile Include="CommandResolutionHandlersTests\EnterCombatCommandResolutionHandlerTests\CanHandleCommand_Should.cs" />
     <Compile Include="CommandResolutionHandlersTests\EnterCombatCommandResolutionHandlerTests\Constructor_Should.cs" />
     <Compile Include="CommandResolutionHandlersTests\EnterCombatCommandResolutionHandlerTests\HandleCommand_Should.cs" />
+    <Compile Include="CommandResolutionHandlersTests\ExitCombatCommandResolutionHandlerTests\CanHandleCommand_Should.cs" />
     <Compile Include="EnginesTests\LogFileParserEngineTests\Constructor_Should.cs" />
     <Compile Include="EnginesTests\LogFileParserEngineTests\EnqueueCommand_Should.cs" />
     <Compile Include="EnginesTests\LogFileParserEngineTests\GetComabtStatistics_Should.cs" />
@@ -86,9 +87,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CommandResolutionHandlersTests\ExitCombatCommandResolutionHandlerTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
