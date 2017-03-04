@@ -8,7 +8,7 @@ using Parser.SignalR.Services;
 namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
 {
     [TestFixture]
-    public class ReleaseParsingSession_Should
+    public class ReleaseParsingSessionId_Should
     {
         [Test]
         public void ShouldInvokeILogFileParserEngineManager_ReleaseParsingSessionMethodOnceWithCorrectParameter()
