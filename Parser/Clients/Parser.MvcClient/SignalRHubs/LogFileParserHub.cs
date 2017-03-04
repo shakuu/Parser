@@ -25,7 +25,7 @@ namespace Parser.MvcClient.SignalRHubs
 
         public void EndParsingSession(string engineId)
         {
-            this.logFileParserHubService.EndParsingSession(engineId);
+            this.logFileParserHubService.ReleaseParsingSession(engineId);
         }
 
         public void GetParsingSessionId()

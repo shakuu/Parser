@@ -27,7 +27,7 @@ namespace Parser.SignalR.Services
             return this.logFileParserEngineManager.StartLogFileParserEngine();
         }
 
-        public string EndParsingSession(string engineId)
+        public string ReleaseParsingSession(string engineId)
         {
             return this.logFileParserEngineManager.StopLogFileParserEngine(engineId);
         }
