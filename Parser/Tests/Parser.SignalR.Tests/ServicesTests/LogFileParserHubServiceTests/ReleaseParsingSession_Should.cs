@@ -22,7 +22,7 @@ namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
             var engineId = "any engine id";
 
             // Act
-            logFileParserHubService.ReleaseParsingSession(engineId);
+            logFileParserHubService.ReleaseParsingSessionId(engineId);
 
             // Assert
             logFileParserEngineManager.Verify(m => m.StopLogFileParserEngine(engineId), Times.Once);
