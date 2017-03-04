@@ -71,7 +71,7 @@ namespace Parser.SignalR.Strategies
 
         public void Dispose()
         {
-            this.logFileParserHubProxyProvider.Invoke("ReleaseParsingSessionId", this.parsingSessionId);
+            this.logFileParserHubProxyProvider.Invoke("ReleaseParsingSessionId", this.parsingSessionId).Wait();
         }
     }
 }

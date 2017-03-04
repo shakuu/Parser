@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 using Bytes2you.Validation;
 
@@ -7,7 +8,7 @@ using Parser.LogFileReader.Factories;
 
 namespace Parser.LogFileReader.Engines
 {
-    public class LogFileReaderEngine : ILogFileReaderEngine
+    public class LogFileReaderEngine : ILogFileReaderEngine, IDisposable
     {
         private const int AutoResetEventWaitTimeoutInMiliseconds = 250;
 
@@ -73,6 +74,11 @@ namespace Parser.LogFileReader.Engines
                     }
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            this.commandUtilizationStrategy.Dispose();
         }
     }
 }
