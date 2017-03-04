@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandResolutionHandlersTests\BaseTests\CommandResolutionHandlerTests\CanHandleCommand_Should.cs" />
     <Compile Include="CommandResolutionHandlersTests\BaseTests\CommandResolutionHandlerTests\Constructor_Should.cs" />
     <Compile Include="CommandResolutionHandlersTests\BaseTests\CommandResolutionHandlerTests\ResolveCommand_Should.cs" />
     <Compile Include="CommandResolutionHandlersTests\EnterCombatCommandResolutionHandlerTests\CanHandleCommand_Should.cs" />
