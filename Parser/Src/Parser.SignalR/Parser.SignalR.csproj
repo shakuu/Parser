@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IHubConnectionProvider.cs" />
+    <Compile Include="Contracts\ILogFileParseHub.cs" />
     <Compile Include="Contracts\ILogFileParserHubService.cs" />
     <Compile Include="Factories\IHubConnectionProviderFactory.cs" />
     <Compile Include="Contracts\IHubProxyProvider.cs" />

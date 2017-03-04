@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Parser.LogFileReader.Contracts
 {
-    public interface ILogFileReaderEngine
+    public interface ILogFileReaderEngine : IDisposable
     {
         Task StartAsync();
 

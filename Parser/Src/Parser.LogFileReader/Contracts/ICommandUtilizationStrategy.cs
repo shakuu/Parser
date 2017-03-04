@@ -1,8 +1,10 @@
-﻿using Parser.Common.Contracts;
+﻿using System;
+
+using Parser.Common.Contracts;
 
 namespace Parser.LogFileReader.Contracts
 {
-    public interface ICommandUtilizationStrategy
+    public interface ICommandUtilizationStrategy : IDisposable
     {
         void UtilizeCommand(ICommand command);
     }

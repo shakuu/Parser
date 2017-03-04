@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 
 using Bytes2you.Validation;
 
@@ -8,7 +9,7 @@ using Parser.SignalR.Contracts;
 
 namespace Parser.SignalR.Strategies
 {
-    public class SignalRCommandUtilizationStrategy : ICommandUtilizationStrategy
+    public class SignalRCommandUtilizationStrategy : ICommandUtilizationStrategy, IDisposable
     {
         private const string HubName = "LogFileParserHub";
 
@@ -66,6 +67,11 @@ namespace Parser.SignalR.Strategies
         private void OnUpdateParsingSessionId(string parsingSessionId)
         {
             this.parsingSessionId = parsingSessionId;
+        }
+
+        public void Dispose()
+        {
+            this.logFileParserHubProxyProvider.Invoke("ReleaseParsingSessionId", this.parsingSessionId).Wait();
         }
     }
 }

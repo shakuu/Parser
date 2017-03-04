@@ -7,7 +7,7 @@ using Parser.SignalR.Contracts;
 
 namespace Parser.MvcClient.SignalRHubs
 {
-    public class LogFileParserHub : Hub
+    public class LogFileParserHub : Hub, ILogFileParserHub
     {
         private readonly ILogFileParserHubService logFileParserHubService;
 
@@ -16,11 +16,16 @@ namespace Parser.MvcClient.SignalRHubs
             this.logFileParserHubService = NinjectWebCommon.Kernel.Get<ILogFileParserHubService>();
         }
 
-        public void SendCommand(string emgineId, string serializedCommand)
+        public void SendCommand(string engineId, string serializedCommand)
         {
-            var message = this.logFileParserHubService.SendCommand(emgineId, serializedCommand);
+            var message = this.logFileParserHubService.SendCommand(engineId, serializedCommand);
 
             Clients.Caller.UpdateStatus(message);
+        }
+
+        public void EndParsingSession(string engineId)
+        {
+            this.logFileParserHubService.ReleaseParsingSessionId(engineId);
         }
 
         public void GetParsingSessionId()

@@ -47,7 +47,24 @@ namespace Parser.LogFileParser.Managers
             }
         }
 
-        public string StartNewLogFileParserEngine()
+        public string StopLogFileParserEngine(string engineId)
+        {
+            Guard.WhenArgument(engineId, nameof(engineId)).IsNullOrEmpty().Throw();
+
+            var logFileParserEnginesContainsKey = this.logFileParserEngines.ContainsKey(engineId);
+            if (logFileParserEnginesContainsKey)
+            {
+                this.logFileParserEngines.Remove(engineId);
+
+                return engineId;
+            }
+            else
+            {
+                throw new ArgumentException("Requested engine not found.");
+            }
+        }
+
+        public string StartLogFileParserEngine()
         {
             var newEngineId = this.guidStringProvider.NewGuidString();
             var newEngine = this.logFileParserEngineFactory.CreateLogFileParserEngine();
