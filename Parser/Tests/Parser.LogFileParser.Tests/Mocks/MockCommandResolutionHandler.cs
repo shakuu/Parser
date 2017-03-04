@@ -11,6 +11,10 @@ namespace Parser.LogFileParser.Tests.Mocks
 
         internal bool HandleCommandMethodIsCalled { get; set; }
 
+        internal ICommand HandleCommandMethodICommandParameter { get; set; }
+
+        internal ICombatStatisticsContainer HandleCommandMethodICombatStatisticsContainerParameter { get; set; }
+
         internal ICombatStatisticsContainer HandleCommandMethodReturnValue { get; set; }
 
         protected override bool CanHandleCommand(ICommand command)
@@ -22,6 +26,9 @@ namespace Parser.LogFileParser.Tests.Mocks
 
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
+            this.HandleCommandMethodICommandParameter = command;
+            this.HandleCommandMethodICombatStatisticsContainerParameter = combatStatisticsContainer;
+
             this.HandleCommandMethodIsCalled = true;
 
             return this.HandleCommandMethodReturnValue;
