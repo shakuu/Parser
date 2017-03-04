@@ -39,6 +39,8 @@ namespace Parser.LogFileParser.CommandResolutionHandlers.Base
 
         protected virtual bool CanHandleCommand(ICommand command)
         {
+            Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
+
             if (string.IsNullOrEmpty(command.EventName))
             {
                 return false;
