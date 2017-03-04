@@ -3,9 +3,9 @@ using Parser.LogFileParser.CommandResolutionHandlers.Base;
 
 namespace Parser.LogFileParser.Tests.Mocks
 {
-    internal class MockCommandResolutionHandler : CommandResolutionHandler
+    internal class OverriddenCanHandleCommandMethodMockCommandResolutionHandler : CommandResolutionHandler
     {
-        public MockCommandResolutionHandler()
+        public OverriddenCanHandleCommandMethodMockCommandResolutionHandler()
             : base("MockCommand")
         {
 
