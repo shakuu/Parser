@@ -7,7 +7,7 @@ using Parser.LogFileParser.Contracts;
 
 namespace Parser.LogFileParser.CommandResolutionHandlers
 {
-    public class EnterCombatCommandResolutionHandler : CommandResolutionHandler, ICommandResolutionHandler
+    public class EnterCombatCommandResolutionHandler : CommandResolutionHandler, ICommandResolutionHandler, ICommandResolutionHandlerChain
     {
         private const string ViableEventName = "EnterCombat";
 
