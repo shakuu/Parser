@@ -5,6 +5,12 @@ namespace Parser.LogFileParser.Tests.Mocks
 {
     internal class MockCommandResolutionHandler : CommandResolutionHandler
     {
+        public MockCommandResolutionHandler()
+            : base("MockCommand")
+        {
+
+        }
+
         internal bool CanHandleCommandMethodIsCalled { get; set; }
 
         internal ICommand CanHandleCommandMethodICommandParameter { get; set; }

@@ -7,6 +7,15 @@ namespace Parser.LogFileParser.CommandResolutionHandlers.Base
 {
     public abstract class CommandResolutionHandler : ICommandResolutionHandler, ICommandResolutionHandlerChain
     {
+        private readonly string matchingEventName;
+
+        public CommandResolutionHandler(string matchingEventName)
+        {
+            Guard.WhenArgument(matchingEventName, nameof(matchingEventName)).IsNullOrEmpty().Throw();
+
+            this.matchingEventName = matchingEventName;
+        }
+
         public ICommandResolutionHandler NextCommandResolutionHandler { get; set; }
 
         public ICombatStatisticsContainer ResolveCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)

@@ -9,11 +9,12 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 {
     public class EnterCombatCommandResolutionHandler : CommandResolutionHandler, ICommandResolutionHandler, ICommandResolutionHandlerChain
     {
-        private const string ViableEventName = "EnterCombat";
+        private const string MatchingEventName = "EnterCombat";
 
         private readonly ICombatStatisticsFactory combatStatisticsFactory;
 
         public EnterCombatCommandResolutionHandler(ICombatStatisticsFactory combatStatisticsFactory)
+            : base(EnterCombatCommandResolutionHandler.MatchingEventName)
         {
             Guard.WhenArgument(combatStatisticsFactory, nameof(ICombatStatisticsFactory)).IsNull().Throw();
 
@@ -28,7 +29,7 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
             }
             else
             {
-                return command.EventName == EnterCombatCommandResolutionHandler.ViableEventName;
+                return command.EventName == EnterCombatCommandResolutionHandler.MatchingEventName;
             }
         }
 
