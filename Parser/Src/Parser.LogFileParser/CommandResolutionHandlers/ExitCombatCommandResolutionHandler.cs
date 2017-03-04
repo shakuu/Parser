@@ -14,18 +14,6 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
         }
 
-        protected override bool CanHandleCommand(ICommand command)
-        {
-            if (string.IsNullOrEmpty(command.EventName))
-            {
-                return false;
-            }
-            else
-            {
-                return command.EventName == ExitCombatCommandResolutionHandler.MatchingEventName;
-            }
-        }
-
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
             combatStatisticsContainer.CurrentCombatStatistics.ExitCombatTime = command.TimeStamp;

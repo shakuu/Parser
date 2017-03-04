@@ -37,7 +37,17 @@ namespace Parser.LogFileParser.CommandResolutionHandlers.Base
             }
         }
 
-        protected abstract bool CanHandleCommand(ICommand command);
+        protected virtual bool CanHandleCommand(ICommand command)
+        {
+            if (string.IsNullOrEmpty(command.EventName))
+            {
+                return false;
+            }
+            else
+            {
+                return command.EventName == this.matchingEventName;
+            }
+        }
 
         protected abstract ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer);
     }

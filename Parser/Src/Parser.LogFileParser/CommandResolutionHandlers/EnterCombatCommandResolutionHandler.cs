@@ -20,19 +20,7 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
             this.combatStatisticsFactory = combatStatisticsFactory;
         }
-
-        protected override bool CanHandleCommand(ICommand command)
-        {
-            if (string.IsNullOrEmpty(command.EventName))
-            {
-                return false;
-            }
-            else
-            {
-                return command.EventName == EnterCombatCommandResolutionHandler.MatchingEventName;
-            }
-        }
-
+        
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
             combatStatisticsContainer.CurrentCombatStatistics = this.combatStatisticsFactory.CreateCombatStatistics();
