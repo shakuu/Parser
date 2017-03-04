@@ -2,7 +2,6 @@
 using NUnit.Framework;
 
 using Parser.Common.Contracts;
-using Parser.Common.Factories;
 using Parser.LogFileParser.Tests.Mocks;
 
 namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.ExitCombatCommandResolutionHandlerTests
