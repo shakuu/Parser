@@ -24,10 +24,10 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.EnterCombatC
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
 
             var allComabtStatistics = new Mock<ICollection<ICombatStatistics>>();
-            combatStatisticsContainer.SetupGet(c => c.AllComabtStatistics).Returns(allComabtStatistics.Object);
+            combatStatisticsContainer.SetupGet(c => c.AllCombatStatistics).Returns(allComabtStatistics.Object);
 
             var currentComabtStatistics = new Mock<ICombatStatistics>();
-            combatStatisticsContainer.SetupGet(c => c.CurrentComabtStatistics).Returns(currentComabtStatistics.Object);
+            combatStatisticsContainer.SetupGet(c => c.CurrentCombatStatistics).Returns(currentComabtStatistics.Object);
 
             // Act 
             enterCombatCommandResolutionHandler.HandleCommand(command.Object, combatStatisticsContainer.Object);
@@ -50,9 +50,9 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.EnterCombatC
             ICombatStatistics actualCombatStatisticsInstance = null;
             var currentCombatStatistics = new Mock<ICombatStatistics>();
             var allCombatStatistics = new Mock<ICollection<ICombatStatistics>>();
-            combatStatisticsContainer.SetupGet(c => c.AllComabtStatistics).Returns(allCombatStatistics.Object);
-            combatStatisticsContainer.SetupGet(c => c.CurrentComabtStatistics).Returns(currentCombatStatistics.Object);
-            combatStatisticsContainer.SetupSet(c => c.CurrentComabtStatistics = It.IsAny<ICombatStatistics>()).Callback<ICombatStatistics>((combatStats) => actualCombatStatisticsInstance = combatStats);
+            combatStatisticsContainer.SetupGet(c => c.AllCombatStatistics).Returns(allCombatStatistics.Object);
+            combatStatisticsContainer.SetupGet(c => c.CurrentCombatStatistics).Returns(currentCombatStatistics.Object);
+            combatStatisticsContainer.SetupSet(c => c.CurrentCombatStatistics = It.IsAny<ICombatStatistics>()).Callback<ICombatStatistics>((combatStats) => actualCombatStatisticsInstance = combatStats);
 
             var combatStatistics = new Mock<ICombatStatistics>();
             combatStatisticsFactory.Setup(f => f.CreateCombatStatistics()).Returns(combatStatistics.Object);
@@ -79,8 +79,8 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.EnterCombatC
 
             var currentCombatStatistics = new Mock<ICombatStatistics>();
             var allCombatStatistics = new Mock<ICollection<ICombatStatistics>>();
-            combatStatisticsContainer.SetupGet(c => c.AllComabtStatistics).Returns(allCombatStatistics.Object);
-            combatStatisticsContainer.SetupGet(c => c.CurrentComabtStatistics).Returns(currentCombatStatistics.Object);
+            combatStatisticsContainer.SetupGet(c => c.AllCombatStatistics).Returns(allCombatStatistics.Object);
+            combatStatisticsContainer.SetupGet(c => c.CurrentCombatStatistics).Returns(currentCombatStatistics.Object);
 
             var combatStatistics = new Mock<ICombatStatistics>();
             combatStatisticsFactory.Setup(f => f.CreateCombatStatistics()).Returns(combatStatistics.Object);
@@ -105,8 +105,8 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.EnterCombatC
 
             var currentCombatStatistics = new Mock<ICombatStatistics>();
             var allCombatStatistics = new Mock<ICollection<ICombatStatistics>>();
-            combatStatisticsContainer.SetupGet(c => c.AllComabtStatistics).Returns(allCombatStatistics.Object);
-            combatStatisticsContainer.SetupGet(c => c.CurrentComabtStatistics).Returns(currentCombatStatistics.Object);
+            combatStatisticsContainer.SetupGet(c => c.AllCombatStatistics).Returns(allCombatStatistics.Object);
+            combatStatisticsContainer.SetupGet(c => c.CurrentCombatStatistics).Returns(currentCombatStatistics.Object);
 
             var combatStatistics = new Mock<ICombatStatistics>();
             combatStatisticsFactory.Setup(f => f.CreateCombatStatistics()).Returns(combatStatistics.Object);
@@ -131,8 +131,8 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.EnterCombatC
 
             var currentCombatStatistics = new Mock<ICombatStatistics>();
             var allCombatStatistics = new Mock<ICollection<ICombatStatistics>>();
-            combatStatisticsContainer.SetupGet(c => c.AllComabtStatistics).Returns(allCombatStatistics.Object);
-            combatStatisticsContainer.SetupGet(c => c.CurrentComabtStatistics).Returns(currentCombatStatistics.Object);
+            combatStatisticsContainer.SetupGet(c => c.AllCombatStatistics).Returns(allCombatStatistics.Object);
+            combatStatisticsContainer.SetupGet(c => c.CurrentCombatStatistics).Returns(currentCombatStatistics.Object);
 
             var combatStatistics = new Mock<ICombatStatistics>();
             combatStatisticsFactory.Setup(f => f.CreateCombatStatistics()).Returns(combatStatistics.Object);

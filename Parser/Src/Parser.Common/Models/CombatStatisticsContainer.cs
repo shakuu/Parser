@@ -8,11 +8,11 @@ namespace Parser.Common.Models
     {
         public CombatStatisticsContainer()
         {
-            this.AllComabtStatistics = new LinkedList<ICombatStatistics>();
+            this.AllCombatStatistics = new LinkedList<ICombatStatistics>();
         }
 
-        public ICollection<ICombatStatistics> AllComabtStatistics { get; set; }
+        public ICollection<ICombatStatistics> AllCombatStatistics { get; set; }
 
-        public ICombatStatistics CurrentComabtStatistics { get; set; }
+        public ICombatStatistics CurrentCombatStatistics { get; set; }
     }
 }

@@ -4,8 +4,8 @@ namespace Parser.Common.Contracts
 {
     public interface ICombatStatisticsContainer
     {
-        ICollection<ICombatStatistics> AllComabtStatistics { get; set; }
+        ICollection<ICombatStatistics> AllCombatStatistics { get; set; }
 
-        ICombatStatistics CurrentComabtStatistics { get; set; }
+        ICombatStatistics CurrentCombatStatistics { get; set; }
     }
 }

@@ -22,9 +22,9 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
-            combatStatisticsContainer.CurrentComabtStatistics.ExitCombatTime = command.TimeStamp;
-            combatStatisticsContainer.CurrentComabtStatistics.IsCompleted = true;
-            combatStatisticsContainer.CurrentComabtStatistics = null;
+            combatStatisticsContainer.CurrentCombatStatistics.ExitCombatTime = command.TimeStamp;
+            combatStatisticsContainer.CurrentCombatStatistics.IsCompleted = true;
+            combatStatisticsContainer.CurrentCombatStatistics = null;
 
             return combatStatisticsContainer;
         }

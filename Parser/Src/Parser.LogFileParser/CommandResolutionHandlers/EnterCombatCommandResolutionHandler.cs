@@ -34,9 +34,9 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
-            combatStatisticsContainer.CurrentComabtStatistics = this.combatStatisticsFactory.CreateCombatStatistics();
-            combatStatisticsContainer.AllComabtStatistics.Add(combatStatisticsContainer.CurrentComabtStatistics);
-            combatStatisticsContainer.CurrentComabtStatistics.EnterCombatTime = command.TimeStamp;
+            combatStatisticsContainer.CurrentCombatStatistics = this.combatStatisticsFactory.CreateCombatStatistics();
+            combatStatisticsContainer.AllCombatStatistics.Add(combatStatisticsContainer.CurrentCombatStatistics);
+            combatStatisticsContainer.CurrentCombatStatistics.EnterCombatTime = command.TimeStamp;
 
             return combatStatisticsContainer;
         }
