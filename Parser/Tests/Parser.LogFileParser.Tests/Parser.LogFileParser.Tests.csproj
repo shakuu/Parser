@@ -57,6 +57,8 @@
     <Compile Include="CommandResolutionHandlersTests\EnterCombatCommandResolutionHandlerTests\Constructor_Should.cs" />
     <Compile Include="CommandResolutionHandlersTests\EnterCombatCommandResolutionHandlerTests\HandleCommand_Should.cs" />
     <Compile Include="CommandResolutionHandlersTests\ExitCombatCommandResolutionHandlerTests\CanHandleCommand_Should.cs" />
+    <Compile Include="CommandResolutionHandlersTests\ExitCombatCommandResolutionHandlerTests\Constructor_Should.cs" />
+    <Compile Include="CommandResolutionHandlersTests\ExitCombatCommandResolutionHandlerTests\HandleCommand_Should.cs" />
     <Compile Include="EnginesTests\LogFileParserEngineTests\Constructor_Should.cs" />
     <Compile Include="EnginesTests\LogFileParserEngineTests\EnqueueCommand_Should.cs" />
     <Compile Include="EnginesTests\LogFileParserEngineTests\GetComabtStatistics_Should.cs" />
