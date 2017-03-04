@@ -59,6 +59,22 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.BaseTests.Co
         }
 
         [Test]
+        public void InvokeCanHandleCommandMethod_WithCorrectParameter()
+        {
+            // Arrange
+            var commandResolutionHandler = new MockCommandResolutionHandler();
+
+            var command = new Mock<ICommand>();
+            var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+
+            // Act
+            commandResolutionHandler.ResolveCommand(command.Object, combatStatisticsContainer.Object);
+
+            // Assert
+            Assert.That(commandResolutionHandler.CanHandleCommandMethodICommandParameter, Is.SameAs(command.Object));
+        }
+
+        [Test]
         public void InvokeHandleCommandMethod_WhenCanHandleMethodReturnsTrue()
         {
             // Arrange
