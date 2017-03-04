@@ -12,6 +12,8 @@ namespace Parser.LogFileParser.Managers
 {
     public class LogFileParserEngineManager : ILogFileParserEngineManager
     {
+        private const string RequestedEngineNotFoundErrorMessage = "Requested engine not found.";
+
         private readonly IGuidStringProvider guidStringProvider;
         private readonly ILogFileParserEngineFactory logFileParserEngineFactory;
 
@@ -43,7 +45,7 @@ namespace Parser.LogFileParser.Managers
             }
             else
             {
-                throw new ArgumentException("Requested engine not found.");
+                throw new ArgumentException(LogFileParserEngineManager.RequestedEngineNotFoundErrorMessage);
             }
         }
 
@@ -60,7 +62,7 @@ namespace Parser.LogFileParser.Managers
             }
             else
             {
-                throw new ArgumentException("Requested engine not found.");
+                throw new ArgumentException(LogFileParserEngineManager.RequestedEngineNotFoundErrorMessage);
             }
         }
 
