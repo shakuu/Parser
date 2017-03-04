@@ -53,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandResolutionHandlersTests\BaseTests\CommandResolutionHandlerTests\ResolveCommand_Should.cs" />
+    <Compile Include="CommandResolutionHandlersTests\EnterCombatCommandResolutionHandlerTests\CanHandleCommand_Should.cs" />
+    <Compile Include="CommandResolutionHandlersTests\EnterCombatCommandResolutionHandlerTests\Constructor_Should.cs" />
+    <Compile Include="CommandResolutionHandlersTests\EnterCombatCommandResolutionHandlerTests\HandleCommand_Should.cs" />
+    <Compile Include="CommandResolutionHandlersTests\ExitCombatCommandResolutionHandlerTests\CanHandleCommand_Should.cs" />
+    <Compile Include="CommandResolutionHandlersTests\ExitCombatCommandResolutionHandlerTests\Constructor_Should.cs" />
+    <Compile Include="CommandResolutionHandlersTests\ExitCombatCommandResolutionHandlerTests\HandleCommand_Should.cs" />
     <Compile Include="EnginesTests\LogFileParserEngineTests\Constructor_Should.cs" />
     <Compile Include="EnginesTests\LogFileParserEngineTests\EnqueueCommand_Should.cs" />
     <Compile Include="EnginesTests\LogFileParserEngineTests\GetComabtStatistics_Should.cs" />
@@ -61,6 +67,8 @@
     <Compile Include="ManagersTests\LogFileParserEngineManagerTests\StartNewLogFileParserEngine_Should.cs" />
     <Compile Include="ManagersTests\LogFileParserEngineManagerTests\StopLogFileParserEngine_Should.cs" />
     <Compile Include="Mocks\MockCommandResolutionHandler.cs" />
+    <Compile Include="Mocks\MockEnterCombatCommandResolutionHandler.cs" />
+    <Compile Include="Mocks\MockExitCombatCommandResolutionHandler.cs" />
     <Compile Include="Mocks\MockLogFileParserEngine.cs" />
     <Compile Include="Mocks\MockLogFileParserEngineManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,23 +1,12 @@
-﻿using Bytes2you.Validation;
-
-using Parser.Common.Contracts;
+﻿using Parser.Common.Contracts;
 using Parser.LogFileParser.CommandResolutionHandlers.Base;
 using Parser.LogFileParser.Contracts;
 
 namespace Parser.LogFileParser.CommandResolutionHandlers
 {
-    public class ExitCombatCommandResolutionHandler : CommandResolutionHandler, ICommandResolutionHandler
+    public class ExitCombatCommandResolutionHandler : CommandResolutionHandler, ICommandResolutionHandler, ICommandResolutionHandlerChain
     {
         private const string ViableEventName = "ExitCombat";
-
-        private readonly IDateTimeProvider dateTimeProvider;
-
-        public ExitCombatCommandResolutionHandler(IDateTimeProvider dateTimeProvider)
-        {
-            Guard.WhenArgument(dateTimeProvider, nameof(IDateTimeProvider)).IsNull().Throw();
-
-            this.dateTimeProvider = dateTimeProvider;
-        }
 
         protected override bool CanHandleCommand(ICommand command)
         {
@@ -33,9 +22,9 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
-            combatStatisticsContainer.CurrentComabtStatistics.ExitCombatTime = command.TimeStamp;
-            combatStatisticsContainer.CurrentComabtStatistics.IsCompleted = true;
-            combatStatisticsContainer.CurrentComabtStatistics = null;
+            combatStatisticsContainer.CurrentCombatStatistics.ExitCombatTime = command.TimeStamp;
+            combatStatisticsContainer.CurrentCombatStatistics.IsCompleted = true;
+            combatStatisticsContainer.CurrentCombatStatistics = null;
 
             return combatStatisticsContainer;
         }
