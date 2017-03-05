@@ -2,11 +2,9 @@
 
 namespace Parser.Common.Contracts
 {
-    public interface IGenericEventHandlerProvider<EventArgsType>
+    public interface IGenericEventHandlerProvider<EventArgsType> : IGenericSubscribeProvider<EventArgsType>
         where EventArgsType : EventArgs
     {
-        void Subscribe(EventHandler<EventArgsType> action);
-
         void Unsubscribe(EventHandler<EventArgsType> action);
 
         void Raise(object sender, EventArgsType eventArgs);

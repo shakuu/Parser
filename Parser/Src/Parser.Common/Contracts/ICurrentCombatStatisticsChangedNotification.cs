@@ -2,6 +2,6 @@
 {
     public interface ICurrentCombatStatisticsChangedNotification
     {
-        ICurrentCombatStatisticsChangedEventHandlerProvider OnCurrentCombatStatisticsChanged { get; }
+        ICurrentCombatStatisticsChangedSubscribeProvider OnCurrentCombatStatisticsChanged { get; }
     }
 }

@@ -22,6 +22,9 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
             var exitCombatEventArgsFactory = new Mock<IExitCombatEventArgsFactory>();
 
+            var currentCombatStatisticsChangedSubscribeProvider = new Mock<ICurrentCombatStatisticsChangedSubscribeProvider>();
+            combatStatisticsContainer.SetupGet(c => c.OnCurrentCombatStatisticsChanged).Returns(currentCombatStatisticsChangedSubscribeProvider.Object);
+
             ICommand command = null;
 
             var logFileParserEngine = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, exitCombatEventArgsFactory.Object);
@@ -39,6 +42,9 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
             var exitCombatEventArgsFactory = new Mock<IExitCombatEventArgsFactory>();
+
+            var currentCombatStatisticsChangedSubscribeProvider = new Mock<ICurrentCombatStatisticsChangedSubscribeProvider>();
+            combatStatisticsContainer.SetupGet(c => c.OnCurrentCombatStatisticsChanged).Returns(currentCombatStatisticsChangedSubscribeProvider.Object);
 
             var command = new Mock<ICommand>();
 

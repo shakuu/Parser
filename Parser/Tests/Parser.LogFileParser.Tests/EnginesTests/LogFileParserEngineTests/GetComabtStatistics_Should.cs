@@ -19,6 +19,9 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
             var exitCombatEventArgsFactory = new Mock<IExitCombatEventArgsFactory>();
 
+            var currentCombatStatisticsChangedSubscribeProvider = new Mock<ICurrentCombatStatisticsChangedSubscribeProvider>();
+            combatStatisticsContainer.SetupGet(c => c.OnCurrentCombatStatisticsChanged).Returns(currentCombatStatisticsChangedSubscribeProvider.Object);
+
             var command = new Mock<ICommand>();
 
             var logFileParserEngine = new MockLogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, exitCombatEventArgsFactory.Object);

@@ -3,7 +3,7 @@ using Parser.Common.EventsArgs;
 
 namespace Parser.Common.Providers
 {
-    public class CurrentCombatStatisticsChangedEventHandlerProvider : GenericEventHandlerProvider<CurrentCombatStatisticsChangedEventArgs>, ICurrentCombatStatisticsChangedEventHandlerProvider
+    public class CurrentCombatStatisticsChangedEventHandlerProvider : GenericEventHandlerProvider<CurrentCombatStatisticsChangedEventArgs>, ICurrentCombatStatisticsChangedEventHandlerProvider, ICurrentCombatStatisticsChangedSubscribeProvider
     {
     }
 }
