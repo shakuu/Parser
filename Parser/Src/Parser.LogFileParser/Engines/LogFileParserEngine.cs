@@ -1,19 +1,14 @@
-﻿using System;
-
-using Bytes2you.Validation;
+﻿using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
 using Parser.Common.EventsArgs;
 using Parser.LogFileParser.Contracts;
-using Parser.LogFileParser.EventsArgs;
 using Parser.LogFileParser.Factories;
 
 namespace Parser.LogFileParser.Engines
 {
-    public class LogFileParserEngine : ILogFileParserEngine, IExitCombatNotification
+    public class LogFileParserEngine : ILogFileParserEngine
     {
-        public event EventHandler<ExitCombatEventArgs> OnExitCombat;
-
         private readonly ICommandResolutionHandler commandResolutionHandler;
         private readonly IExitCombatEventArgsFactory exitCombatEventArgsFactory;
 
@@ -50,10 +45,7 @@ namespace Parser.LogFileParser.Engines
         {
             Guard.WhenArgument(args, nameof(CurrentCombatStatisticsChangedEventArgs)).IsNull().Throw();
             Guard.WhenArgument(args.CombatStatistics, nameof(ICombatStatistics)).IsNull().Throw();
-
-            var exitCombatEventArgs = this.exitCombatEventArgsFactory.CreateExitCombatEventArgs(args.CombatStatistics);
-
-            this.OnExitCombat?.Invoke(this, exitCombatEventArgs);
+            
         }
     }
 }
