@@ -6,6 +6,7 @@ using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
 using Parser.LogFileParser.Contracts;
+using Parser.LogFileParser.EventsArgs;
 using Parser.LogFileParser.Factories;
 
 namespace Parser.LogFileParser.Managers
@@ -70,10 +71,16 @@ namespace Parser.LogFileParser.Managers
         {
             var newEngineId = this.guidStringProvider.NewGuidString();
             var newEngine = this.logFileParserEngineFactory.CreateLogFileParserEngine();
+            newEngine.OnExitCombat += this.OnExitCombat;
 
             this.logFileParserEngines.Add(newEngineId, newEngine);
 
             return newEngineId;
+        }
+
+        private void OnExitCombat(object sender, ExitCombatEventArgs args)
+        {
+            // TODO: 
         }
     }
 }

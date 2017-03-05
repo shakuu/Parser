@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Parser.Common.Contracts;
 using Parser.LogFileParser.Contracts;
 using Parser.LogFileParser.Engines;
+using Parser.LogFileParser.Factories;
 
 namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
 {
@@ -18,9 +19,10 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             // Arrange
             var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+            var exitCombatEventArgsFactory = new Mock<IExitCombatEventArgsFactory>();
 
             // Act
-            var actualInstance = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object);
+            var actualInstance = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, exitCombatEventArgsFactory.Object);
 
             // Assert
             Assert.That(actualInstance, Is.Not.Null.And.InstanceOf<ILogFileParserEngine>());
@@ -32,10 +34,11 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             // Arrange
             ICommandResolutionHandler commandResolutionHandler = null;
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+            var exitCombatEventArgsFactory = new Mock<IExitCombatEventArgsFactory>();
 
             // Act & Assert
             Assert.That(
-                () => new LogFileParserEngine(commandResolutionHandler, combatStatisticsContainer.Object),
+                () => new LogFileParserEngine(commandResolutionHandler, combatStatisticsContainer.Object, exitCombatEventArgsFactory.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICommandResolutionHandler)));
         }
 
@@ -45,10 +48,11 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             // Arrange
             var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
             ICombatStatisticsContainer combatStatisticsContainer = null;
+            var exitCombatEventArgsFactory = new Mock<IExitCombatEventArgsFactory>();
 
             // Act & Assert
             Assert.That(
-                () => new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer),
+                () => new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer, exitCombatEventArgsFactory.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICombatStatisticsContainer)));
         }
     }

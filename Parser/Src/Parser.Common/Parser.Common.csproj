@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ICurrentCombatChangedNotificationCombatStatisticsContainer.cs" />
     <Compile Include="Contracts\ICombatStatisticsContainer.cs" />
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandJsonConvertProvider.cs" />
@@ -61,12 +60,10 @@
     <Compile Include="Factories\ICombatStatisticsContainerFactory.cs" />
     <Compile Include="Factories\ICommandFactory.cs" />
     <Compile Include="Factories\ICombatStatisticsFactory.cs" />
-    <Compile Include="Factories\ICurrentCombatChangedNotificationCombatStatisticsContainerFactory.cs" />
     <Compile Include="Factories\ICurrentCombatStatisticsChangedEventArgsFactory.cs" />
     <Compile Include="Models\CombatStatisticsContainer.cs" />
     <Compile Include="Models\Command.cs" />
     <Compile Include="Models\CombatStatistics.cs" />
-    <Compile Include="Models\CurrentCombatChangedNotificationCombatStatisticsContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CommandJsonConvertProvider.cs" />
     <Compile Include="Providers\DateTimeProvider.cs" />

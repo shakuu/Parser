@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Parser.Common.Contracts;
 using Parser.LogFileParser.Contracts;
 using Parser.LogFileParser.Engines;
+using Parser.LogFileParser.Factories;
 using Parser.LogFileParser.Tests.Mocks;
 
 namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
@@ -19,10 +20,11 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             // Arrange
             var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+            var exitCombatEventArgsFactory = new Mock<IExitCombatEventArgsFactory>();
 
             ICommand command = null;
 
-            var logFileParserEngine = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object);
+            var logFileParserEngine = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, exitCombatEventArgsFactory.Object);
 
             // Act & Assert
             Assert.That(
@@ -36,10 +38,11 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             // Arrange
             var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+            var exitCombatEventArgsFactory = new Mock<IExitCombatEventArgsFactory>();
 
             var command = new Mock<ICommand>();
 
-            var logFileParserEngine = new MockLogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object);
+            var logFileParserEngine = new MockLogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, exitCombatEventArgsFactory.Object);
             logFileParserEngine.CombatStatisticsContainer = combatStatisticsContainer.Object;
 
             // Act
