@@ -49,7 +49,9 @@ namespace Parser.Common.Models
             }
         }
 
-        protected void CurrentCombatStatisticsChanged(ICombatStatistics combatStatistics)
+        protected ICombatStatistics MockingCurrentCombatStatistics { get { return this.currentCombatStatistics; } set { this.currentCombatStatistics = value; } }
+
+        protected virtual void CurrentCombatStatisticsChanged(ICombatStatistics combatStatistics)
         {
             Guard.WhenArgument(combatStatistics, nameof(ICombatStatistics)).IsNull().Throw();
 
