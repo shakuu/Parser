@@ -20,7 +20,7 @@ namespace Parser.Common.Models
         public CombatStatisticsContainer(ICurrentCombatStatisticsChangedEventArgsFactory currentCombatStatisticsChangedEventArgsFactory)
         {
             Guard.WhenArgument(currentCombatStatisticsChangedEventArgsFactory, nameof(ICurrentCombatStatisticsChangedEventArgsFactory)).IsNull().Throw();
-
+            
             this.currentCombatStatisticsChangedEventArgsFactory = currentCombatStatisticsChangedEventArgsFactory;
 
             this.AllCombatStatistics = new LinkedList<ICombatStatistics>();
