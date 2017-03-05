@@ -25,7 +25,9 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             var actualInstance = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, exitCombatEventArgsFactory.Object);
 
             // Assert
-            Assert.That(actualInstance, Is.Not.Null.And.InstanceOf<ILogFileParserEngine>());
+            Assert.That(actualInstance, Is.Not.Null);
+            Assert.That(actualInstance, Is.InstanceOf<ILogFileParserEngine>());
+            Assert.That(actualInstance, Is.InstanceOf<IExitCombatNotification>());
         }
 
         [Test]
@@ -54,6 +56,20 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             Assert.That(
                 () => new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer, exitCombatEventArgsFactory.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICombatStatisticsContainer)));
+        }
+
+        [Test]
+        public void ThrowArgumentNullException_WhenIExitCombatEventArgsFactoryParameterIsNull()
+        {
+            // Arrange
+            var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
+            var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+            IExitCombatEventArgsFactory exitCombatEventArgsFactory = null;
+
+            // Act & Assert
+            Assert.That(
+                () => new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, exitCombatEventArgsFactory),
+                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IExitCombatEventArgsFactory)));
         }
     }
 }

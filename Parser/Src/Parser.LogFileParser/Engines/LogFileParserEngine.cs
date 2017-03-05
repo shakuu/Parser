@@ -10,7 +10,7 @@ using Parser.LogFileParser.Factories;
 
 namespace Parser.LogFileParser.Engines
 {
-    public class LogFileParserEngine : ILogFileParserEngine
+    public class LogFileParserEngine : ILogFileParserEngine, IExitCombatNotification
     {
         public event EventHandler<ExitCombatEventArgs> OnExitCombat;
 

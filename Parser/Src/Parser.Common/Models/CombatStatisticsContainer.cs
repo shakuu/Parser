@@ -48,7 +48,7 @@ namespace Parser.Common.Models
             }
         }
 
-        public void CurrentCombatStatisticsChanged(ICombatStatistics combatStatistics)
+        protected void CurrentCombatStatisticsChanged(ICombatStatistics combatStatistics)
         {
             Guard.WhenArgument(combatStatistics, nameof(ICombatStatistics)).IsNull().Throw();
 
