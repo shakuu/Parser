@@ -41,7 +41,8 @@ namespace Parser.LogFileParser.Engines
         {
             Guard.WhenArgument(args, nameof(CurrentCombatStatisticsChangedEventArgs)).IsNull().Throw();
             Guard.WhenArgument(args.CombatStatistics, nameof(ICombatStatistics)).IsNull().Throw();
-            
+
+            // TODO:
         }
     }
 }
