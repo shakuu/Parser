@@ -15,7 +15,10 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
-            combatStatisticsContainer.CurrentCombatStatistics.DamageDone += command.EffectEffectiveAmount;
+            if (combatStatisticsContainer.CurrentCombatStatistics != null)
+            {
+                combatStatisticsContainer.CurrentCombatStatistics.DamageDone += command.EffectEffectiveAmount;
+            }
 
             return combatStatisticsContainer;
         }
