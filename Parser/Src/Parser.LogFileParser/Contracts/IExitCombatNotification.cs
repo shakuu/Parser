@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Parser.Common.Contracts
+namespace Parser.LogFileParser.Contracts
 {
     public interface IExitCombatNotification
     {

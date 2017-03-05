@@ -52,7 +52,6 @@
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandJsonConvertProvider.cs" />
     <Compile Include="Contracts\IDateTimeProvider.cs" />
-    <Compile Include="Contracts\IExitCombatNotification.cs" />
     <Compile Include="Contracts\IGuidStringProvider.cs" />
     <Compile Include="Contracts\ICombatStatistics.cs" />
     <Compile Include="Contracts\IJsonConvertProvider.cs" />

@@ -49,6 +49,7 @@
     <Compile Include="CommandResolutionHandlers\ExitCombatCommandResolutionHandler.cs" />
     <Compile Include="Contracts\ICommandResolutionHandler.cs" />
     <Compile Include="Contracts\ICommandResolutionHandlerChain.cs" />
+    <Compile Include="Contracts\IExitCombatNotification.cs" />
     <Compile Include="Contracts\ILogFileParserEngine.cs" />
     <Compile Include="Engines\LogFileParserEngine.cs" />
     <Compile Include="Factories\ILogFileParserEngineFactory.cs" />
