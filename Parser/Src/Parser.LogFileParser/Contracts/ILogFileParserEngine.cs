@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-
-using Parser.Common.Contracts;
+﻿using Parser.Common.Contracts;
 
 namespace Parser.LogFileParser.Contracts
 {
-    public interface ILogFileParserEngine
+    public interface ILogFileParserEngine : IExitCombatNotification
     {
         void EnqueueCommand(ICommand command);
 
-        ICombatStatisticsContainer GetComabtStatistics();
+        ICombatStatisticsContainer GetCombatStatistics();
     }
 }

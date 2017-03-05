@@ -1,14 +1,14 @@
 ﻿using Parser.Common.Contracts;
-using Parser.Common.Factories;
 using Parser.LogFileParser.Contracts;
 using Parser.LogFileParser.Engines;
+using Parser.LogFileParser.Factories;
 
 namespace Parser.LogFileParser.Tests.Mocks
 {
     internal class MockLogFileParserEngine : LogFileParserEngine
     {
-        internal MockLogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainerFactory combatStatisticsContainerFactory)
-            : base(commandResolutionHandler, combatStatisticsContainerFactory)
+        internal MockLogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainer combatStatisticsContainer, IExitCombatEventArgsFactory exitCombatEventArgsFactory)
+            : base(commandResolutionHandler, combatStatisticsContainer, exitCombatEventArgsFactory)
         {
         }
 

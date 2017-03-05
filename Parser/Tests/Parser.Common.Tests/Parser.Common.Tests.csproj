@@ -52,6 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mocks\MockCombatStatisticsContainer.cs" />
+    <Compile Include="ModelsTests\CombatStatisticsContainerTests\Constructor_Should.cs" />
+    <Compile Include="ModelsTests\CombatStatisticsContainerTests\CurrentCombatStatisticsChanged_Should.cs" />
+    <Compile Include="ModelsTests\CombatStatisticsContainerTests\CurrentCombatStatisticsSet_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvidersTests\CommandJsonConvertProviderTests\Constructor_Should.cs" />
     <Compile Include="ProvidersTests\CommandJsonConvertProviderTests\DeserializeCommand_Should.cs" />
@@ -69,6 +73,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

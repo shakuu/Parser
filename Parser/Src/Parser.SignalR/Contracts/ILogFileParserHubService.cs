@@ -6,6 +6,6 @@
 
         string ReleaseParsingSessionId(string engineId);
 
-        string GetParsingSessionId();
+        string GetParsingSessionId(string username);
     }
 }

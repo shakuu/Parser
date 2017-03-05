@@ -26,7 +26,7 @@ namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTes
             logFileParserEngineFactory.Setup(f => f.CreateLogFileParserEngine()).Returns(logFileParserEngine.Object);
 
             var logFileParserEngineManager = new LogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory.Object);
-
+            
             // Act
             logFileParserEngineManager.StartLogFileParserEngine();
 

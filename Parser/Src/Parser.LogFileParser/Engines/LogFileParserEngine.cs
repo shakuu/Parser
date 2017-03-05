@@ -1,24 +1,35 @@
-﻿using Bytes2you.Validation;
+﻿using System;
+
+using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
-using Parser.Common.Factories;
+using Parser.Common.EventsArgs;
 using Parser.LogFileParser.Contracts;
+using Parser.LogFileParser.EventsArgs;
+using Parser.LogFileParser.Factories;
 
 namespace Parser.LogFileParser.Engines
 {
-    public class LogFileParserEngine : ILogFileParserEngine
+    public class LogFileParserEngine : ILogFileParserEngine, IExitCombatNotification
     {
+        public event EventHandler<ExitCombatEventArgs> OnExitCombat;
+
         private readonly ICommandResolutionHandler commandResolutionHandler;
+        private readonly IExitCombatEventArgsFactory exitCombatEventArgsFactory;
 
         private ICombatStatisticsContainer combatStatisticsContainer;
 
-        public LogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainerFactory combatStatisticsContainerFactory)
+        public LogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainer combatStatisticsContainer, IExitCombatEventArgsFactory exitCombatEventArgsFactory)
         {
             Guard.WhenArgument(commandResolutionHandler, nameof(ICommandResolutionHandler)).IsNull().Throw();
-            Guard.WhenArgument(combatStatisticsContainerFactory, nameof(ICombatStatisticsContainerFactory)).IsNull().Throw();
+            Guard.WhenArgument(combatStatisticsContainer, nameof(ICombatStatisticsContainer)).IsNull().Throw();
+            Guard.WhenArgument(exitCombatEventArgsFactory, nameof(IExitCombatEventArgsFactory)).IsNull().Throw();
 
             this.commandResolutionHandler = commandResolutionHandler;
-            this.combatStatisticsContainer = combatStatisticsContainerFactory.CreateCombatStatisticsContainer();
+            this.combatStatisticsContainer = combatStatisticsContainer;
+            this.exitCombatEventArgsFactory = exitCombatEventArgsFactory;
+
+            this.combatStatisticsContainer.OnCurrentCombatStatisticsChanged.Subscribe(this.OnCurrentCombatStatisticsChanged);
         }
 
         protected ICombatStatisticsContainer CombatStatisticsContainer { get { return this.combatStatisticsContainer; } set { this.combatStatisticsContainer = value; } }
@@ -30,9 +41,19 @@ namespace Parser.LogFileParser.Engines
             this.combatStatisticsContainer = this.commandResolutionHandler.ResolveCommand(command, this.combatStatisticsContainer);
         }
 
-        public ICombatStatisticsContainer GetComabtStatistics()
+        public ICombatStatisticsContainer GetCombatStatistics()
         {
             return this.combatStatisticsContainer;
+        }
+
+        private void OnCurrentCombatStatisticsChanged(object sender, CurrentCombatStatisticsChangedEventArgs args)
+        {
+            Guard.WhenArgument(args, nameof(CurrentCombatStatisticsChangedEventArgs)).IsNull().Throw();
+            Guard.WhenArgument(args.CombatStatistics, nameof(ICombatStatistics)).IsNull().Throw();
+
+            var exitCombatEventArgs = this.exitCombatEventArgsFactory.CreateExitCombatEventArgs(args.CombatStatistics);
+
+            this.OnExitCombat?.Invoke(this, exitCombatEventArgs);
         }
     }
 }
