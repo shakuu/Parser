@@ -18,6 +18,8 @@ namespace Parser.LogFileParser.CommandResolutionHandlers.Base
 
         public ICommandResolutionHandler NextCommandResolutionHandler { get; set; }
 
+        protected string ExposedMatchingEventName { get { return this.matchingEventName; } }
+
         public ICombatStatisticsContainer ResolveCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
             Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();

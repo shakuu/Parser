@@ -45,8 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandResolutionHandlers\Base\CommandResolutionHandler.cs" />
+    <Compile Include="CommandResolutionHandlers\DamageCommandResolutionHandler.cs" />
     <Compile Include="CommandResolutionHandlers\EnterCombatCommandResolutionHandler.cs" />
     <Compile Include="CommandResolutionHandlers\ExitCombatCommandResolutionHandler.cs" />
+    <Compile Include="Contracts\ICombatStatisticsFinalizationStrategy.cs" />
+    <Compile Include="Contracts\ICombatStatisticsPersistentStorageStrategy.cs" />
     <Compile Include="Contracts\ICommandResolutionHandler.cs" />
     <Compile Include="Contracts\ICommandResolutionHandlerChain.cs" />
     <Compile Include="Contracts\IExitCombatNotification.cs" />

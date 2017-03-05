@@ -43,8 +43,10 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         {
             var enterCombatCommandResolutionHandler = context.Kernel.Get<EnterCombatCommandResolutionHandler>();
             var exitCombatCommandResolutionHandler = context.Kernel.Get<ExitCombatCommandResolutionHandler>();
+            var damageCombatCommandResolutionHandler = context.Kernel.Get<DamageCommandResolutionHandler>();
 
             enterCombatCommandResolutionHandler.NextCommandResolutionHandler = exitCombatCommandResolutionHandler;
+            exitCombatCommandResolutionHandler.NextCommandResolutionHandler = damageCombatCommandResolutionHandler;
 
             return enterCombatCommandResolutionHandler;
         }

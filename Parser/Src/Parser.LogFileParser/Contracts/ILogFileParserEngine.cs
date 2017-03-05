@@ -2,7 +2,7 @@
 
 namespace Parser.LogFileParser.Contracts
 {
-    public interface ILogFileParserEngine : IExitCombatNotification
+    public interface ILogFileParserEngine
     {
         void EnqueueCommand(ICommand command);
 
