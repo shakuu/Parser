@@ -41,7 +41,10 @@ namespace Parser.Common.Models
 
                 this.currentCombatStatistics = value;
 
-                this.CurrentCombatStatisticsChanged(previousCombatStatistics);
+                if (previousCombatStatistics != null)
+                {
+                    this.CurrentCombatStatisticsChanged(previousCombatStatistics);
+                }
             }
         }
 

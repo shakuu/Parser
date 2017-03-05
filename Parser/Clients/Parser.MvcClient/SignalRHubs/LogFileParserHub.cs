@@ -30,9 +30,9 @@ namespace Parser.MvcClient.SignalRHubs
 
         public void GetParsingSessionId()
         {
-            var username = Context.User.Identity.Name;
+            var username = Context.User?.Identity?.Name ?? "some string";
             var message = this.logFileParserHubService.GetParsingSessionId(username);
-            
+
             Clients.Caller.UpdateParsingSessionId(message);
         }
     }
