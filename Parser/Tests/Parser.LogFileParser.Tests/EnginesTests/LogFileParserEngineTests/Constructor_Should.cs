@@ -3,7 +3,7 @@
 using Moq;
 using NUnit.Framework;
 
-using Parser.Common.Factories;
+using Parser.Common.Contracts;
 using Parser.LogFileParser.Contracts;
 using Parser.LogFileParser.Engines;
 
@@ -17,27 +17,13 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
         {
             // Arrange
             var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
-            var combatStatisticsContainerFactory = new Mock<ICombatStatisticsContainerFactory>();
+            var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
 
             // Act
-            var actualInstance = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainerFactory.Object);
+            var actualInstance = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object);
 
             // Assert
             Assert.That(actualInstance, Is.Not.Null.And.InstanceOf<ILogFileParserEngine>());
-        }
-
-        [Test]
-        public void InvokeICombatStatisticsContainerFactory_CreateCombatStatisticsContainerMethodOnce()
-        {
-            // Arrange
-            var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
-            var combatStatisticsContainerFactory = new Mock<ICombatStatisticsContainerFactory>();
-
-            // Act
-            var logFileParserEngine = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainerFactory.Object);
-
-            // Assert
-            combatStatisticsContainerFactory.Verify(f => f.CreateCombatStatisticsContainer(), Times.Once);
         }
 
         [Test]
@@ -45,25 +31,25 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
         {
             // Arrange
             ICommandResolutionHandler commandResolutionHandler = null;
-            var combatStatisticsContainerFactory = new Mock<ICombatStatisticsContainerFactory>();
+            var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
 
             // Act & Assert
             Assert.That(
-                () => new LogFileParserEngine(commandResolutionHandler, combatStatisticsContainerFactory.Object),
+                () => new LogFileParserEngine(commandResolutionHandler, combatStatisticsContainer.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICommandResolutionHandler)));
         }
 
         [Test]
-        public void ThrowArgumentNullException_WhenICombatStatisticsContainerFactoryParameterIsNull()
+        public void ThrowArgumentNullException_WhenICombatStatisticsContainerParameterIsNull()
         {
             // Arrange
             var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
-            ICombatStatisticsContainerFactory combatStatisticsContainerFactory = null;
+            ICombatStatisticsContainer combatStatisticsContainer = null;
 
             // Act & Assert
             Assert.That(
-                () => new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainerFactory),
-                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICombatStatisticsContainerFactory)));
+                () => new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer),
+                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICombatStatisticsContainer)));
         }
     }
 }

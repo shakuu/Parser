@@ -2,7 +2,7 @@
 
 namespace Parser.Common.Contracts
 {
-    public interface ICombatStatisticsContainer
+    public interface ICombatStatisticsContainer : ICurrentCombatStatisticsChangedNotification
     {
         ICollection<ICombatStatistics> AllCombatStatistics { get; set; }
 

@@ -3,7 +3,7 @@
 using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
-using Parser.Common.Factories;
+using Parser.Common.EventsArgs;
 using Parser.LogFileParser.Contracts;
 using Parser.LogFileParser.EventsArgs;
 
@@ -17,13 +17,13 @@ namespace Parser.LogFileParser.Engines
 
         private ICombatStatisticsContainer combatStatisticsContainer;
 
-        public LogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainerFactory combatStatisticsContainerFactory)
+        public LogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainer combatStatisticsContainer)
         {
             Guard.WhenArgument(commandResolutionHandler, nameof(ICommandResolutionHandler)).IsNull().Throw();
-            Guard.WhenArgument(combatStatisticsContainerFactory, nameof(ICombatStatisticsContainerFactory)).IsNull().Throw();
+            Guard.WhenArgument(combatStatisticsContainer, nameof(ICombatStatisticsContainer)).IsNull().Throw();
 
             this.commandResolutionHandler = commandResolutionHandler;
-            this.combatStatisticsContainer = combatStatisticsContainerFactory.CreateCombatStatisticsContainer();
+            this.combatStatisticsContainer = combatStatisticsContainer;
         }
 
         protected ICombatStatisticsContainer CombatStatisticsContainer { get { return this.combatStatisticsContainer; } set { this.combatStatisticsContainer = value; } }
@@ -38,6 +38,11 @@ namespace Parser.LogFileParser.Engines
         public ICombatStatisticsContainer GetComabtStatistics()
         {
             return this.combatStatisticsContainer;
+        }
+
+        private void OnCurrentCombatStatisticsChanged(object sender, CurrentCombatStatisticsChangedEventArgs args)
+        {
+
         }
     }
 }
