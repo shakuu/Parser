@@ -4,6 +4,7 @@ using Moq;
 using NUnit.Framework;
 
 using Parser.Common.Contracts;
+using Parser.Common.EventsArgs;
 using Parser.LogFileParser.Contracts;
 using Parser.LogFileParser.Engines;
 using Parser.LogFileParser.Factories;
@@ -70,6 +71,24 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             Assert.That(
                 () => new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, exitCombatEventArgsFactory),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IExitCombatEventArgsFactory)));
+        }
+
+        [Test]
+        public void InvokeICombatStatisticsContainerParameter_OnCurrentCombatStatisticsChangedPropertySubscribeMethod()
+        {
+            // Arrange
+            var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
+            var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+            var exitCombatEventArgsFactory = new Mock<IExitCombatEventArgsFactory>();
+
+            var currentCombatStatisticsChangedEventHandlerProvider = new Mock<ICurrentCombatStatisticsChangedEventHandlerProvider>();
+            combatStatisticsContainer.SetupGet(c => c.OnCurrentCombatStatisticsChanged).Returns(currentCombatStatisticsChangedEventHandlerProvider.Object);
+
+            // Act
+            var actualInstance = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, exitCombatEventArgsFactory.Object);
+
+            // Assert
+            currentCombatStatisticsChangedEventHandlerProvider.Verify(p => p.Subscribe(It.IsAny<EventHandler<CurrentCombatStatisticsChangedEventArgs>>()), Times.Once);
         }
     }
 }
