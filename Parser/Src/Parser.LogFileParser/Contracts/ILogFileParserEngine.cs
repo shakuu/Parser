@@ -6,6 +6,6 @@ namespace Parser.LogFileParser.Contracts
     {
         void EnqueueCommand(ICommand command);
 
-        ICombatStatisticsContainer GetComabtStatistics();
+        ICombatStatisticsContainer GetCombatStatistics();
     }
 }

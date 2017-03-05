@@ -30,7 +30,7 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             var expectedResult = combatStatisticsContainer.Object;
 
             // Act
-            var actualResult = logFileParserEngine.GetComabtStatistics();
+            var actualResult = logFileParserEngine.GetCombatStatistics();
 
             // Assert
             Assert.That(actualResult, Is.SameAs(expectedResult));
