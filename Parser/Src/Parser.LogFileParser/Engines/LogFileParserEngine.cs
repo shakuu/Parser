@@ -3,26 +3,22 @@
 using Parser.Common.Contracts;
 using Parser.Common.EventsArgs;
 using Parser.LogFileParser.Contracts;
-using Parser.LogFileParser.Factories;
 
 namespace Parser.LogFileParser.Engines
 {
     public class LogFileParserEngine : ILogFileParserEngine
     {
         private readonly ICommandResolutionHandler commandResolutionHandler;
-        private readonly IExitCombatEventArgsFactory exitCombatEventArgsFactory;
 
         private ICombatStatisticsContainer combatStatisticsContainer;
 
-        public LogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainer combatStatisticsContainer, IExitCombatEventArgsFactory exitCombatEventArgsFactory)
+        public LogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainer combatStatisticsContainer)
         {
             Guard.WhenArgument(commandResolutionHandler, nameof(ICommandResolutionHandler)).IsNull().Throw();
             Guard.WhenArgument(combatStatisticsContainer, nameof(ICombatStatisticsContainer)).IsNull().Throw();
-            Guard.WhenArgument(exitCombatEventArgsFactory, nameof(IExitCombatEventArgsFactory)).IsNull().Throw();
 
             this.commandResolutionHandler = commandResolutionHandler;
             this.combatStatisticsContainer = combatStatisticsContainer;
-            this.exitCombatEventArgsFactory = exitCombatEventArgsFactory;
 
             this.combatStatisticsContainer.OnCurrentCombatStatisticsChanged.Subscribe(this.OnCurrentCombatStatisticsChanged);
         }
