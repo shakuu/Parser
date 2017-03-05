@@ -12,11 +12,12 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.DamageComman
         [Test]
         public void PassCorrectMatchingEventNameValue()
         {
-            // Arrange & Act
-            var damageCommandResolutionHandler = new MockDamageCommandResolutionHandler();
-
+            // Arrange
             var expectedMatchingEventName = "Damage";
 
+            // Act
+            var damageCommandResolutionHandler = new MockDamageCommandResolutionHandler();
+            
             // Assert
             Assert.That(damageCommandResolutionHandler.ExposedMatchingEventName, Is.EqualTo(expectedMatchingEventName));
         }
