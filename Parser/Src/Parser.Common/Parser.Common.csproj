@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICurrentCombatStatisticsChangedEventHandlerProvider.cs" />
     <Compile Include="Contracts\ICombatStatisticsContainer.cs" />
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandJsonConvertProvider.cs" />
