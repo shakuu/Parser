@@ -29,7 +29,7 @@ namespace Parser.LogFileParser.Engines
             this.combatStatisticsContainer = combatStatisticsContainer;
             this.exitCombatEventArgsFactory = exitCombatEventArgsFactory;
 
-            this.combatStatisticsContainer.OnCurrentCombatStatisticsChanged += this.OnCurrentCombatStatisticsChanged;
+            this.combatStatisticsContainer.OnCurrentCombatStatisticsChanged.Subscribe(this.OnCurrentCombatStatisticsChanged);
         }
 
         protected ICombatStatisticsContainer CombatStatisticsContainer { get { return this.combatStatisticsContainer; } set { this.combatStatisticsContainer = value; } }

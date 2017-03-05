@@ -9,6 +9,6 @@ namespace Parser.Common.Contracts
 
         void Unsubscribe(EventHandler<EventArgsType> action);
 
-        void Raise(EventArgsType eventArgs);
+        void Raise(object sender, EventArgsType eventArgs);
     }
 }

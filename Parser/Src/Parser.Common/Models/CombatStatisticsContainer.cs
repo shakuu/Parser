@@ -1,30 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
-using Parser.Common.EventsArgs;
 using Parser.Common.Factories;
 
 namespace Parser.Common.Models
 {
     public class CombatStatisticsContainer : ICombatStatisticsContainer
     {
-        public event EventHandler<CurrentCombatStatisticsChangedEventArgs> OnCurrentCombatStatisticsChanged;
-
+        private readonly ICurrentCombatStatisticsChangedEventHandlerProvider currentCombatStatisticsChangedEventHandlerProvider;
         private readonly ICurrentCombatStatisticsChangedEventArgsFactory currentCombatStatisticsChangedEventArgsFactory;
 
         private ICombatStatistics currentCombatStatistics;
 
-        public CombatStatisticsContainer(ICurrentCombatStatisticsChangedEventArgsFactory currentCombatStatisticsChangedEventArgsFactory)
+        public CombatStatisticsContainer(ICurrentCombatStatisticsChangedEventHandlerProvider currentCombatStatisticsChangedEventHandlerProvider, ICurrentCombatStatisticsChangedEventArgsFactory currentCombatStatisticsChangedEventArgsFactory)
         {
+            Guard.WhenArgument(currentCombatStatisticsChangedEventHandlerProvider, nameof(ICurrentCombatStatisticsChangedEventHandlerProvider)).IsNull().Throw();
             Guard.WhenArgument(currentCombatStatisticsChangedEventArgsFactory, nameof(ICurrentCombatStatisticsChangedEventArgsFactory)).IsNull().Throw();
-            
+
+            this.currentCombatStatisticsChangedEventHandlerProvider = currentCombatStatisticsChangedEventHandlerProvider;
             this.currentCombatStatisticsChangedEventArgsFactory = currentCombatStatisticsChangedEventArgsFactory;
 
             this.AllCombatStatistics = new LinkedList<ICombatStatistics>();
         }
+
+        public ICurrentCombatStatisticsChangedEventHandlerProvider OnCurrentCombatStatisticsChanged { get { return this.currentCombatStatisticsChangedEventHandlerProvider; } }
 
         public ICollection<ICombatStatistics> AllCombatStatistics { get; set; }
 
@@ -54,7 +55,7 @@ namespace Parser.Common.Models
 
             var currentCombatStatisticsChangedEventArgs = this.currentCombatStatisticsChangedEventArgsFactory.CreateCurrentCombatStatisticsChangedEventArgs(combatStatistics);
 
-            this.OnCurrentCombatStatisticsChanged?.Invoke(null, currentCombatStatisticsChangedEventArgs);
+            this.currentCombatStatisticsChangedEventHandlerProvider.Raise(this, currentCombatStatisticsChangedEventArgs);
         }
     }
 }

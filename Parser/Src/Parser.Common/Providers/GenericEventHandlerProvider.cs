@@ -22,9 +22,9 @@ namespace Parser.Common.Providers
             }
         }
 
-        public virtual void Raise(EventArgsType eventArgs)
+        public virtual void Raise(object sender, EventArgsType eventArgs)
         {
-            this.onEvent?.Invoke(this, eventArgs);
+            this.onEvent?.Invoke(sender, eventArgs);
         }
 
         public virtual void Subscribe(EventHandler<EventArgsType> action)
