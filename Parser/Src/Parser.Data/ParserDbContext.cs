@@ -6,7 +6,7 @@ using Parser.Data.Models;
 
 namespace Parser.Data
 {
-    public class ParserDbContext : DbContext, IParserDbContext
+    public class ParserDbContext : DbContext, IParserDbContext, IDbContext
     {
         public ParserDbContext()
             : base($"name={ConnectionStrings.ParserDbConnectionString}")
