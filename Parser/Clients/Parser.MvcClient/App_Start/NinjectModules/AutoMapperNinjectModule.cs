@@ -22,6 +22,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
                 configuration.AddProfile<StoredCombatStatisticsProfile>();
             });
 
+            mapperConfiguration.AssertConfigurationIsValid();
+
             return mapperConfiguration.CreateMapper();
         }
     }

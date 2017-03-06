@@ -17,7 +17,7 @@ namespace Parser.Data.Models
 
         public bool IsDeleted { get; set; }
 
-        public Guid ParserUserId { get; set; }
+        public Guid? ParserUserId { get; set; }
 
         public virtual ParserUser ParserUser { get; set; }
 

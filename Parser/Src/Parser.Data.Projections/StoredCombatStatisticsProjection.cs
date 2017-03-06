@@ -8,7 +8,7 @@ namespace Parser.Data.Projections
 
         public bool IsDeleted { get; set; }
 
-        public Guid ParserUserId { get; set; }
+        public Guid? ParserUserId { get; set; }
 
         public virtual ParserUserProjection ParserUser { get; set; }
 

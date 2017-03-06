@@ -10,6 +10,7 @@ namespace Parser.MvcClient.App_Start.AutoMapperProfiles
         public ParserUserProfile()
         {
             this.CreateMap<ParserUser, ParserUserProjection>();
+            this.CreateMap<ParserUserProjection, ParserUser>();
         }
     }
 }
