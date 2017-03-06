@@ -250,6 +250,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperProfiles\ParserUserProfile.cs" />
+    <Compile Include="App_Start\AutoMapperProfiles\StoredCombatStatisticsProfile.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -352,6 +354,14 @@
     <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
       <Name>Parser.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Data.Models\Parser.Data.Models.csproj">
+      <Project>{52a718a9-0679-4196-83e3-eca37208af4c}</Project>
+      <Name>Parser.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Data.Projections\Parser.Data.Projections.csproj">
+      <Project>{52a14ba3-e1dc-4b71-b47d-550862087b1c}</Project>
+      <Name>Parser.Data.Projections</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Data.Services\Parser.Data.Services.csproj">
       <Project>{222f5aef-1d88-4b7f-905f-b39c0adf4ee8}</Project>

@@ -3,6 +3,8 @@
 using Ninject.Activation;
 using Ninject.Modules;
 
+using Parser.MvcClient.App_Start.AutoMapperProfiles;
+
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
     public class AutoMapperNinjectModule : NinjectModule
@@ -14,9 +16,10 @@ namespace Parser.MvcClient.App_Start.NinjectModules
 
         private IMapper IMapperFactoryMethod(IContext context)
         {
-            var mapperConfiguration = new MapperConfiguration(cfg =>
+            var mapperConfiguration = new MapperConfiguration(configuration =>
             {
-                //cfg.AddProfile();
+                configuration.AddProfile<ParserUserProfile>();
+                configuration.AddProfile<StoredCombatStatisticsProfile>();
             });
 
             return mapperConfiguration.CreateMapper();
