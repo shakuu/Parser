@@ -55,6 +55,7 @@
     <Compile Include="Contracts\ICurrentCombatStatisticsChangedNotification.cs" />
     <Compile Include="Contracts\ICurrentCombatStatisticsChangedSubscribeProvider.cs" />
     <Compile Include="Contracts\IDateTimeProvider.cs" />
+    <Compile Include="Contracts\IFinalizedCombatStatistics.cs" />
     <Compile Include="Contracts\IGenericEventHandlerProvider.cs" />
     <Compile Include="Contracts\IGuidStringProvider.cs" />
     <Compile Include="Contracts\ICombatStatistics.cs" />

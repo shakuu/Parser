@@ -35,6 +35,11 @@ namespace Parser.LogFileParser.Engines
         {
             Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
 
+            if (string.IsNullOrEmpty(combatStatisticsContainer.CharacterName))
+            {
+                combatStatisticsContainer.CharacterName = command.AbilityActivatorName;
+            }
+
             this.combatStatisticsContainer = this.commandResolutionHandler.ResolveCommand(command, this.combatStatisticsContainer);
         }
 

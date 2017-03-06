@@ -20,7 +20,7 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
             this.combatStatisticsFactory = combatStatisticsFactory;
         }
-        
+
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
             combatStatisticsContainer.CurrentCombatStatistics = this.combatStatisticsFactory.CreateCombatStatistics();
