@@ -1,9 +1,10 @@
 ﻿using Ninject.Extensions.Conventions;
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
+using Ninject.Web.Common;
 
+using Parser.Data;
 using Parser.Data.Contracts;
-using Parser.Data.Repositories;
 
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
@@ -13,6 +14,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         {
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
+
+            this.Rebind(typeof(IDbContext), typeof(IParserDbContext)).To<ParserDbContext>().InRequestScope();
         }
 
         private void BindAllClassesByConvention(IFromSyntax bind)
