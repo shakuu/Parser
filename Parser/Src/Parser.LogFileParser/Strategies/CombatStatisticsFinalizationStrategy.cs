@@ -19,6 +19,8 @@ namespace Parser.LogFileParser.Strategies
 
         public IFinalizedCombatStatistics FinalizeCombatStatistics(ICombatStatistics combatStatistics)
         {
+            Guard.WhenArgument(combatStatistics, nameof(ICombatStatistics)).IsNull().Throw();
+
             var finalizedCombatStatistics = this.finalizedCombatStatisticsFactory.CreateFinalizedCombatStatistics();
 
             finalizedCombatStatistics.CharacterName = combatStatistics.CharacterName;
