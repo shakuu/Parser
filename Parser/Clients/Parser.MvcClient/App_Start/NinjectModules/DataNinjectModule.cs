@@ -2,9 +2,12 @@
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
+using Parser.Data.Contracts;
+using Parser.Data.Repositories;
+
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
-    public class ParserDataNinjectModule : NinjectModule
+    public class DataNinjectModule : NinjectModule
     {
         public override void Load()
         {
@@ -15,7 +18,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         private void BindAllClassesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.Parser.Data.*")
+                .FromAssembliesMatching("Parser.Data.dll")
                 .SelectAllClasses()
                 .BindDefaultInterface();
         }
@@ -23,7 +26,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         private void BindFactoriesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.Parser.Data.*")
+                .FromAssembliesMatching("Parser.Data.dll")
                 .SelectAllInterfaces()
                 .EndingWith("Factory")
                 .BindToFactory()

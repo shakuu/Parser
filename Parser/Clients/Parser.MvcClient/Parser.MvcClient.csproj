@@ -259,7 +259,7 @@
     <Compile Include="App_Start\NinjectModules\CommonNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataServicesNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\LogFileParserNinjectModule.cs" />
-    <Compile Include="App_Start\NinjectModules\ParserDataNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\SignalRNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -367,6 +367,10 @@
     <ProjectReference Include="..\..\Src\Parser.Data.Services\Parser.Data.Services.csproj">
       <Project>{222f5aef-1d88-4b7f-905f-b39c0adf4ee8}</Project>
       <Name>Parser.Data.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Data\Parser.Data.csproj">
+      <Project>{a8f6950c-0ff4-4fb2-9f0b-dff894db7fa9}</Project>
+      <Name>Parser.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.LogFileParser\Parser.LogFileParser.csproj">
       <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>
