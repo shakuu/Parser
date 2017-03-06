@@ -2,7 +2,7 @@
 
 using Parser.Data.Contracts;
 
-namespace Parser.Data.Factories
+namespace Parser.Data.BusinessTransactions
 {
     public class BusinessTransaction : IBusinessTransaction
     {

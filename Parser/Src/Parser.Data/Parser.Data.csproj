@@ -56,7 +56,8 @@
     <Compile Include="Contracts\IDbContext.cs" />
     <Compile Include="Contracts\IParserDbContext.cs" />
     <Compile Include="Contracts\IBusinessTransaction.cs" />
-    <Compile Include="Factories\BusinessTransaction.cs" />
+    <Compile Include="BusinessTransactions\BusinessTransaction.cs" />
+    <Compile Include="Factories\IBusinessTransactionFactory.cs" />
     <Compile Include="ParserDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
