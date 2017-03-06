@@ -16,7 +16,7 @@ namespace Parser.Common.Models
 
         public string AbilityGameId { get; set; }
 
-        public decimal AbilityCost { get; set; }
+        public double AbilityCost { get; set; }
 
         public string EventType { get; set; }
 
@@ -26,13 +26,13 @@ namespace Parser.Common.Models
 
         public string EventNameGameId { get; set; }
 
-        public decimal EffectAmount { get; set; }
+        public double EffectAmount { get; set; }
 
         public string EffectType { get; set; }
 
         public string EffectTypeGameId { get; set; }
 
-        public decimal EffectEffectiveAmount { get; set; }
+        public double EffectEffectiveAmount { get; set; }
 
         public bool IsCritical { get; set; }
 

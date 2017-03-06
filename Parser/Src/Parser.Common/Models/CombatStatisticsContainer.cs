@@ -24,7 +24,7 @@ namespace Parser.Common.Models
 
             this.AllCombatStatistics = new LinkedList<ICombatStatistics>();
         }
-
+        
         public ICurrentCombatStatisticsChangedSubscribeProvider OnCurrentCombatStatisticsChanged { get { return this.currentCombatStatisticsChangedEventHandlerProvider; } }
 
         public ICollection<ICombatStatistics> AllCombatStatistics { get; set; }

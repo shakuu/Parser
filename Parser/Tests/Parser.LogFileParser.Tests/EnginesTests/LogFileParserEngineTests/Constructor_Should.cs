@@ -19,12 +19,14 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             // Arrange
             var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+            var combatStatisticsFinalizationStrategy = new Mock<ICombatStatisticsFinalizationStrategy>();
+            var combatStatisticsPersistentStorageStrategy = new Mock<ICombatStatisticsPersistentStorageStrategy>();
 
             var currentCombatStatisticsChangedSubscribeProvider = new Mock<ICurrentCombatStatisticsChangedSubscribeProvider>();
             combatStatisticsContainer.SetupGet(c => c.OnCurrentCombatStatisticsChanged).Returns(currentCombatStatisticsChangedSubscribeProvider.Object);
 
             // Act
-            var actualInstance = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object);
+            var actualInstance = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, combatStatisticsFinalizationStrategy.Object, combatStatisticsPersistentStorageStrategy.Object);
 
             // Assert
             Assert.That(actualInstance, Is.Not.Null);
@@ -37,10 +39,12 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             // Arrange
             ICommandResolutionHandler commandResolutionHandler = null;
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+            var combatStatisticsFinalizationStrategy = new Mock<ICombatStatisticsFinalizationStrategy>();
+            var combatStatisticsPersistentStorageStrategy = new Mock<ICombatStatisticsPersistentStorageStrategy>();
 
             // Act & Assert
             Assert.That(
-                () => new LogFileParserEngine(commandResolutionHandler, combatStatisticsContainer.Object),
+                () => new LogFileParserEngine(commandResolutionHandler, combatStatisticsContainer.Object, combatStatisticsFinalizationStrategy.Object, combatStatisticsPersistentStorageStrategy.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICommandResolutionHandler)));
         }
 
@@ -50,10 +54,12 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             // Arrange
             var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
             ICombatStatisticsContainer combatStatisticsContainer = null;
+            var combatStatisticsFinalizationStrategy = new Mock<ICombatStatisticsFinalizationStrategy>();
+            var combatStatisticsPersistentStorageStrategy = new Mock<ICombatStatisticsPersistentStorageStrategy>();
 
             // Act & Assert
             Assert.That(
-                () => new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer),
+                () => new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer, combatStatisticsFinalizationStrategy.Object, combatStatisticsPersistentStorageStrategy.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICombatStatisticsContainer)));
         }
 
@@ -63,12 +69,14 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             // Arrange
             var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+            var combatStatisticsFinalizationStrategy = new Mock<ICombatStatisticsFinalizationStrategy>();
+            var combatStatisticsPersistentStorageStrategy = new Mock<ICombatStatisticsPersistentStorageStrategy>();
 
             var currentCombatStatisticsChangedEventHandlerProvider = new Mock<ICurrentCombatStatisticsChangedEventHandlerProvider>();
             combatStatisticsContainer.SetupGet(c => c.OnCurrentCombatStatisticsChanged).Returns(currentCombatStatisticsChangedEventHandlerProvider.Object);
 
             // Act
-            var actualInstance = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object);
+            var actualInstance = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, combatStatisticsFinalizationStrategy.Object, combatStatisticsPersistentStorageStrategy.Object);
 
             // Assert
             currentCombatStatisticsChangedEventHandlerProvider.Verify(p => p.Subscribe(It.IsAny<EventHandler<CurrentCombatStatisticsChangedEventArgs>>()), Times.Once);

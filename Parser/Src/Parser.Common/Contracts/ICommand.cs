@@ -14,7 +14,7 @@ namespace Parser.Common.Contracts
 
         string AbilityGameId { get; set; }
 
-        decimal AbilityCost { get; set; }
+        double AbilityCost { get; set; }
 
         string EventType { get; set; }
 
@@ -24,13 +24,13 @@ namespace Parser.Common.Contracts
 
         string EventNameGameId { get; set; }
 
-        decimal EffectAmount { get; set; }
+        double EffectAmount { get; set; }
 
         string EffectType { get; set; }
 
         string EffectTypeGameId { get; set; }
 
-        decimal EffectEffectiveAmount { get; set; }
+        double EffectEffectiveAmount { get; set; }
 
         bool IsCritical { get; set; }
 

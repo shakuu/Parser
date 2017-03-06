@@ -33,5 +33,26 @@ namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.DamageComman
             // Assert
             currentCombatStatistics.VerifySet(s => s.DamageDone += expectedIncrementAmount, Times.Once);
         }
+
+        [Test]
+        public void ReturnTheSameICombatStatisticsContainerInstance()
+        {
+            // Arrange
+            var damageCommandResolutionHandler = new MockDamageCommandResolutionHandler();
+
+            var command = new Mock<ICommand>();
+            var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+
+            var currentCombatStatistics = new Mock<ICombatStatistics>();
+            combatStatisticsContainer.SetupGet(c => c.CurrentCombatStatistics).Returns(currentCombatStatistics.Object);
+
+            var expectedReturnedICombatStatisticsContainerInstance = combatStatisticsContainer.Object;
+
+            // Act
+            var actualReturnedICombatStatisticsContainerInstance = damageCommandResolutionHandler.HandleCommand(command.Object, combatStatisticsContainer.Object);
+
+            // Assert
+            Assert.That(actualReturnedICombatStatisticsContainerInstance, Is.SameAs(expectedReturnedICombatStatisticsContainerInstance));
+        }
     }
 }

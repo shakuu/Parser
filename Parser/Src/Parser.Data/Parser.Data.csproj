@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3510B5AE-3B17-45A0-8786-BCB569CB592B}</ProjectGuid>
+    <ProjectGuid>{A8F6950C-0FF4-4FB2-9F0B-DFF894DB7FA9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parser.LogFileParser</RootNamespace>
-    <AssemblyName>Parser.LogFileParser</AssemblyName>
+    <RootNamespace>Parser.Data</RootNamespace>
+    <AssemblyName>Parser.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,33 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandResolutionHandlers\Base\CommandResolutionHandler.cs" />
-    <Compile Include="CommandResolutionHandlers\DamageCommandResolutionHandler.cs" />
-    <Compile Include="CommandResolutionHandlers\EnterCombatCommandResolutionHandler.cs" />
-    <Compile Include="CommandResolutionHandlers\ExitCombatCommandResolutionHandler.cs" />
-    <Compile Include="Contracts\ICombatStatisticsFinalizationStrategy.cs" />
-    <Compile Include="Contracts\ICombatStatisticsPersistentStorageStrategy.cs" />
-    <Compile Include="Contracts\ICommandResolutionHandler.cs" />
-    <Compile Include="Contracts\ICommandResolutionHandlerChain.cs" />
-    <Compile Include="Contracts\IExitCombatNotification.cs" />
-    <Compile Include="Contracts\ILogFileParserEngine.cs" />
-    <Compile Include="Engines\LogFileParserEngine.cs" />
-    <Compile Include="EventsArgs\ExitCombatEventArgs.cs" />
-    <Compile Include="Factories\IExitCombatEventArgsFactory.cs" />
-    <Compile Include="Factories\ILogFileParserEngineFactory.cs" />
-    <Compile Include="Contracts\ILogFileParserEngineManager.cs" />
-    <Compile Include="Managers\LogFileParserEngineManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strategies\CombatStatisticsFinalizationStrategy.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">
-      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
-      <Name>Parser.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

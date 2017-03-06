@@ -6,8 +6,8 @@ namespace Parser.LogFileParser.Tests.Mocks
 {
     internal class MockLogFileParserEngine : LogFileParserEngine
     {
-        internal MockLogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainer combatStatisticsContainer)
-            : base(commandResolutionHandler, combatStatisticsContainer)
+        internal MockLogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainer combatStatisticsContainer, ICombatStatisticsFinalizationStrategy combatStatisticsFinalizationStrategy, ICombatStatisticsPersistentStorageStrategy combatStatisticsPersistentStorageStrategy)
+            : base(commandResolutionHandler, combatStatisticsContainer, combatStatisticsFinalizationStrategy, combatStatisticsPersistentStorageStrategy)
         {
         }
 

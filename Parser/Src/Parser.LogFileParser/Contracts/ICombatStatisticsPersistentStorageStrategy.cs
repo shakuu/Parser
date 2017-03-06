@@ -4,6 +4,6 @@ namespace Parser.LogFileParser.Contracts
 {
     public interface ICombatStatisticsPersistentStorageStrategy
     {
-        ICombatStatistics StoreCombatStatistics(ICombatStatistics combatStatistics);
+        IFinalizedCombatStatistics StoreCombatStatistics(IFinalizedCombatStatistics combatStatistics);
     }
 }

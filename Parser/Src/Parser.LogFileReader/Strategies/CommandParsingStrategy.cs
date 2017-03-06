@@ -91,7 +91,7 @@ namespace Parser.LogFileReader.Strategies
             var eventCommandWords = commandWords[4].Split(':');
             if (eventCommandWords.Length == 1)
             {
-                command.AbilityCost = decimal.Parse(eventCommandWords[0]);
+                command.AbilityCost = double.Parse(eventCommandWords[0]);
                 return command;
             }
 
@@ -120,7 +120,7 @@ namespace Parser.LogFileReader.Strategies
                 effectAmountDetails[0] = effectAmountDetails[0].Trim('*');
             }
 
-            command.EffectAmount = decimal.Parse(effectAmountDetails[0]);
+            command.EffectAmount = double.Parse(effectAmountDetails[0]);
 
             if (effectAmountDetails.Length > 1)
             {
@@ -131,11 +131,11 @@ namespace Parser.LogFileReader.Strategies
             return command;
         }
 
-        private decimal GetEffectEffectiveAmount(IList<string> commandWords)
+        private double GetEffectEffectiveAmount(IList<string> commandWords)
         {
             if (commandWords.Count >= 7)
             {
-                return decimal.Parse(commandWords[6]);
+                return double.Parse(commandWords[6]);
             }
 
             return 0;

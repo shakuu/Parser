@@ -20,11 +20,12 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
 
             this.combatStatisticsFactory = combatStatisticsFactory;
         }
-        
+
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
             combatStatisticsContainer.CurrentCombatStatistics = this.combatStatisticsFactory.CreateCombatStatistics();
             combatStatisticsContainer.AllCombatStatistics.Add(combatStatisticsContainer.CurrentCombatStatistics);
+            combatStatisticsContainer.CurrentCombatStatistics.CharacterName = command.AbilityActivatorName;
             combatStatisticsContainer.CurrentCombatStatistics.EnterCombatTime = command.TimeStamp;
 
             return combatStatisticsContainer;

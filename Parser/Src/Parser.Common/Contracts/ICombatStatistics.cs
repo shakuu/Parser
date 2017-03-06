@@ -4,13 +4,17 @@ namespace Parser.Common.Contracts
 {
     public interface ICombatStatistics
     {
+        string CharacterName { get; set; }
+        
         DateTime EnterCombatTime { get; set; }
 
         DateTime ExitCombatTime { get; set; }
 
-        decimal DamageDone { get; set; }
+        double DamageDone { get; set; }
 
-        decimal HealingDone { get; set; }
+        double DamageTaken { get; set; }
+
+        double HealingDone { get; set; }
 
         bool IsCompleted { get; set; }
     }

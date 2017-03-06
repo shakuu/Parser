@@ -4,6 +4,6 @@ namespace Parser.LogFileParser.Contracts
 {
     public interface ICombatStatisticsFinalizationStrategy
     {
-        ICombatStatistics FinalizeCombatStatistics(ICombatStatistics combatStatistics);
+        IFinalizedCombatStatistics FinalizeCombatStatistics(ICombatStatistics combatStatistics);
     }
 }

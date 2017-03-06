@@ -250,6 +250,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectModules\CommonNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\DataServicesNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\LogFileParserNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\SignalRNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
@@ -343,6 +344,14 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
+      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
+      <Name>Parser.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Data.Services\Parser.Data.Services.csproj">
+      <Project>{222f5aef-1d88-4b7f-905f-b39c0adf4ee8}</Project>
+      <Name>Parser.Data.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.LogFileParser\Parser.LogFileParser.csproj">
       <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>
       <Name>Parser.LogFileParser</Name>
