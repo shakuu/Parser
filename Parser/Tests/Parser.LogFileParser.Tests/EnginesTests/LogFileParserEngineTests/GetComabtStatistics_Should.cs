@@ -16,13 +16,15 @@ namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
             // Arrange
             var commandResolutionHandler = new Mock<ICommandResolutionHandler>();
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
+            var combatStatisticsFinalizationStrategy = new Mock<ICombatStatisticsFinalizationStrategy>();
+            var combatStatisticsPersistentStorageStrategy = new Mock<ICombatStatisticsPersistentStorageStrategy>();
 
             var currentCombatStatisticsChangedSubscribeProvider = new Mock<ICurrentCombatStatisticsChangedSubscribeProvider>();
             combatStatisticsContainer.SetupGet(c => c.OnCurrentCombatStatisticsChanged).Returns(currentCombatStatisticsChangedSubscribeProvider.Object);
 
             var command = new Mock<ICommand>();
 
-            var logFileParserEngine = new MockLogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object);
+            var logFileParserEngine = new MockLogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, combatStatisticsFinalizationStrategy.Object, combatStatisticsPersistentStorageStrategy.Object);
             logFileParserEngine.CombatStatisticsContainer = combatStatisticsContainer.Object;
 
             var expectedResult = combatStatisticsContainer.Object;
