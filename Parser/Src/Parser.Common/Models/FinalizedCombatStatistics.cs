@@ -1,6 +1,4 @@
-﻿using System;
-
-using Parser.Common.Contracts;
+﻿using Parser.Common.Contracts;
 
 namespace Parser.Common.Models
 {
