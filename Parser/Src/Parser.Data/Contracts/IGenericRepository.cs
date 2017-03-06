@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Parser.Data.Models.Contracts;
 
 namespace Parser.Data.Contracts
 {
-    public interface IGenericRepository<TEntity>
+    public interface IGenericRepository<TProjection, TEntity>
+        where TEntity : IDbModel
+        where TProjection : class
     {
-        TEntity Create(TEntity entity);
+        TProjection Create(TProjection projection);
     }
 }

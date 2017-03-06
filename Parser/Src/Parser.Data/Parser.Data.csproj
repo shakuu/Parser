@@ -62,9 +62,12 @@
     <Compile Include="Contracts\IParserDbContext.cs" />
     <Compile Include="Contracts\IBusinessTransaction.cs" />
     <Compile Include="BusinessTransactions\BusinessTransaction.cs" />
+    <Compile Include="Contracts\IStoredCombatStatisticsRepository.cs" />
     <Compile Include="Factories\IBusinessTransactionFactory.cs" />
     <Compile Include="ParserDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\StoredCombatStatisticsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -75,14 +78,20 @@
       <Project>{d0fccf6c-6b4b-4cc9-819f-6e6fcd2edc3c}</Project>
       <Name>Parser.Common.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">
+      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
+      <Name>Parser.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Parser.Data.Models\Parser.Data.Models.csproj">
       <Project>{52a718a9-0679-4196-83e3-eca37208af4c}</Project>
       <Name>Parser.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Parser.Data.Projections\Parser.Data.Projections.csproj">
+      <Project>{52a14ba3-e1dc-4b71-b47d-550862087b1c}</Project>
+      <Name>Parser.Data.Projections</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
