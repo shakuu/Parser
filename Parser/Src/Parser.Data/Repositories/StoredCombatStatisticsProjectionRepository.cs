@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 
+using Bytes2you.Validation;
+
 using Parser.Data.Contracts;
 using Parser.Data.Models;
 using Parser.Data.Projections;
@@ -8,22 +10,27 @@ namespace Parser.Data.Repositories
 {
     public class StoredCombatStatisticsProjectionRepository : IStoredCombatStatisticsProjectionRepository
     {
-        private readonly IGenericRepository<StoredCombatStatistics> repo;
+        private readonly IStoredCombatStatisticsRepository storedCombatStatisticsRepository;
         private readonly IMapper objectMapper;
 
-        public StoredCombatStatisticsProjectionRepository(IGenericRepository<StoredCombatStatistics> repo, IMapper objectMapper)
+        public StoredCombatStatisticsProjectionRepository(IStoredCombatStatisticsRepository storedCombatStatisticsRepository, IMapper objectMapper)
         {
-            this.repo = repo;
+            Guard.WhenArgument(storedCombatStatisticsRepository, nameof(IStoredCombatStatisticsRepository)).IsNull().Throw();
+            Guard.WhenArgument(objectMapper, nameof(IMapper)).IsNull().Throw();
+
+            this.storedCombatStatisticsRepository = storedCombatStatisticsRepository;
             this.objectMapper = objectMapper;
         }
 
-        public StoredCombatStatisticsProjection Create(StoredCombatStatisticsProjection entity)
+        public StoredCombatStatisticsProjection Create(StoredCombatStatisticsProjection projection)
         {
-            var stats = this.objectMapper.Map<StoredCombatStatistics>(entity);
+            Guard.WhenArgument(projection, nameof(StoredCombatStatisticsProjection)).IsNull().Throw();
 
-            this.repo.Create(stats);
+            var storedCombatStatistics = this.objectMapper.Map<StoredCombatStatistics>(projection);
 
-            return entity;
+            this.storedCombatStatisticsRepository.Create(storedCombatStatistics);
+
+            return projection;
         }
     }
 }

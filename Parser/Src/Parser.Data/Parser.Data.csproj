@@ -63,11 +63,13 @@
     <Compile Include="Contracts\IBusinessTransaction.cs" />
     <Compile Include="BusinessTransactions\BusinessTransaction.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsProjectionRepository.cs" />
+    <Compile Include="Contracts\IStoredCombatStatisticsRepository.cs" />
     <Compile Include="Factories\IBusinessTransactionFactory.cs" />
     <Compile Include="ParserDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\StoredCombatStatisticsProjectionRepository.cs" />
+    <Compile Include="Repositories\StoredCombatStatisticsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
