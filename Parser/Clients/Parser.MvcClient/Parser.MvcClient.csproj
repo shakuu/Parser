@@ -259,6 +259,7 @@
     <Compile Include="App_Start\NinjectModules\CommonNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataServicesNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\LogFileParserNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\ParserDataNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\SignalRNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
