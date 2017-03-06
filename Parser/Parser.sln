@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Data", "Src\Parser.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Data.Models", "Src\Parser.Data.Models\Parser.Data.Models.csproj", "{52A718A9-0679-4196-83E3-ECA37208AF4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common.Constants", "Src\Parser.Common.Constants\Parser.Common.Constants.csproj", "{D0FCCF6C-6B4B-4CC9-819F-6E6FCD2EDC3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{52A718A9-0679-4196-83E3-ECA37208AF4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52A718A9-0679-4196-83E3-ECA37208AF4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52A718A9-0679-4196-83E3-ECA37208AF4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0FCCF6C-6B4B-4CC9-819F-6E6FCD2EDC3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0FCCF6C-6B4B-4CC9-819F-6E6FCD2EDC3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0FCCF6C-6B4B-4CC9-819F-6E6FCD2EDC3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0FCCF6C-6B4B-4CC9-819F-6E6FCD2EDC3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,5 +133,6 @@ Global
 		{222F5AEF-1D88-4B7F-905F-B39C0ADF4EE8} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
 		{A8F6950C-0FF4-4FB2-9F0B-DFF894DB7FA9} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
 		{52A718A9-0679-4196-83E3-ECA37208AF4C} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
+		{D0FCCF6C-6B4B-4CC9-819F-6E6FCD2EDC3C} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
 	EndGlobalSection
 EndGlobal
