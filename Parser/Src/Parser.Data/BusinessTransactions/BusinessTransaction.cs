@@ -27,6 +27,7 @@ namespace Parser.Data.BusinessTransactions
 
         public void Dispose()
         {
+            // Do nothing.
         }
     }
 }
