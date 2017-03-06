@@ -11,7 +11,7 @@ namespace Parser.Data
         public ParserDbContext()
             : base($"name={ConnectionStrings.ParserDbConnectionString}")
         {
-
+            
         }
 
         public virtual IDbSet<ParserUser> ParserUsers { get; set; }

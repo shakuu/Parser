@@ -1,40 +1,29 @@
 ﻿using System.Data.Entity;
 
-using AutoMapper;
-
 using Bytes2you.Validation;
 
 using Parser.Data.Contracts;
-using Parser.Data.Models.Contracts;
 
 namespace Parser.Data.Repositories
 {
-    public class GenericRepository<TProjection, TEntity> : IGenericRepository<TProjection, TEntity>
-        where TEntity : class, IDbModel
-        where TProjection : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly IMapper objectMapper;
-        private readonly IDbSet<TEntity> entities;
+        private readonly IDbSet<T> entities;
 
-        public GenericRepository(IParserDbContext dbContext, IMapper objectMapper)
+        public GenericRepository(IParserDbContext dbContext)
         {
             Guard.WhenArgument(dbContext, nameof(IParserDbContext)).IsNull().Throw();
-            Guard.WhenArgument(objectMapper, nameof(IMapper)).IsNull().Throw();
 
-            this.objectMapper = objectMapper;
-
-            this.entities = dbContext.Set<TEntity>();
+            this.entities = dbContext.Set<T>();
         }
 
-        public TProjection Create(TProjection projection)
+        public T Create(T entity)
         {
-            Guard.WhenArgument(projection, nameof(TProjection)).IsNull().Throw();
-
-            var entity = this.objectMapper.Map<TEntity>(projection);
+            Guard.WhenArgument(entity, nameof(T)).IsNull().Throw();
 
             this.entities.Add(entity);
 
-            return projection;
+            return entity;
         }
     }
 }

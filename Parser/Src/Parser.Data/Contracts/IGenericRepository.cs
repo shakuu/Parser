@@ -1,11 +1,7 @@
-﻿using Parser.Data.Models.Contracts;
-
-namespace Parser.Data.Contracts
+﻿namespace Parser.Data.Contracts
 {
-    public interface IGenericRepository<TProjection, TEntity>
-        where TEntity : IDbModel
-        where TProjection : class
+    public interface IGenericRepository<T> where T : class
     {
-        TProjection Create(TProjection projection);
+        T Create(T entity);
     }
 }
