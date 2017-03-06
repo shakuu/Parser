@@ -20,7 +20,7 @@ namespace Parser.LogFileParser.Engines
             Guard.WhenArgument(combatStatisticsContainer, nameof(ICombatStatisticsContainer)).IsNull().Throw();
             Guard.WhenArgument(combatStatisticsFinalizationStrategy, nameof(ICombatStatisticsFinalizationStrategy)).IsNull().Throw();
             Guard.WhenArgument(combatStatisticsPersistentStorageStrategy, nameof(ICombatStatisticsPersistentStorageStrategy)).IsNull().Throw();
-            
+
             this.commandResolutionHandler = commandResolutionHandler;
             this.combatStatisticsContainer = combatStatisticsContainer;
             this.combatStatisticsFinalizationStrategy = combatStatisticsFinalizationStrategy;
@@ -48,7 +48,8 @@ namespace Parser.LogFileParser.Engines
             Guard.WhenArgument(args, nameof(CurrentCombatStatisticsChangedEventArgs)).IsNull().Throw();
             Guard.WhenArgument(args.CombatStatistics, nameof(ICombatStatistics)).IsNull().Throw();
 
-            // TODO:
+            var finalizedCombatStatistics = this.combatStatisticsFinalizationStrategy.FinalizeCombatStatistics(args.CombatStatistics);
+            var storedCombatStatistics = this.combatStatisticsPersistentStorageStrategy.StoreCombatStatistics(finalizedCombatStatistics);
         }
     }
 }
