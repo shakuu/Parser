@@ -8,9 +8,9 @@ namespace Parser.Common.Contracts
 
         DateTime ExitCombatTime { get; set; }
 
-        decimal DamageDone { get; set; }
+        double DamageDone { get; set; }
 
-        decimal HealingDone { get; set; }
+        double HealingDone { get; set; }
 
         bool IsCompleted { get; set; }
     }

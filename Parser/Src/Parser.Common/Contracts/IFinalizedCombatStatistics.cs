@@ -1,19 +1,17 @@
-﻿using System;
-
-namespace Parser.Common.Contracts
+﻿namespace Parser.Common.Contracts
 {
     public interface IFinalizedCombatStatistics
     {
         string CharacterName { get; set; }
 
-        decimal DamageDone { get; set; }
+        double DamageDone { get; set; }
 
-        decimal DamagePerSecond { get; set; }
+        double DamagePerSecond { get; set; }
 
-        decimal DamageTaken { get; set; }
+        double DamageTaken { get; set; }
 
-        decimal DamageTakenPerSecond { get; set; }
+        double DamageTakenPerSecond { get; set; }
 
-        TimeSpan CombatDuration { get; set; }
+        double CombatDuration { get; set; }
     }
 }

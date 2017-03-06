@@ -10,9 +10,9 @@ namespace Parser.Common.Models
 
         public DateTime ExitCombatTime { get; set; }
 
-        public decimal DamageDone { get; set; }
+        public double DamageDone { get; set; }
 
-        public decimal HealingDone { get; set; }
+        public double HealingDone { get; set; }
 
         public bool IsCompleted { get; set; }
     }
