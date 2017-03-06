@@ -10,6 +10,8 @@ namespace Parser.Common.Contracts
 
         double DamageDone { get; set; }
 
+        double DamageTaken { get; set; }
+
         double HealingDone { get; set; }
 
         bool IsCompleted { get; set; }

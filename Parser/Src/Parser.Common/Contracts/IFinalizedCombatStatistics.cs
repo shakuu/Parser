@@ -6,12 +6,12 @@
 
         double DamageDone { get; set; }
 
-        double DamagePerSecond { get; set; }
+        double DamageDonePerSecond { get; set; }
 
         double DamageTaken { get; set; }
 
         double DamageTakenPerSecond { get; set; }
 
-        double CombatDuration { get; set; }
+        double CombatDurationInSeconds { get; set; }
     }
 }

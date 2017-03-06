@@ -21,14 +21,40 @@ namespace Parser.LogFileParser.Strategies
         {
             var finalizedCombatStatistics = this.finalizedCombatStatisticsFactory.CreateFinalizedCombatStatistics();
 
+            finalizedCombatStatistics.CombatDurationInSeconds = this.GetCombatDurationInSeconds(combatStatistics);
+            finalizedCombatStatistics = this.GetDamageDoneAndDamageDonePerSecond(combatStatistics, finalizedCombatStatistics);
+            finalizedCombatStatistics = this.GetDamageTakenAndDamageTakenPerSecond(combatStatistics, finalizedCombatStatistics);
+
             return finalizedCombatStatistics;
         }
 
-        private double GetCombatDuration(ICombatStatistics combatStatistics)
+        private double GetCombatDurationInSeconds(ICombatStatistics combatStatistics)
         {
             var timeSpan = combatStatistics.ExitCombatTime - combatStatistics.EnterCombatTime;
 
             return timeSpan.TotalSeconds;
+        }
+
+        private IFinalizedCombatStatistics GetDamageDoneAndDamageDonePerSecond(ICombatStatistics combatStatistics, IFinalizedCombatStatistics finalizedCombatStatistics)
+        {
+            var damageDone = combatStatistics.DamageDone;
+            var damageDonePerSecond = damageDone / finalizedCombatStatistics.CombatDurationInSeconds;
+
+            finalizedCombatStatistics.DamageDone = damageDone;
+            finalizedCombatStatistics.DamageDonePerSecond = damageDonePerSecond;
+
+            return finalizedCombatStatistics;
+        }
+
+        private IFinalizedCombatStatistics GetDamageTakenAndDamageTakenPerSecond(ICombatStatistics combatStatistics, IFinalizedCombatStatistics finalizedCombatStatistics)
+        {
+            var damageTaken = combatStatistics.DamageTaken;
+            var damageTakenPerSecond = damageTaken / finalizedCombatStatistics.CombatDurationInSeconds;
+
+            finalizedCombatStatistics.DamageTaken = damageTaken;
+            finalizedCombatStatistics.DamageTakenPerSecond = damageTakenPerSecond;
+
+            return finalizedCombatStatistics;
         }
     }
 }

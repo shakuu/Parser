@@ -12,6 +12,8 @@ namespace Parser.Common.Models
 
         public double DamageDone { get; set; }
 
+        public double DamageTaken { get; set; }
+
         public double HealingDone { get; set; }
 
         public bool IsCompleted { get; set; }
