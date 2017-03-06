@@ -70,6 +70,7 @@
     <Compile Include="Models\CombatStatisticsContainer.cs" />
     <Compile Include="Models\Command.cs" />
     <Compile Include="Models\CombatStatistics.cs" />
+    <Compile Include="Models\FinalizedCombatStatistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CommandJsonConvertProvider.cs" />
     <Compile Include="Providers\CurrentCombatStatisticsChangedEventHandlerProvider.cs" />
