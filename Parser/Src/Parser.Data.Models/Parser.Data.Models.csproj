@@ -46,6 +46,10 @@
     <Compile Include="StoredCombatStatistics.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Parser.Common.Constants\Parser.Common.Constants.csproj">
+      <Project>{d0fccf6c-6b4b-4cc9-819f-6e6fcd2edc3c}</Project>
+      <Name>Parser.Common.Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
       <Name>Parser.Common</Name>
