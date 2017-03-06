@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventsArgsTests\CurrentCombatStatisticsChangedEventArgsTests\Constructor_Should.cs" />
     <Compile Include="Mocks\MockCombatStatisticsContainer.cs" />
     <Compile Include="ModelsTests\CombatStatisticsContainerTests\Constructor_Should.cs" />
     <Compile Include="ModelsTests\CombatStatisticsContainerTests\CurrentCombatStatisticsChanged_Should.cs" />

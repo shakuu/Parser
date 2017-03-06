@@ -14,6 +14,20 @@ namespace Parser.LogFileParser.Tests.StrategiesTests.CombatStatisticsFinalizatio
     [TestFixture]
     public class FinalizeCombatStatistics_Should
     {
+        public static IEnumerable TestCases
+        {
+            get
+            {
+                // Expected parameters: 
+                // string expectedCharacterName, double expectedDamageDone, double expectedDamageTaken, string enterCombatTime, string exitCombatTime, double expectedDamageDonePerSecond, double expectedDamageTakenPerSecond, double expectedCombatDurationInSeconds
+                yield return new TestCaseData("name", 1200, 1200, "22:38:00.000", "22:39:00.000", 20, 20, 60);
+                yield return new TestCaseData("name", 1200, 1200, "22:38:00.000", "22:40:00.000", 10, 10, 120);
+                yield return new TestCaseData("another name", 1200, 1200, "22:38:00.000", "22:40:00.000", 10, 10, 120);
+                yield return new TestCaseData("another name", 2400, 2400, "22:38:00.000", "22:40:00.000", 20, 20, 120);
+                yield return new TestCaseData("another name", 2400, 2400, "22:38:00.000", "22:38:30.000", 80, 80, 30);
+            }
+        }
+
         [Test]
         public void ThrowArgumentNullException_WhenICombatStatisticsParameterIsNull()
         {
@@ -56,20 +70,6 @@ namespace Parser.LogFileParser.Tests.StrategiesTests.CombatStatisticsFinalizatio
             Assert.That(actualFinalizedCommand.DamageDonePerSecond, Is.EqualTo(expectedDamageDonePerSecond));
             Assert.That(actualFinalizedCommand.DamageTakenPerSecond, Is.EqualTo(expectedDamageTakenPerSecond));
             Assert.That(actualFinalizedCommand.CombatDurationInSeconds, Is.EqualTo(expectedCombatDurationInSeconds));
-        }
-
-        public static IEnumerable TestCases
-        {
-            get
-            {
-                // Expected parameters: 
-                // string expectedCharacterName, double expectedDamageDone, double expectedDamageTaken, string enterCombatTime, string exitCombatTime, double expectedDamageDonePerSecond, double expectedDamageTakenPerSecond, double expectedCombatDurationInSeconds
-                yield return new TestCaseData("name", 1200, 1200, "22:38:00.000", "22:39:00.000", 20, 20, 60);
-                yield return new TestCaseData("name", 1200, 1200, "22:38:00.000", "22:40:00.000", 10, 10, 120);
-                yield return new TestCaseData("another name", 1200, 1200, "22:38:00.000", "22:40:00.000", 10, 10, 120);
-                yield return new TestCaseData("another name", 2400, 2400, "22:38:00.000", "22:40:00.000", 20, 20, 120);
-                yield return new TestCaseData("another name", 2400, 2400, "22:38:00.000", "22:38:30.000", 80, 80, 30);
-            }
         }
     }
 }

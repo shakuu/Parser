@@ -43,7 +43,7 @@ namespace Parser.LogFileParser.Engines
             return this.combatStatisticsContainer;
         }
 
-        private void OnCurrentCombatStatisticsChanged(object sender, CurrentCombatStatisticsChangedEventArgs args)
+        protected void OnCurrentCombatStatisticsChanged(object sender, CurrentCombatStatisticsChangedEventArgs args)
         {
             Guard.WhenArgument(args, nameof(CurrentCombatStatisticsChangedEventArgs)).IsNull().Throw();
             Guard.WhenArgument(args.CombatStatistics, nameof(ICombatStatistics)).IsNull().Throw();
