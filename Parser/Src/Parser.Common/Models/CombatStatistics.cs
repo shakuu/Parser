@@ -6,6 +6,8 @@ namespace Parser.Common.Models
 {
     public class CombatStatistics : ICombatStatistics
     {
+        public string CharacterName { get; set; }
+
         public DateTime EnterCombatTime { get; set; }
 
         public DateTime ExitCombatTime { get; set; }

@@ -25,6 +25,7 @@ namespace Parser.LogFileParser.CommandResolutionHandlers
         {
             combatStatisticsContainer.CurrentCombatStatistics = this.combatStatisticsFactory.CreateCombatStatistics();
             combatStatisticsContainer.AllCombatStatistics.Add(combatStatisticsContainer.CurrentCombatStatistics);
+            combatStatisticsContainer.CurrentCombatStatistics.CharacterName = command.AbilityActivatorName;
             combatStatisticsContainer.CurrentCombatStatistics.EnterCombatTime = command.TimeStamp;
 
             return combatStatisticsContainer;

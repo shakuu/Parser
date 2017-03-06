@@ -4,6 +4,8 @@ namespace Parser.Common.Contracts
 {
     public interface ICombatStatistics
     {
+        string CharacterName { get; set; }
+        
         DateTime EnterCombatTime { get; set; }
 
         DateTime ExitCombatTime { get; set; }
