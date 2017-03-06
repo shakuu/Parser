@@ -21,7 +21,9 @@ namespace Parser.LogFileParser.Strategies
         {
             var finalizedCombatStatistics = this.finalizedCombatStatisticsFactory.CreateFinalizedCombatStatistics();
 
+            finalizedCombatStatistics.CharacterName = combatStatistics.CharacterName;
             finalizedCombatStatistics.CombatDurationInSeconds = this.GetCombatDurationInSeconds(combatStatistics);
+
             finalizedCombatStatistics = this.GetDamageDoneAndDamageDonePerSecond(combatStatistics, finalizedCombatStatistics);
             finalizedCombatStatistics = this.GetDamageTakenAndDamageTakenPerSecond(combatStatistics, finalizedCombatStatistics);
 
