@@ -53,9 +53,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StrategiesTests\CombatStatisticsPersistentStorageStrategyTests\Constructor_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
+      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
+      <Name>Parser.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Data.Services\Parser.Data.Services.csproj">
+      <Project>{222f5aef-1d88-4b7f-905f-b39c0adf4ee8}</Project>
+      <Name>Parser.Data.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Data\Parser.Data.csproj">
+      <Project>{a8f6950c-0ff4-4fb2-9f0b-dff894db7fa9}</Project>
+      <Name>Parser.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.LogFileParser\Parser.LogFileParser.csproj">
+      <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>
+      <Name>Parser.LogFileParser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
