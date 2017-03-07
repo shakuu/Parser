@@ -83,6 +83,7 @@
     <Compile Include="Providers\GenericEventHandlerProvider.cs" />
     <Compile Include="Providers\GuidStringProvider.cs" />
     <Compile Include="Providers\JsonConvertProvider.cs" />
+    <Compile Include="Providers\ObjectMapperProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
