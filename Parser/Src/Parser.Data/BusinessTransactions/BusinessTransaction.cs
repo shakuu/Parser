@@ -4,6 +4,10 @@ using Parser.Data.Contracts;
 
 namespace Parser.Data.BusinessTransactions
 {
+    /// <summary>
+    /// Unit Of Work is a less catchy name!
+    /// https://martinfowler.com/eaaCatalog/unitOfWork.html
+    /// </summary>
     public class BusinessTransaction : IBusinessTransaction
     {
         private readonly IDbContext dbContext;
