@@ -19,7 +19,7 @@ namespace Parser.Data.Repositories
 
         public T Create(T entity)
         {
-            Guard.WhenArgument(entity, nameof(T)).IsNull().Throw();
+            Guard.WhenArgument(entity, nameof(entity)).IsNull().Throw();
 
             this.entities.Add(entity);
 
