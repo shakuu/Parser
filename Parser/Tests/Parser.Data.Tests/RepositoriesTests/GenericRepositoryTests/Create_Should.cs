@@ -27,7 +27,6 @@ namespace Parser.Data.Tests.RepositoriesTests.GenericRepositoryTests
             Assert.That(
                 () => genericRepository.Create(entity),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(entity)));
-
         }
 
         [Test]
