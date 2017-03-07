@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{522B8336-E936-4733-B908-85C564DA20A6}</ProjectGuid>
+    <ProjectGuid>{8ADB858C-948C-4FE0-A8F4-DAAE0A5C28A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parser.Data.Services.Tests</RootNamespace>
-    <AssemblyName>Parser.Data.Services.Tests</AssemblyName>
+    <RootNamespace>Parser.Data.Tests</RootNamespace>
+    <AssemblyName>Parser.Data.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,17 +32,21 @@
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
-      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Moq, Version=4.7.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Moq.4.7.0\lib\net45\Moq.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,44 +56,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\CommitAsync_Should.cs" />
+    <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\Commit_Should.cs" />
+    <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\Constructor_Should.cs" />
+    <Compile Include="Mocks\MockDbModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StrategiesTests\CombatStatisticsPersistentStorageStrategyTests\Constructor_Should.cs" />
-    <Compile Include="StrategiesTests\CombatStatisticsPersistentStorageStrategyTests\StoreCombatStatistics_Should.cs" />
+    <Compile Include="RepositoriesTests\GenericRepositoryTests\Constructor_Should.cs" />
+    <Compile Include="RepositoriesTests\GenericRepositoryTests\Create_Should.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
-      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
-      <Name>Parser.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Src\Parser.Data.Projections\Parser.Data.Projections.csproj">
-      <Project>{52a14ba3-e1dc-4b71-b47d-550862087b1c}</Project>
-      <Name>Parser.Data.Projections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Src\Parser.Data.Services\Parser.Data.Services.csproj">
-      <Project>{222f5aef-1d88-4b7f-905f-b39c0adf4ee8}</Project>
-      <Name>Parser.Data.Services</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Data\Parser.Data.csproj">
       <Project>{a8f6950c-0ff4-4fb2-9f0b-dff894db7fa9}</Project>
       <Name>Parser.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Src\Parser.LogFileParser\Parser.LogFileParser.csproj">
-      <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>
-      <Name>Parser.LogFileParser</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

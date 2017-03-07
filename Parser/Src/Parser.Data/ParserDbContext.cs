@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-using Parser.Common.Constants.Config;
+using Parser.Common.Constants.Configuration;
 using Parser.Data.Contracts;
 using Parser.Data.Models;
 

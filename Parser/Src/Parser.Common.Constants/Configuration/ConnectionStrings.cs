@@ -1,4 +1,4 @@
-﻿namespace Parser.Common.Constants.Config
+﻿namespace Parser.Common.Constants.Configuration
 {
     public static class ConnectionStrings
     {

@@ -39,7 +39,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             fileReaderEngine.StartAsync();
-            Thread.Sleep(50);
+            Thread.Sleep(250);
             fileReaderEngine.Stop();
 
             // Assert
@@ -72,7 +72,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             fileReaderEngine.StartAsync();
-            Thread.Sleep(50);
+            Thread.Sleep(250);
             fileReaderEngine.Stop();
 
             // Assert
@@ -105,14 +105,14 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             fileReaderEngine.StartAsync();
-            Thread.Sleep(50);
+            Thread.Sleep(250);
             fileReaderEngine.Stop();
 
             // Assert
             fileReaderInputProviderFactory.Verify(f => f.CreateFileReaderInputProvider(logFilePath), Times.Once());
         }
 
-        [Ignore("Inconsistent results when running in AppVeyor.")]
+        //[Ignore("Inconsistent results when running in AppVeyor.")]
         [Test]
         public void InvokeIFileReaderInputProvider_DisposeMethod()
         {
@@ -139,7 +139,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             fileReaderEngine.StartAsync();
-            Thread.Sleep(150);
+            Thread.Sleep(250);
             fileReaderEngine.Stop();
 
             // Assert
@@ -174,7 +174,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             fileReaderEngine.StartAsync();
-            Thread.Sleep(50);
+            Thread.Sleep(250);
             fileReaderEngine.Stop();
 
             // Assert
@@ -208,7 +208,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             fileReaderEngine.StartAsync();
-            Thread.Sleep(50);
+            Thread.Sleep(250);
             fileReaderEngine.Stop();
 
             // Assert
@@ -245,7 +245,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
 
             // Act
             fileReaderEngine.StartAsync();
-            Thread.Sleep(50);
+            Thread.Sleep(250);
             fileReaderEngine.Stop();
 
             // Assert
