@@ -112,7 +112,7 @@ namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
             fileReaderInputProviderFactory.Verify(f => f.CreateFileReaderInputProvider(logFilePath), Times.Once());
         }
 
-        //[Ignore("Inconsistent results when running in AppVeyor.")]
+        [Ignore("Inconsistent results when running in AppVeyor.")]
         [Test]
         public void InvokeIFileReaderInputProvider_DisposeMethod()
         {
