@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\CommitAsync_Should.cs" />
+    <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\Commit_Should.cs" />
     <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\Constructor_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -23,6 +23,7 @@ namespace Parser.Data.Tests.BusinessTransactionsTests.BusinessTransactionTests
             // Assert
             Assert.That(actualInstance, Is.Not.Null);
             Assert.That(actualInstance, Is.InstanceOf<IBusinessTransaction>());
+            Assert.That(actualInstance, Is.InstanceOf<IDisposable>());
         }
 
         [Test]
