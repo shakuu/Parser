@@ -12,6 +12,11 @@ namespace Parser.HttpContextUtilities.Providers
             {
                 return HttpContext.Current.Cache[index];
             }
+
+            set
+            {
+                HttpContext.Current.Cache[index] = value;
+            }
         }
 
         public void Add(string key, object value)
