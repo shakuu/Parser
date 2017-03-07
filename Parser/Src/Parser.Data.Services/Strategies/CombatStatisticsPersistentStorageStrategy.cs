@@ -29,6 +29,8 @@ namespace Parser.Data.Services.Strategies
 
         public IFinalizedCombatStatistics StoreCombatStatistics(IFinalizedCombatStatistics finalizedCombatStatistics)
         {
+            Guard.WhenArgument(finalizedCombatStatistics, nameof(IFinalizedCombatStatistics)).IsNull().Throw();
+
             var combatStatisticsProjection = this.objectMapper.Map<StoredCombatStatisticsProjection>(finalizedCombatStatistics);
 
             using (var transaction = this.businessTransactionFactory.CreateBusinessTransaction())
