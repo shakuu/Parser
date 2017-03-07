@@ -19,6 +19,8 @@ namespace Parser.Common.Providers
 
         public TDestination Map<TDestination>(object source)
         {
+            Guard.WhenArgument(source, nameof(source)).IsNull().Throw();
+
             return this.mapper.Map<TDestination>(source);
         }
     }

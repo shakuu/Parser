@@ -66,6 +66,7 @@
     <Compile Include="ProvidersTests\CommandJsonConvertProviderTests\DeserializeCommand_Should.cs" />
     <Compile Include="ProvidersTests\CommandJsonConvertProviderTests\SerializeCommand_Should.cs" />
     <Compile Include="ProvidersTests\ObjectMapperProviderTests\Constructor_Should.cs" />
+    <Compile Include="ProvidersTests\ObjectMapperProviderTests\Map_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
