@@ -1,32 +1,27 @@
 ﻿using Ninject.Extensions.Conventions;
 using Ninject.Extensions.Conventions.Syntax;
-using Ninject.Extensions.Interception;
-using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
+using Ninject.Web.Common;
 
-using Parser.Data.Services.Strategies;
+using Parser.Data;
+using Parser.Data.Contracts;
 
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
-    public class DataServicesNinjectModule : NinjectModule
+    public class DataNinjectModule : NinjectModule
     {
         public override void Load()
         {
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
 
-            //Kernel.InterceptReplace<CombatStatisticsPersistentStorageStrategy>(s => s.StoreCombatStatistics(null), this.InterceptedStoreCombatStatisticsMethod);
-        }
-
-        private void InterceptedStoreCombatStatisticsMethod(IInvocation invocation)
-        {
-            // Do nothing for testing.
+            this.Rebind(typeof(IDbContext), typeof(IParserDbContext)).To<ParserDbContext>().InRequestScope();
         }
 
         private void BindAllClassesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.Data.Services.*")
+                .FromAssembliesMatching("Parser.Data.dll")
                 .SelectAllClasses()
                 .BindDefaultInterface();
         }
@@ -34,7 +29,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         private void BindFactoriesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.Data.Services.*")
+                .FromAssembliesMatching("Parser.Data.dll")
                 .SelectAllInterfaces()
                 .EndingWith("Factory")
                 .BindToFactory()

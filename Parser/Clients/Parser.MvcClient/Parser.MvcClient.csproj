@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
       <Private>True</Private>
@@ -246,12 +250,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperProfiles\ParserUserProfile.cs" />
+    <Compile Include="App_Start\AutoMapperProfiles\StoredCombatStatisticsProfile.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectModules\AutoMapperNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\CommonNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataServicesNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\LogFileParserNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\SignalRNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -348,9 +356,21 @@
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
       <Name>Parser.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Data.Models\Parser.Data.Models.csproj">
+      <Project>{52a718a9-0679-4196-83e3-eca37208af4c}</Project>
+      <Name>Parser.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Data.Projections\Parser.Data.Projections.csproj">
+      <Project>{52a14ba3-e1dc-4b71-b47d-550862087b1c}</Project>
+      <Name>Parser.Data.Projections</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Data.Services\Parser.Data.Services.csproj">
       <Project>{222f5aef-1d88-4b7f-905f-b39c0adf4ee8}</Project>
       <Name>Parser.Data.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Data\Parser.Data.csproj">
+      <Project>{a8f6950c-0ff4-4fb2-9f0b-dff894db7fa9}</Project>
+      <Name>Parser.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.LogFileParser\Parser.LogFileParser.csproj">
       <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>

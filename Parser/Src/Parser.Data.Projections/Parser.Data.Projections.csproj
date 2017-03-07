@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{222F5AEF-1D88-4B7F-905F-B39C0ADF4EE8}</ProjectGuid>
+    <ProjectGuid>{52A14BA3-E1DC-4B71-B47D-550862087B1C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parser.Data.Services</RootNamespace>
-    <AssemblyName>Parser.Data.Services</AssemblyName>
+    <RootNamespace>Parser.Data.Projections</RootNamespace>
+    <AssemblyName>Parser.Data.Projections</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,29 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParserUserProjection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strategies\CombatStatisticsPersistentStorageStrategy.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">
-      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
-      <Name>Parser.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Parser.Data.Projections\Parser.Data.Projections.csproj">
-      <Project>{52a14ba3-e1dc-4b71-b47d-550862087b1c}</Project>
-      <Name>Parser.Data.Projections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Parser.Data\Parser.Data.csproj">
-      <Project>{a8f6950c-0ff4-4fb2-9f0b-dff894db7fa9}</Project>
-      <Name>Parser.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Parser.LogFileParser\Parser.LogFileParser.csproj">
-      <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>
-      <Name>Parser.LogFileParser</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="StoredCombatStatisticsProjection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

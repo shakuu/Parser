@@ -66,7 +66,9 @@ namespace Parser.MvcClient.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Load(new AutoMapperNinjectModule());
             kernel.Load(new CommonNinjectModule());
+            kernel.Load(new DataNinjectModule());
             kernel.Load(new DataServicesNinjectModule());
             kernel.Load(new LogFileParserNinjectModule());
             kernel.Load(new SignalRNinjectModule());
