@@ -64,6 +64,7 @@
     <Compile Include="RepositoriesTests\GenericRepositoryTests\Constructor_Should.cs" />
     <Compile Include="RepositoriesTests\GenericRepositoryTests\Create_Should.cs" />
     <Compile Include="RepositoriesTests\StoredCombatStatisticsProjectionRepositoryTests\Constructor_Should.cs" />
+    <Compile Include="RepositoriesTests\StoredCombatStatisticsProjectionRepositoryTests\Create_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -73,6 +74,14 @@
     <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
       <Name>Parser.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Data.Models\Parser.Data.Models.csproj">
+      <Project>{52a718a9-0679-4196-83e3-eca37208af4c}</Project>
+      <Name>Parser.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Data.Projections\Parser.Data.Projections.csproj">
+      <Project>{52a14ba3-e1dc-4b71-b47d-550862087b1c}</Project>
+      <Name>Parser.Data.Projections</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Data\Parser.Data.csproj">
       <Project>{a8f6950c-0ff4-4fb2-9f0b-dff894db7fa9}</Project>
