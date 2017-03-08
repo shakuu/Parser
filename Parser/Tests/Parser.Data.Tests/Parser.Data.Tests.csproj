@@ -63,12 +63,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoriesTests\GenericRepositoryTests\Constructor_Should.cs" />
     <Compile Include="RepositoriesTests\GenericRepositoryTests\Create_Should.cs" />
+    <Compile Include="RepositoriesTests\StoredCombatStatisticsProjectionRepositoryTests\Constructor_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
+      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
+      <Name>Parser.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Data\Parser.Data.csproj">
       <Project>{a8f6950c-0ff4-4fb2-9f0b-dff894db7fa9}</Project>
       <Name>Parser.Data</Name>
