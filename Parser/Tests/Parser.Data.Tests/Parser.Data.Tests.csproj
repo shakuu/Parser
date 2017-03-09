@@ -79,7 +79,7 @@
       <Project>{52a718a9-0679-4196-83e3-eca37208af4c}</Project>
       <Name>Parser.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Src\Parser.Data.Projections\Parser.Data.ViewModels.csproj">
+    <ProjectReference Include="..\..\Src\Parser.Data.ViewModels\Parser.Data.ViewModels.csproj">
       <Project>{52a14ba3-e1dc-4b71-b47d-550862087b1c}</Project>
       <Name>Parser.Data.ViewModels</Name>
     </ProjectReference>
