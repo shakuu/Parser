@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IDbContext.cs" />
+    <Compile Include="Contracts\IEntityFrameworkRepository.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IParserDbContext.cs" />
     <Compile Include="Contracts\IBusinessTransaction.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ParserDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EntityFrameworkRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\StoredCombatStatisticsProjectionRepository.cs" />
     <Compile Include="Repositories\StoredCombatStatisticsRepository.cs" />
@@ -108,6 +110,9 @@
     <EmbeddedResource Include="Migrations\201703062357492_optional user.resx">
       <DependentUpon>201703062357492_optional user.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataProviders\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
