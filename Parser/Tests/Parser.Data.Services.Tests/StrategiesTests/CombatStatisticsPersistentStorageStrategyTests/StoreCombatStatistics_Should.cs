@@ -18,11 +18,11 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         public void ThrowArgumentNullException_WhenIFinalizedCombatStatisticsParameterIsNull()
         {
             // Arrange
-            var storedCombatStatisticsProjectionRepository = new Mock<IStoredCombatStatisticsProjectionRepository>();
+            var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
             var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
-            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
+            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
             IFinalizedCombatStatistics finalizedCombatStatistics = null;
 
@@ -36,14 +36,14 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         public void InvokeIObjectMapperProvider_MapMethodOnceWithCorrectParameters()
         {
             // Arrange
-            var storedCombatStatisticsProjectionRepository = new Mock<IStoredCombatStatisticsProjectionRepository>();
+            var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
             var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
             var businessTransaction = new Mock<IBusinessTransaction>();
             businessTransactionFactory.Setup(f => f.CreateBusinessTransaction()).Returns(businessTransaction.Object);
 
-            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
+            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
             var finalizedCombatStatistics = new Mock<IFinalizedCombatStatistics>();
 
@@ -58,14 +58,14 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         public void InvokeIBusinessTransactionFactory_CreateBusinessTransactionOnce()
         {
             // Arrange
-            var storedCombatStatisticsProjectionRepository = new Mock<IStoredCombatStatisticsProjectionRepository>();
+            var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
             var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
             var businessTransaction = new Mock<IBusinessTransaction>();
             businessTransactionFactory.Setup(f => f.CreateBusinessTransaction()).Returns(businessTransaction.Object);
 
-            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
+            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
             var finalizedCombatStatistics = new Mock<IFinalizedCombatStatistics>();
 
@@ -77,10 +77,10 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         }
 
         [Test]
-        public void InvokeIStoredCombatStatisticsProjectionRepository_CreateOnceWithCorrectParameter()
+        public void InvokeIStoredCombatStatisticsDataProvider_CreateOnceWithCorrectParameter()
         {
             // Arrange
-            var storedCombatStatisticsProjectionRepository = new Mock<IStoredCombatStatisticsProjectionRepository>();
+            var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
             var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
@@ -90,7 +90,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
             var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
             objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsViewModel>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);
 
-            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
+            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
             var finalizedCombatStatistics = new Mock<IFinalizedCombatStatistics>();
 
@@ -98,14 +98,14 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
             combatStatisticsPersistentStorageStrategy.StoreCombatStatistics(finalizedCombatStatistics.Object);
 
             // Assert
-            storedCombatStatisticsProjectionRepository.Verify(r => r.Create(storedCombatStatisticsProjection), Times.Once);
+            storedCombatStatisticsDataProvider.Verify(r => r.Create(storedCombatStatisticsProjection), Times.Once);
         }
 
         [Test]
         public void InvokeIBusinessTransaction_CommitOnce()
         {
             // Arrange
-            var storedCombatStatisticsProjectionRepository = new Mock<IStoredCombatStatisticsProjectionRepository>();
+            var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
             var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
@@ -115,7 +115,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
             var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
             objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsViewModel>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);
 
-            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
+            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
             var finalizedCombatStatistics = new Mock<IFinalizedCombatStatistics>();
 
@@ -130,7 +130,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         public void ReturnCorrectIFinalizedCombatStatisticsInstance()
         {
             // Arrange
-            var storedCombatStatisticsProjectionRepository = new Mock<IStoredCombatStatisticsProjectionRepository>();
+            var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
             var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
@@ -140,7 +140,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
             var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
             objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsViewModel>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);
 
-            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
+            var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
             var finalizedCombatStatistics = new Mock<IFinalizedCombatStatistics>();
             var expectedReturnedIFinalizedCombatStatisticsInstance = finalizedCombatStatistics.Object;

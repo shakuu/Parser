@@ -65,6 +65,7 @@
     <Compile Include="Contracts\IStoredCombatStatisticsDataProvider.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsProjectionRepository.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsRepository.cs" />
+    <Compile Include="DataProviders\StoredCombatStatisticsDataProvider.cs" />
     <Compile Include="Factories\IBusinessTransactionFactory.cs" />
     <Compile Include="Migrations\201703062302082_init.cs" />
     <Compile Include="Migrations\201703062302082_init.Designer.cs">
@@ -112,9 +113,7 @@
       <DependentUpon>201703062357492_optional user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataProviders\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

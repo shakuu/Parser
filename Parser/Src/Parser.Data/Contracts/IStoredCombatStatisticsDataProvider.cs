@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Parser.Data.ViewModels;
 
 namespace Parser.Data.Contracts
 {
     public interface IStoredCombatStatisticsDataProvider
     {
-        
+        StoredCombatStatisticsViewModel Create(StoredCombatStatisticsViewModel model);
     }
 }

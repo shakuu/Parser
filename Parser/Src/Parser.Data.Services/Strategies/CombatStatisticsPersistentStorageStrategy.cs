@@ -10,17 +10,17 @@ namespace Parser.Data.Services.Strategies
 {
     public class CombatStatisticsPersistentStorageStrategy : ICombatStatisticsPersistentStorageStrategy
     {
-        private readonly IStoredCombatStatisticsProjectionRepository storedCombatStatisticsProjectionRepository;
+        private readonly IStoredCombatStatisticsDataProvider storedCombatStatisticsDataProvider;
         private readonly IBusinessTransactionFactory businessTransactionFactory;
         private readonly IObjectMapperProvider objectMapperProvider;
 
-        public CombatStatisticsPersistentStorageStrategy(IStoredCombatStatisticsProjectionRepository storedCombatStatisticsProjectionRepository, IBusinessTransactionFactory businessTransactionFactory, IObjectMapperProvider objectMapperProvider)
+        public CombatStatisticsPersistentStorageStrategy(IStoredCombatStatisticsDataProvider storedCombatStatisticsDataProvider, IBusinessTransactionFactory businessTransactionFactory, IObjectMapperProvider objectMapperProvider)
         {
-            Guard.WhenArgument(storedCombatStatisticsProjectionRepository, nameof(IStoredCombatStatisticsProjectionRepository)).IsNull().Throw();
+            Guard.WhenArgument(storedCombatStatisticsDataProvider, nameof(IStoredCombatStatisticsDataProvider)).IsNull().Throw();
             Guard.WhenArgument(businessTransactionFactory, nameof(IBusinessTransactionFactory)).IsNull().Throw();
             Guard.WhenArgument(objectMapperProvider, nameof(IObjectMapperProvider)).IsNull().Throw();
 
-            this.storedCombatStatisticsProjectionRepository = storedCombatStatisticsProjectionRepository;
+            this.storedCombatStatisticsDataProvider = storedCombatStatisticsDataProvider;
             this.businessTransactionFactory = businessTransactionFactory;
             this.objectMapperProvider = objectMapperProvider;
         }
@@ -33,7 +33,7 @@ namespace Parser.Data.Services.Strategies
 
             using (var transaction = this.businessTransactionFactory.CreateBusinessTransaction())
             {
-                this.storedCombatStatisticsProjectionRepository.Create(combatStatisticsProjection);
+                this.storedCombatStatisticsDataProvider.Create(combatStatisticsProjection);
 
                 transaction.Commit();
             }

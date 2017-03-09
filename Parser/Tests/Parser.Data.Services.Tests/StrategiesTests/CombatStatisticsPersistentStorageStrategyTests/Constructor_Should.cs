@@ -18,12 +18,12 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         public void CreateCorrectICombatStatisticsPersistentStorageStrategyInstance_WhenParametersAreValid()
         {
             // Arrange
-            var storedCombatStatisticsProjectionRepository = new Mock<IStoredCombatStatisticsProjectionRepository>();
+            var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
             var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
             // Act
-            var actualInstance = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
+            var actualInstance = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
             // Assert
             Assert.That(actualInstance, Is.Not.Null);
@@ -31,30 +31,30 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         }
 
         [Test]
-        public void ThrowArgumentNullException_WhenIStoredCombatStatisticsProjectionRepositoryParameterIsNull()
+        public void ThrowArgumentNullException_WhenIStoredCombatStatisticsDataProviderParameterIsNull()
         {
             // Arrange
-            IStoredCombatStatisticsProjectionRepository storedCombatStatisticsProjectionRepository = null;
+            IStoredCombatStatisticsDataProvider storedCombatStatisticsDataProvider = null;
             var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
             // Act & Assert
             Assert.That(
-                () => new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository, businessTransactionFactory.Object, objectMapperProvider.Object),
-                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IStoredCombatStatisticsProjectionRepository)));
+                () => new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider, businessTransactionFactory.Object, objectMapperProvider.Object),
+                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IStoredCombatStatisticsDataProvider)));
         }
 
         [Test]
         public void ThrowArgumentNullException_WhenIBusinessTransactionFactoryParameterIsNull()
         {
             // Arrange
-            var storedCombatStatisticsProjectionRepository = new Mock<IStoredCombatStatisticsProjectionRepository>();
+            var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
             IBusinessTransactionFactory businessTransactionFactory = null;
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
             // Act & Assert
             Assert.That(
-                () => new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory, objectMapperProvider.Object),
+                () => new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory, objectMapperProvider.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IBusinessTransactionFactory)));
         }
 
@@ -62,13 +62,13 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         public void ThrowArgumentNullException_WhenIObjectMapperProviderParameterIsNull()
         {
             // Arrange
-            var storedCombatStatisticsProjectionRepository = new Mock<IStoredCombatStatisticsProjectionRepository>();
+            var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
             var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
             IObjectMapperProvider objectMapperProvider = null;
 
             // Act & Assert
             Assert.That(
-                () => new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory.Object, objectMapperProvider),
+                () => new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory.Object, objectMapperProvider),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IObjectMapperProvider)));
         }
     }
