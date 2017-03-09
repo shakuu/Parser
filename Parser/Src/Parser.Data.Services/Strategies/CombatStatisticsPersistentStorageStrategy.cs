@@ -3,7 +3,7 @@
 using Parser.Common.Contracts;
 using Parser.Data.Contracts;
 using Parser.Data.Factories;
-using Parser.Data.Projections;
+using Parser.Data.ViewModels;
 using Parser.LogFileParser.Contracts;
 
 namespace Parser.Data.Services.Strategies
@@ -29,7 +29,7 @@ namespace Parser.Data.Services.Strategies
         {
             Guard.WhenArgument(finalizedCombatStatistics, nameof(IFinalizedCombatStatistics)).IsNull().Throw();
 
-            var combatStatisticsProjection = this.objectMapperProvider.Map<StoredCombatStatisticsProjection>(finalizedCombatStatistics);
+            var combatStatisticsProjection = this.objectMapperProvider.Map<StoredCombatStatisticsViewModel>(finalizedCombatStatistics);
 
             using (var transaction = this.businessTransactionFactory.CreateBusinessTransaction())
             {

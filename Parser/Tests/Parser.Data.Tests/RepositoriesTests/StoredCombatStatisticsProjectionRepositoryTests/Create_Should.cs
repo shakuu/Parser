@@ -6,7 +6,7 @@ using NUnit.Framework;
 using Parser.Common.Contracts;
 using Parser.Data.Contracts;
 using Parser.Data.Models;
-using Parser.Data.Projections;
+using Parser.Data.ViewModels;
 using Parser.Data.Repositories;
 
 namespace Parser.Data.Tests.RepositoriesTests.StoredCombatStatisticsProjectionRepositoryTests
@@ -23,12 +23,12 @@ namespace Parser.Data.Tests.RepositoriesTests.StoredCombatStatisticsProjectionRe
 
             var storedCombatStatisticsProjectionRepository = new StoredCombatStatisticsProjectionRepository(storedCombatStatisticsRepository.Object, objectMapperProvider.Object);
 
-            StoredCombatStatisticsProjection storedCombatStatisticsProjection = null;
+            StoredCombatStatisticsViewModel storedCombatStatisticsProjection = null;
 
             // Act & Assert
             Assert.That(
                 () => storedCombatStatisticsProjectionRepository.Create(storedCombatStatisticsProjection),
-                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(StoredCombatStatisticsProjection)));
+                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(StoredCombatStatisticsViewModel)));
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace Parser.Data.Tests.RepositoriesTests.StoredCombatStatisticsProjectionRe
 
             var storedCombatStatisticsProjectionRepository = new StoredCombatStatisticsProjectionRepository(storedCombatStatisticsRepository.Object, objectMapperProvider.Object);
 
-            var storedCombatStatisticsProjection = new StoredCombatStatisticsProjection();
+            var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
 
             // Act 
             storedCombatStatisticsProjectionRepository.Create(storedCombatStatisticsProjection);
@@ -58,10 +58,10 @@ namespace Parser.Data.Tests.RepositoriesTests.StoredCombatStatisticsProjectionRe
 
             var storedCombatStatisticsProjectionRepository = new StoredCombatStatisticsProjectionRepository(storedCombatStatisticsRepository.Object, objectMapperProvider.Object);
 
-            var storedCombatStatisticsProjection = new StoredCombatStatisticsProjection();
+            var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
 
             var storedCombatStatistics = new StoredCombatStatistics();
-            objectMapperProvider.Setup(p => p.Map<StoredCombatStatistics>(It.IsAny<StoredCombatStatisticsProjection>())).Returns(storedCombatStatistics);
+            objectMapperProvider.Setup(p => p.Map<StoredCombatStatistics>(It.IsAny<StoredCombatStatisticsViewModel>())).Returns(storedCombatStatistics);
 
             // Act 
             storedCombatStatisticsProjectionRepository.Create(storedCombatStatisticsProjection);
@@ -79,7 +79,7 @@ namespace Parser.Data.Tests.RepositoriesTests.StoredCombatStatisticsProjectionRe
 
             var storedCombatStatisticsProjectionRepository = new StoredCombatStatisticsProjectionRepository(storedCombatStatisticsRepository.Object, objectMapperProvider.Object);
 
-            var storedCombatStatisticsProjection = new StoredCombatStatisticsProjection();
+            var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
 
             // Act 
             var actualReturnedStoredCombatStatisticsProjectionInstance = storedCombatStatisticsProjectionRepository.Create(storedCombatStatisticsProjection);

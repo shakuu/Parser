@@ -43,7 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Data.Models", "Src\P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common.Constants", "Src\Parser.Common.Constants\Parser.Common.Constants.csproj", "{D0FCCF6C-6B4B-4CC9-819F-6E6FCD2EDC3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Data.Projections", "Src\Parser.Data.Projections\Parser.Data.Projections.csproj", "{52A14BA3-E1DC-4B71-B47D-550862087B1C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Data.ViewModels", "Src\Parser.Data.Projections\Parser.Data.ViewModels.csproj", "{52A14BA3-E1DC-4B71-B47D-550862087B1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Data.Services.Tests", "Tests\Parser.Data.Services.Tests\Parser.Data.Services.Tests.csproj", "{522B8336-E936-4733-B908-85C564DA20A6}"
 EndProject

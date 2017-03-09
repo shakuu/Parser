@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 
 using Parser.Data.Models;
-using Parser.Data.Projections;
+using Parser.Data.ViewModels;
 
 namespace Parser.MvcClient.App_Start.AutoMapperProfiles
 {
@@ -9,8 +9,8 @@ namespace Parser.MvcClient.App_Start.AutoMapperProfiles
     {
         public ParserUserProfile()
         {
-            this.CreateMap<ParserUser, ParserUserProjection>();
-            this.CreateMap<ParserUserProjection, ParserUser>();
+            this.CreateMap<ParserUser, ParserUserViewModel>();
+            this.CreateMap<ParserUserViewModel, ParserUser>();
         }
     }
 }

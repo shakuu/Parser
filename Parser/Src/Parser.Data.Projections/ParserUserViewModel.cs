@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Parser.Data.Projections
+namespace Parser.Data.ViewModels
 {
-    public class ParserUserProjection
+    public class ParserUserViewModel
     {
         public Guid Id { get; set; }
 
@@ -11,6 +11,6 @@ namespace Parser.Data.Projections
 
         public string Username { get; set; }
 
-        public virtual ICollection<StoredCombatStatisticsProjection> StoredCombatStatistics { get; set; }
+        public virtual ICollection<StoredCombatStatisticsViewModel> StoredCombatStatistics { get; set; }
     }
 }

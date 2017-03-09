@@ -7,7 +7,7 @@ using Parser.Common.Contracts;
 using Parser.Data.Contracts;
 using Parser.Data.Factories;
 using Parser.Data.Services.Strategies;
-using Parser.Data.Projections;
+using Parser.Data.ViewModels;
 
 namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentStorageStrategyTests
 {
@@ -51,7 +51,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
             combatStatisticsPersistentStorageStrategy.StoreCombatStatistics(finalizedCombatStatistics.Object);
 
             // Assert
-            objectMapperProvider.Verify(p => p.Map<StoredCombatStatisticsProjection>(finalizedCombatStatistics.Object), Times.Once);
+            objectMapperProvider.Verify(p => p.Map<StoredCombatStatisticsViewModel>(finalizedCombatStatistics.Object), Times.Once);
         }
 
         [Test]
@@ -87,8 +87,8 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
             var businessTransaction = new Mock<IBusinessTransaction>();
             businessTransactionFactory.Setup(f => f.CreateBusinessTransaction()).Returns(businessTransaction.Object);
 
-            var storedCombatStatisticsProjection = new StoredCombatStatisticsProjection();
-            objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsProjection>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);
+            var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
+            objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsViewModel>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);
 
             var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
@@ -112,8 +112,8 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
             var businessTransaction = new Mock<IBusinessTransaction>();
             businessTransactionFactory.Setup(f => f.CreateBusinessTransaction()).Returns(businessTransaction.Object);
 
-            var storedCombatStatisticsProjection = new StoredCombatStatisticsProjection();
-            objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsProjection>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);
+            var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
+            objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsViewModel>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);
 
             var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
@@ -137,8 +137,8 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
             var businessTransaction = new Mock<IBusinessTransaction>();
             businessTransactionFactory.Setup(f => f.CreateBusinessTransaction()).Returns(businessTransaction.Object);
 
-            var storedCombatStatisticsProjection = new StoredCombatStatisticsProjection();
-            objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsProjection>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);
+            var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
+            objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsViewModel>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);
 
             var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsProjectionRepository.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
