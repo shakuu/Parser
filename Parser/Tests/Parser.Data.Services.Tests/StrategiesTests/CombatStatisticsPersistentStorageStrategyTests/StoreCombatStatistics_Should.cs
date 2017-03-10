@@ -19,7 +19,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         {
             // Arrange
             var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
-            var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
+            var businessTransactionFactory = new Mock<IEntityFrameworkTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
             var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
@@ -37,11 +37,11 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         {
             // Arrange
             var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
-            var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
+            var businessTransactionFactory = new Mock<IEntityFrameworkTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
-            var businessTransaction = new Mock<IBusinessTransaction>();
-            businessTransactionFactory.Setup(f => f.CreateBusinessTransaction()).Returns(businessTransaction.Object);
+            var businessTransaction = new Mock<IEntityFrameworkTransaction>();
+            businessTransactionFactory.Setup(f => f.CreateEntityFrameworkTransaction()).Returns(businessTransaction.Object);
 
             var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
@@ -59,11 +59,11 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         {
             // Arrange
             var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
-            var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
+            var businessTransactionFactory = new Mock<IEntityFrameworkTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
-            var businessTransaction = new Mock<IBusinessTransaction>();
-            businessTransactionFactory.Setup(f => f.CreateBusinessTransaction()).Returns(businessTransaction.Object);
+            var businessTransaction = new Mock<IEntityFrameworkTransaction>();
+            businessTransactionFactory.Setup(f => f.CreateEntityFrameworkTransaction()).Returns(businessTransaction.Object);
 
             var combatStatisticsPersistentStorageStrategy = new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory.Object, objectMapperProvider.Object);
 
@@ -73,7 +73,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
             combatStatisticsPersistentStorageStrategy.StoreCombatStatistics(finalizedCombatStatistics.Object);
 
             // Assert
-            businessTransactionFactory.Verify(f => f.CreateBusinessTransaction(), Times.Once);
+            businessTransactionFactory.Verify(f => f.CreateEntityFrameworkTransaction(), Times.Once);
         }
 
         [Test]
@@ -81,11 +81,11 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         {
             // Arrange
             var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
-            var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
+            var businessTransactionFactory = new Mock<IEntityFrameworkTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
-            var businessTransaction = new Mock<IBusinessTransaction>();
-            businessTransactionFactory.Setup(f => f.CreateBusinessTransaction()).Returns(businessTransaction.Object);
+            var businessTransaction = new Mock<IEntityFrameworkTransaction>();
+            businessTransactionFactory.Setup(f => f.CreateEntityFrameworkTransaction()).Returns(businessTransaction.Object);
 
             var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
             objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsViewModel>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);
@@ -106,11 +106,11 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         {
             // Arrange
             var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
-            var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
+            var businessTransactionFactory = new Mock<IEntityFrameworkTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
-            var businessTransaction = new Mock<IBusinessTransaction>();
-            businessTransactionFactory.Setup(f => f.CreateBusinessTransaction()).Returns(businessTransaction.Object);
+            var businessTransaction = new Mock<IEntityFrameworkTransaction>();
+            businessTransactionFactory.Setup(f => f.CreateEntityFrameworkTransaction()).Returns(businessTransaction.Object);
 
             var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
             objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsViewModel>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);
@@ -123,7 +123,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
             combatStatisticsPersistentStorageStrategy.StoreCombatStatistics(finalizedCombatStatistics.Object);
 
             // Assert
-            businessTransaction.Verify(bt => bt.Commit(), Times.Once);
+            businessTransaction.Verify(bt => bt.SaveChanges(), Times.Once);
         }
 
         [Test]
@@ -131,11 +131,11 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         {
             // Arrange
             var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
-            var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
+            var businessTransactionFactory = new Mock<IEntityFrameworkTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
-            var businessTransaction = new Mock<IBusinessTransaction>();
-            businessTransactionFactory.Setup(f => f.CreateBusinessTransaction()).Returns(businessTransaction.Object);
+            var businessTransaction = new Mock<IEntityFrameworkTransaction>();
+            businessTransactionFactory.Setup(f => f.CreateEntityFrameworkTransaction()).Returns(businessTransaction.Object);
 
             var storedCombatStatisticsProjection = new StoredCombatStatisticsViewModel();
             objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsViewModel>(It.IsAny<IFinalizedCombatStatistics>())).Returns(storedCombatStatisticsProjection);

@@ -18,11 +18,11 @@ namespace Parser.Data.Tests.BusinessTransactionsTests.BusinessTransactionTests
             var dbContext = new Mock<IDbContext>();
 
             // Act
-            var actualInstance = new BusinessTransaction(dbContext.Object);
+            var actualInstance = new EntityFrameworkTransaction(dbContext.Object);
 
             // Assert
             Assert.That(actualInstance, Is.Not.Null);
-            Assert.That(actualInstance, Is.InstanceOf<IBusinessTransaction>());
+            Assert.That(actualInstance, Is.InstanceOf<IEntityFrameworkTransaction>());
             Assert.That(actualInstance, Is.InstanceOf<IDisposable>());
         }
 
@@ -34,7 +34,7 @@ namespace Parser.Data.Tests.BusinessTransactionsTests.BusinessTransactionTests
 
             // Act & Assert
             Assert.That(
-                () => new BusinessTransaction(dbContext),
+                () => new EntityFrameworkTransaction(dbContext),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IDbContext)));
         }
     }

@@ -19,7 +19,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         {
             // Arrange
             var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
-            var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
+            var businessTransactionFactory = new Mock<IEntityFrameworkTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
             // Act
@@ -35,7 +35,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         {
             // Arrange
             IStoredCombatStatisticsDataProvider storedCombatStatisticsDataProvider = null;
-            var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
+            var businessTransactionFactory = new Mock<IEntityFrameworkTransactionFactory>();
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
             // Act & Assert
@@ -49,13 +49,13 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         {
             // Arrange
             var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
-            IBusinessTransactionFactory businessTransactionFactory = null;
+            IEntityFrameworkTransactionFactory businessTransactionFactory = null;
             var objectMapperProvider = new Mock<IObjectMapperProvider>();
 
             // Act & Assert
             Assert.That(
                 () => new CombatStatisticsPersistentStorageStrategy(storedCombatStatisticsDataProvider.Object, businessTransactionFactory, objectMapperProvider.Object),
-                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IBusinessTransactionFactory)));
+                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IEntityFrameworkTransactionFactory)));
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
         {
             // Arrange
             var storedCombatStatisticsDataProvider = new Mock<IStoredCombatStatisticsDataProvider>();
-            var businessTransactionFactory = new Mock<IBusinessTransactionFactory>();
+            var businessTransactionFactory = new Mock<IEntityFrameworkTransactionFactory>();
             IObjectMapperProvider objectMapperProvider = null;
 
             // Act & Assert

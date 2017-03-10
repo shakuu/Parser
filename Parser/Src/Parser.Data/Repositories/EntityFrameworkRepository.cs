@@ -36,8 +36,6 @@ namespace Parser.Data.Repositories
         {
             this.entities.Add(entity);
 
-            this.parserDbContext.SaveChanges();
-
             return entity;
         }
 
