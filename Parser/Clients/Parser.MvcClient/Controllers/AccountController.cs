@@ -6,8 +6,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
-using Parser.Auth;
 using Parser.Auth.Contracts;
+using Parser.Auth.Factories;
 using Parser.Auth.ViewModels;
 
 namespace Parser.MvcClient.Controllers
@@ -16,10 +16,12 @@ namespace Parser.MvcClient.Controllers
     public class AccountController : Controller
     {
         private readonly IIdentityAuthAccountService identityAuthAccountService;
+        private readonly IAuthUserFactory authUserFactory;
 
-        public AccountController(IIdentityAuthAccountService identityAuthAccountService)
+        public AccountController(IIdentityAuthAccountService identityAuthAccountService, IAuthUserFactory authUserFactory)
         {
             this.identityAuthAccountService = identityAuthAccountService;
+            this.authUserFactory = authUserFactory;
         }
 
         [HttpGet]
@@ -72,7 +74,10 @@ namespace Parser.MvcClient.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new AuthUser { UserName = model.Email, Email = model.Email };
+                var user = this.authUserFactory.CreateAuthUser();
+                user.UserName = model.Email;
+                user.Email = model.Email;
+
                 var result = await this.identityAuthAccountService.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
