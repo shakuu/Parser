@@ -12,6 +12,6 @@ namespace Parser.Data.Contracts
 
         IDbSet<TEntity> Set<TEntity>() where TEntity : class;
 
-        int SaveChanges();
+        void SaveChanges();
     }
 }

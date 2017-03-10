@@ -11,7 +11,7 @@ namespace Parser.Data
         public ParserDbContext()
             : base($"name={ConnectionStrings.ParserDbConnectionString}")
         {
-            
+
         }
 
         public virtual IDbSet<ParserUser> ParserUsers { get; set; }
@@ -21,6 +21,11 @@ namespace Parser.Data
         IDbSet<TEntity> IParserDbContext.Set<TEntity>()
         {
             return this.Set<TEntity>();
+        }
+
+        void IParserDbContext.SaveChanges()
+        {
+            this.SaveChanges();
         }
     }
 }
