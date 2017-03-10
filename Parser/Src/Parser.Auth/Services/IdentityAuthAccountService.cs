@@ -18,6 +18,7 @@ namespace Parser.Auth.Services
         {
             get
             {
+                // Request scope
                 return _signInManager ?? HttpContext.Current.GetOwinContext().Get<AuthSignInManager>();
             }
             private set
@@ -30,6 +31,7 @@ namespace Parser.Auth.Services
         {
             get
             {
+                // Request scope
                 return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<AuthUserManager>();
             }
             private set

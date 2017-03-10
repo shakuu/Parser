@@ -5,10 +5,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
+using Parser.Auth.Contracts;
+
 namespace Parser.Auth.Managers
 {
     // Configure the application sign-in manager which is used in this application.
-    public class AuthSignInManager : SignInManager<AuthUser, string>
+    public class AuthSignInManager : SignInManager<AuthUser, string>, IAuthSignInManager
     {
         public AuthSignInManager(AuthUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)
