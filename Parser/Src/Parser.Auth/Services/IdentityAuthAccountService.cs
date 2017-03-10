@@ -25,6 +25,9 @@ namespace Parser.Auth.Services
 
         public async Task<IdentityResult> CreateAsync(AuthUser user, string password)
         {
+            Guard.WhenArgument(user, nameof(AuthUser)).IsNull().Throw();
+            Guard.WhenArgument(password, nameof(password)).IsNullOrEmpty().Throw();
+
             return await this.authUserManagerProvider.UserManager.CreateAsync(user, password);
         }
 
