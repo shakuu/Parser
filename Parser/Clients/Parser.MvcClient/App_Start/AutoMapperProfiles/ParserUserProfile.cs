@@ -11,6 +11,9 @@ namespace Parser.MvcClient.App_Start.AutoMapperProfiles
         {
             this.CreateMap<ParserUser, ParserUserViewModel>();
             this.CreateMap<ParserUserViewModel, ParserUser>();
+
+            this.CreateMap<ParserUser, RegisterParserUserViewModel>();
+            this.CreateMap<RegisterParserUserViewModel, ParserUser>();
         }
     }
 }

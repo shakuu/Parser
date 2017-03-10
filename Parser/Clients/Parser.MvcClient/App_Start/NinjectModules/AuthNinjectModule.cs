@@ -1,9 +1,13 @@
-﻿using Ninject.Extensions.Conventions;
+﻿using Ninject;
+using Ninject.Activation;
+using Ninject.Extensions.Conventions;
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
 using Parser.Auth.Contracts;
-using Parser.Auth.Extended.Services;
+using Parser.Auth.Extended.Contracts;
+
+using Parser.MvcClient.Controllers;
 
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
@@ -14,7 +18,14 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
 
-            this.Rebind<IIdentityAuthAccountService>().To<ExtendedIdentityAuthAccountService>();
+            this.Bind<IIdentityAuthAccountService>().ToMethod(this.IIdentityAuthAccountServiceFactoryMethod).WhenInjectedExactlyInto<AccountController>();
+        }
+
+        private IIdentityAuthAccountService IIdentityAuthAccountServiceFactoryMethod(IContext context)
+        {
+            var extendedIdentityAuthAccountService = context.Kernel.Get<IExtendedIdentityAuthAccountService>();
+
+            return extendedIdentityAuthAccountService;
         }
 
         private void BindAllClassesByConvention(IFromSyntax bind)
