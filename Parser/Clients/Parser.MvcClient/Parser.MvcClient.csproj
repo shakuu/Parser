@@ -254,7 +254,6 @@
     <Compile Include="App_Start\AutoMapperProfiles\StoredCombatStatisticsProfile.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectModules\AutoMapperNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\CommonNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataServicesNinjectModule.cs" />
