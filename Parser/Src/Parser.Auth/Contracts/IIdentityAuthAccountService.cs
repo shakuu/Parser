@@ -5,10 +5,12 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace Parser.Auth.Contracts
 {
-    public interface IIdentityAuthService
+    public interface IIdentityAuthAccountService
     {
         Task<SignInStatus> PasswordSignInAsync(string email, string password, bool rememberMe);
 
-        Task<IdentityResult> CreateAsync(string email, string password);
+        Task<IdentityResult> CreateAsync(AuthUser user, string password);
+
+        Task SignInAsync(AuthUser user);
     }
 }

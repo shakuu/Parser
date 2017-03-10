@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
 using Parser.Auth;
-using Parser.Auth.Managers;
+using Parser.Auth.Contracts;
 using Parser.Auth.ViewModels;
 
 namespace Parser.MvcClient.Controllers
@@ -15,41 +15,15 @@ namespace Parser.MvcClient.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private AuthSignInManager _signInManager;
-        private AuthUserManager _userManager;
+        private readonly IIdentityAuthAccountService identityAuthAccountService;
 
         public AccountController()
         {
         }
 
-        public AccountController(AuthUserManager userManager, AuthSignInManager signInManager)
+        public AccountController(IIdentityAuthAccountService identityAuthAccountService)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        public AuthSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<AuthSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
-        }
-
-        public AuthUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<AuthUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            this.identityAuthAccountService = identityAuthAccountService;
         }
 
         [HttpGet]
@@ -72,7 +46,7 @@ namespace Parser.MvcClient.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await this.identityAuthAccountService.PasswordSignInAsync(model.Email, model.Password, model.RememberMe);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -103,10 +77,10 @@ namespace Parser.MvcClient.Controllers
             if (ModelState.IsValid)
             {
                 var user = new AuthUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await this.identityAuthAccountService.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await this.identityAuthAccountService.SignInAsync(user);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
