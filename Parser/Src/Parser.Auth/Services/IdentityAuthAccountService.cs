@@ -41,6 +41,8 @@ namespace Parser.Auth.Services
 
         public async Task SignInAsync(AuthUser user)
         {
+            Guard.WhenArgument(user, nameof(AuthUser)).IsNull().Throw();
+
             await this.authSignInManagerProvider.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
         }
     }

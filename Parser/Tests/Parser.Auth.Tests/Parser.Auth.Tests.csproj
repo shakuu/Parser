@@ -77,6 +77,7 @@
     <Compile Include="ServicesTests\IdentityAuthAccountServiceTests\Constructor_Should.cs" />
     <Compile Include="ServicesTests\IdentityAuthAccountServiceTests\CreateAsync_Should.cs" />
     <Compile Include="ServicesTests\IdentityAuthAccountServiceTests\PasswordSignInAsync_Should.cs" />
+    <Compile Include="ServicesTests\IdentityAuthAccountServiceTests\SignInAsync_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
