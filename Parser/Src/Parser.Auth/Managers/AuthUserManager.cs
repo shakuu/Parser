@@ -10,16 +10,16 @@ using Parser.Auth.Services;
 namespace Parser.Auth.Managers
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class ApplicationUserManager : UserManager<AuthUser>
+    public class AuthUserManager : UserManager<AuthUser>
     {
-        public ApplicationUserManager(IUserStore<AuthUser> store)
+        public AuthUserManager(IUserStore<AuthUser> store)
             : base(store)
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+        public static AuthUserManager Create(IdentityFactoryOptions<AuthUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<AuthUser>(context.Get<AuthDbContext>()));
+            var manager = new AuthUserManager(new UserStore<AuthUser>(context.Get<AuthDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<AuthUser>(manager)
             {
