@@ -17,10 +17,6 @@ namespace Parser.MvcClient.Controllers
     {
         private readonly IIdentityAuthAccountService identityAuthAccountService;
 
-        public AccountController()
-        {
-        }
-
         public AccountController(IIdentityAuthAccountService identityAuthAccountService)
         {
             this.identityAuthAccountService = identityAuthAccountService;
