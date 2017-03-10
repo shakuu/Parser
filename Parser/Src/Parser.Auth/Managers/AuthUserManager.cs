@@ -5,12 +5,13 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 
+using Parser.Auth.Contracts;
 using Parser.Auth.Providers;
 
 namespace Parser.Auth.Managers
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class AuthUserManager : UserManager<AuthUser>
+    public class AuthUserManager : UserManager<AuthUser>, IAuthUserManager
     {
         public AuthUserManager(IUserStore<AuthUser> store)
             : base(store)
