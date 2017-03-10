@@ -11,17 +11,17 @@ namespace Parser.Data.Services.Strategies
     public class CombatStatisticsPersistentStorageStrategy : ICombatStatisticsPersistentStorageStrategy
     {
         private readonly IStoredCombatStatisticsDataProvider storedCombatStatisticsDataProvider;
-        private readonly IBusinessTransactionFactory businessTransactionFactory;
+        private readonly IEntityFrameworkTransactionFactory entityFrameworkTransactionFactory;
         private readonly IObjectMapperProvider objectMapperProvider;
 
-        public CombatStatisticsPersistentStorageStrategy(IStoredCombatStatisticsDataProvider storedCombatStatisticsDataProvider, IBusinessTransactionFactory businessTransactionFactory, IObjectMapperProvider objectMapperProvider)
+        public CombatStatisticsPersistentStorageStrategy(IStoredCombatStatisticsDataProvider storedCombatStatisticsDataProvider, IEntityFrameworkTransactionFactory entityFrameworkTransactionFactory, IObjectMapperProvider objectMapperProvider)
         {
             Guard.WhenArgument(storedCombatStatisticsDataProvider, nameof(IStoredCombatStatisticsDataProvider)).IsNull().Throw();
-            Guard.WhenArgument(businessTransactionFactory, nameof(IBusinessTransactionFactory)).IsNull().Throw();
+            Guard.WhenArgument(entityFrameworkTransactionFactory, nameof(IEntityFrameworkTransactionFactory)).IsNull().Throw();
             Guard.WhenArgument(objectMapperProvider, nameof(IObjectMapperProvider)).IsNull().Throw();
 
             this.storedCombatStatisticsDataProvider = storedCombatStatisticsDataProvider;
-            this.businessTransactionFactory = businessTransactionFactory;
+            this.entityFrameworkTransactionFactory = entityFrameworkTransactionFactory;
             this.objectMapperProvider = objectMapperProvider;
         }
 
@@ -31,11 +31,11 @@ namespace Parser.Data.Services.Strategies
 
             var combatStatisticsProjection = this.objectMapperProvider.Map<StoredCombatStatisticsViewModel>(finalizedCombatStatistics);
 
-            using (var transaction = this.businessTransactionFactory.CreateBusinessTransaction())
+            using (var transaction = this.entityFrameworkTransactionFactory.CreateEntityFrameworkTransaction())
             {
                 this.storedCombatStatisticsDataProvider.Create(combatStatisticsProjection);
 
-                transaction.Commit();
+                transaction.SaveChanges();
             }
 
             return finalizedCombatStatistics;

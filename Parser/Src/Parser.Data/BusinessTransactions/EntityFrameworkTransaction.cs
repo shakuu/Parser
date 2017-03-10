@@ -8,23 +8,23 @@ namespace Parser.Data.BusinessTransactions
     /// Unit Of Work is a less catchy name!
     /// https://martinfowler.com/eaaCatalog/unitOfWork.html
     /// </summary>
-    public class BusinessTransaction : IBusinessTransaction
+    public class EntityFrameworkTransaction : IEntityFrameworkTransaction
     {
         private readonly IDbContext dbContext;
 
-        public BusinessTransaction(IDbContext dbContext)
+        public EntityFrameworkTransaction(IDbContext dbContext)
         {
             Guard.WhenArgument(dbContext, nameof(IDbContext)).IsNull().Throw();
 
             this.dbContext = dbContext;
         }
 
-        public void CommitAsync()
+        public void SaveChangesAsync()
         {
             this.dbContext.SaveChangesAsync();
         }
 
-        public void Commit()
+        public void SaveChanges()
         {
             this.dbContext.SaveChanges();
         }

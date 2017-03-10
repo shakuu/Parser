@@ -27,9 +27,9 @@ namespace Parser.Data.DataProviders
 
             var storedCombatStatistics = this.objectMapperProvider.Map<StoredCombatStatistics>(model);
 
-            this.storedCombatStatisticsEntityFrameworkRepository.Create(storedCombatStatistics);
+            var dbStoredCombatStatistics = this.storedCombatStatisticsEntityFrameworkRepository.Create(storedCombatStatistics);
 
-            var viewModel = this.objectMapperProvider.Map<StoredCombatStatisticsViewModel>(storedCombatStatistics);
+            var viewModel = this.objectMapperProvider.Map<StoredCombatStatisticsViewModel>(dbStoredCombatStatistics);
 
             return viewModel;
         }

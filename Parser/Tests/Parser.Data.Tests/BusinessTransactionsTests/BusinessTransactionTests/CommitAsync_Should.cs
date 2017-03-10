@@ -15,10 +15,10 @@ namespace Parser.Data.Tests.BusinessTransactionsTests.BusinessTransactionTests
             // Arrange
             var dbContext = new Mock<IDbContext>();
 
-            var businessTransaction = new BusinessTransaction(dbContext.Object);
+            var businessTransaction = new EntityFrameworkTransaction(dbContext.Object);
 
             // Act
-            businessTransaction.CommitAsync();
+            businessTransaction.SaveChangesAsync();
 
             // Assert
             dbContext.Verify(c => c.SaveChangesAsync(), Times.Once);

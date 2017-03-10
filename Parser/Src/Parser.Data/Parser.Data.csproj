@@ -60,13 +60,13 @@
     <Compile Include="Contracts\IEntityFrameworkRepository.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IParserDbContext.cs" />
-    <Compile Include="Contracts\IBusinessTransaction.cs" />
-    <Compile Include="BusinessTransactions\BusinessTransaction.cs" />
+    <Compile Include="Contracts\IEntityFrameworkTransaction.cs" />
+    <Compile Include="BusinessTransactions\EntityFrameworkTransaction.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsDataProvider.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsProjectionRepository.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsRepository.cs" />
     <Compile Include="DataProviders\StoredCombatStatisticsDataProvider.cs" />
-    <Compile Include="Factories\IBusinessTransactionFactory.cs" />
+    <Compile Include="Factories\IEntityFrameworkTransactionFactory.cs" />
     <Compile Include="Migrations\201703062302082_init.cs" />
     <Compile Include="Migrations\201703062302082_init.Designer.cs">
       <DependentUpon>201703062302082_init.cs</DependentUpon>

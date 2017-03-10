@@ -6,10 +6,10 @@ namespace Parser.Data.Contracts
     /// Unit Of Work is a less catchy name!
     /// https://martinfowler.com/eaaCatalog/unitOfWork.html
     /// </summary>
-    public interface IBusinessTransaction : IDisposable
+    public interface IEntityFrameworkTransaction : IDisposable
     {
-        void CommitAsync();
+        void SaveChangesAsync();
 
-        void Commit();
+        void SaveChanges();
     }
 }

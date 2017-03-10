@@ -34,18 +34,18 @@ namespace Parser.Data.Repositories
 
         public TEntity Create(TEntity entity)
         {
-            this.entities.Add(entity);
+            Guard.WhenArgument(entity, nameof(entity)).IsNull().Throw();
 
-            this.parserDbContext.SaveChanges();
+            this.entities.Add(entity);
 
             return entity;
         }
 
-        public TEntity Find(object id)
+        public TEntity Find(Guid entityGuid)
         {
-            Guard.WhenArgument(id, nameof(id)).IsNull().Throw();
+            Guard.WhenArgument(entityGuid, nameof(entityGuid)).IsEqual(default(Guid)).Throw();
 
-            return this.entities.FirstOrDefault(e => e.Id == (Guid)id);
+            return this.entities.FirstOrDefault(e => e.Id == entityGuid);
         }
     }
 }
