@@ -59,6 +59,7 @@
     <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\CommitAsync_Should.cs" />
     <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\Commit_Should.cs" />
     <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\Constructor_Should.cs" />
+    <Compile Include="DataProvidersTests\StoredCombatStatisticsDataProviderTests\Constructor_Should.cs" />
     <Compile Include="Mocks\MockDbModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoriesTests\GenericRepositoryTests\Constructor_Should.cs" />
