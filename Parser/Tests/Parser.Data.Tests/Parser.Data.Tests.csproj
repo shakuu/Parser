@@ -63,6 +63,7 @@
     <Compile Include="DataProvidersTests\StoredCombatStatisticsDataProviderTests\Create_Should.cs" />
     <Compile Include="Mocks\MockDbModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoriesTests\EntityFrameworkRepositoryTests\Constructor_Should.cs" />
     <Compile Include="RepositoriesTests\GenericRepositoryTests\Constructor_Should.cs" />
     <Compile Include="RepositoriesTests\GenericRepositoryTests\Create_Should.cs" />
     <Compile Include="RepositoriesTests\StoredCombatStatisticsProjectionRepositoryTests\Constructor_Should.cs" />

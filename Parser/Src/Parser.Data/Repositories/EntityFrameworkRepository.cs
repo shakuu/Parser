@@ -34,6 +34,8 @@ namespace Parser.Data.Repositories
 
         public TEntity Create(TEntity entity)
         {
+            Guard.WhenArgument(entity, nameof(TEntity)).IsNull().Throw();
+
             this.entities.Add(entity);
 
             return entity;
