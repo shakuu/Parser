@@ -62,6 +62,7 @@
     <Compile Include="Contracts\IParserDbContext.cs" />
     <Compile Include="Contracts\IEntityFrameworkTransaction.cs" />
     <Compile Include="BusinessTransactions\EntityFrameworkTransaction.cs" />
+    <Compile Include="Contracts\IParserUserDataProvider.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsDataProvider.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsProjectionRepository.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsRepository.cs" />
