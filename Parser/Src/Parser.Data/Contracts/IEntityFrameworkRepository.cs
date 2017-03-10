@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Parser.Data.Contracts
 {
@@ -7,7 +8,7 @@ namespace Parser.Data.Contracts
     {
         IQueryable<TEntity> Entities { get; }
 
-        TEntity Find(object id);
+        TEntity Find(Guid entityGuid);
 
         TEntity Create(TEntity entity);
     }
