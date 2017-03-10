@@ -9,6 +9,7 @@ using Parser.Auth.Contracts;
 using Parser.Auth.Extended.Contracts;
 using Parser.Data.Contracts;
 using Parser.Data.ViewModels.Factories;
+using Parser.Data.Factories;
 
 namespace Parser.Auth.Extended.Services
 {
@@ -16,16 +17,19 @@ namespace Parser.Auth.Extended.Services
     {
         private readonly IIdentityAuthAccountService identityAuthAccountService;
         private readonly IParserUserDataProvider parserUserDataProvider;
+        private readonly IEntityFrameworkTransactionFactory entityFrameworkTransactionFactory;
         private readonly IRegisterParserUserViewModelFactory registerParserUserViewModelFactory;
 
-        public ExtendedIdentityAuthAccountService(IIdentityAuthAccountService identityAuthAccountService, IParserUserDataProvider parserUserDataProvider, IRegisterParserUserViewModelFactory registerParserUserViewModelFactory)
+        public ExtendedIdentityAuthAccountService(IIdentityAuthAccountService identityAuthAccountService, IParserUserDataProvider parserUserDataProvider, IEntityFrameworkTransactionFactory entityFrameworkTransactionFactory, IRegisterParserUserViewModelFactory registerParserUserViewModelFactory)
         {
             Guard.WhenArgument(identityAuthAccountService, nameof(IIdentityAuthAccountService)).IsNull().Throw();
             Guard.WhenArgument(parserUserDataProvider, nameof(IParserUserDataProvider)).IsNull().Throw();
+            Guard.WhenArgument(entityFrameworkTransactionFactory, nameof(IEntityFrameworkTransactionFactory)).IsNull().Throw();
             Guard.WhenArgument(registerParserUserViewModelFactory, nameof(IRegisterParserUserViewModelFactory)).IsNull().Throw();
 
             this.identityAuthAccountService = identityAuthAccountService;
             this.parserUserDataProvider = parserUserDataProvider;
+            this.entityFrameworkTransactionFactory = entityFrameworkTransactionFactory;
             this.registerParserUserViewModelFactory = registerParserUserViewModelFactory;
         }
 
@@ -35,7 +39,13 @@ namespace Parser.Auth.Extended.Services
             if (result.Succeeded)
             {
                 var parserUser = this.registerParserUserViewModelFactory.CreateRegisterParserUserViewModel(user.UserName);
-                this.parserUserDataProvider.CreateParserUser(parserUser);
+
+                using (var transaction = this.entityFrameworkTransactionFactory.CreateEntityFrameworkTransaction())
+                {
+                    this.parserUserDataProvider.CreateParserUser(parserUser);
+
+                    transaction.SaveChanges();
+                }
             }
 
             return result;
