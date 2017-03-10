@@ -4,6 +4,6 @@ namespace Parser.Data.Contracts
 {
     public interface IStoredCombatStatisticsDataProvider
     {
-        StoredCombatStatisticsViewModel Create(StoredCombatStatisticsViewModel model);
+        StoredCombatStatisticsViewModel CreateStoredCombatStatistics(StoredCombatStatisticsViewModel model);
     }
 }

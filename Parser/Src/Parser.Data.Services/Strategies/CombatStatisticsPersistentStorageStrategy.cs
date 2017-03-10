@@ -33,7 +33,7 @@ namespace Parser.Data.Services.Strategies
 
             using (var transaction = this.entityFrameworkTransactionFactory.CreateEntityFrameworkTransaction())
             {
-                this.storedCombatStatisticsDataProvider.Create(combatStatisticsProjection);
+                this.storedCombatStatisticsDataProvider.CreateStoredCombatStatistics(combatStatisticsProjection);
 
                 transaction.SaveChanges();
             }
