@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Parser.Data.Projections
+namespace Parser.Data.ViewModels
 {
-    public class StoredCombatStatisticsProjection
+    public class StoredCombatStatisticsViewModel
     {
         public Guid Id { get; set; }
 
@@ -10,7 +10,7 @@ namespace Parser.Data.Projections
 
         public Guid? ParserUserId { get; set; }
 
-        public virtual ParserUserProjection ParserUser { get; set; }
+        public virtual ParserUserViewModel ParserUser { get; set; }
 
         public string CharacterName { get; set; }
 

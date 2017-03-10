@@ -57,12 +57,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IDbContext.cs" />
+    <Compile Include="Contracts\IEntityFrameworkRepository.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IParserDbContext.cs" />
     <Compile Include="Contracts\IBusinessTransaction.cs" />
     <Compile Include="BusinessTransactions\BusinessTransaction.cs" />
+    <Compile Include="Contracts\IStoredCombatStatisticsDataProvider.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsProjectionRepository.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsRepository.cs" />
+    <Compile Include="DataProviders\StoredCombatStatisticsDataProvider.cs" />
     <Compile Include="Factories\IBusinessTransactionFactory.cs" />
     <Compile Include="Migrations\201703062302082_init.cs" />
     <Compile Include="Migrations\201703062302082_init.Designer.cs">
@@ -75,6 +78,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ParserDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EntityFrameworkRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\StoredCombatStatisticsProjectionRepository.cs" />
     <Compile Include="Repositories\StoredCombatStatisticsRepository.cs" />
@@ -96,9 +100,9 @@
       <Project>{52a718a9-0679-4196-83e3-eca37208af4c}</Project>
       <Name>Parser.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Parser.Data.Projections\Parser.Data.Projections.csproj">
+    <ProjectReference Include="..\Parser.Data.ViewModels\Parser.Data.ViewModels.csproj">
       <Project>{52a14ba3-e1dc-4b71-b47d-550862087b1c}</Project>
-      <Name>Parser.Data.Projections</Name>
+      <Name>Parser.Data.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +113,7 @@
       <DependentUpon>201703062357492_optional user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

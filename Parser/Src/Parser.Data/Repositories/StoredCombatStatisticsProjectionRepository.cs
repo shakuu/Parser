@@ -3,7 +3,7 @@
 using Parser.Common.Contracts;
 using Parser.Data.Contracts;
 using Parser.Data.Models;
-using Parser.Data.Projections;
+using Parser.Data.ViewModels;
 
 namespace Parser.Data.Repositories
 {
@@ -21,9 +21,9 @@ namespace Parser.Data.Repositories
             this.objectMapperProvider = objectMapperProvider;
         }
 
-        public StoredCombatStatisticsProjection Create(StoredCombatStatisticsProjection projection)
+        public StoredCombatStatisticsViewModel Create(StoredCombatStatisticsViewModel projection)
         {
-            Guard.WhenArgument(projection, nameof(StoredCombatStatisticsProjection)).IsNull().Throw();
+            Guard.WhenArgument(projection, nameof(StoredCombatStatisticsViewModel)).IsNull().Throw();
 
             var storedCombatStatistics = this.objectMapperProvider.Map<StoredCombatStatistics>(projection);
 

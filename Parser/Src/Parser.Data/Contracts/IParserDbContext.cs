@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 
 using Parser.Data.Models;
 
@@ -12,5 +11,7 @@ namespace Parser.Data.Contracts
         IDbSet<StoredCombatStatistics> StoredCombatStatistics { get; set; }
 
         IDbSet<TEntity> Set<TEntity>() where TEntity : class;
+
+        void SaveChanges();
     }
 }

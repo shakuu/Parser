@@ -1,8 +1,8 @@
-﻿using Parser.Data.Projections;
+﻿using Parser.Data.ViewModels;
 
 namespace Parser.Data.Contracts
 {
-    public interface IStoredCombatStatisticsProjectionRepository : IGenericRepository<StoredCombatStatisticsProjection>
+    public interface IStoredCombatStatisticsProjectionRepository : IGenericRepository<StoredCombatStatisticsViewModel>
     {
     }
 }

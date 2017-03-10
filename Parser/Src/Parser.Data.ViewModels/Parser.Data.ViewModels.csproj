@@ -7,8 +7,8 @@
     <ProjectGuid>{52A14BA3-E1DC-4B71-B47D-550862087B1C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parser.Data.Projections</RootNamespace>
-    <AssemblyName>Parser.Data.Projections</AssemblyName>
+    <RootNamespace>Parser.Data.ViewModels</RootNamespace>
+    <AssemblyName>Parser.Data.ViewModels</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,9 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ParserUserProjection.cs" />
+    <Compile Include="ParserUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StoredCombatStatisticsProjection.cs" />
+    <Compile Include="StoredCombatStatisticsViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
