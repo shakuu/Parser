@@ -256,6 +256,7 @@
     <Compile Include="App_Start\NinjectModules\AutoMapperNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\CommonNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataServicesNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\DataViewModelsNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\LogFileParserNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\SignalRNinjectModule.cs" />
@@ -347,6 +348,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Src\Parser.Auth.Extended\Parser.Auth.Extended.csproj">
+      <Project>{4a42c91f-2c6e-42c9-a621-3fe74cc2f7f8}</Project>
+      <Name>Parser.Auth.Extended</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Auth\Parser.Auth.csproj">
       <Project>{8ff46e09-d8c2-43b5-995f-b521cd076487}</Project>
       <Name>Parser.Auth</Name>

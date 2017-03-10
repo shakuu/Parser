@@ -98,7 +98,7 @@ namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentS
             combatStatisticsPersistentStorageStrategy.StoreCombatStatistics(finalizedCombatStatistics.Object);
 
             // Assert
-            storedCombatStatisticsDataProvider.Verify(r => r.Create(storedCombatStatisticsProjection), Times.Once);
+            storedCombatStatisticsDataProvider.Verify(r => r.CreateStoredCombatStatistics(storedCombatStatisticsProjection), Times.Once);
         }
 
         [Test]

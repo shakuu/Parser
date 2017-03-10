@@ -21,7 +21,7 @@ namespace Parser.Data.DataProviders
             this.objectMapperProvider = objectMapperProvider;
         }
 
-        public StoredCombatStatisticsViewModel Create(StoredCombatStatisticsViewModel model)
+        public StoredCombatStatisticsViewModel CreateStoredCombatStatistics(StoredCombatStatisticsViewModel model)
         {
             Guard.WhenArgument(model, nameof(StoredCombatStatisticsViewModel)).IsNull().Throw();
 

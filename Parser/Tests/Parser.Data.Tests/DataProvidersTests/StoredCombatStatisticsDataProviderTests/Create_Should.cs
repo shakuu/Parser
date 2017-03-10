@@ -27,7 +27,7 @@ namespace Parser.Data.Tests.DataProvidersTests.StoredCombatStatisticsDataProvide
 
             // Act & Assert
             Assert.That(
-                () => storedCombatStatisticsDataProvider.Create(model),
+                () => storedCombatStatisticsDataProvider.CreateStoredCombatStatistics(model),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(StoredCombatStatisticsViewModel)));
         }
 
@@ -43,7 +43,7 @@ namespace Parser.Data.Tests.DataProvidersTests.StoredCombatStatisticsDataProvide
             var model = new StoredCombatStatisticsViewModel();
 
             // Act
-            storedCombatStatisticsDataProvider.Create(model);
+            storedCombatStatisticsDataProvider.CreateStoredCombatStatistics(model);
 
             // Assert
             objectMapperProvider.Verify(p => p.Map<StoredCombatStatistics>(model), Times.Once);
@@ -64,7 +64,7 @@ namespace Parser.Data.Tests.DataProvidersTests.StoredCombatStatisticsDataProvide
             objectMapperProvider.Setup(p => p.Map<StoredCombatStatistics>(It.IsAny<StoredCombatStatisticsViewModel>())).Returns(storedCombatStatistics);
 
             // Act
-            storedCombatStatisticsDataProvider.Create(model);
+            storedCombatStatisticsDataProvider.CreateStoredCombatStatistics(model);
 
             // Assert
             storedCombatStatisticsEntityFrameworkRepository.Verify(r => r.Create(storedCombatStatistics), Times.Once);
@@ -85,7 +85,7 @@ namespace Parser.Data.Tests.DataProvidersTests.StoredCombatStatisticsDataProvide
             storedCombatStatisticsEntityFrameworkRepository.Setup(r => r.Create(It.IsAny<StoredCombatStatistics>())).Returns(storedCombatStatistics);
 
             // Act
-            storedCombatStatisticsDataProvider.Create(model);
+            storedCombatStatisticsDataProvider.CreateStoredCombatStatistics(model);
 
             // Assert
             objectMapperProvider.Verify(p => p.Map<StoredCombatStatisticsViewModel>(storedCombatStatistics), Times.Once);
@@ -106,7 +106,7 @@ namespace Parser.Data.Tests.DataProvidersTests.StoredCombatStatisticsDataProvide
             objectMapperProvider.Setup(p => p.Map<StoredCombatStatisticsViewModel>(It.IsAny<StoredCombatStatistics>())).Returns(expectedReturnedStoredCombatStatisticsViewModelInstance);
 
             // Act
-            var actualReturnedStoredCombatStatisticsViewModelInstance = storedCombatStatisticsDataProvider.Create(model);
+            var actualReturnedStoredCombatStatisticsViewModelInstance = storedCombatStatisticsDataProvider.CreateStoredCombatStatistics(model);
 
             // Assert
             Assert.That(actualReturnedStoredCombatStatisticsViewModelInstance, Is.SameAs(expectedReturnedStoredCombatStatisticsViewModelInstance));
