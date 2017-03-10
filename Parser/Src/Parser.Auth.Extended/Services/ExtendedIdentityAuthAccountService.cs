@@ -7,30 +7,26 @@ using Bytes2you.Validation;
 
 using Parser.Auth.Contracts;
 using Parser.Auth.Extended.Contracts;
-using Parser.Data.Contracts;
 using Parser.Data.ViewModels.Factories;
-using Parser.Data.Factories;
+using Parser.Data.Services.Contracts;
 
 namespace Parser.Auth.Extended.Services
 {
     public class ExtendedIdentityAuthAccountService : IExtendedIdentityAuthAccountService, IIdentityAuthAccountService
     {
         private readonly IIdentityAuthAccountService identityAuthAccountService;
-        private readonly IParserUserDataProvider parserUserDataProvider;
-        private readonly IEntityFrameworkTransactionFactory entityFrameworkTransactionFactory;
         private readonly IRegisterParserUserViewModelFactory registerParserUserViewModelFactory;
+        private readonly IParserUserService parserUserService;
 
-        public ExtendedIdentityAuthAccountService(IIdentityAuthAccountService identityAuthAccountService, IParserUserDataProvider parserUserDataProvider, IEntityFrameworkTransactionFactory entityFrameworkTransactionFactory, IRegisterParserUserViewModelFactory registerParserUserViewModelFactory)
+        public ExtendedIdentityAuthAccountService(IIdentityAuthAccountService identityAuthAccountService, IRegisterParserUserViewModelFactory registerParserUserViewModelFactory, IParserUserService parserUserService)
         {
             Guard.WhenArgument(identityAuthAccountService, nameof(IIdentityAuthAccountService)).IsNull().Throw();
-            Guard.WhenArgument(parserUserDataProvider, nameof(IParserUserDataProvider)).IsNull().Throw();
-            Guard.WhenArgument(entityFrameworkTransactionFactory, nameof(IEntityFrameworkTransactionFactory)).IsNull().Throw();
             Guard.WhenArgument(registerParserUserViewModelFactory, nameof(IRegisterParserUserViewModelFactory)).IsNull().Throw();
+            Guard.WhenArgument(parserUserService, nameof(IParserUserService)).IsNull().Throw();
 
             this.identityAuthAccountService = identityAuthAccountService;
-            this.parserUserDataProvider = parserUserDataProvider;
-            this.entityFrameworkTransactionFactory = entityFrameworkTransactionFactory;
             this.registerParserUserViewModelFactory = registerParserUserViewModelFactory;
+            this.parserUserService = parserUserService;
         }
 
         public async Task<IdentityResult> CreateAsync(AuthUser user, string password)
@@ -39,13 +35,7 @@ namespace Parser.Auth.Extended.Services
             if (result.Succeeded)
             {
                 var parserUser = this.registerParserUserViewModelFactory.CreateRegisterParserUserViewModel(user.UserName);
-
-                using (var transaction = this.entityFrameworkTransactionFactory.CreateEntityFrameworkTransaction())
-                {
-                    this.parserUserDataProvider.CreateParserUser(parserUser);
-
-                    transaction.SaveChanges();
-                }
+                this.parserUserService.CreateParserUser(parserUser);
             }
 
             return result;
