@@ -33,6 +33,9 @@ namespace Parser.Auth.Services
 
         public async Task<SignInStatus> PasswordSignInAsync(string email, string password, bool rememberMe)
         {
+            Guard.WhenArgument(email, nameof(email)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(password, nameof(password)).IsNullOrEmpty().Throw();
+
             return await this.authSignInManagerProvider.SignInManager.PasswordSignInAsync(email, password, rememberMe, shouldLockout: false);
         }
 
