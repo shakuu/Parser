@@ -14,7 +14,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         private void BindAllClassesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.Auth.*")
+                .FromAssembliesMatching("*.Auth.Extended.*")
                 .SelectAllClasses()
                 .BindDefaultInterface();
         }
