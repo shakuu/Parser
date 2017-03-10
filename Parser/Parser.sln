@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Data.ViewModels", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Auth", "Src\Parser.Auth\Parser.Auth.csproj", "{8FF46E09-D8C2-43B5-995F-B521CD076487}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Auth.Tests", "Tests\Parser.Auth.Tests\Parser.Auth.Tests.csproj", "{8AF7310E-4BB8-447A-B2C4-1418F13FD8B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,10 @@ Global
 		{8FF46E09-D8C2-43B5-995F-B521CD076487}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FF46E09-D8C2-43B5-995F-B521CD076487}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FF46E09-D8C2-43B5-995F-B521CD076487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AF7310E-4BB8-447A-B2C4-1418F13FD8B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF7310E-4BB8-447A-B2C4-1418F13FD8B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF7310E-4BB8-447A-B2C4-1418F13FD8B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF7310E-4BB8-447A-B2C4-1418F13FD8B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -169,5 +175,6 @@ Global
 		{8ADB858C-948C-4FE0-A8F4-DAAE0A5C28A8} = {078E0CBC-5CAF-4513-A1D3-4F9F330B1D72}
 		{52A14BA3-E1DC-4B71-B47D-550862087B1C} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
 		{8FF46E09-D8C2-43B5-995F-B521CD076487} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
+		{8AF7310E-4BB8-447A-B2C4-1418F13FD8B5} = {078E0CBC-5CAF-4513-A1D3-4F9F330B1D72}
 	EndGlobalSection
 EndGlobal
