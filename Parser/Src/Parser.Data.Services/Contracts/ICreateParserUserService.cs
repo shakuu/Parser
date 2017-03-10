@@ -2,7 +2,7 @@
 
 namespace Parser.Data.Services.Contracts
 {
-    public interface IParserUserService
+    public interface ICreateParserUserService
     {
         ParserUserViewModel CreateParserUser(ParserUserViewModel model);
     }

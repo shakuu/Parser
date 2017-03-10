@@ -16,13 +16,13 @@ namespace Parser.Auth.Extended.Services
     {
         private readonly IIdentityAuthAccountService identityAuthAccountService;
         private readonly IRegisterParserUserViewModelFactory registerParserUserViewModelFactory;
-        private readonly IParserUserService parserUserService;
+        private readonly ICreateParserUserService parserUserService;
 
-        public ExtendedIdentityAuthAccountService(IIdentityAuthAccountService identityAuthAccountService, IRegisterParserUserViewModelFactory registerParserUserViewModelFactory, IParserUserService parserUserService)
+        public ExtendedIdentityAuthAccountService(IIdentityAuthAccountService identityAuthAccountService, IRegisterParserUserViewModelFactory registerParserUserViewModelFactory, ICreateParserUserService parserUserService)
         {
             Guard.WhenArgument(identityAuthAccountService, nameof(IIdentityAuthAccountService)).IsNull().Throw();
             Guard.WhenArgument(registerParserUserViewModelFactory, nameof(IRegisterParserUserViewModelFactory)).IsNull().Throw();
-            Guard.WhenArgument(parserUserService, nameof(IParserUserService)).IsNull().Throw();
+            Guard.WhenArgument(parserUserService, nameof(ICreateParserUserService)).IsNull().Throw();
 
             this.identityAuthAccountService = identityAuthAccountService;
             this.registerParserUserViewModelFactory = registerParserUserViewModelFactory;

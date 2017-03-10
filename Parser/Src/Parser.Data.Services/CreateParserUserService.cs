@@ -7,12 +7,12 @@ using Parser.Data.ViewModels;
 
 namespace Parser.Data.Services
 {
-    public class ParserUserService : IParserUserService
+    public class CreateParserUserService : ICreateParserUserService
     {
         private readonly IParserUserDataProvider parserUserDataProvider;
         private readonly IEntityFrameworkTransactionFactory entityFrameworkTransactionFactory;
 
-        public ParserUserService(IParserUserDataProvider parserUserDataProvider, IEntityFrameworkTransactionFactory entityFrameworkTransactionFactory)
+        public CreateParserUserService(IParserUserDataProvider parserUserDataProvider, IEntityFrameworkTransactionFactory entityFrameworkTransactionFactory)
         {
             Guard.WhenArgument(parserUserDataProvider, nameof(IParserUserDataProvider)).IsNull().Throw();
             Guard.WhenArgument(entityFrameworkTransactionFactory, nameof(IEntityFrameworkTransactionFactory)).IsNull().Throw();
