@@ -5,7 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 
-using Parser.Auth.Services;
+using Parser.Auth.Providers;
 
 namespace Parser.Auth.Managers
 {
@@ -54,8 +54,8 @@ namespace Parser.Auth.Managers
                 BodyFormat = "Your security code is {0}"
             });
 
-            manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
+            manager.EmailService = new EmailProvider();
+            manager.SmsService = new SmsProvider();
 
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)

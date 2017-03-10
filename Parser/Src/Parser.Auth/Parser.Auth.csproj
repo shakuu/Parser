@@ -100,8 +100,8 @@
     <Compile Include="Managers\AuthSignInManager.cs" />
     <Compile Include="Managers\AuthUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\EmailService.cs" />
-    <Compile Include="Services\SmsService.cs" />
+    <Compile Include="Providers\EmailProvider.cs" />
+    <Compile Include="Providers\SmsProvider.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
   </ItemGroup>
