@@ -7,7 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using Parser.Auth.ViewModels;
 using Parser.Auth;
-
+using Parser.Auth.Managers;
 
 namespace Parser.MvcClient
 {
