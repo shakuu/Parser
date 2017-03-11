@@ -16,17 +16,17 @@ namespace Parser.Auth.Extended.Services
     {
         private readonly IIdentityAuthAccountService identityAuthAccountService;
         private readonly IRegisterParserUserViewModelFactory registerParserUserViewModelFactory;
-        private readonly ICreateParserUserService parserUserService;
+        private readonly ICreateParserUserService createParserUserService;
 
-        public ExtendedIdentityAuthAccountService(IIdentityAuthAccountService identityAuthAccountService, IRegisterParserUserViewModelFactory registerParserUserViewModelFactory, ICreateParserUserService parserUserService)
+        public ExtendedIdentityAuthAccountService(IIdentityAuthAccountService identityAuthAccountService, IRegisterParserUserViewModelFactory registerParserUserViewModelFactory, ICreateParserUserService createParserUserService)
         {
             Guard.WhenArgument(identityAuthAccountService, nameof(IIdentityAuthAccountService)).IsNull().Throw();
             Guard.WhenArgument(registerParserUserViewModelFactory, nameof(IRegisterParserUserViewModelFactory)).IsNull().Throw();
-            Guard.WhenArgument(parserUserService, nameof(ICreateParserUserService)).IsNull().Throw();
+            Guard.WhenArgument(createParserUserService, nameof(ICreateParserUserService)).IsNull().Throw();
 
             this.identityAuthAccountService = identityAuthAccountService;
             this.registerParserUserViewModelFactory = registerParserUserViewModelFactory;
-            this.parserUserService = parserUserService;
+            this.createParserUserService = createParserUserService;
         }
 
         public async Task<IdentityResult> CreateAsync(AuthUser user, string password)
@@ -35,7 +35,7 @@ namespace Parser.Auth.Extended.Services
             if (result.Succeeded)
             {
                 var parserUser = this.registerParserUserViewModelFactory.CreateRegisterParserUserViewModel(user.UserName);
-                this.parserUserService.CreateParserUser(parserUser);
+                this.createParserUserService.CreateParserUser(parserUser);
             }
 
             return result;
