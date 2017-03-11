@@ -12,7 +12,7 @@ using Parser.Data.ViewModels;
 namespace Parser.Data.Tests.DataProvidersTests.StoredCombatStatisticsDataProviderTests
 {
     [TestFixture]
-    public class Create_Should
+    public class CreateStoredCombatStatistics_Should
     {
         [Test]
         public void ThrowArgumentNullException_WhenStoredCombatStatisticsViewModelParameterIsNull()
