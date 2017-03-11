@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+
 using Microsoft.AspNet.Identity;
+
 using Moq;
 using NUnit.Framework;
 
