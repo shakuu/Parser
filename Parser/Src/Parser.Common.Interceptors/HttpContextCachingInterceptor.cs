@@ -18,7 +18,7 @@ namespace Parser.Common.Interceptors
         private readonly IHttpContextCacheProvider httpContextCacheProvider;
         private readonly IDateTimeProvider dateTimeProvider;
 
-        private readonly IDictionary<string, DateTime> lastCacheUpdateTimestamps;
+        private readonly IDictionary<string, DateTime> lastCacheUpdateTimestampsByMethodName;
 
         public HttpContextCachingInterceptor(IHttpContextCacheProvider httpContextCacheProvider, IDateTimeProvider dateTimeProvider)
         {
@@ -28,7 +28,7 @@ namespace Parser.Common.Interceptors
             this.httpContextCacheProvider = httpContextCacheProvider;
             this.dateTimeProvider = dateTimeProvider;
 
-            this.lastCacheUpdateTimestamps = new ConcurrentDictionary<string, DateTime>();
+            this.lastCacheUpdateTimestampsByMethodName = new ConcurrentDictionary<string, DateTime>();
         }
 
         public void Intercept(IInvocation invocation)
@@ -43,10 +43,24 @@ namespace Parser.Common.Interceptors
             else
             {
                 invocation.Proceed();
-
-                this.httpContextCacheProvider[invokedMethodName] = invocation.ReturnValue;
-                this.lastCacheUpdateTimestamps[invokedMethodName] = this.dateTimeProvider.GetUtcNow();
+                this.UpdateCacheForMethod(invokedMethodName, invocation.ReturnValue);
             }
+        }
+
+        private void UpdateCacheForMethod(string methodName, object data)
+        {
+            if (data == null)
+            {
+                return;
+            }
+
+            if (!this.lastCacheUpdateTimestampsByMethodName.ContainsKey(methodName))
+            {
+                this.lastCacheUpdateTimestampsByMethodName.Add(methodName, this.dateTimeProvider.GetUtcNow());
+            }
+
+            this.lastCacheUpdateTimestampsByMethodName[methodName] = this.dateTimeProvider.GetUtcNow();
+            this.httpContextCacheProvider[methodName] = data;
         }
 
         private string GetInvokedMethodName(IInvocation invocation)
@@ -60,15 +74,14 @@ namespace Parser.Common.Interceptors
         {
             double timeElapsed;
 
-            var invokedMethodDataIsCached = this.lastCacheUpdateTimestamps.ContainsKey(invokedMethodName);
+            var invokedMethodDataIsCached = this.lastCacheUpdateTimestampsByMethodName.ContainsKey(invokedMethodName);
             if (invokedMethodDataIsCached)
             {
-                var lastCacheUpdateTimestamp = this.lastCacheUpdateTimestamps[invokedMethodName];
+                var lastCacheUpdateTimestamp = this.lastCacheUpdateTimestampsByMethodName[invokedMethodName];
                 timeElapsed = (this.dateTimeProvider.GetUtcNow() - lastCacheUpdateTimestamp).TotalMinutes;
             }
             else
             {
-                this.lastCacheUpdateTimestamps.Add(invokedMethodName, this.dateTimeProvider.GetUtcNow());
                 timeElapsed = double.MaxValue;
             }
 
