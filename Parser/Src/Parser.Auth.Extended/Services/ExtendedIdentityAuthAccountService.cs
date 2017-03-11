@@ -31,6 +31,8 @@ namespace Parser.Auth.Extended.Services
 
         public async Task<IdentityResult> CreateAsync(AuthUser user, string password)
         {
+            Guard.WhenArgument(user, nameof(AuthUser)).IsNull().Throw();
+
             var result = await this.identityAuthAccountService.CreateAsync(user, password);
             if (result.Succeeded)
             {
