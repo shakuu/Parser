@@ -7,8 +7,8 @@
     <ProjectGuid>{AAB4C13B-7F42-4995-8DB1-4121F77147CC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parser.HttpContextUtilities</RootNamespace>
-    <AssemblyName>Parser.HttpContextUtilities</AssemblyName>
+    <RootNamespace>Parser.Common.Utilities</RootNamespace>
+    <AssemblyName>Parser.Common.Utilities</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

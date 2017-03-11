@@ -1,8 +1,8 @@
 ﻿using System.Web;
 
-using Parser.HttpContextUtilities.Contracts;
+using Parser.Common.Utilities.Contracts;
 
-namespace Parser.HttpContextUtilities.Providers
+namespace Parser.Common.Utilities.Providers
 {
     public class HttpContextCacheProvider : IHttpContextCacheProvider
     {

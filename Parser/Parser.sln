@@ -45,7 +45,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common.Constants", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Data.Services.Tests", "Tests\Parser.Data.Services.Tests\Parser.Data.Services.Tests.csproj", "{522B8336-E936-4733-B908-85C564DA20A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.HttpContextUtilities", "Src\Parser.HttpContextUtilities\Parser.HttpContextUtilities.csproj", "{AAB4C13B-7F42-4995-8DB1-4121F77147CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common.Utilities", "Src\Parser.HttpContextUtilities\Parser.Common.Utilities.csproj", "{AAB4C13B-7F42-4995-8DB1-4121F77147CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Data.Tests", "Tests\Parser.Data.Tests\Parser.Data.Tests.csproj", "{8ADB858C-948C-4FE0-A8F4-DAAE0A5C28A8}"
 EndProject

@@ -1,4 +1,4 @@
-﻿namespace Parser.HttpContextUtilities.Contracts
+﻿namespace Parser.Common.Utilities.Contracts
 {
     public interface IHttpContextCacheProvider
     {
