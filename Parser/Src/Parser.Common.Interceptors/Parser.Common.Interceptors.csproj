@@ -60,6 +60,10 @@
       <Project>{aab4c13b-7f42-4995-8db1-4121f77147cc}</Project>
       <Name>Parser.Common.Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">
+      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
+      <Name>Parser.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
