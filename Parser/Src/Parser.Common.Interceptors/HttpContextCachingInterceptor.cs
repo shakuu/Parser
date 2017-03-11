@@ -49,6 +49,11 @@ namespace Parser.Common.Interceptors
 
         private void UpdateCacheForMethod(string methodName, object data)
         {
+            if (data == null)
+            {
+                return;
+            }
+
             if (!this.lastCacheUpdateTimestampsByMethodName.ContainsKey(methodName))
             {
                 this.lastCacheUpdateTimestampsByMethodName.Add(methodName, this.dateTimeProvider.GetUtcNow());
