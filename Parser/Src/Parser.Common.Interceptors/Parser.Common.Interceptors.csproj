@@ -49,7 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CachingInterceptor.cs" />
+    <Compile Include="HttpContextCachingInterceptor.cs" />
+    <Compile Include="Contracts\IHttpContextCacheReturnValues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

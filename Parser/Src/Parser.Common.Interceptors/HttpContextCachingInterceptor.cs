@@ -11,7 +11,7 @@ using Parser.Common.Utilities.Contracts;
 
 namespace Parser.Common.Interceptors
 {
-    public class CachingInterceptor : IInterceptor
+    public class HttpContextCachingInterceptor : IInterceptor
     {
         private const double CacheTimeoutPeriodInMinutes = 5;
 
@@ -20,7 +20,7 @@ namespace Parser.Common.Interceptors
 
         private readonly IDictionary<string, DateTime> lastCacheUpdateTimestamps;
 
-        public CachingInterceptor(IHttpContextCacheProvider httpContextCacheProvider, IDateTimeProvider dateTimeProvider)
+        public HttpContextCachingInterceptor(IHttpContextCacheProvider httpContextCacheProvider, IDateTimeProvider dateTimeProvider)
         {
             Guard.WhenArgument(httpContextCacheProvider, nameof(IHttpContextCacheProvider)).IsNull().Throw();
             Guard.WhenArgument(dateTimeProvider, nameof(IDateTimeProvider)).IsNull().Throw();
@@ -36,7 +36,7 @@ namespace Parser.Common.Interceptors
             var invokedMethodName = this.GetInvokedMethodName(invocation);
 
             var invokedMethodTimeElapsedSincePreviousCacheUpdateInMinutes = this.GetTimeElapsedSincePreviousCacheUpdateInMinutes(invokedMethodName);
-            if (invokedMethodTimeElapsedSincePreviousCacheUpdateInMinutes < CachingInterceptor.CacheTimeoutPeriodInMinutes)
+            if (invokedMethodTimeElapsedSincePreviousCacheUpdateInMinutes < HttpContextCachingInterceptor.CacheTimeoutPeriodInMinutes)
             {
                 invocation.ReturnValue = this.httpContextCacheProvider[invokedMethodName];
             }
