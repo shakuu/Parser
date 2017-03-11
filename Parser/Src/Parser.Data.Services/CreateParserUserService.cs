@@ -23,6 +23,8 @@ namespace Parser.Data.Services
 
         public ParserUserViewModel CreateParserUser(ParserUserViewModel model)
         {
+            Guard.WhenArgument(model, nameof(ParserUserViewModel)).IsNull().Throw();
+
             using (var transaction = this.entityFrameworkTransactionFactory.CreateEntityFrameworkTransaction())
             {
                 this.parserUserDataProvider.CreateParserUser(model);
