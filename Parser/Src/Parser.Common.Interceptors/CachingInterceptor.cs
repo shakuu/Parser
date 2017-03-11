@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Bytes2you.Validation;
 
 using Ninject.Extensions.Interception;
+
 using Parser.Common.Contracts;
 using Parser.Common.Utilities.Contracts;
 
@@ -12,6 +13,8 @@ namespace Parser.Common.Interceptors
 {
     public class CachingInterceptor : IInterceptor
     {
+        private const double CacheTimeoutPeriodInMinutes = 5;
+
         private readonly IHttpContextCacheProvider httpContextCacheProvider;
         private readonly IDateTimeProvider dateTimeProvider;
 
@@ -32,8 +35,8 @@ namespace Parser.Common.Interceptors
         {
             var invokedMethodName = this.GetInvokedMethodName(invocation);
 
-            var invokedMethodTimeElapsedSincePreviousCacheUpdate = this.GetTimeElapsedSincePreviousCacheUpdate(invokedMethodName);
-            if (invokedMethodTimeElapsedSincePreviousCacheUpdate < 15)
+            var invokedMethodTimeElapsedSincePreviousCacheUpdateInMinutes = this.GetTimeElapsedSincePreviousCacheUpdateInMinutes(invokedMethodName);
+            if (invokedMethodTimeElapsedSincePreviousCacheUpdateInMinutes < CachingInterceptor.CacheTimeoutPeriodInMinutes)
             {
                 invocation.ReturnValue = this.httpContextCacheProvider[invokedMethodName];
             }
@@ -53,7 +56,7 @@ namespace Parser.Common.Interceptors
             return invokedMethodName;
         }
 
-        private double GetTimeElapsedSincePreviousCacheUpdate(string invokedMethodName)
+        private double GetTimeElapsedSincePreviousCacheUpdateInMinutes(string invokedMethodName)
         {
             double timeElapsed;
 
