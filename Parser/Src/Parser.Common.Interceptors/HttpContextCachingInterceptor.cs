@@ -43,10 +43,19 @@ namespace Parser.Common.Interceptors
             else
             {
                 invocation.Proceed();
-
-                this.httpContextCacheProvider[invokedMethodName] = invocation.ReturnValue;
-                this.lastCacheUpdateTimestampsByMethodName[invokedMethodName] = this.dateTimeProvider.GetUtcNow();
+                this.UpdateCacheForMethod(invokedMethodName, invocation.ReturnValue);
             }
+        }
+
+        private void UpdateCacheForMethod(string methodName, object data)
+        {
+            if (!this.lastCacheUpdateTimestampsByMethodName.ContainsKey(methodName))
+            {
+                this.lastCacheUpdateTimestampsByMethodName.Add(methodName, this.dateTimeProvider.GetUtcNow());
+            }
+
+            this.lastCacheUpdateTimestampsByMethodName[methodName] = this.dateTimeProvider.GetUtcNow();
+            this.httpContextCacheProvider[methodName] = data;
         }
 
         private string GetInvokedMethodName(IInvocation invocation)
@@ -68,7 +77,6 @@ namespace Parser.Common.Interceptors
             }
             else
             {
-                this.lastCacheUpdateTimestampsByMethodName.Add(invokedMethodName, this.dateTimeProvider.GetUtcNow());
                 timeElapsed = double.MaxValue;
             }
 
