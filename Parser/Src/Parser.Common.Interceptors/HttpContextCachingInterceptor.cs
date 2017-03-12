@@ -31,6 +31,8 @@ namespace Parser.Common.Interceptors
             this.lastCacheUpdateTimestampsByMethodName = new ConcurrentDictionary<string, DateTime>();
         }
 
+        protected IDictionary<string, DateTime> LastCacheUpdateTimestampsByMethodName { get { return this.lastCacheUpdateTimestampsByMethodName; } }
+
         public void Intercept(IInvocation invocation)
         {
             var invokedMethodName = this.GetInvokedMethodName(invocation);
