@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HttpContextCachingInterceptorTests\Constructor_Should.cs" />
+    <Compile Include="HttpContextCachingInterceptorTests\Intercept_Should.cs" />
     <Compile Include="Mocks\MockHttpContextCachingInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
