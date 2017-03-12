@@ -71,6 +71,7 @@ namespace Parser.MvcClient.App_Start
             kernel.Load(new AutoMapperNinjectModule());
             kernel.Load(new CommonNinjectModule());
             kernel.Load(new DataNinjectModule());
+            kernel.Load(new DataModelsNinjectModule());
             kernel.Load(new DataServicesNinjectModule());
             kernel.Load(new DataViewModelsNinjectModule());
             kernel.Load(new LogFileParserNinjectModule());

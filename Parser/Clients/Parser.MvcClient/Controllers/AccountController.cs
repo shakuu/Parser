@@ -9,6 +9,7 @@ using Microsoft.Owin.Security;
 using Parser.Auth.Contracts;
 using Parser.Auth.Factories;
 using Parser.Auth.ViewModels;
+using Parser.Data.Models.Factories;
 
 namespace Parser.MvcClient.Controllers
 {
@@ -16,11 +17,13 @@ namespace Parser.MvcClient.Controllers
     public class AccountController : Controller
     {
         private readonly IIdentityAuthAccountService identityAuthAccountService;
+        private readonly IParserUserFactory parserUserFactory;
         private readonly IAuthUserFactory authUserFactory;
 
-        public AccountController(IIdentityAuthAccountService identityAuthAccountService, IAuthUserFactory authUserFactory)
+        public AccountController(IIdentityAuthAccountService identityAuthAccountService, IParserUserFactory parserUserFactory, IAuthUserFactory authUserFactory)
         {
             this.identityAuthAccountService = identityAuthAccountService;
+            this.parserUserFactory = parserUserFactory;
             this.authUserFactory = authUserFactory;
         }
 
@@ -73,6 +76,9 @@ namespace Parser.MvcClient.Controllers
                 var user = this.authUserFactory.CreateAuthUser();
                 user.UserName = model.Email;
                 user.Email = model.Email;
+
+                user.ParserUser = this.parserUserFactory.CreateParserUser();
+                user.ParserUser.Username = model.Email;
 
                 var result = await this.identityAuthAccountService.CreateAsync(user, model.Password);
                 if (result.Succeeded)
