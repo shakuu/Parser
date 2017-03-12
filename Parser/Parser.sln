@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common.Utilities", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common.Interceptors", "Src\Parser.Common.Interceptors\Parser.Common.Interceptors.csproj", "{044EC167-75D8-4BD2-B893-5E9003F71DE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common.Interceptors.Tests", "Tests\Parser.Common.Interceptors.Tests\Parser.Common.Interceptors.Tests.csproj", "{A19D1873-6BA0-4FD4-8EC6-F283C6B21A50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -167,6 +169,10 @@ Global
 		{044EC167-75D8-4BD2-B893-5E9003F71DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{044EC167-75D8-4BD2-B893-5E9003F71DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{044EC167-75D8-4BD2-B893-5E9003F71DE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A19D1873-6BA0-4FD4-8EC6-F283C6B21A50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A19D1873-6BA0-4FD4-8EC6-F283C6B21A50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A19D1873-6BA0-4FD4-8EC6-F283C6B21A50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A19D1873-6BA0-4FD4-8EC6-F283C6B21A50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -197,5 +203,6 @@ Global
 		{B21A568C-96D4-4564-8931-D409C3370857} = {078E0CBC-5CAF-4513-A1D3-4F9F330B1D72}
 		{AAB4C13B-7F42-4995-8DB1-4121F77147CC} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
 		{044EC167-75D8-4BD2-B893-5E9003F71DE3} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
+		{A19D1873-6BA0-4FD4-8EC6-F283C6B21A50} = {078E0CBC-5CAF-4513-A1D3-4F9F330B1D72}
 	EndGlobalSection
 EndGlobal
