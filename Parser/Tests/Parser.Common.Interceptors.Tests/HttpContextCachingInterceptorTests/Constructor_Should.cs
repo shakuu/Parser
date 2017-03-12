@@ -7,8 +7,8 @@ using NUnit.Framework;
 using Ninject.Extensions.Interception;
 
 using Parser.Common.Contracts;
-using Parser.Common.Utilities.Contracts;
 using Parser.Common.Interceptors.Tests.Mocks;
+using Parser.Common.Utilities.Contracts;
 
 namespace Parser.Common.Interceptors.Tests.HttpContextCachingInterceptorTests
 {
