@@ -18,7 +18,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
 
-            this.Bind<IIdentityAuthAccountService>().ToMethod(this.IIdentityAuthAccountServiceFactoryMethod).WhenInjectedExactlyInto<AccountController>();
+            //this.Bind<IIdentityAuthAccountService>().ToMethod(this.IIdentityAuthAccountServiceFactoryMethod).WhenInjectedExactlyInto<AccountController>();
         }
 
         private IIdentityAuthAccountService IIdentityAuthAccountServiceFactoryMethod(IContext context)

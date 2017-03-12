@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IDbModel.cs" />
+    <Compile Include="Factories\IParserUserFactory.cs" />
     <Compile Include="ParserUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredCombatStatistics.cs" />

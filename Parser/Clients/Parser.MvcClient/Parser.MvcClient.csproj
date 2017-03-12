@@ -255,6 +255,7 @@
     <Compile Include="App_Start\NinjectModules\AuthNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\AutoMapperNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\CommonNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\DataModelsNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataServicesNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataViewModelsNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\LogFileParserNinjectModule.cs" />
