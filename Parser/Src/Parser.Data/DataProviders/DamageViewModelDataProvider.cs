@@ -38,7 +38,7 @@ namespace Parser.Data.DataProviders
             }
 
             var storedCombatStatistics = this.GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(pageNumber);
-            pageNumber = (storedCombatStatistics.Count / DamageViewModelDataProvider.DefaultPageSize);
+            pageNumber = storedCombatStatistics.Count / DamageViewModelDataProvider.DefaultPageSize;
 
             var damageDonePerSecondViewModels = new LinkedList<DamageDonePerSecondViewModel>();
             foreach (var storedCombatStatistic in storedCombatStatistics)
