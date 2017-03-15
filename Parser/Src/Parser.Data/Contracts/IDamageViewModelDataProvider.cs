@@ -4,6 +4,6 @@ namespace Parser.Data.Contracts
 {
     public interface IDamageViewModelDataProvider
     {
-        DamageViewModel GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber);
+        DamageViewModel GetDamageViewModelOnPage(int pageNumber);
     }
 }

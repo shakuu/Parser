@@ -13,7 +13,7 @@ namespace Parser.Data.DataProviders
 {
     public class DamageViewModelDataProvider : IDamageViewModelDataProvider
     {
-        private const int DefaultPageSize = 10;
+        private const int DefaultPageSize = 50;
 
         private readonly IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository;
         private readonly IDamageViewModelFactory damageViewModelFactory;
@@ -30,18 +30,15 @@ namespace Parser.Data.DataProviders
             this.objectMapperProvider = objectMapperProvider;
         }
 
-        public DamageViewModel GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber)
+        public DamageViewModel GetDamageViewModelOnPage(int pageNumber)
         {
-            if (pageNumber < 0)
+            if (pageNumber <= 0)
             {
-                pageNumber = 0;
+                pageNumber = 1;
             }
 
-            var storedCombatStatistics = this.storedCombatStatisticsEntityFrameworkRepository.Entities
-                .OrderBy(e => e.DamageDonePerSecond)
-                .Skip(DamageViewModelDataProvider.DefaultPageSize * pageNumber)
-                .Take(DamageViewModelDataProvider.DefaultPageSize)
-                .ToList();
+            var storedCombatStatistics = this.GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(pageNumber);
+            pageNumber = (storedCombatStatistics.Count / DamageViewModelDataProvider.DefaultPageSize);
 
             var damageDonePerSecondViewModels = new LinkedList<DamageDonePerSecondViewModel>();
             foreach (var storedCombatStatistic in storedCombatStatistics)
@@ -53,6 +50,14 @@ namespace Parser.Data.DataProviders
             var damageViewModel = this.damageViewModelFactory.CreateDamageViewModel(pageNumber, damageDonePerSecondViewModels);
 
             return damageViewModel;
+        }
+
+        private IList<StoredCombatStatistics> GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber)
+        {
+            return this.storedCombatStatisticsEntityFrameworkRepository.Entities
+                .OrderByDescending(e => e.DamageDonePerSecond)
+                .Take(DamageViewModelDataProvider.DefaultPageSize * pageNumber)
+                .ToList();
         }
     }
 }

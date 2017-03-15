@@ -16,14 +16,18 @@ namespace Parser.MvcClient.Controllers
         [HttpGet]
         public ActionResult Damage()
         {
-            return this.View();
+            var viewModel = this.leaderboardDamageService.GetTopStoredCombatStatisticsOnPage(0);
+
+            return this.View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Damage(int? pageNumber)
         {
-            return this.Content("asd");
+            var viewModel = this.leaderboardDamageService.GetTopStoredCombatStatisticsOnPage(pageNumber.Value + 1);
+
+            return this.PartialView("_DamageDonePerSecondViewModelsPartial", viewModel);
         }
 
         [HttpGet]
