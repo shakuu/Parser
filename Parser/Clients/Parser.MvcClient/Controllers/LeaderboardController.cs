@@ -1,12 +1,16 @@
 ﻿using System.Web.Mvc;
 
+using Parser.Data.Services.Contracts;
+
 namespace Parser.MvcClient.Controllers
 {
     public class LeaderboardController : Controller
     {
-        public LeaderboardController()
-        {
+        private readonly ILeaderboardDamageService leaderboardDamageService;
 
+        public LeaderboardController(ILeaderboardDamageService leaderboardDamageService)
+        {
+            this.leaderboardDamageService = leaderboardDamageService;
         }
 
         [HttpGet]
