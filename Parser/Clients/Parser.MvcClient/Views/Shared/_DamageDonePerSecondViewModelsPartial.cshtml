@@ -1,0 +1,23 @@
+﻿@using Parser.Data.ViewModels.Leaderboard
+@model  DamageViewModel
+
+@{
+    Layout = null;
+}
+
+@Html.HiddenFor(m => m.PageNumber, new { id = "current-page-number" })
+
+@foreach (var viewModel in Model.DamageDonePerSecondViewModels)
+{
+    <p>DPS: @viewModel.DamageDonePerSecond</p>
+}
+
+@using (Ajax.BeginForm("Damage", new { pageNumber = Model.PageNumber }, new AjaxOptions()
+{
+    UpdateTargetId = "damage-done-models",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "POST"
+}, new { id = "update-form" }))
+{
+    @Html.AntiForgeryToken()
+}

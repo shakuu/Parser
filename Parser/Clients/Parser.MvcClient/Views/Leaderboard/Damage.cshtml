@@ -1,0 +1,19 @@
+﻿@model Parser.Data.ViewModels.Leaderboard.DamageViewModel
+
+@{
+    ViewBag.Title = "Top Dps";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Top Dps</h2>
+
+<div class="well">
+    <div id="damage-done-models">
+        @Html.Partial("_DamageDonePerSecondViewModelsPartial", @Model)
+    </div>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/damage")
+}
