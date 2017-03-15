@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICacheProvider.cs" />
     <Compile Include="Contracts\IHttpContextCacheProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\CacheProvider.cs" />
     <Compile Include="Providers\HttpContextCacheProvider.cs" />
   </ItemGroup>
   <ItemGroup>
