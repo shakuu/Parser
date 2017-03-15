@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\IDamageViewModelFactory.cs" />
     <Compile Include="Factories\IRegisterParserUserViewModelFactory.cs" />
     <Compile Include="Leaderboard\DamageDonePerSecondViewModel.cs" />
     <Compile Include="Leaderboard\DamageViewModel.cs" />

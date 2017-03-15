@@ -4,6 +4,11 @@ namespace Parser.Data.ViewModels.Leaderboard
 {
     public class DamageViewModel
     {
-        IEnumerable<DamageDonePerSecondViewModel> DamageDonePerSecondViewModels { get; set; }
+        public DamageViewModel(IEnumerable<DamageDonePerSecondViewModel> damageDonePerSecondViewModels)
+        {
+            this.DamageDonePerSecondViewModels = damageDonePerSecondViewModels;
+        }
+
+        public IEnumerable<DamageDonePerSecondViewModel> DamageDonePerSecondViewModels { get; private set; }
     }
 }
