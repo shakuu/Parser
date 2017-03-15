@@ -6,7 +6,6 @@ namespace Parser.MvcClient.Controllers
     public class LiveController : Controller
     {
         [HttpGet]
-        [ValidateAntiForgeryToken]
         public ActionResult Index()
         {
             return View();

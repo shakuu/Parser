@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace Parser.MvcClient
@@ -16,9 +12,39 @@ namespace Parser.MvcClient
             routes.LowercaseUrls = true;
 
             routes.MapRoute(
+                name: "TopDps",
+                url: "damage",
+                defaults: new { controller = "Home", action = "Damage" }
+            );
+
+            routes.MapRoute(
+                name: "TopHps",
+                url: "healing",
+                defaults: new { controller = "Home", action = "Healing" }
+            );
+
+            routes.MapRoute(
+                name: "Live",
+                url: "live",
+                defaults: new { controller = "Live", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "Login",
+                url: "login",
+                defaults: new { controller = "Account", action = "Login" }
+            );
+
+            routes.MapRoute(
+                name: "Register",
+                url: "register",
+                defaults: new { controller = "Account", action = "Register" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new { controller = "Home", action = "Index" }
             );
         }
     }

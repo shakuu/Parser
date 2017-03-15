@@ -337,8 +337,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\TopDps.cshtml" />
-    <Content Include="Views\Home\TopHps.cshtml" />
+    <Content Include="Views\Home\Damage.cshtml" />
+    <Content Include="Views\Home\Healing.cshtml" />
     <Content Include="Views\Live\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

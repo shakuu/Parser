@@ -11,18 +11,18 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
-        public ActionResult TopDps()
+        public ActionResult Damage()
         {
             return View();
         }
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
-        public ActionResult TopHps()
+        public ActionResult Healing()
         {
             return View();
         }
+
+
 
         public ActionResult About()
         {
