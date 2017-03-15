@@ -344,6 +344,7 @@
     <Content Include="Views\Leaderboard\Damage.cshtml" />
     <Content Include="Views\Leaderboard\Healing.cshtml" />
     <Content Include="Views\Live\Index.cshtml" />
+    <Content Include="Views\Shared\_DamageDonePerSecondViewModelsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

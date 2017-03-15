@@ -6,6 +6,6 @@ namespace Parser.Data.ViewModels.Factories
 {
     public interface IDamageViewModelFactory
     {
-        DamageViewModel CreateDamageViewModel(IEnumerable<DamageDonePerSecondViewModel> damageDonePerSecondViewModels);
+        DamageViewModel CreateDamageViewModel(int pageNumber, IEnumerable<DamageDonePerSecondViewModel> damageDonePerSecondViewModels);
     }
 }

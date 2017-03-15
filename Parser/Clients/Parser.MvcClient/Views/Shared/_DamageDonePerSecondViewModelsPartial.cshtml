@@ -1,0 +1,13 @@
+﻿@using Parser.Data.ViewModels.Leaderboard
+@model  DamageViewModel
+
+@{
+    Layout = null;
+}
+
+@Html.HiddenFor(m => m.PageNumber, new { id = "current-page-number" });
+
+@foreach (var viewModel in Model.DamageDonePerSecondViewModels)
+{
+    <p>DPS: @viewModel.DamageDonePerSecond</p>
+}

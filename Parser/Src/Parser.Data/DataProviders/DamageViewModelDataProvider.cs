@@ -50,7 +50,7 @@ namespace Parser.Data.DataProviders
                 damageDonePerSecondViewModels.AddLast(damageDonePerSecondViewModel);
             }
 
-            var damageViewModel = this.damageViewModelFactory.CreateDamageViewModel(damageDonePerSecondViewModels);
+            var damageViewModel = this.damageViewModelFactory.CreateDamageViewModel(pageNumber, damageDonePerSecondViewModels);
 
             return damageViewModel;
         }
