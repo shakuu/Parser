@@ -52,7 +52,7 @@ namespace Parser.Data.DataProviders
             return damageViewModel;
         }
 
-        private IList<StoredCombatStatistics> GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber)
+        private ICollection<StoredCombatStatistics> GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber)
         {
             return this.storedCombatStatisticsEntityFrameworkRepository.Entities
                 .OrderByDescending(e => e.DamageDonePerSecond)
