@@ -12,13 +12,27 @@ namespace Parser.MvcClient.Controllers
         [HttpGet]
         public ActionResult Damage()
         {
-            return View();
+            return this.View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Damage(int? page)
+        {
+            return this.Content("asd");
         }
 
         [HttpGet]
         public ActionResult Healing()
         {
-            return View();
+            return this.View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Healing(int? page)
+        {
+            return this.Content("asd");
         }
     }
 }
