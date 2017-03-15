@@ -16,7 +16,7 @@ namespace Parser.Common.Interceptors
 
         public CachingInterceptor(ICacheProvider cacheProvider, IDateTimeProvider dateTimeProvider)
         {
-            Guard.WhenArgument(cacheProvider, nameof(IHttpContextCacheProvider)).IsNull().Throw();
+            Guard.WhenArgument(cacheProvider, nameof(ICacheProvider)).IsNull().Throw();
             Guard.WhenArgument(dateTimeProvider, nameof(IDateTimeProvider)).IsNull().Throw();
 
             this.cacheProvider = cacheProvider;
@@ -27,16 +27,24 @@ namespace Parser.Common.Interceptors
         {
             var invokedMethodName = this.GetInvokedMethodName(invocation);
 
-            if (this.cacheProvider[invokedMethodName] != null)
+            var cachedReturnValueForMethod = this.cacheProvider[invokedMethodName];
+            if (cachedReturnValueForMethod != null)
             {
-                invocation.ReturnValue = cacheProvider[invokedMethodName];
+                invocation.ReturnValue = cachedReturnValueForMethod;
             }
             else
             {
                 invocation.Proceed();
 
-                this.cacheProvider.Add(invokedMethodName, invocation.ReturnValue, this.dateTimeProvider.GetUtcNow().AddMinutes(CachingInterceptor.CacheTimeoutPeriodInMinutes));
+                this.CacheReturnValueForMethod(invokedMethodName, invocation.ReturnValue);
             }
+        }
+
+        private void CacheReturnValueForMethod(string methodName, object returnValue)
+        {
+            var absoluteExpiration = this.dateTimeProvider.GetUtcNow().AddMinutes(CachingInterceptor.CacheTimeoutPeriodInMinutes);
+
+            this.cacheProvider.Add(methodName, returnValue, absoluteExpiration);
         }
 
         private string GetInvokedMethodName(IInvocation invocation)
