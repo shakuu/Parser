@@ -11,7 +11,7 @@ using Parser.Data.ViewModels.Leaderboard;
 
 namespace Parser.Data.DataProviders
 {
-    public class DamageViewModelDataProvider
+    public class DamageViewModelDataProvider : IDamageViewModelDataProvider
     {
         private const int DefaultPageSize = 10;
 
@@ -30,7 +30,7 @@ namespace Parser.Data.DataProviders
             this.objectMapperProvider = objectMapperProvider;
         }
 
-        DamageViewModel GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber)
+        public DamageViewModel GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber)
         {
             if (pageNumber < 0)
             {

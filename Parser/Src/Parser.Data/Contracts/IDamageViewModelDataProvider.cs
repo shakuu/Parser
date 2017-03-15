@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Parser.Data.Models;
+﻿using Parser.Data.ViewModels.Leaderboard;
 
 namespace Parser.Data.Contracts
 {
     public interface IDamageViewModelDataProvider
     {
+        DamageViewModel GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber);
     }
 }
