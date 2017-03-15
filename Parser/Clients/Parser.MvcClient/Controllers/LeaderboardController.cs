@@ -6,6 +6,8 @@ namespace Parser.MvcClient.Controllers
 {
     public class LeaderboardController : Controller
     {
+        private const int OutputCacheDurationInSeconds = 60;
+
         private readonly ILeaderboardDamageService leaderboardDamageService;
 
         public LeaderboardController(ILeaderboardDamageService leaderboardDamageService)
@@ -14,7 +16,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
-        [OutputCache(Duration = 300, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
+        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Damage()
         {
             var viewModel = this.leaderboardDamageService.GetTopStoredCombatStatisticsOnPage(0);
@@ -23,7 +25,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpPost]
-        [OutputCache(Duration = 300, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
+        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
         [ValidateAntiForgeryToken]
         public ActionResult Damage(int? pageNumber)
         {
@@ -33,14 +35,14 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
-        [OutputCache(Duration = 300, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
+        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Healing()
         {
             return this.View();
         }
 
         [HttpPost]
-        [OutputCache(Duration = 300, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
+        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
         [ValidateAntiForgeryToken]
         public ActionResult Healing(int? pageNumber)
         {
