@@ -1,14 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Parser.MvcClient.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [ValidateAntiForgeryToken]
+        public ActionResult TopDps()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [ValidateAntiForgeryToken]
+        public ActionResult TopHps()
         {
             return View();
         }
