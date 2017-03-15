@@ -13,16 +13,6 @@
     </div>
 </div>
 
-@using (Ajax.BeginForm("Damage", null, new AjaxOptions()
-{
-    UpdateTargetId = "damage-done-models",
-    InsertionMode = InsertionMode.Replace,
-    HttpMethod = "POST"
-}, new { id = "update-form" }))
-{
-
-}
-
 @section Scripts
 {
     @Scripts.Render("~/bundles/damage")

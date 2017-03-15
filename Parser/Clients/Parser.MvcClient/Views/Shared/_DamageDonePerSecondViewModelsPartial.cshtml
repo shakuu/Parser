@@ -11,3 +11,13 @@
 {
     <p>DPS: @viewModel.DamageDonePerSecond</p>
 }
+
+@using (Ajax.BeginForm("Damage", new { pageNumber = Model.PageNumber }, new AjaxOptions()
+{
+    UpdateTargetId = "damage-done-models",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "POST"
+}, new { id = "update-form" }))
+{
+    @Html.AntiForgeryToken()
+}

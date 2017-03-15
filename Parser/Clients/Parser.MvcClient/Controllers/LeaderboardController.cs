@@ -21,7 +21,7 @@ namespace Parser.MvcClient.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Damage(int? page)
+        public ActionResult Damage(int? pageNumber)
         {
             return this.Content("asd");
         }
@@ -34,7 +34,7 @@ namespace Parser.MvcClient.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Healing(int? page)
+        public ActionResult Healing(int? pageNumber)
         {
             return this.Content("asd");
         }
