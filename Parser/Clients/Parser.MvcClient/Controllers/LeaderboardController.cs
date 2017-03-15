@@ -16,7 +16,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
-        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
+        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Damage()
         {
             var viewModel = this.leaderboardDamageService.GetTopStoredCombatStatisticsOnPage(0);
@@ -35,7 +35,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
-        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
+        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Healing()
         {
             return this.View();
