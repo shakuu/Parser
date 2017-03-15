@@ -14,13 +14,13 @@ namespace Parser.MvcClient
             routes.MapRoute(
                 name: "TopDps",
                 url: "damage",
-                defaults: new { controller = "Home", action = "Damage" }
+                defaults: new { controller = "Leaderboard", action = "Damage" }
             );
 
             routes.MapRoute(
                 name: "TopHps",
                 url: "healing",
-                defaults: new { controller = "Home", action = "Healing" }
+                defaults: new { controller = "Leaderboard", action = "Healing" }
             );
 
             routes.MapRoute(

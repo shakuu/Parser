@@ -9,21 +9,7 @@ namespace Parser.MvcClient.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        public ActionResult Damage()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Healing()
-        {
-            return View();
-        }
-
-
-
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
