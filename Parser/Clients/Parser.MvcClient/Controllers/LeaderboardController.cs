@@ -14,6 +14,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
+        [OutputCache(Duration = 300, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Damage()
         {
             var viewModel = this.leaderboardDamageService.GetTopStoredCombatStatisticsOnPage(0);
@@ -22,6 +23,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpPost]
+        [OutputCache(Duration = 300, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
         [ValidateAntiForgeryToken]
         public ActionResult Damage(int? pageNumber)
         {
