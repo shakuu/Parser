@@ -33,12 +33,14 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
+        [OutputCache(Duration = 300, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Healing()
         {
             return this.View();
         }
 
         [HttpPost]
+        [OutputCache(Duration = 300, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
         [ValidateAntiForgeryToken]
         public ActionResult Healing(int? pageNumber)
         {
