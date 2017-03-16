@@ -40,11 +40,11 @@ namespace Parser.Data.DataProviders
             var storedCombatStatistics = this.GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(pageNumber);
             pageNumber = storedCombatStatistics.Count / DamageViewModelDataProvider.DefaultPageSize;
 
-            var damageDonePerSecondViewModels = new LinkedList<DamageDonePerSecondViewModel>();
+            var damageDonePerSecondViewModels = new List<DamageDonePerSecondViewModel>();
             foreach (var storedCombatStatistic in storedCombatStatistics)
             {
                 var damageDonePerSecondViewModel = this.objectMapperProvider.Map<DamageDonePerSecondViewModel>(storedCombatStatistic);
-                damageDonePerSecondViewModels.AddLast(damageDonePerSecondViewModel);
+                damageDonePerSecondViewModels.Add(damageDonePerSecondViewModel);
             }
 
             var damageViewModel = this.damageViewModelFactory.CreateDamageViewModel(pageNumber, damageDonePerSecondViewModels);
@@ -54,6 +54,7 @@ namespace Parser.Data.DataProviders
 
         private ICollection<StoredCombatStatistics> GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber)
         {
+            // TODO: Refactor with SELECT/ Project
             return this.storedCombatStatisticsEntityFrameworkRepository.Entities
                 .OrderByDescending(e => e.DamageDonePerSecond)
                 .Take(DamageViewModelDataProvider.DefaultPageSize * pageNumber)
