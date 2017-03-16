@@ -9,5 +9,7 @@ namespace Parser.Data.ViewModels.Leaderboard
         public string CharacterName { get; set; }
 
         public double DamageDonePerSecond { get; set; }
+
+        public string SvgString { get; set; }
     }
 }
