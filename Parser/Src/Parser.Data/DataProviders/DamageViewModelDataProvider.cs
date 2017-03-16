@@ -4,6 +4,7 @@ using System.Linq;
 using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
+using Parser.Common.Html.Svg;
 using Parser.Data.Contracts;
 using Parser.Data.Models;
 using Parser.Data.ViewModels.Factories;
@@ -13,19 +14,22 @@ namespace Parser.Data.DataProviders
 {
     public class DamageViewModelDataProvider : IDamageViewModelDataProvider
     {
-        private const int DefaultPageSize = 50;
+        private const int DefaultPageSize = 5;
 
         private readonly IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository;
+        private readonly IProgressPartialCircleSvgPathStringProvider progressPartialCircleSvgPathStringProvider;
         private readonly IDamageViewModelFactory damageViewModelFactory;
         private readonly IObjectMapperProvider objectMapperProvider;
 
-        public DamageViewModelDataProvider(IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository, IDamageViewModelFactory damageViewModelFactory, IObjectMapperProvider objectMapperProvider)
+        public DamageViewModelDataProvider(IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository, IProgressPartialCircleSvgPathStringProvider progressPartialCircleSvgPathStringProvider, IDamageViewModelFactory damageViewModelFactory, IObjectMapperProvider objectMapperProvider)
         {
             Guard.WhenArgument(storedCombatStatisticsEntityFrameworkRepository, nameof(IEntityFrameworkRepository<StoredCombatStatistics>)).IsNull().Throw();
+            Guard.WhenArgument(progressPartialCircleSvgPathStringProvider, nameof(IProgressPartialCircleSvgPathStringProvider)).IsNull().Throw();
             Guard.WhenArgument(damageViewModelFactory, nameof(IDamageViewModelFactory)).IsNull().Throw();
             Guard.WhenArgument(objectMapperProvider, nameof(IObjectMapperProvider)).IsNull().Throw();
 
             this.storedCombatStatisticsEntityFrameworkRepository = storedCombatStatisticsEntityFrameworkRepository;
+            this.progressPartialCircleSvgPathStringProvider = progressPartialCircleSvgPathStringProvider;
             this.damageViewModelFactory = damageViewModelFactory;
             this.objectMapperProvider = objectMapperProvider;
         }
@@ -48,6 +52,10 @@ namespace Parser.Data.DataProviders
             }
 
             var damageViewModel = this.damageViewModelFactory.CreateDamageViewModel(pageNumber, damageDonePerSecondViewModels);
+            foreach (var viewModel in damageViewModel.DamageDonePerSecondViewModels)
+            {
+                viewModel.SvgString = this.progressPartialCircleSvgPathStringProvider.GetPathString(viewModel.DamageDonePerSecond, damageViewModel.MaximumDamageDonePerSecond, 50, 200);
+            }
 
             return damageViewModel;
         }

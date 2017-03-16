@@ -2,6 +2,6 @@
 {
     public interface IProgressPartialCircleSvgPathStringProvider
     {
-        string GetPathString(double value, double maximum, double radius);
+        string GetPathString(double value, double maximum, double radius, double svgSize);
     }
 }
