@@ -10,6 +10,20 @@
 @foreach (var viewModel in Model.DamageDonePerSecondViewModels)
 {
     <p>DPS: @viewModel.DamageDonePerSecond</p>
+    <div style="border: 1px solid black;">
+        <svg width="200" height="200">
+
+            @if (viewModel.DamageDonePerSecond != Model.MaximumDamageDonePerSecond)
+            {
+                <path d="@viewModel.SvgString" fill="none" stroke="green" stroke-width="10" />
+            }
+            else
+            {
+                <circle cx="100" cy="100" fill="none" r="50" stroke="green" stroke-width="10" />
+            }
+
+        </svg>
+    </div>
 }
 
 @using (Ajax.BeginForm("Damage", new { pageNumber = Model.PageNumber }, new AjaxOptions()
