@@ -11,5 +11,7 @@ namespace Parser.Data.ViewModels.Leaderboard
         public double DamageDonePerSecond { get; set; }
 
         public string SvgString { get; set; }
+
+        public int PercentageOfBest { get; set; }
     }
 }

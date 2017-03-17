@@ -2,6 +2,8 @@
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
+using Parser.Common.Html.Svg;
+
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
     public class CommonNinjectModule : NinjectModule
@@ -17,7 +19,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             bind
                 .FromAssembliesMatching("*.Common.*")
                 .SelectAllClasses()
-                .BindDefaultInterface();
+                .BindDefaultInterface()
+                .ConfigureFor<ProgressPartialCircleSvgPathStringProvider>(c => c.InSingletonScope());
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)

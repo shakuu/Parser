@@ -13,7 +13,7 @@
     <div style="border: 1px solid black;">
         <svg width="200" height="200">
 
-            @if (viewModel.DamageDonePerSecond != Model.MaximumDamageDonePerSecond)
+            @if (string.IsNullOrEmpty(viewModel.SvgString) == false)
             {
                 <path d="@viewModel.SvgString" fill="none" stroke="green" stroke-width="10" />
             }
@@ -22,6 +22,7 @@
                 <circle cx="100" cy="100" fill="none" r="50" stroke="green" stroke-width="10" />
             }
 
+            <text class="svg-percentile" x="100" y="100" text-anchor="middle">@viewModel.PercentageOfBest %</text>
         </svg>
     </div>
 }

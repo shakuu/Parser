@@ -25,7 +25,8 @@ namespace Parser.MvcClient.App_Start.AutoMapperProfiles
                 .ForMember(destination => destination.Id, options => options.MapFrom(source => source.Id))
                 .ForMember(destination => destination.CharacterName, options => options.MapFrom(source => source.CharacterName))
                 .ForMember(destination => destination.DamageDonePerSecond, options => options.MapFrom(source => source.DamageDonePerSecond))
-                .ForMember(destination => destination.SvgString, options => options.Ignore());
+                .ForMember(destination => destination.SvgString, options => options.Ignore())
+                .ForMember(destination => destination.PercentageOfBest, options => options.Ignore());
         }
     }
 }
