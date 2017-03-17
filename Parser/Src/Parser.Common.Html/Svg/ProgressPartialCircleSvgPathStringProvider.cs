@@ -6,6 +6,8 @@ namespace Parser.Common.Html.Svg
 {
     public class ProgressPartialCircleSvgPathStringProvider : IProgressPartialCircleSvgPathStringProvider
     {
+        private const string PathFormat = "M{0},{1} A{2},{2},0,{3},1,{4},{5}";
+
         private const double MaximumValue = 100;
         private const double AlphaModifier = 360d / ProgressPartialCircleSvgPathStringProvider.MaximumValue;
 
@@ -37,15 +39,15 @@ namespace Parser.Common.Html.Svg
             var y = centerPoint - radius * Math.Sin(a);
             var x = centerPoint + radius * Math.Cos(a);
 
-            var path = string.Empty;
+            var generatedSvgPath = string.Empty;
             if (percentage != ProgressPartialCircleSvgPathStringProvider.MaximumValue)
             {
                 var center = alpha > 180 ? 1 : 0;
 
-                path = "M" + centerPoint + "," + (centerPoint - radius) + " A" + radius + "," + radius + "," + 0 + "," + center + "," + 1 + "," + x + "," + y;
+                generatedSvgPath = string.Format(ProgressPartialCircleSvgPathStringProvider.PathFormat, centerPoint, centerPoint - radius, radius, center, x, y);
             }
 
-            return path;
+            return generatedSvgPath;
         }
     }
 }
