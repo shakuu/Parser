@@ -60,5 +60,16 @@ namespace Parser.LogFileParser.Strategies
 
             return finalizedCombatStatistics;
         }
+
+        private IFinalizedCombatStatistics GetHealingDoneAndHealingDonePerSecond(ICombatStatistics combatStatistics, IFinalizedCombatStatistics finalizedCombatStatistics)
+        {
+            var healingDone = combatStatistics.HealingDone;
+            var healingDonePerSecond = healingDone / finalizedCombatStatistics.CombatDurationInSeconds;
+
+            finalizedCombatStatistics.DamageTaken = healingDone;
+            finalizedCombatStatistics.DamageTakenPerSecond = healingDonePerSecond;
+
+            return finalizedCombatStatistics;
+        }
     }
 }
