@@ -11,23 +11,23 @@ namespace Parser.Common.Html.Svg
         private const double MaximumValue = 100;
         private const double AlphaModifier = 360d / ProgressPartialCircleSvgPathStringProvider.MaximumValue;
 
-        private readonly IDictionary<int, string> memorizedSvgStringsByRoundedPercentage;
+        private readonly IDictionary<int, string> memorizedSvgPathsByPercentage;
 
         public ProgressPartialCircleSvgPathStringProvider()
         {
-            this.memorizedSvgStringsByRoundedPercentage = new ConcurrentDictionary<int, string>();
+            this.memorizedSvgPathsByPercentage = new ConcurrentDictionary<int, string>();
         }
 
         public string GetPathString(int percentage, int radius, int svgSize)
         {
-            var roundedPercentageValueIsMemorized = this.memorizedSvgStringsByRoundedPercentage.ContainsKey(percentage);
-            if (roundedPercentageValueIsMemorized == false)
+            var percentageSvgPathIsMemorized = this.memorizedSvgPathsByPercentage.ContainsKey(percentage);
+            if (percentageSvgPathIsMemorized == false)
             {
                 var path = this.GenerateSvgPathString(percentage, radius, svgSize);
-                this.memorizedSvgStringsByRoundedPercentage.Add(percentage, path);
+                this.memorizedSvgPathsByPercentage.Add(percentage, path);
             }
 
-            return this.memorizedSvgStringsByRoundedPercentage[percentage];
+            return this.memorizedSvgPathsByPercentage[percentage];
         }
 
         private string GenerateSvgPathString(int percentage, int radius, int svgSize)
