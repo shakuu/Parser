@@ -28,6 +28,7 @@ namespace Parser.LogFileParser.Strategies
 
             finalizedCombatStatistics = this.GetDamageDoneAndDamageDonePerSecond(combatStatistics, finalizedCombatStatistics);
             finalizedCombatStatistics = this.GetDamageTakenAndDamageTakenPerSecond(combatStatistics, finalizedCombatStatistics);
+            finalizedCombatStatistics = this.GetHealingDoneAndHealingDonePerSecond(combatStatistics, finalizedCombatStatistics);
 
             return finalizedCombatStatistics;
         }
@@ -66,8 +67,8 @@ namespace Parser.LogFileParser.Strategies
             var healingDone = combatStatistics.HealingDone;
             var healingDonePerSecond = healingDone / finalizedCombatStatistics.CombatDurationInSeconds;
 
-            finalizedCombatStatistics.DamageTaken = healingDone;
-            finalizedCombatStatistics.DamageTakenPerSecond = healingDonePerSecond;
+            finalizedCombatStatistics.HealingDone = healingDone;
+            finalizedCombatStatistics.HealingDonePerSecond = healingDonePerSecond;
 
             return finalizedCombatStatistics;
         }
