@@ -13,7 +13,7 @@
     <div style="border: 1px solid black;">
         <svg width="200" height="200">
 
-            @if (viewModel.DamageDonePerSecond != Model.MaximumDamageDonePerSecond)
+            @if (string.IsNullOrEmpty(viewModel.SvgString) == false)
             {
                 <path d="@viewModel.SvgString" fill="none" stroke="green" stroke-width="10" />
             }

@@ -38,11 +38,7 @@ namespace Parser.Common.Html.Svg
             var x = centerPoint + radius * Math.Cos(a);
 
             var path = string.Empty;
-            if (percentage == ProgressPartialCircleSvgPathStringProvider.MaximumValue)
-            {
-                path = "M" + centerPoint + "," + (centerPoint - radius) + " A" + radius + "," + radius + "," + 0 + "," + 1 + "," + 1 + "," + 299.99 + "," + (centerPoint - radius);
-            }
-            else
+            if (percentage != ProgressPartialCircleSvgPathStringProvider.MaximumValue)
             {
                 var center = alpha > 180 ? 1 : 0;
 
