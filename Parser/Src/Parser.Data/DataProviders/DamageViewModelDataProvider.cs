@@ -14,6 +14,8 @@ namespace Parser.Data.DataProviders
 {
     public class DamageViewModelDataProvider : IDamageViewModelDataProvider
     {
+        private const int DefaultSvgElementSize = 200;
+        private const int DefaultPercentageBarRadius = 50;
         private const int DefaultPageSize = 5;
 
         private readonly IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository;
@@ -54,7 +56,7 @@ namespace Parser.Data.DataProviders
             var damageViewModel = this.damageViewModelFactory.CreateDamageViewModel(pageNumber, damageDonePerSecondViewModels);
             foreach (var viewModel in damageViewModel.DamageDonePerSecondViewModels)
             {
-                viewModel.SvgString = this.progressPartialCircleSvgPathStringProvider.GetPathString(viewModel.DamageDonePerSecond, damageViewModel.MaximumDamageDonePerSecond, 50, 200);
+                viewModel.SvgString = this.progressPartialCircleSvgPathStringProvider.GetPathString(viewModel.PercentageOfBest, DamageViewModelDataProvider.DefaultPercentageBarRadius, DamageViewModelDataProvider.DefaultSvgElementSize);
             }
 
             return damageViewModel;

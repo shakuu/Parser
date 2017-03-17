@@ -6,6 +6,8 @@ namespace Parser.Common.Html.Svg
 {
     public class ProgressPartialCircleSvgPathStringProvider : IProgressPartialCircleSvgPathStringProvider
     {
+        private const double AlphaModifier = 360d / 100d;
+
         private readonly IDictionary<int, string> memorizedSvgStringsByRoundedPercentage;
 
         public ProgressPartialCircleSvgPathStringProvider()
@@ -13,31 +15,29 @@ namespace Parser.Common.Html.Svg
             this.memorizedSvgStringsByRoundedPercentage = new ConcurrentDictionary<int, string>();
         }
 
-        public string GetPathString(double value, double maximum, double radius, double svgSize)
+        public string GetPathString(int percentage, int radius, int svgSize)
         {
-            var roundedPercentageValue = (int)(value / maximum * 100);
-
-            var roundedPercentageValueIsMemorized = this.memorizedSvgStringsByRoundedPercentage.ContainsKey(roundedPercentageValue);
+            var roundedPercentageValueIsMemorized = this.memorizedSvgStringsByRoundedPercentage.ContainsKey(percentage);
             if (roundedPercentageValueIsMemorized == false)
             {
-                var path = this.GenerateSvgPathString(value, maximum, radius, svgSize);
-                this.memorizedSvgStringsByRoundedPercentage.Add(roundedPercentageValue, path);
+                var path = this.GenerateSvgPathString(percentage, radius, svgSize);
+                this.memorizedSvgStringsByRoundedPercentage.Add(percentage, path);
             }
 
-            return this.memorizedSvgStringsByRoundedPercentage[roundedPercentageValue];
+            return this.memorizedSvgStringsByRoundedPercentage[percentage];
         }
 
-        private string GenerateSvgPathString(double value, double maximum, double radius, double svgSize)
+        private string GenerateSvgPathString(int percentage, int radius, int svgSize)
         {
             var centerPoint = svgSize / 2;
 
-            var alpha = 360 / maximum * value;
+            var alpha = (int)(ProgressPartialCircleSvgPathStringProvider.AlphaModifier * percentage);
             var a = (90 - alpha) * Math.PI / 180;
             var y = centerPoint - radius * Math.Sin(a);
             var x = centerPoint + radius * Math.Cos(a);
 
             var path = string.Empty;
-            if (maximum == value)
+            if (100 == percentage)
             {
                 path = "M" + centerPoint + "," + (centerPoint - radius) + " A" + radius + "," + radius + "," + 0 + "," + 1 + "," + 1 + "," + 299.99 + "," + (centerPoint - radius);
             }
