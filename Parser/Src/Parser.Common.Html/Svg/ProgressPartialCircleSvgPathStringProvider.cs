@@ -1,10 +1,31 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace Parser.Common.Html.Svg
 {
     public class ProgressPartialCircleSvgPathStringProvider : IProgressPartialCircleSvgPathStringProvider
     {
+        private readonly IDictionary<int, string> memorizedSvgStringsByRoundedPercentage;
+
+        public ProgressPartialCircleSvgPathStringProvider()
+        {
+            this.memorizedSvgStringsByRoundedPercentage = new ConcurrentDictionary<int, string>();
+        }
+
         public string GetPathString(double value, double maximum, double radius, double svgSize)
+        {
+            var roundedPercentageValue = (int)(value / maximum * 100);
+            if (!this.memorizedSvgStringsByRoundedPercentage.ContainsKey(roundedPercentageValue))
+            {
+                var path = this.GenerateSvgPathString(value, maximum, radius, svgSize);
+                this.memorizedSvgStringsByRoundedPercentage.Add(roundedPercentageValue, path);
+            }
+
+            return this.memorizedSvgStringsByRoundedPercentage[roundedPercentageValue];
+        }
+
+        private string GenerateSvgPathString(double value, double maximum, double radius, double svgSize)
         {
             var centerPoint = svgSize / 2;
 
