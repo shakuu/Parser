@@ -51,6 +51,7 @@ namespace Parser.LogFileReader.Strategies
             }
             catch (Exception)
             {
+                // TODO: Log Error
                 return null;
             }
 
