@@ -10,6 +10,7 @@ namespace Parser.Common.Html.Svg
         private const double MaximumValue = 100;
         private const double AlphaModifier = 360d / ProgressPartialCircleSvgPathStringProvider.MaximumValue;
 
+        // Not an IDictionary to expose Concurrent api.
         private readonly ConcurrentDictionary<int, string> memorizedSvgPathsByPercentage;
 
         public ProgressPartialCircleSvgPathStringProvider()
