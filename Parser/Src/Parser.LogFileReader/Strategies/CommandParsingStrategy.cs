@@ -135,7 +135,7 @@ namespace Parser.LogFileReader.Strategies
 
             command.EffectAmount = double.Parse(effectAmountDetails[0]);
 
-            if (effectAmountDetails.Length == 2)
+            if (effectAmountDetails.Length >= 2)
             {
                 command.EffectType = effectAmountDetails[1];
             }
