@@ -22,7 +22,7 @@ namespace Parser.MvcClient
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-materialize").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/materialize/materialize.js"));
