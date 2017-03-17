@@ -31,6 +31,9 @@ namespace Parser.MvcClient
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/materialize/css/materialize.css"));
+
+            bundles.Add(new StyleBundle("~/Content/leaderboard-css").Include(
+                      "~/Content/leaderboard/leaderboard.css"));
         }
     }
 }
