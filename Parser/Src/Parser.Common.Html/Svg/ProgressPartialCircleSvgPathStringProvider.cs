@@ -16,7 +16,9 @@ namespace Parser.Common.Html.Svg
         public string GetPathString(double value, double maximum, double radius, double svgSize)
         {
             var roundedPercentageValue = (int)(value / maximum * 100);
-            if (!this.memorizedSvgStringsByRoundedPercentage.ContainsKey(roundedPercentageValue))
+
+            var roundedPercentageValueIsMemorized = this.memorizedSvgStringsByRoundedPercentage.ContainsKey(roundedPercentageValue);
+            if (roundedPercentageValueIsMemorized == false)
             {
                 var path = this.GenerateSvgPathString(value, maximum, radius, svgSize);
                 this.memorizedSvgStringsByRoundedPercentage.Add(roundedPercentageValue, path);
