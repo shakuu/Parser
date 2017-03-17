@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 
 namespace Parser.Common.Html.Svg
 {
@@ -11,7 +10,7 @@ namespace Parser.Common.Html.Svg
         private const double MaximumValue = 100;
         private const double AlphaModifier = 360d / ProgressPartialCircleSvgPathStringProvider.MaximumValue;
 
-        private readonly IDictionary<int, string> memorizedSvgPathsByPercentage;
+        private readonly ConcurrentDictionary<int, string> memorizedSvgPathsByPercentage;
 
         public ProgressPartialCircleSvgPathStringProvider()
         {
@@ -24,7 +23,7 @@ namespace Parser.Common.Html.Svg
             if (percentageSvgPathIsMemorized == false)
             {
                 var path = this.GenerateSvgPathString(percentage, radius, svgSize);
-                this.memorizedSvgPathsByPercentage.Add(percentage, path);
+                this.memorizedSvgPathsByPercentage.TryAdd(percentage, path);
             }
 
             return this.memorizedSvgPathsByPercentage[percentage];
