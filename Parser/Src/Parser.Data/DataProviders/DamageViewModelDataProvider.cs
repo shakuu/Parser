@@ -14,8 +14,8 @@ namespace Parser.Data.DataProviders
 {
     public class DamageViewModelDataProvider : IDamageViewModelDataProvider
     {
-        private const int DefaultSvgElementSize = 200;
-        private const int DefaultPercentageBarRadius = 50;
+        private const int DefaultSvgElementSize = 300;
+        private const int DefaultPercentageBarRadius = 75;
         private const int DefaultPageSize = 5;
 
         private readonly IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository;
