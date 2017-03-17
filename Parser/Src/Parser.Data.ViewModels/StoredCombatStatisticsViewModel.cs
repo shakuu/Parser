@@ -20,6 +20,10 @@ namespace Parser.Data.ViewModels
 
         public double DamageDonePerSecond { get; set; }
 
+        public double HealingDone { get; set; }
+
+        public double HealingDonePerSecond { get; set; }
+
         public double DamageTaken { get; set; }
 
         public double DamageTakenPerSecond { get; set; }

@@ -12,6 +12,10 @@
 
         double DamageTakenPerSecond { get; set; }
 
+        double HealingDone { get; set; }
+
+        double HealingDonePerSecond { get; set; }
+
         double CombatDurationInSeconds { get; set; }
     }
 }

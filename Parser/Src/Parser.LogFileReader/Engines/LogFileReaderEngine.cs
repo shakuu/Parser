@@ -66,7 +66,10 @@ namespace Parser.LogFileReader.Engines
                     if (nextInputLine != null)
                     {
                         var nextParsedCommand = this.commandParsingStrategy.ParseCommand(nextInputLine);
-                        this.commandUtilizationStrategy.UtilizeCommand(nextParsedCommand);
+                        if (nextParsedCommand != null)
+                        {
+                            this.commandUtilizationStrategy.UtilizeCommand(nextParsedCommand);
+                        }
                     }
                     else
                     {

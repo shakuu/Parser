@@ -12,8 +12,8 @@
     var viewModel = Model.DamageDonePerSecondViewModels[index];
 
     <div class="row">
-        <div class="col s12 m12 grey darken-3" style="padding: 10px;">
-            <div style="width: 300px; float: left;">
+        <div class="col s12 m12 grey darken-3 damage-container">
+            <div class="col inner-container">
                 <div class="card blue-grey">
                     <div class="card-image">
                         <svg width="300" height="300">
@@ -29,17 +29,19 @@
 
                             <text class="svg-percentile card-title" x="155" y="155" fill="yellowgreen" text-anchor="middle">@viewModel.PercentageOfBest%</text>
                         </svg>
-                        <span class="card-title">@string.Format("{0:f0}", viewModel.DamageDonePerSecond)</span>
                     </div>
-                    @*<div class="card-content">
-                        <p>
-                                # @(index + 1)
-                            </p>
-                    </div>*@
                     <div class="card-action">
                         <a href="#"># @(index + 1)</a>
                     </div>
                 </div>
+            </div>
+            <div class="outter-container col m6">
+                <header>
+                    <h3>@viewModel.CharacterName</h3>
+                </header>
+                <section>
+                    <h4>@string.Format("{0:f2}", viewModel.DamageDonePerSecond)</h4>
+                </section>
             </div>
         </div>
     </div>
