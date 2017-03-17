@@ -1,1 +1,1 @@
-﻿h2{color:#9acd32;}.row .damage-container{background-color:#333;border:5px solid #e69f5e;border-radius:25px;}.row .damage-container .inner-container{padding:15px;width:330px;float:left;}
+﻿h2,h3{color:#9acd32;}.row .damage-container{background-color:#333;border:5px solid #e69f5e;border-radius:25px;}.row .damage-container .inner-container{padding:15px;width:330px;}.row .damage-container .inner-container .card .card-action{font-size:17px;}.row .damage-container .outter-container{padding:15px;}

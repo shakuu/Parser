@@ -45,9 +45,9 @@ namespace Parser.ConsoleClient.NinjectModules
             bind
                 .FromAssembliesMatching("*.LogFileReader.*")
                 .SelectAllClasses()
-                .BindDefaultInterface()
+                .BindDefaultInterface();
                 // TODO: Remove: Intercepting with testing input
-                .ConfigureFor<LogFilePathDiscoveryStrategy>(s => s.Intercept().With<LogFilePathDiscoveryStrategyTestingInterceptor>());
+                //.ConfigureFor<LogFilePathDiscoveryStrategy>(s => s.Intercept().With<LogFilePathDiscoveryStrategyTestingInterceptor>());
         }
     }
 }

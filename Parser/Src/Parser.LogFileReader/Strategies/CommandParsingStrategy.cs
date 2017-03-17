@@ -35,17 +35,24 @@ namespace Parser.LogFileReader.Strategies
                 return nextCommand;
             }
 
-            nextCommand.TimeStamp = this.GetTimeStamp(commandWords);
-            nextCommand.AbilityActivatorName = this.GetAbilityActivatorName(commandWords);
-            nextCommand.AbilityTargetName = this.GetAbilityTargetName(commandWords);
+            try
+            {
+                nextCommand.TimeStamp = this.GetTimeStamp(commandWords);
+                nextCommand.AbilityActivatorName = this.GetAbilityActivatorName(commandWords);
+                nextCommand.AbilityTargetName = this.GetAbilityTargetName(commandWords);
 
-            nextCommand = this.GetAbilityDetails(commandWords, nextCommand);
-            nextCommand = this.GetEventDetails(commandWords, nextCommand);
-            nextCommand = this.GetEffectAmountDetails(commandWords, nextCommand);
+                nextCommand = this.GetAbilityDetails(commandWords, nextCommand);
+                nextCommand = this.GetEventDetails(commandWords, nextCommand);
+                nextCommand = this.GetEffectAmountDetails(commandWords, nextCommand);
 
-            nextCommand.EffectEffectiveAmount = this.GetEffectEffectiveAmount(commandWords);
+                nextCommand.EffectEffectiveAmount = this.GetEffectEffectiveAmount(commandWords);
 
-            nextCommand.OriginalString = input;
+                nextCommand.OriginalString = input;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
 
             return nextCommand;
         }
@@ -67,6 +74,11 @@ namespace Parser.LogFileReader.Strategies
 
         private ICommand GetAbilityDetails(IList<string> commandWords, ICommand command)
         {
+            if (commandWords.Count < 4)
+            {
+                return command;
+            }
+
             var abilityDetails = commandWords[3].Split(new[] { ':', '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
 
             command.AbilityName = abilityDetails[0].Trim();
@@ -122,9 +134,13 @@ namespace Parser.LogFileReader.Strategies
 
             command.EffectAmount = double.Parse(effectAmountDetails[0]);
 
-            if (effectAmountDetails.Length > 1)
+            if (effectAmountDetails.Length == 2)
             {
                 command.EffectType = effectAmountDetails[1];
+            }
+
+            if (effectAmountDetails.Length == 3)
+            {
                 command.EffectTypeGameId = effectAmountDetails[2];
             }
 

@@ -1,4 +1,4 @@
-﻿h2 {
+﻿h2, h3 {
     color: yellowgreen;
 }
 
@@ -12,7 +12,17 @@
         .inner-container {
             padding: 15px;
             width: 330px;
-            float: left;
+
+            .card {
+
+                .card-action {
+                    font-size: 17px;
+                }
+            }
+        }
+
+        .outter-container {
+            padding: 15px;
         }
     }
 }
