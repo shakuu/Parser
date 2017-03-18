@@ -26,9 +26,11 @@ namespace Parser.LogFile.Parser.Tests.ManagersTests.LogFileParserEngineManagerTe
             logFileParserEngineFactory.Setup(f => f.CreateLogFileParserEngine()).Returns(logFileParserEngine.Object);
 
             var logFileParserEngineManager = new LogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory.Object);
-            
+
+            var username = "any string";
+
             // Act
-            logFileParserEngineManager.StartLogFileParserEngine();
+            logFileParserEngineManager.StartLogFileParserEngine(username);
 
             // Assert
             guidStringProvider.Verify(p => p.NewGuidString(), Times.Once);
@@ -49,8 +51,10 @@ namespace Parser.LogFile.Parser.Tests.ManagersTests.LogFileParserEngineManagerTe
 
             var logFileParserEngineManager = new LogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory.Object);
 
+            var username = "any string";
+
             // Act
-            logFileParserEngineManager.StartLogFileParserEngine();
+            logFileParserEngineManager.StartLogFileParserEngine(username);
 
             // Assert
             logFileParserEngineFactory.Verify(f => f.CreateLogFileParserEngine(), Times.Once);
@@ -73,8 +77,10 @@ namespace Parser.LogFile.Parser.Tests.ManagersTests.LogFileParserEngineManagerTe
 
             var expectedAddedEngine = logFileParserEngine.Object;
 
+            var username = "any string";
+
             // Act
-            logFileParserEngineManager.StartLogFileParserEngine();
+            logFileParserEngineManager.StartLogFileParserEngine(username);
 
             var logFileParserEnginesDictionaryContainsKey = logFileParserEngineManager.LogFileParserEngines.ContainsKey(guidString);
             var actuallogFileParserEnginesDictionaryEngine = logFileParserEngineManager.LogFileParserEngines[guidString];
@@ -99,8 +105,10 @@ namespace Parser.LogFile.Parser.Tests.ManagersTests.LogFileParserEngineManagerTe
 
             var logFileParserEngineManager = new LogFileParserEngineManager(guidStringProvider.Object, logFileParserEngineFactory.Object);
 
+            var username = "any string";
+
             // Act 
-            var actualResult = logFileParserEngineManager.StartLogFileParserEngine();
+            var actualResult = logFileParserEngineManager.StartLogFileParserEngine(username);
 
             // Assert
             Assert.That(actualResult, Is.EqualTo(guidString));

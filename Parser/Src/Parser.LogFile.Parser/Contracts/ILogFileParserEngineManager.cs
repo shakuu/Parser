@@ -4,7 +4,7 @@ namespace Parser.LogFile.Parser.Contracts
 {
     public interface ILogFileParserEngineManager
     {
-        string StartLogFileParserEngine();
+        string StartLogFileParserEngine(string username);
 
         string StopLogFileParserEngine(string engineId);
         
