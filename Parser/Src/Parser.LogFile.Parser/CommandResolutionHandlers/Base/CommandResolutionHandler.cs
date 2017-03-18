@@ -56,10 +56,15 @@ namespace Parser.LogFile.Parser.CommandResolutionHandlers.Base
 
         protected virtual void AssignExitCombatTimestamp(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
+            if (combatStatisticsContainer.CurrentCombatStatistics == null)
+            {
+                return;
+            }
+
             if (command.TimeStamp != default(DateTime))
             {
                 combatStatisticsContainer.CurrentCombatStatistics.ExitCombatTime = command.TimeStamp;
-                
+
                 if (combatStatisticsContainer.CurrentCombatStatistics.EnterCombatTime == default(DateTime))
                 {
                     combatStatisticsContainer.CurrentCombatStatistics.EnterCombatTime = command.TimeStamp;
