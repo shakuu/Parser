@@ -1,7 +1,7 @@
 ﻿using Parser.Common.Contracts;
-using Parser.LogFileParser.CommandResolutionHandlers;
+using Parser.LogFile.Parser.CommandResolutionHandlers;
 
-namespace Parser.LogFileParser.Tests.Mocks
+namespace Parser.LogFile.Parser.Tests.Mocks
 {
     internal class MockDamageCommandResolutionHandler : DamageCommandResolutionHandler
     {

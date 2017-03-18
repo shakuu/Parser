@@ -4,13 +4,12 @@ using Microsoft.AspNet.SignalR.Client;
 
 using Moq;
 using NUnit.Framework;
+using Parser.LogFile.SignalR.Contracts;
+using Parser.LogFile.SignalR.Factories;
+using Parser.LogFile.SignalR.Services;
+using Parser.LogFile.SignalR.Tests.Mocks;
 
-using Parser.SignalR.Contracts;
-using Parser.SignalR.Factories;
-using Parser.SignalR.Services;
-using Parser.SignalR.Tests.Mocks;
-
-namespace Parser.SignalR.Tests.ServicesTests.SignalRHubConnectionServiceTests
+namespace Parser.LogFile.SignalR.Tests.ServicesTests.SignalRHubConnectionServiceTests
 {
     [TestFixture]
     public class GetHubProxyProvider_Should

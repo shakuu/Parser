@@ -2,7 +2,7 @@
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
-using Parser.SignalR.Services;
+using Parser.LogFile.SignalR.Services;
 
 namespace Parser.MvcClient.App_Start.NinjectModules
 {

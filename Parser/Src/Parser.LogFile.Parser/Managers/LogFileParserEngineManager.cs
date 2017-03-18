@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
-using Parser.LogFileParser.Contracts;
-using Parser.LogFileParser.Factories;
+using Parser.LogFile.Parser.Contracts;
+using Parser.LogFile.Parser.Factories;
 
-namespace Parser.LogFileParser.Managers
+namespace Parser.LogFile.Parser.Managers
 {
     public class LogFileParserEngineManager : ILogFileParserEngineManager
     {

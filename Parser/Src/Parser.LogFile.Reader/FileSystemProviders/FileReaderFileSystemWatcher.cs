@@ -1,10 +1,9 @@
 ﻿using System.IO;
 
 using Bytes2you.Validation;
+using Parser.LogFile.Reader.Contracts;
 
-using Parser.LogFileReader.Contracts;
-
-namespace Parser.LogFileReader.FileSystemProviders
+namespace Parser.LogFile.Reader.FileSystemProviders
 {
     public class FileReaderFileSystemWatcher : IFileReaderFileSystemWatcher
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Parser.LogFileReader.Contracts
+namespace Parser.LogFile.Reader.Contracts
 {
     public interface IFileReaderInputProvider : IDisposable
     {

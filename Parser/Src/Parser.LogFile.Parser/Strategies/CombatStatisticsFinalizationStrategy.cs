@@ -2,9 +2,9 @@
 
 using Parser.Common.Contracts;
 using Parser.Common.Factories;
-using Parser.LogFileParser.Contracts;
+using Parser.LogFile.Parser.Contracts;
 
-namespace Parser.LogFileParser.Strategies
+namespace Parser.LogFile.Parser.Strategies
 {
     public class CombatStatisticsFinalizationStrategy : ICombatStatisticsFinalizationStrategy
     {

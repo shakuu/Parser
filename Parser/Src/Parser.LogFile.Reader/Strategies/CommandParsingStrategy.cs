@@ -6,9 +6,9 @@ using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
 using Parser.Common.Factories;
-using Parser.LogFileReader.Contracts;
+using Parser.LogFile.Reader.Contracts;
 
-namespace Parser.LogFileReader.Strategies
+namespace Parser.LogFile.Reader.Strategies
 {
     public class CommandParsingStrategy : ICommandParsingStrategy
     {

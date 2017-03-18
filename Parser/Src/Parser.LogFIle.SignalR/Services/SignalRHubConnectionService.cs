@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 
 using Bytes2you.Validation;
+using Parser.LogFile.SignalR.Contracts;
+using Parser.LogFile.SignalR.Factories;
 
-using Parser.SignalR.Contracts;
-using Parser.SignalR.Factories;
-
-namespace Parser.SignalR.Services
+namespace Parser.LogFile.SignalR.Services
 {
     public class SignalRHubConnectionService : ISignalRHubConnectionService
     {

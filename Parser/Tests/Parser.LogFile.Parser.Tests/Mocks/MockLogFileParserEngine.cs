@@ -1,9 +1,9 @@
 ﻿using Parser.Common.Contracts;
 using Parser.Common.EventsArgs;
-using Parser.LogFileParser.Contracts;
-using Parser.LogFileParser.Engines;
+using Parser.LogFile.Parser.Contracts;
+using Parser.LogFile.Parser.Engines;
 
-namespace Parser.LogFileParser.Tests.Mocks
+namespace Parser.LogFile.Parser.Tests.Mocks
 {
     internal class MockLogFileParserEngine : LogFileParserEngine
     {

@@ -1,4 +1,4 @@
-﻿namespace Parser.LogFileParser.Contracts
+﻿namespace Parser.LogFile.Parser.Contracts
 {
     public interface ICommandResolutionHandlerChain
     {

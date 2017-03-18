@@ -3,10 +3,10 @@
 using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
-using Parser.LogFileParser.Contracts;
-using Parser.SignalR.Contracts;
+using Parser.LogFile.Parser.Contracts;
+using Parser.LogFile.SignalR.Contracts;
 
-namespace Parser.SignalR.Services
+namespace Parser.LogFile.SignalR.Services
 {
     public class LogFileParserHubService : ILogFileParserHubService
     {

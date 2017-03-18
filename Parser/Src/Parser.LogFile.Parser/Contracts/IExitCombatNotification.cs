@@ -1,8 +1,7 @@
 ﻿using System;
+using Parser.LogFile.Parser.EventsArgs;
 
-using Parser.LogFileParser.EventsArgs;
-
-namespace Parser.LogFileParser.Contracts
+namespace Parser.LogFile.Parser.Contracts
 {
     public interface IExitCombatNotification
     {

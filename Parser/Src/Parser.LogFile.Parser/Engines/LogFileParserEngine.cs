@@ -2,9 +2,9 @@
 
 using Parser.Common.Contracts;
 using Parser.Common.EventsArgs;
-using Parser.LogFileParser.Contracts;
+using Parser.LogFile.Parser.Contracts;
 
-namespace Parser.LogFileParser.Engines
+namespace Parser.LogFile.Parser.Engines
 {
     public class LogFileParserEngine : ILogFileParserEngine
     {

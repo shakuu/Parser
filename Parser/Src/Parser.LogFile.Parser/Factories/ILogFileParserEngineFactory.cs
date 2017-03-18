@@ -1,6 +1,6 @@
-﻿using Parser.LogFileParser.Contracts;
+﻿using Parser.LogFile.Parser.Contracts;
 
-namespace Parser.LogFileParser.Factories
+namespace Parser.LogFile.Parser.Factories
 {
     public interface ILogFileParserEngineFactory
     {

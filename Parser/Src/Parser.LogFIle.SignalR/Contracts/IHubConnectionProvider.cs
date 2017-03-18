@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Client;
 
-namespace Parser.SignalR.Contracts
+namespace Parser.LogFile.SignalR.Contracts
 {
     public interface IHubConnectionProvider
     {

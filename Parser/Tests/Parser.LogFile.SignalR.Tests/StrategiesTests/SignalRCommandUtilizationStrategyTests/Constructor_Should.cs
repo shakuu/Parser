@@ -5,11 +5,11 @@ using NUnit.Framework;
 
 using Parser.Auth.Remote;
 using Parser.Common.Contracts;
-using Parser.LogFileReader.Contracts;
-using Parser.SignalR.Contracts;
-using Parser.SignalR.Strategies;
+using Parser.LogFile.Reader.Contracts;
+using Parser.LogFile.SignalR.Contracts;
+using Parser.LogFile.SignalR.Strategies;
 
-namespace Parser.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategyTests
+namespace Parser.LogFile.SignalR.Tests.StrategiesTests.SignalRCommandUtilizationStrategyTests
 {
     [TestFixture]
     public class Constructor_Should

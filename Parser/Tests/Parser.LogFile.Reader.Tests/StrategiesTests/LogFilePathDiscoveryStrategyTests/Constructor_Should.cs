@@ -2,11 +2,10 @@
 
 using Moq;
 using NUnit.Framework;
+using Parser.LogFile.Reader.Contracts;
+using Parser.LogFile.Reader.Strategies;
 
-using Parser.LogFileReader.Contracts;
-using Parser.LogFileReader.Strategies;
-
-namespace Parser.LogFileReader.Tests.StrategiesTests.LogFilePathDiscoveryStrategyTests
+namespace Parser.LogFile.Reader.Tests.StrategiesTests.LogFilePathDiscoveryStrategyTests
 {
     [TestFixture]
     public class Constructor_Should

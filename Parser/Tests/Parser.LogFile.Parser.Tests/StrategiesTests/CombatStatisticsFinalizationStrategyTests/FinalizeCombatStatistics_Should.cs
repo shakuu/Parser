@@ -7,9 +7,9 @@ using NUnit.Framework;
 using Parser.Common.Contracts;
 using Parser.Common.Factories;
 using Parser.Common.Models;
-using Parser.LogFileParser.Strategies;
+using Parser.LogFile.Parser.Strategies;
 
-namespace Parser.LogFileParser.Tests.StrategiesTests.CombatStatisticsFinalizationStrategyTests
+namespace Parser.LogFile.Parser.Tests.StrategiesTests.CombatStatisticsFinalizationStrategyTests
 {
     [TestFixture]
     public class FinalizeCombatStatistics_Should

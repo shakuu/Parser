@@ -1,10 +1,9 @@
 ﻿using System;
 
 using NUnit.Framework;
+using Parser.LogFile.Parser.Tests.Mocks;
 
-using Parser.LogFileParser.Tests.Mocks;
-
-namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.BaseTests.CommandResolutionHandlerTests
+namespace Parser.LogFile.Parser.Tests.CommandResolutionHandlersTests.BaseTests.CommandResolutionHandlerTests
 {
     [TestFixture]
     public class Constructor_Should

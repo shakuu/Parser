@@ -2,12 +2,12 @@
 using NUnit.Framework;
 
 using Parser.Common.Contracts;
-using Parser.LogFileParser.Contracts;
-using Parser.LogFileParser.Factories;
-using Parser.LogFileParser.Managers;
-using Parser.LogFileParser.Tests.Mocks;
+using Parser.LogFile.Parser.Contracts;
+using Parser.LogFile.Parser.Factories;
+using Parser.LogFile.Parser.Managers;
+using Parser.LogFile.Parser.Tests.Mocks;
 
-namespace Parser.LogFileParser.Tests.ManagersTests.LogFileParserEngineManagerTests
+namespace Parser.LogFile.Parser.Tests.ManagersTests.LogFileParserEngineManagerTests
 {
     [TestFixture]
     public class StartNewLogFileParserEngine_Should

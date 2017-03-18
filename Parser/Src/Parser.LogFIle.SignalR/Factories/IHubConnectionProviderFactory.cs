@@ -1,6 +1,6 @@
-﻿using Parser.SignalR.Contracts;
+﻿using Parser.LogFile.SignalR.Contracts;
 
-namespace Parser.SignalR.Factories
+namespace Parser.LogFile.SignalR.Factories
 {
     public interface IHubConnectionProviderFactory
     {

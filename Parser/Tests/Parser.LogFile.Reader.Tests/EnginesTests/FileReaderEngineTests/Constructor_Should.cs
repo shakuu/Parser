@@ -3,11 +3,11 @@
 using Moq;
 using NUnit.Framework;
 
-using Parser.LogFileReader.Contracts;
-using Parser.LogFileReader.Engines;
-using Parser.LogFileReader.Factories;
+using Parser.LogFile.Reader.Contracts;
+using Parser.LogFile.Reader.Engines;
+using Parser.LogFile.Reader.Factories;
 
-namespace Parser.LogFileReader.Tests.EnginesTests.FileReaderEngineTests
+namespace Parser.LogFile.Reader.Tests.EnginesTests.FileReaderEngineTests
 {
     [TestFixture]
     public class Constructor_Should

@@ -3,7 +3,7 @@
 using Ninject;
 
 using Parser.MvcClient.App_Start;
-using Parser.SignalR.Contracts;
+using Parser.LogFile.SignalR.Contracts;
 
 namespace Parser.MvcClient.SignalRHubs
 {

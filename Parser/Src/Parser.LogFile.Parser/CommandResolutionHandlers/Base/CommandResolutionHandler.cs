@@ -1,9 +1,9 @@
 ﻿using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
-using Parser.LogFileParser.Contracts;
+using Parser.LogFile.Parser.Contracts;
 
-namespace Parser.LogFileParser.CommandResolutionHandlers.Base
+namespace Parser.LogFile.Parser.CommandResolutionHandlers.Base
 {
     public abstract class CommandResolutionHandler : ICommandResolutionHandler, ICommandResolutionHandlerChain
     {

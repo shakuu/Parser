@@ -1,7 +1,7 @@
 ﻿using Parser.Common.Contracts;
-using Parser.LogFileParser.EventsArgs;
+using Parser.LogFile.Parser.EventsArgs;
 
-namespace Parser.LogFileParser.Factories
+namespace Parser.LogFile.Parser.Factories
 {
     public interface IExitCombatEventArgsFactory
     {

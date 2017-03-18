@@ -2,11 +2,10 @@
 using System.Threading.Tasks;
 
 using Bytes2you.Validation;
+using Parser.LogFile.Reader.Contracts;
+using Parser.LogFile.Reader.Factories;
 
-using Parser.LogFileReader.Contracts;
-using Parser.LogFileReader.Factories;
-
-namespace Parser.LogFileReader.Engines
+namespace Parser.LogFile.Reader.Engines
 {
     public class LogFileReaderEngine : ILogFileReaderEngine, IDisposable
     {

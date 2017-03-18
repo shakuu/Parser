@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Parser.LogFileReader.Contracts
+namespace Parser.LogFile.Reader.Contracts
 {
     public interface ILogFileReaderEngine : IDisposable
     {

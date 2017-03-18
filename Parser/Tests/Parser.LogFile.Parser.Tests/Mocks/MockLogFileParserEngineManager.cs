@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
 using Parser.Common.Contracts;
-using Parser.LogFileParser.Contracts;
-using Parser.LogFileParser.Factories;
-using Parser.LogFileParser.Managers;
+using Parser.LogFile.Parser.Contracts;
+using Parser.LogFile.Parser.Factories;
+using Parser.LogFile.Parser.Managers;
 
-namespace Parser.LogFileParser.Tests.Mocks
+namespace Parser.LogFile.Parser.Tests.Mocks
 {
     internal class MockLogFileParserEngineManager : LogFileParserEngineManager
     {

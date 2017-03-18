@@ -1,9 +1,8 @@
 ﻿using NUnit.Framework;
+using Parser.LogFile.Parser.CommandResolutionHandlers;
+using Parser.LogFile.Parser.Contracts;
 
-using Parser.LogFileParser.CommandResolutionHandlers;
-using Parser.LogFileParser.Contracts;
-
-namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.ExitCombatCommandResolutionHandlerTests
+namespace Parser.LogFile.Parser.Tests.CommandResolutionHandlersTests.ExitCombatCommandResolutionHandlerTests
 {
     [TestFixture]
     public class Constructor_Should

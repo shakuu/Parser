@@ -1,6 +1,6 @@
-﻿using Parser.LogFileReader.Contracts;
+﻿using Parser.LogFile.Reader.Contracts;
 
-namespace Parser.LogFileReader.Factories
+namespace Parser.LogFile.Reader.Factories
 {
     public interface IFileReaderAutoResetEventFactory
     {

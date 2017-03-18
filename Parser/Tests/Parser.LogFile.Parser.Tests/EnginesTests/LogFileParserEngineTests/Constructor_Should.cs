@@ -5,10 +5,10 @@ using NUnit.Framework;
 
 using Parser.Common.Contracts;
 using Parser.Common.EventsArgs;
-using Parser.LogFileParser.Contracts;
-using Parser.LogFileParser.Engines;
+using Parser.LogFile.Parser.Contracts;
+using Parser.LogFile.Parser.Engines;
 
-namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
+namespace Parser.LogFile.Parser.Tests.EnginesTests.LogFileParserEngineTests
 {
     [TestFixture]
     public class Constructor_Should

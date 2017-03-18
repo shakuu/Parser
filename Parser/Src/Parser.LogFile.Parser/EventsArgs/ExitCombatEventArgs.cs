@@ -4,7 +4,7 @@ using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
 
-namespace Parser.LogFileParser.EventsArgs
+namespace Parser.LogFile.Parser.EventsArgs
 {
     public class ExitCombatEventArgs : EventArgs
     {

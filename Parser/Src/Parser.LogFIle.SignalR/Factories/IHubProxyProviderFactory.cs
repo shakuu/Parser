@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNet.SignalR.Client;
+using Parser.LogFile.SignalR.Contracts;
 
-using Parser.SignalR.Contracts;
-
-namespace Parser.SignalR.Factories
+namespace Parser.LogFile.SignalR.Factories
 {
     public interface IHubProxyProviderFactory
     {

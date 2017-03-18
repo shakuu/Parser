@@ -5,10 +5,10 @@ using Bytes2you.Validation;
 
 using Parser.Auth.Remote;
 using Parser.Common.Contracts;
-using Parser.LogFileReader.Contracts;
-using Parser.SignalR.Contracts;
+using Parser.LogFile.Reader.Contracts;
+using Parser.LogFile.SignalR.Contracts;
 
-namespace Parser.SignalR.Strategies
+namespace Parser.LogFile.SignalR.Strategies
 {
     public class SignalRCommandUtilizationStrategy : ICommandUtilizationStrategy, IDisposable
     {

@@ -4,10 +4,10 @@ using Moq;
 using NUnit.Framework;
 
 using Parser.Common.Factories;
-using Parser.LogFileParser.CommandResolutionHandlers;
-using Parser.LogFileParser.Contracts;
+using Parser.LogFile.Parser.CommandResolutionHandlers;
+using Parser.LogFile.Parser.Contracts;
 
-namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.EnterCombatCommandResolutionHandlerTests
+namespace Parser.LogFile.Parser.Tests.CommandResolutionHandlersTests.EnterCombatCommandResolutionHandlerTests
 {
     [TestFixture]
     public class Constructor_Should

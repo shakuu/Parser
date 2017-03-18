@@ -1,9 +1,9 @@
 ﻿using Parser.Auth.Remote;
 using Parser.Common.Contracts;
-using Parser.SignalR.Contracts;
-using Parser.SignalR.Strategies;
+using Parser.LogFile.SignalR.Contracts;
+using Parser.LogFile.SignalR.Strategies;
 
-namespace Parser.SignalR.Tests.Mocks
+namespace Parser.LogFile.SignalR.Tests.Mocks
 {
     internal class MockSignalRCommandUtilizationStrategy : SignalRCommandUtilizationStrategy
     {

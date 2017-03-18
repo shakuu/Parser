@@ -2,10 +2,10 @@
 using NUnit.Framework;
 
 using Parser.Common.Contracts;
-using Parser.LogFileParser.Contracts;
-using Parser.LogFileParser.Tests.Mocks;
+using Parser.LogFile.Parser.Contracts;
+using Parser.LogFile.Parser.Tests.Mocks;
 
-namespace Parser.LogFileParser.Tests.EnginesTests.LogFileParserEngineTests
+namespace Parser.LogFile.Parser.Tests.EnginesTests.LogFileParserEngineTests
 {
     [TestFixture]
     public class GetComabtStatistics_Should

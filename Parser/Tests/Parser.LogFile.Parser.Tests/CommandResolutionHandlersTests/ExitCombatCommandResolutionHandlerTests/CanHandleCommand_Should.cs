@@ -2,9 +2,9 @@
 using NUnit.Framework;
 
 using Parser.Common.Contracts;
-using Parser.LogFileParser.Tests.Mocks;
+using Parser.LogFile.Parser.Tests.Mocks;
 
-namespace Parser.LogFileParser.Tests.CommandResolutionHandlersTests.ExitCombatCommandResolutionHandlerTests
+namespace Parser.LogFile.Parser.Tests.CommandResolutionHandlersTests.ExitCombatCommandResolutionHandlerTests
 {
     [TestFixture]
     public class CanHandleCommand_Should

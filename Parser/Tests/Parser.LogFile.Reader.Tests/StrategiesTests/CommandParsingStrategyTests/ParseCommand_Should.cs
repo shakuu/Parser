@@ -6,9 +6,9 @@ using NUnit.Framework;
 using Parser.Common.Contracts;
 using Parser.Common.Factories;
 using Parser.Common.Models;
-using Parser.LogFileReader.Strategies;
+using Parser.LogFile.Reader.Strategies;
 
-namespace Parser.LogFileReader.Tests.StrategiesTests.CommandParsingStrategyTests
+namespace Parser.LogFile.Reader.Tests.StrategiesTests.CommandParsingStrategyTests
 {
     [TestFixture]
     public class ParseCommand_Should

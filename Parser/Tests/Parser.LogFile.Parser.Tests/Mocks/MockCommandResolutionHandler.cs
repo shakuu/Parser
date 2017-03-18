@@ -1,9 +1,9 @@
 ﻿using System;
 
 using Parser.Common.Contracts;
-using Parser.LogFileParser.CommandResolutionHandlers.Base;
+using Parser.LogFile.Parser.CommandResolutionHandlers.Base;
 
-namespace Parser.LogFileParser.Tests.Mocks
+namespace Parser.LogFile.Parser.Tests.Mocks
 {
     internal class MockCommandResolutionHandler : CommandResolutionHandler
     {

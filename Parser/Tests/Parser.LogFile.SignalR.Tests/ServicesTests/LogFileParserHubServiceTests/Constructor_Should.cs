@@ -4,11 +4,11 @@ using Moq;
 using NUnit.Framework;
 
 using Parser.Common.Contracts;
-using Parser.LogFileParser.Contracts;
-using Parser.SignalR.Contracts;
-using Parser.SignalR.Services;
+using Parser.LogFile.Parser.Contracts;
+using Parser.LogFile.SignalR.Contracts;
+using Parser.LogFile.SignalR.Services;
 
-namespace Parser.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
+namespace Parser.LogFile.SignalR.Tests.ServicesTests.LogFileParserHubServiceTests
 {
     [TestFixture]
     public class Constructor_Should

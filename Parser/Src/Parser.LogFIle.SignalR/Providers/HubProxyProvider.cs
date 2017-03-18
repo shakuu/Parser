@@ -4,10 +4,9 @@ using System.Threading.Tasks;
 using Bytes2you.Validation;
 
 using Microsoft.AspNet.SignalR.Client;
+using Parser.LogFile.SignalR.Contracts;
 
-using Parser.SignalR.Contracts;
-
-namespace Parser.SignalR.Providers
+namespace Parser.LogFile.SignalR.Providers
 {
     public class HubProxyProvider : IHubProxyProvider
     {

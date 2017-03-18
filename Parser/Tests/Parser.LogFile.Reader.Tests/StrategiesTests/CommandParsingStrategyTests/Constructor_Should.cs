@@ -4,10 +4,10 @@ using Moq;
 using NUnit.Framework;
 
 using Parser.Common.Factories;
-using Parser.LogFileReader.Contracts;
-using Parser.LogFileReader.Strategies;
+using Parser.LogFile.Reader.Contracts;
+using Parser.LogFile.Reader.Strategies;
 
-namespace Parser.LogFileReader.Tests.StrategiesTests.CommandParsingStrategyTests
+namespace Parser.LogFile.Reader.Tests.StrategiesTests.CommandParsingStrategyTests
 {
     [TestFixture]
     public class Constructor_Should

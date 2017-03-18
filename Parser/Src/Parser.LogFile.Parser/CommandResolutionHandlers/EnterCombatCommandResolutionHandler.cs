@@ -2,10 +2,10 @@
 
 using Parser.Common.Contracts;
 using Parser.Common.Factories;
-using Parser.LogFileParser.CommandResolutionHandlers.Base;
-using Parser.LogFileParser.Contracts;
+using Parser.LogFile.Parser.CommandResolutionHandlers.Base;
+using Parser.LogFile.Parser.Contracts;
 
-namespace Parser.LogFileParser.CommandResolutionHandlers
+namespace Parser.LogFile.Parser.CommandResolutionHandlers
 {
     public class EnterCombatCommandResolutionHandler : CommandResolutionHandler, ICommandResolutionHandler, ICommandResolutionHandlerChain
     {

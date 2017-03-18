@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Parser.LogFileReader.Contracts
+namespace Parser.LogFile.Reader.Contracts
 {
     public interface IDirectoryFilesProvider
     {

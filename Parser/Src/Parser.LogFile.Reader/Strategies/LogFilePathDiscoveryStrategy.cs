@@ -1,10 +1,9 @@
 ﻿using System.Linq;
 
 using Bytes2you.Validation;
+using Parser.LogFile.Reader.Contracts;
 
-using Parser.LogFileReader.Contracts;
-
-namespace Parser.LogFileReader.Strategies
+namespace Parser.LogFile.Reader.Strategies
 {
     public class LogFilePathDiscoveryStrategy : ILogFilePathDiscoveryStrategy
     {

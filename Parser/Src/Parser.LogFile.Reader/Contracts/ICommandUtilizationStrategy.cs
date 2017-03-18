@@ -2,7 +2,7 @@
 
 using Parser.Common.Contracts;
 
-namespace Parser.LogFileReader.Contracts
+namespace Parser.LogFile.Reader.Contracts
 {
     public interface ICommandUtilizationStrategy : IDisposable
     {
