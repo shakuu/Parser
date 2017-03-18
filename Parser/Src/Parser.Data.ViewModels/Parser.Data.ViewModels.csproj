@@ -50,6 +50,7 @@
     <Compile Include="Leaderboard\HealingDonePerSecondViewModel.cs" />
     <Compile Include="Leaderboard\HealingViewModel.cs" />
     <Compile Include="Leaderboard\ParameterCtorHealingDonePerSecondViewModel.cs" />
+    <Compile Include="Live\LiveStatisticsViewModel.cs" />
     <Compile Include="ParserUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterParserUserViewModel.cs" />

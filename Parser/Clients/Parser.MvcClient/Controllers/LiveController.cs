@@ -8,7 +8,7 @@ namespace Parser.MvcClient.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
     }
 }
