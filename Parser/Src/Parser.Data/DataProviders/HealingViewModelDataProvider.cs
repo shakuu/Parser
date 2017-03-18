@@ -20,19 +20,16 @@ namespace Parser.Data.DataProviders
         private readonly IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository;
         private readonly IProgressPartialCircleSvgPathStringProvider progressPartialCircleSvgPathStringProvider;
         private readonly IHealingViewModelFactory damageViewModelFactory;
-        private readonly IParameterCtorHealingDonePerSecondViewModelFactory parameterCtorHealingDonePerSecondViewModelFactory;
 
-        public HealingViewModelDataProvider(IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository, IProgressPartialCircleSvgPathStringProvider progressPartialCircleSvgPathStringProvider, IHealingViewModelFactory damageViewModelFactory, IParameterCtorHealingDonePerSecondViewModelFactory parameterCtorHealingDonePerSecondViewModelFactory)
+        public HealingViewModelDataProvider(IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository, IProgressPartialCircleSvgPathStringProvider progressPartialCircleSvgPathStringProvider, IHealingViewModelFactory damageViewModelFactory)
         {
             Guard.WhenArgument(storedCombatStatisticsEntityFrameworkRepository, nameof(IEntityFrameworkRepository<StoredCombatStatistics>)).IsNull().Throw();
             Guard.WhenArgument(progressPartialCircleSvgPathStringProvider, nameof(IProgressPartialCircleSvgPathStringProvider)).IsNull().Throw();
             Guard.WhenArgument(damageViewModelFactory, nameof(IHealingViewModelFactory)).IsNull().Throw();
-            Guard.WhenArgument(parameterCtorHealingDonePerSecondViewModelFactory, nameof(IParameterCtorHealingDonePerSecondViewModelFactory)).IsNull().Throw();
 
             this.storedCombatStatisticsEntityFrameworkRepository = storedCombatStatisticsEntityFrameworkRepository;
             this.progressPartialCircleSvgPathStringProvider = progressPartialCircleSvgPathStringProvider;
             this.damageViewModelFactory = damageViewModelFactory;
-            this.parameterCtorHealingDonePerSecondViewModelFactory = parameterCtorHealingDonePerSecondViewModelFactory;
         }
 
         public HealingViewModel GetHealingViewModelOnPage(int pageNumber)
