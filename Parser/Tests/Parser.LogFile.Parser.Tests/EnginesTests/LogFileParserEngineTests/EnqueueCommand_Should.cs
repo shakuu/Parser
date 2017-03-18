@@ -21,13 +21,14 @@ namespace Parser.LogFile.Parser.Tests.EnginesTests.LogFileParserEngineTests
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
             var combatStatisticsFinalizationStrategy = new Mock<ICombatStatisticsFinalizationStrategy>();
             var combatStatisticsPersistentStorageStrategy = new Mock<ICombatStatisticsPersistentStorageStrategy>();
+            var liveCombatStatisticsCreationStrategy = new Mock<ILiveCombatStatisticsCreationStrategy>();
 
             var currentCombatStatisticsChangedSubscribeProvider = new Mock<ICurrentCombatStatisticsChangedSubscribeProvider>();
             combatStatisticsContainer.SetupGet(c => c.OnCurrentCombatStatisticsChanged).Returns(currentCombatStatisticsChangedSubscribeProvider.Object);
 
             ICommand command = null;
 
-            var logFileParserEngine = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, combatStatisticsFinalizationStrategy.Object, combatStatisticsPersistentStorageStrategy.Object);
+            var logFileParserEngine = new LogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, combatStatisticsFinalizationStrategy.Object, combatStatisticsPersistentStorageStrategy.Object, liveCombatStatisticsCreationStrategy.Object);
 
             // Act & Assert
             Assert.That(
@@ -43,13 +44,14 @@ namespace Parser.LogFile.Parser.Tests.EnginesTests.LogFileParserEngineTests
             var combatStatisticsContainer = new Mock<ICombatStatisticsContainer>();
             var combatStatisticsFinalizationStrategy = new Mock<ICombatStatisticsFinalizationStrategy>();
             var combatStatisticsPersistentStorageStrategy = new Mock<ICombatStatisticsPersistentStorageStrategy>();
+            var liveCombatStatisticsCreationStrategy = new Mock<ILiveCombatStatisticsCreationStrategy>();
 
             var currentCombatStatisticsChangedSubscribeProvider = new Mock<ICurrentCombatStatisticsChangedSubscribeProvider>();
             combatStatisticsContainer.SetupGet(c => c.OnCurrentCombatStatisticsChanged).Returns(currentCombatStatisticsChangedSubscribeProvider.Object);
 
             var command = new Mock<ICommand>();
 
-            var logFileParserEngine = new MockLogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, combatStatisticsFinalizationStrategy.Object, combatStatisticsPersistentStorageStrategy.Object);
+            var logFileParserEngine = new MockLogFileParserEngine(commandResolutionHandler.Object, combatStatisticsContainer.Object, combatStatisticsFinalizationStrategy.Object, combatStatisticsPersistentStorageStrategy.Object, liveCombatStatisticsCreationStrategy.Object);
             logFileParserEngine.CombatStatisticsContainer = combatStatisticsContainer.Object;
 
             // Act
