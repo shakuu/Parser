@@ -73,6 +73,7 @@
     <Compile Include="Factories\ICombatStatisticsFactory.cs" />
     <Compile Include="Factories\ICurrentCombatStatisticsChangedEventArgsFactory.cs" />
     <Compile Include="Factories\IFinalizedCombatStatisticsFactory.cs" />
+    <Compile Include="Factories\ILiveStatisticsContainerFactory.cs" />
     <Compile Include="Models\CombatStatisticsContainer.cs" />
     <Compile Include="Models\Command.cs" />
     <Compile Include="Models\CombatStatistics.cs" />
