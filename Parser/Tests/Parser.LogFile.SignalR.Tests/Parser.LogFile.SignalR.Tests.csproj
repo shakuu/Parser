@@ -7,8 +7,8 @@
     <ProjectGuid>{37CEDE73-5DBB-44D0-B0E0-4C2AC921291E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parser.SignalR.Tests</RootNamespace>
-    <AssemblyName>Parser.SignalR.Tests</AssemblyName>
+    <RootNamespace>Parser.LogFile.SignalR.Tests</RootNamespace>
+    <AssemblyName>Parser.LogFile.SignalR.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
