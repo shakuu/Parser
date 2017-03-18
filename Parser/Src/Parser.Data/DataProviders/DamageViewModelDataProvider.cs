@@ -18,13 +18,13 @@ namespace Parser.Data.DataProviders
         private const int DefaultPageSize = 5;
 
         private readonly IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository;
-        private readonly IProgressPartialCircleSvgPathStringProvider progressPartialCircleSvgPathStringProvider;
+        private readonly IPartialCircleSvgPathProvider progressPartialCircleSvgPathStringProvider;
         private readonly IDamageViewModelFactory damageViewModelFactory;
 
-        public DamageViewModelDataProvider(IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository, IProgressPartialCircleSvgPathStringProvider progressPartialCircleSvgPathStringProvider, IDamageViewModelFactory damageViewModelFactory)
+        public DamageViewModelDataProvider(IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository, IPartialCircleSvgPathProvider progressPartialCircleSvgPathStringProvider, IDamageViewModelFactory damageViewModelFactory)
         {
             Guard.WhenArgument(storedCombatStatisticsEntityFrameworkRepository, nameof(IEntityFrameworkRepository<StoredCombatStatistics>)).IsNull().Throw();
-            Guard.WhenArgument(progressPartialCircleSvgPathStringProvider, nameof(IProgressPartialCircleSvgPathStringProvider)).IsNull().Throw();
+            Guard.WhenArgument(progressPartialCircleSvgPathStringProvider, nameof(IPartialCircleSvgPathProvider)).IsNull().Throw();
             Guard.WhenArgument(damageViewModelFactory, nameof(IDamageViewModelFactory)).IsNull().Throw();
 
             this.storedCombatStatisticsEntityFrameworkRepository = storedCombatStatisticsEntityFrameworkRepository;
@@ -45,7 +45,7 @@ namespace Parser.Data.DataProviders
             var damageViewModel = this.damageViewModelFactory.CreateDamageViewModel(pageNumber, damageDonePerSecondViewModels);
             foreach (var viewModel in damageViewModel.DamageDonePerSecondViewModels)
             {
-                viewModel.SvgString = this.progressPartialCircleSvgPathStringProvider.GetPathString(viewModel.PercentageOfBest, DamageViewModelDataProvider.DefaultPercentageBarRadius, DamageViewModelDataProvider.DefaultSvgElementSize);
+                viewModel.SvgString = this.progressPartialCircleSvgPathStringProvider.GetSvgPath(viewModel.PercentageOfBest, DamageViewModelDataProvider.DefaultPercentageBarRadius, DamageViewModelDataProvider.DefaultSvgElementSize);
             }
 
             return damageViewModel;
