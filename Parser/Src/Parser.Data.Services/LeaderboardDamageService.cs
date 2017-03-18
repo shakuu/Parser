@@ -17,7 +17,7 @@ namespace Parser.Data.Services
             this.damageViewModelDataProvider = damageViewModelDataProvider;
         }
 
-        public DamageViewModel GetTopStoredCombatStatisticsOnPage(int pageNumber)
+        public DamageViewModel GetTopStoredDamageOnPage(int pageNumber)
         {
             return this.damageViewModelDataProvider.GetDamageViewModelOnPage(pageNumber);
         }

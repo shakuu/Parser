@@ -4,6 +4,6 @@ namespace Parser.Data.Contracts
 {
     public interface IHealingViewModelDataProvider
     {
-        HealingViewModel GetDamageViewModelOnPage(int pageNumber);
+        HealingViewModel GetHealingViewModelOnPage(int pageNumber);
     }
 }

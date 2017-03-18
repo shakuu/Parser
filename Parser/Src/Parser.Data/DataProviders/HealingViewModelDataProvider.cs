@@ -39,7 +39,7 @@ namespace Parser.Data.DataProviders
             this.parameterCtorHealingDonePerSecondViewModelFactory = parameterCtorHealingDonePerSecondViewModelFactory;
         }
 
-        public HealingViewModel GetDamageViewModelOnPage(int pageNumber)
+        public HealingViewModel GetHealingViewModelOnPage(int pageNumber)
         {
             if (pageNumber <= 0)
             {
