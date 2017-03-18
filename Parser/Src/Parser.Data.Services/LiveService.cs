@@ -1,6 +1,4 @@
-﻿using System;
-
-using Bytes2you.Validation;
+﻿using Bytes2you.Validation;
 
 using Parser.Data.Services.Contracts;
 using Parser.Data.ViewModels.Factories;
@@ -26,15 +24,20 @@ namespace Parser.Data.Services
         public LiveStatisticsViewModel GetLiveStatisticsViewModel(string username)
         {
             var logFileParserEngine = this.logFileParserEngineManager.FindLogFileParserEngineByUsername(username);
-            if (logFileParserEngine == null)
+
+            var liveCombatStatistics = logFileParserEngine?.GetLiveCombatStatistics();
+            if (liveCombatStatistics == null)
             {
                 return null;
             }
 
-            var liveStatistics = this.liveStatisticsViewModelFactory.CreateLiveStatisticsViewModel();
-            //liveStatistics.CharacterName = 
+            var liveStatisticsViewModel = this.liveStatisticsViewModelFactory.CreateLiveStatisticsViewModel();
+            liveStatisticsViewModel.CharacterName = liveCombatStatistics.CharacterName;
+            liveStatisticsViewModel.CombatDuration = liveCombatStatistics.CombatDuration;
+            liveStatisticsViewModel.DamageDonePerSecond = liveCombatStatistics.DamageDonePerSecond;
+            liveStatisticsViewModel.HealingDonePerSecond = liveCombatStatistics.HealingDonePerSecond;
 
-            throw new NotImplementedException();
+            return liveStatisticsViewModel;
         }
     }
 }

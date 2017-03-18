@@ -41,7 +41,7 @@ namespace Parser.LogFile.Parser.Engines
             this.combatStatisticsContainer = this.commandResolutionHandler.ResolveCommand(command, this.combatStatisticsContainer);
         }
 
-        public ILiveCombatStatistics GetCombatStatistics()
+        public ILiveCombatStatistics GetLiveCombatStatistics()
         {
             return this.liveCombatStatisticsCreationStrategy.CreateLiveCombatStatistics(this.combatStatisticsContainer.CurrentCombatStatistics);
         }
