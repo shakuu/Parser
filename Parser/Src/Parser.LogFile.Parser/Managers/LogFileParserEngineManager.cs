@@ -18,7 +18,7 @@ namespace Parser.LogFile.Parser.Managers
         private readonly ILogFileParserEngineFactory logFileParserEngineFactory;
 
         private readonly ConcurrentDictionary<string, ILogFileParserEngine> logFileParserEngines;
-        private readonly ConcurrentDictionary<string, ConcurrentBag<ILogFileParserEngine>> logFileParserEnginesByUser;
+        private readonly ConcurrentDictionary<string, ILogFileParserEngine> logFileParserEnginesByUser;
         private readonly ConcurrentDictionary<string, string> usernamesByEngineId;
 
         public LogFileParserEngineManager(IGuidStringProvider guidStringProvider, ILogFileParserEngineFactory logFileParserEngineFactory)
@@ -30,11 +30,21 @@ namespace Parser.LogFile.Parser.Managers
             this.logFileParserEngineFactory = logFileParserEngineFactory;
 
             this.logFileParserEngines = new ConcurrentDictionary<string, ILogFileParserEngine>();
-            this.logFileParserEnginesByUser = new ConcurrentDictionary<string, ConcurrentBag<ILogFileParserEngine>>();
+            this.logFileParserEnginesByUser = new ConcurrentDictionary<string, ILogFileParserEngine>();
             this.usernamesByEngineId = new ConcurrentDictionary<string, string>();
         }
 
         protected IDictionary<string, ILogFileParserEngine> LogFileParserEngines { get { return this.logFileParserEngines; } }
+
+        public ILogFileParserEngine FindLogFileParserEngineByUsername(string username)
+        {
+            if (this.logFileParserEnginesByUser.ContainsKey(username))
+            {
+                return this.logFileParserEnginesByUser[username];
+            }
+
+            return null;
+        }
 
         public void EnqueueCommandToEngineWithId(string engineId, ICommand command)
         {
@@ -68,7 +78,7 @@ namespace Parser.LogFile.Parser.Managers
                     {
                         var username = this.usernamesByEngineId[engineId];
 
-                        this.logFileParserEnginesByUser[username].TryTake(out outParameter);
+                        this.logFileParserEnginesByUser.TryRemove(username, out outParameter);
                     }
                 }
 
@@ -102,10 +112,13 @@ namespace Parser.LogFile.Parser.Managers
             var logFileParserEnginesByUserContainsUsername = this.logFileParserEnginesByUser.ContainsKey(username);
             if (!logFileParserEnginesByUserContainsUsername)
             {
-                this.logFileParserEnginesByUser.TryAdd(username, new ConcurrentBag<ILogFileParserEngine>());
+                this.logFileParserEnginesByUser.TryAdd(username, engine);
+            }
+            else
+            {
+                this.logFileParserEnginesByUser[username] = engine;
             }
 
-            this.logFileParserEnginesByUser[username].Add(engine);
             this.usernamesByEngineId.TryAdd(engineId, username);
         }
     }

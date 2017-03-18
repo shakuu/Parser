@@ -7,7 +7,9 @@ namespace Parser.LogFile.Parser.Contracts
         string StartLogFileParserEngine(string username);
 
         string StopLogFileParserEngine(string engineId);
-        
+
         void EnqueueCommandToEngineWithId(string engineId, ICommand command);
+
+        ILogFileParserEngine FindLogFileParserEngineByUsername(string username);
     }
 }
