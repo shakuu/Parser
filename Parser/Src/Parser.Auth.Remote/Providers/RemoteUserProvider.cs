@@ -4,7 +4,7 @@ namespace Parser.Auth.Remote.Providers
 {
     public class RemoteUserProvider : IRemoteUserProvider
     {
-        private const string FixedUsernameForTesting = "some@user.com";
+        private const string FixedUsernameForTesting = "myuser@user.com";
 
         private IRemoteUser loggedInRemoteUser;
 

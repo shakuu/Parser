@@ -33,7 +33,7 @@ namespace Parser.ConsoleClient.NinjectModules
         private void BindFactoriesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.LogFileReader.*")
+                .FromAssembliesMatching("*.LogFile.Reader.*")
                 .SelectAllInterfaces()
                 .EndingWith("Factory")
                 .BindToFactory()
@@ -43,7 +43,7 @@ namespace Parser.ConsoleClient.NinjectModules
         private void BindAllClassesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.LogFileReader.*")
+                .FromAssembliesMatching("*.LogFile.Reader.*")
                 .SelectAllClasses()
                 .BindDefaultInterface()
                 // TODO: Remove: Intercepting with testing input

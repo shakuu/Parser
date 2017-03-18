@@ -23,7 +23,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         private void BindAllClassesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.LogFileParser.*")
+                .FromAssembliesMatching("*.LogFile.Parser.*")
                 .SelectAllClasses()
                 .BindDefaultInterface()
                 .ConfigureFor<LogFileParserEngineManager>(m => m.InSingletonScope());
@@ -32,7 +32,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         private void BindFactoriesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.LogFileParser.*")
+                .FromAssembliesMatching("*.LogFile.Parser.*")
                 .SelectAllInterfaces()
                 .EndingWith("Factory")
                 .BindToFactory()

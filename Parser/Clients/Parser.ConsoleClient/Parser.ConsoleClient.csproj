@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="FileReaderImplementations\ConsoleClientCommandUtilizationStrategy.cs" />
     <Compile Include="FileReaderImplementations\LogFilePathDiscoveryStrategyTestingInterceptor.cs" />
+    <Compile Include="NinjectModules\AuthNinjectModule.cs" />
     <Compile Include="NinjectModules\CommonNinjectModule.cs" />
     <Compile Include="NinjectModules\LogFileReaderNinjectModule.cs" />
     <Compile Include="NinjectModules\NinjectStandardKernelProvider.cs" />
@@ -81,6 +82,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Src\Parser.Auth.Remote\Parser.Auth.Remote.csproj">
+      <Project>{72d6dce6-3d51-482a-a0cd-89feed67cf6d}</Project>
+      <Name>Parser.Auth.Remote</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
       <Name>Parser.Common</Name>
