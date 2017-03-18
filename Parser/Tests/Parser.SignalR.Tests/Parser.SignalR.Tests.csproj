@@ -112,7 +112,7 @@
       <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>
       <Name>Parser.LogFile.Parser</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Src\Parser.LogFileReader\Parser.LogFile.Reader.csproj">
+    <ProjectReference Include="..\..\Src\Parser.LogFile.Reader\Parser.LogFile.Reader.csproj">
       <Project>{be757824-2c14-425f-9498-38c62c33ef34}</Project>
       <Name>Parser.LogFile.Reader</Name>
     </ProjectReference>
