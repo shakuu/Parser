@@ -90,9 +90,9 @@
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
       <Name>Parser.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Src\Parser.LogFileParser\Parser.LogFileParser.csproj">
+    <ProjectReference Include="..\..\Src\Parser.LogFile.Parser\Parser.LogFile.Parser.csproj">
       <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>
-      <Name>Parser.LogFileParser</Name>
+      <Name>Parser.LogFile.Parser</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
