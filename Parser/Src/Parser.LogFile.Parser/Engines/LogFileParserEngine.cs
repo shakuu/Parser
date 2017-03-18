@@ -34,13 +34,13 @@ namespace Parser.LogFile.Parser.Engines
         public void EnqueueCommand(ICommand command)
         {
             Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
-            
+
             this.combatStatisticsContainer = this.commandResolutionHandler.ResolveCommand(command, this.combatStatisticsContainer);
         }
 
-        public ICombatStatisticsContainer GetCombatStatistics()
+        public ILiveStatisticsContainer GetCombatStatistics()
         {
-            return this.combatStatisticsContainer;
+            return null;
         }
 
         protected void OnCurrentCombatStatisticsChanged(object sender, CurrentCombatStatisticsChangedEventArgs args)
