@@ -1,7 +1,12 @@
-﻿
+﻿@model Parser.Data.ViewModels.Live.LiveStatisticsViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Live";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h1>Live</h1>
+
+<section id="live-statistics">
+    @Html.Partial("_LiveStatisticsViewModel", Model)
+</section>
+

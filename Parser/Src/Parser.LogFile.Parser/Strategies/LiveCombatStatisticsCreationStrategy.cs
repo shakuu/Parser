@@ -24,7 +24,10 @@ namespace Parser.LogFile.Parser.Strategies
 
         public ILiveCombatStatistics CreateLiveCombatStatistics(ICombatStatistics combatStatistics)
         {
-            Guard.WhenArgument(combatStatistics, nameof(ICombatStatistics)).IsNull().Throw();
+            if (combatStatistics == null)
+            {
+                return null;
+            }
 
             var liveCombatStatistics = this.liveCombatStatisticsFactory.CreateLiveCombatStatistics();
 

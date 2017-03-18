@@ -19,7 +19,16 @@ namespace Parser.MvcClient.Controllers
         {
             var viewModel = this.liveService.GetLiveStatisticsViewModel("myuser@user.com");
 
-            return this.View();
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateLiveCombatStatistics()
+        {
+            var viewModel = this.liveService.GetLiveStatisticsViewModel("myuser@user.com");
+
+            return this.PartialView("_LiveStatisticsViewModel", viewModel);
         }
     }
 }
