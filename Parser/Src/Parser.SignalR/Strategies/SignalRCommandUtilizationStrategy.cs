@@ -3,6 +3,7 @@ using System.Threading;
 
 using Bytes2you.Validation;
 
+using Parser.Auth.Remote;
 using Parser.Common.Contracts;
 using Parser.LogFileReader.Contracts;
 using Parser.SignalR.Contracts;
@@ -14,22 +15,27 @@ namespace Parser.SignalR.Strategies
         private const string HubName = "LogFileParserHub";
 
         private readonly ICommandJsonConvertProvider commandJsonConvertProvider;
+        private readonly IRemoteUserProvider remoteUserProvider;
 
         private readonly IHubProxyProvider logFileParserHubProxyProvider;
 
         private string parsingSessionId;
 
-        public SignalRCommandUtilizationStrategy(ISignalRHubConnectionService signalRHubConnectionService, ICommandJsonConvertProvider commandJsonConvertProvider)
+        public SignalRCommandUtilizationStrategy(ISignalRHubConnectionService signalRHubConnectionService, ICommandJsonConvertProvider commandJsonConvertProvider, IRemoteUserProvider remoteUserProvider)
         {
             Guard.WhenArgument(signalRHubConnectionService, nameof(ISignalRHubConnectionService)).IsNull().Throw();
             Guard.WhenArgument(commandJsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
+            Guard.WhenArgument(remoteUserProvider, nameof(IRemoteUserProvider)).IsNull().Throw();
 
             this.commandJsonConvertProvider = commandJsonConvertProvider;
+            this.remoteUserProvider = remoteUserProvider;
 
             this.logFileParserHubProxyProvider = signalRHubConnectionService.GetHubProxyProvider(SignalRCommandUtilizationStrategy.HubName);
 
             this.InitializeLogFileParserHubProxy(this.logFileParserHubProxyProvider);
-            this.GetParsingSessionid(this.logFileParserHubProxyProvider);
+
+            var loggedRemoteUserUsername = this.GetLoggedRemoteUserUsername();
+            this.GetParsingSessionid(loggedRemoteUserUsername, this.logFileParserHubProxyProvider);
         }
 
         /// <summary>
@@ -41,14 +47,20 @@ namespace Parser.SignalR.Strategies
         {
             Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
 
+            var loggedRemoteUserUsername = this.GetLoggedRemoteUserUsername();
             while (string.IsNullOrEmpty(this.parsingSessionId))
             {
-                this.GetParsingSessionid(this.logFileParserHubProxyProvider);
+                this.GetParsingSessionid(loggedRemoteUserUsername, this.logFileParserHubProxyProvider);
             }
 
             var serializedCommand = this.commandJsonConvertProvider.SerializeCommand(command);
 
             this.logFileParserHubProxyProvider.Invoke("SendCommand", this.parsingSessionId, serializedCommand);
+        }
+
+        private string GetLoggedRemoteUserUsername()
+        {
+            return this.remoteUserProvider.LoggedInRemoteUser?.Username;
         }
 
         private void InitializeLogFileParserHubProxy(IHubProxyProvider logFileParserHubProxyProvider)
@@ -58,9 +70,9 @@ namespace Parser.SignalR.Strategies
             logFileParserHubProxyProvider.On<string>("UpdateParsingSessionId", this.OnUpdateParsingSessionId);
         }
 
-        private void GetParsingSessionid(IHubProxyProvider logFileParserHubProxyProvider)
+        private void GetParsingSessionid(string username, IHubProxyProvider logFileParserHubProxyProvider)
         {
-            logFileParserHubProxyProvider.Invoke("GetParsingSessionId").Wait();
+            logFileParserHubProxyProvider.Invoke("GetParsingSessionId", username).Wait();
             Thread.Sleep(500);
         }
 

@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common.Interceptors.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Common.Html", "Src\Parser.Common.Html\Parser.Common.Html.csproj", "{FFF46EF7-F592-41EE-993A-95BE386E7A63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Auth.Remote", "Src\Parser.Auth.Remote\Parser.Auth.Remote.csproj", "{72D6DCE6-3D51-482A-A0CD-89FEED67CF6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,10 @@ Global
 		{FFF46EF7-F592-41EE-993A-95BE386E7A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFF46EF7-F592-41EE-993A-95BE386E7A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFF46EF7-F592-41EE-993A-95BE386E7A63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72D6DCE6-3D51-482A-A0CD-89FEED67CF6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72D6DCE6-3D51-482A-A0CD-89FEED67CF6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72D6DCE6-3D51-482A-A0CD-89FEED67CF6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72D6DCE6-3D51-482A-A0CD-89FEED67CF6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -211,5 +217,6 @@ Global
 		{044EC167-75D8-4BD2-B893-5E9003F71DE3} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
 		{A19D1873-6BA0-4FD4-8EC6-F283C6B21A50} = {078E0CBC-5CAF-4513-A1D3-4F9F330B1D72}
 		{FFF46EF7-F592-41EE-993A-95BE386E7A63} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
+		{72D6DCE6-3D51-482A-A0CD-89FEED67CF6D} = {7DEE4524-5928-4941-B93C-9F5C4BD5D32C}
 	EndGlobalSection
 EndGlobal

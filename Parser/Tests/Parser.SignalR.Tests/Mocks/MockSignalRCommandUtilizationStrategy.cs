@@ -1,4 +1,5 @@
-﻿using Parser.Common.Contracts;
+﻿using Parser.Auth.Remote;
+using Parser.Common.Contracts;
 using Parser.SignalR.Contracts;
 using Parser.SignalR.Strategies;
 
@@ -6,8 +7,8 @@ namespace Parser.SignalR.Tests.Mocks
 {
     internal class MockSignalRCommandUtilizationStrategy : SignalRCommandUtilizationStrategy
     {
-        internal MockSignalRCommandUtilizationStrategy(ISignalRHubConnectionService signalRHubConnectionService, ICommandJsonConvertProvider commandJsonConvertProvider)
-            : base(signalRHubConnectionService, commandJsonConvertProvider)
+        internal MockSignalRCommandUtilizationStrategy(ISignalRHubConnectionService signalRHubConnectionService, ICommandJsonConvertProvider commandJsonConvertProvider, IRemoteUserProvider remoteUserProvider)
+            : base(signalRHubConnectionService, commandJsonConvertProvider, remoteUserProvider)
         {
         }
 
