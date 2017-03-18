@@ -7,7 +7,7 @@
 <h2>Top Hps</h2>
 
 <div id="healing-done-models">
-    @Html.Partial("_DamageDonePerSecondViewModelsPartial", @Model)
+    @Html.Partial("_HealingDonePerSecondViewModelsPartial", @Model)
 </div>
 
 @section Styles
@@ -17,5 +17,5 @@
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/damage")
+    @Scripts.Render("~/bundles/infinite-scroll-event")
 }
