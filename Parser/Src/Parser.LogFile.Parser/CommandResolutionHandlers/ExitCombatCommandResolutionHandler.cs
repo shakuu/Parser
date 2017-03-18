@@ -20,6 +20,8 @@ namespace Parser.LogFile.Parser.CommandResolutionHandlers
             combatStatisticsContainer.CurrentCombatStatistics.IsCompleted = true;
             combatStatisticsContainer.CurrentCombatStatistics = null;
 
+            base.AssignExitCombatTimestamp(command, combatStatisticsContainer);
+
             return combatStatisticsContainer;
         }
     }

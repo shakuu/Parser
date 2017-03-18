@@ -19,7 +19,7 @@ namespace Parser.LogFile.Parser.CommandResolutionHandlers
             {
                 combatStatisticsContainer.CurrentCombatStatistics.DamageDone += command.EffectEffectiveAmount;
 
-                combatStatisticsContainer.CurrentCombatStatistics.ExitCombatTime = command.TimeStamp;
+                base.AssignExitCombatTimestamp(command, combatStatisticsContainer);
             }
 
             return combatStatisticsContainer;

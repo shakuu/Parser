@@ -46,12 +46,12 @@ namespace Parser.LogFile.Parser.Strategies
 
         private double GetDamageDonePerSecond(ILiveCombatStatistics liveCombatStatistics, ICombatStatistics combatStatistics)
         {
-            return combatStatistics.DamageDone / liveCombatStatistics.CombatDuration.Seconds;
+            return combatStatistics.DamageDone / liveCombatStatistics.CombatDuration.TotalSeconds;
         }
 
         private double GetHealingDonePerSecond(ILiveCombatStatistics liveCombatStatistics, ICombatStatistics combatStatistics)
         {
-            return combatStatistics.HealingDone / liveCombatStatistics.CombatDuration.Seconds;
+            return combatStatistics.HealingDone / liveCombatStatistics.CombatDuration.TotalSeconds;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Bytes2you.Validation;
+﻿using System;
+using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
 using Parser.LogFile.Parser.Contracts;
@@ -50,6 +51,24 @@ namespace Parser.LogFile.Parser.CommandResolutionHandlers.Base
             else
             {
                 return command.EventName == this.matchingEventName;
+            }
+        }
+
+        protected virtual void AssignExitCombatTimestamp(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
+        {
+            if (combatStatisticsContainer.CurrentCombatStatistics == null)
+            {
+                return;
+            }
+
+            if (command.TimeStamp != default(DateTime))
+            {
+                combatStatisticsContainer.CurrentCombatStatistics.ExitCombatTime = command.TimeStamp;
+
+                if (combatStatisticsContainer.CurrentCombatStatistics.EnterCombatTime == default(DateTime))
+                {
+                    combatStatisticsContainer.CurrentCombatStatistics.EnterCombatTime = command.TimeStamp;
+                }
             }
         }
 
