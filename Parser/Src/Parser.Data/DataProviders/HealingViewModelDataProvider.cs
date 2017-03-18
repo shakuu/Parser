@@ -22,18 +22,21 @@ namespace Parser.Data.DataProviders
         private readonly IProgressPartialCircleSvgPathStringProvider progressPartialCircleSvgPathStringProvider;
         private readonly IHealingViewModelFactory damageViewModelFactory;
         private readonly IObjectMapperProvider objectMapperProvider;
+        private readonly IParameterCtorHealingDonePerSecondViewModelFactory parameterCtorHealingDonePerSecondViewModelFactory;
 
-        public HealingViewModelDataProvider(IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository, IProgressPartialCircleSvgPathStringProvider progressPartialCircleSvgPathStringProvider, IHealingViewModelFactory damageViewModelFactory, IObjectMapperProvider objectMapperProvider)
+        public HealingViewModelDataProvider(IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository, IProgressPartialCircleSvgPathStringProvider progressPartialCircleSvgPathStringProvider, IHealingViewModelFactory damageViewModelFactory, IObjectMapperProvider objectMapperProvider, IParameterCtorHealingDonePerSecondViewModelFactory parameterCtorHealingDonePerSecondViewModelFactory)
         {
             Guard.WhenArgument(storedCombatStatisticsEntityFrameworkRepository, nameof(IEntityFrameworkRepository<StoredCombatStatistics>)).IsNull().Throw();
             Guard.WhenArgument(progressPartialCircleSvgPathStringProvider, nameof(IProgressPartialCircleSvgPathStringProvider)).IsNull().Throw();
             Guard.WhenArgument(damageViewModelFactory, nameof(IHealingViewModelFactory)).IsNull().Throw();
             Guard.WhenArgument(objectMapperProvider, nameof(IObjectMapperProvider)).IsNull().Throw();
+            Guard.WhenArgument(parameterCtorHealingDonePerSecondViewModelFactory, nameof(IParameterCtorHealingDonePerSecondViewModelFactory)).IsNull().Throw();
 
             this.storedCombatStatisticsEntityFrameworkRepository = storedCombatStatisticsEntityFrameworkRepository;
             this.progressPartialCircleSvgPathStringProvider = progressPartialCircleSvgPathStringProvider;
             this.damageViewModelFactory = damageViewModelFactory;
             this.objectMapperProvider = objectMapperProvider;
+            this.parameterCtorHealingDonePerSecondViewModelFactory = parameterCtorHealingDonePerSecondViewModelFactory;
         }
 
         public HealingViewModel GetDamageViewModelOnPage(int pageNumber)
@@ -46,14 +49,7 @@ namespace Parser.Data.DataProviders
             var storedCombatStatistics = this.GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(pageNumber);
             pageNumber = storedCombatStatistics.Count / HealingViewModelDataProvider.DefaultPageSize;
 
-            var damageDonePerSecondViewModels = new List<HealingDonePerSecondViewModel>();
-            foreach (var storedCombatStatistic in storedCombatStatistics)
-            {
-                var damageDonePerSecondViewModel = this.objectMapperProvider.Map<HealingDonePerSecondViewModel>(storedCombatStatistic);
-                damageDonePerSecondViewModels.Add(damageDonePerSecondViewModel);
-            }
-
-            var damageViewModel = this.damageViewModelFactory.CreateHealingViewModell(pageNumber, damageDonePerSecondViewModels);
+            var damageViewModel = this.damageViewModelFactory.CreateHealingViewModell(pageNumber, storedCombatStatistics);
             foreach (var viewModel in damageViewModel.HealingDonePerSecondViewModels)
             {
                 viewModel.SvgString = this.progressPartialCircleSvgPathStringProvider.GetPathString(viewModel.PercentageOfBest, HealingViewModelDataProvider.DefaultPercentageBarRadius, HealingViewModelDataProvider.DefaultSvgElementSize);
@@ -62,13 +58,14 @@ namespace Parser.Data.DataProviders
             return damageViewModel;
         }
 
-        private ICollection<StoredCombatStatistics> GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber)
+        private IList<HealingDonePerSecondViewModel> GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber)
         {
             // TODO: Refactor with SELECT/ Project
             return this.storedCombatStatisticsEntityFrameworkRepository.Entities
                 .OrderByDescending(e => e.DamageDonePerSecond)
                 .Take(HealingViewModelDataProvider.DefaultPageSize * pageNumber)
-                .ToList();
+                .Select(e => this.parameterCtorHealingDonePerSecondViewModelFactory.CreateParameterCtorHealingDonePerSecondViewModel(e.Id, e.CharacterName, e.HealingDonePerSecond))
+                .ToList() as IList<HealingDonePerSecondViewModel>;
         }
     }
 }
