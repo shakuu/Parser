@@ -1,4 +1,5 @@
-﻿using Bytes2you.Validation;
+﻿using System;
+using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
 using Parser.Common.Factories;
@@ -23,6 +24,11 @@ namespace Parser.LogFile.Parser.CommandResolutionHandlers
 
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
+            if (combatStatisticsContainer.CurrentCombatStatistics?.ExitCombatTime == default(DateTime))
+            {
+                combatStatisticsContainer.CurrentCombatStatistics.ExitCombatTime = combatStatisticsContainer.CurrentCombatStatistics.EnterCombatTime.AddMinutes(60);
+            }
+
             combatStatisticsContainer.CurrentCombatStatistics = this.combatStatisticsFactory.CreateCombatStatistics();
             combatStatisticsContainer.AllCombatStatistics.Add(combatStatisticsContainer.CurrentCombatStatistics);
             combatStatisticsContainer.CurrentCombatStatistics.CharacterName = command.AbilityActivatorName;

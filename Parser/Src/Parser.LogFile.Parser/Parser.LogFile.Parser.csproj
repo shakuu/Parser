@@ -54,6 +54,7 @@
     <Compile Include="Contracts\ICommandResolutionHandler.cs" />
     <Compile Include="Contracts\ICommandResolutionHandlerChain.cs" />
     <Compile Include="Contracts\IExitCombatNotification.cs" />
+    <Compile Include="Contracts\ILiveCombatStatisticsCreationStrategy.cs" />
     <Compile Include="Contracts\ILogFileParserEngine.cs" />
     <Compile Include="Engines\LogFileParserEngine.cs" />
     <Compile Include="EventsArgs\ExitCombatEventArgs.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Managers\LogFileParserEngineManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strategies\CombatStatisticsFinalizationStrategy.cs" />
+    <Compile Include="Strategies\LiveCombatStatisticsCreationStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">

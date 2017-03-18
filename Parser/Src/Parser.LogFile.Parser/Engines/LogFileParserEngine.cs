@@ -11,20 +11,23 @@ namespace Parser.LogFile.Parser.Engines
         private readonly ICommandResolutionHandler commandResolutionHandler;
         private readonly ICombatStatisticsFinalizationStrategy combatStatisticsFinalizationStrategy;
         private readonly ICombatStatisticsPersistentStorageStrategy combatStatisticsPersistentStorageStrategy;
+        private readonly ILiveCombatStatisticsCreationStrategy liveCombatStatisticsCreationStrategy;
 
         private ICombatStatisticsContainer combatStatisticsContainer;
 
-        public LogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainer combatStatisticsContainer, ICombatStatisticsFinalizationStrategy combatStatisticsFinalizationStrategy, ICombatStatisticsPersistentStorageStrategy combatStatisticsPersistentStorageStrategy)
+        public LogFileParserEngine(ICommandResolutionHandler commandResolutionHandler, ICombatStatisticsContainer combatStatisticsContainer, ICombatStatisticsFinalizationStrategy combatStatisticsFinalizationStrategy, ICombatStatisticsPersistentStorageStrategy combatStatisticsPersistentStorageStrategy, ILiveCombatStatisticsCreationStrategy liveCombatStatisticsCreationStrategy)
         {
             Guard.WhenArgument(commandResolutionHandler, nameof(ICommandResolutionHandler)).IsNull().Throw();
             Guard.WhenArgument(combatStatisticsContainer, nameof(ICombatStatisticsContainer)).IsNull().Throw();
             Guard.WhenArgument(combatStatisticsFinalizationStrategy, nameof(ICombatStatisticsFinalizationStrategy)).IsNull().Throw();
             Guard.WhenArgument(combatStatisticsPersistentStorageStrategy, nameof(ICombatStatisticsPersistentStorageStrategy)).IsNull().Throw();
+            Guard.WhenArgument(liveCombatStatisticsCreationStrategy, nameof(ILiveCombatStatisticsCreationStrategy)).IsNull().Throw();
 
             this.commandResolutionHandler = commandResolutionHandler;
             this.combatStatisticsContainer = combatStatisticsContainer;
             this.combatStatisticsFinalizationStrategy = combatStatisticsFinalizationStrategy;
             this.combatStatisticsPersistentStorageStrategy = combatStatisticsPersistentStorageStrategy;
+            this.liveCombatStatisticsCreationStrategy = liveCombatStatisticsCreationStrategy;
 
             this.combatStatisticsContainer.OnCurrentCombatStatisticsChanged.Subscribe(this.OnCurrentCombatStatisticsChanged);
         }
@@ -34,13 +37,13 @@ namespace Parser.LogFile.Parser.Engines
         public void EnqueueCommand(ICommand command)
         {
             Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
-            
+
             this.combatStatisticsContainer = this.commandResolutionHandler.ResolveCommand(command, this.combatStatisticsContainer);
         }
 
-        public ICombatStatisticsContainer GetCombatStatistics()
+        public ILiveCombatStatistics GetLiveCombatStatistics()
         {
-            return this.combatStatisticsContainer;
+            return this.liveCombatStatisticsCreationStrategy.CreateLiveCombatStatistics(this.combatStatisticsContainer.CurrentCombatStatistics);
         }
 
         protected void OnCurrentCombatStatisticsChanged(object sender, CurrentCombatStatisticsChangedEventArgs args)

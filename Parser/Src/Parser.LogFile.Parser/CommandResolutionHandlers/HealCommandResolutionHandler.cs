@@ -18,6 +18,8 @@ namespace Parser.LogFile.Parser.CommandResolutionHandlers
             if (combatStatisticsContainer.CurrentCombatStatistics != null)
             {
                 combatStatisticsContainer.CurrentCombatStatistics.HealingDone += command.EffectEffectiveAmount;
+
+                combatStatisticsContainer.CurrentCombatStatistics.ExitCombatTime = command.TimeStamp;
             }
 
             return combatStatisticsContainer;

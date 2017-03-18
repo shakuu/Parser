@@ -43,6 +43,7 @@
     <Compile Include="Factories\IDamageViewModelFactory.cs" />
     <Compile Include="Factories\IHealingDonePerSecondViewModelFactory.cs" />
     <Compile Include="Factories\IHealingViewModelFactory.cs" />
+    <Compile Include="Factories\ILiveStatisticsViewModelFactory.cs" />
     <Compile Include="Factories\IParameterCtorHealingDonePerSecondViewModelFactory.cs" />
     <Compile Include="Factories\IRegisterParserUserViewModelFactory.cs" />
     <Compile Include="Leaderboard\DamageDonePerSecondViewModel.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Leaderboard\HealingDonePerSecondViewModel.cs" />
     <Compile Include="Leaderboard\HealingViewModel.cs" />
     <Compile Include="Leaderboard\ParameterCtorHealingDonePerSecondViewModel.cs" />
+    <Compile Include="Live\LiveStatisticsViewModel.cs" />
     <Compile Include="ParserUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterParserUserViewModel.cs" />

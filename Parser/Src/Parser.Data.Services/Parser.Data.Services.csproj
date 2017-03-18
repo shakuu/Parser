@@ -47,9 +47,11 @@
     <Compile Include="Contracts\ICreateParserUserService.cs" />
     <Compile Include="Contracts\ILeaderboardDamageService.cs" />
     <Compile Include="Contracts\ILeaderboardHealingService.cs" />
+    <Compile Include="Contracts\ILiveService.cs" />
     <Compile Include="CreateParserUserService.cs" />
     <Compile Include="LeaderboardDamageService.cs" />
     <Compile Include="LeaderboardHealingService.cs" />
+    <Compile Include="LiveService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strategies\CombatStatisticsPersistentStorageStrategy.cs" />
   </ItemGroup>
