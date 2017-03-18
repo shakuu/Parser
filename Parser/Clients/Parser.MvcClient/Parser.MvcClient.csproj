@@ -457,7 +457,7 @@
       <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>
       <Name>Parser.LogFile.Parser</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Src\Parser.SignalR\Parser.LogFIle.SignalR.csproj">
+    <ProjectReference Include="..\..\Src\Parser.LogFIle.SignalR\Parser.LogFIle.SignalR.csproj">
       <Project>{69e17fbf-a00b-42cb-a3d6-b429536e50d7}</Project>
       <Name>Parser.LogFIle.SignalR</Name>
     </ProjectReference>
