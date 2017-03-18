@@ -40,7 +40,9 @@ namespace Parser.MvcClient.Controllers
         [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Healing()
         {
-            return this.View();
+            var viewModel = this.leaderboardHealingService.GetTopStoredHealingOnPage(0);
+
+            return this.View(viewModel);
         }
 
         [HttpPost]
@@ -48,7 +50,9 @@ namespace Parser.MvcClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Healing(int? pageNumber)
         {
-            return this.Content("asd");
+            var viewModel = this.leaderboardHealingService.GetTopStoredHealingOnPage(pageNumber.Value + 1);
+
+            return this.PartialView("_HealingDonePerSecondViewModelsPartial", viewModel);
         }
     }
 }
