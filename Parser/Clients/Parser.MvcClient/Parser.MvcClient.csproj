@@ -364,6 +364,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Leaderboard\infinite-scroll-event.js" />
+    <Content Include="Scripts\Live\timer-update.js" />
     <Content Include="Scripts\materialize\materialize.js" />
     <Content Include="Scripts\materialize\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
