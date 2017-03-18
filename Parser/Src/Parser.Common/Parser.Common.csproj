@@ -65,6 +65,7 @@
     <Compile Include="Contracts\ICombatStatistics.cs" />
     <Compile Include="Contracts\IJsonConvertProvider.cs" />
     <Compile Include="Contracts\IGenericSubscribeProvider.cs" />
+    <Compile Include="Contracts\ILiveStatisticsContainer.cs" />
     <Compile Include="Contracts\IObjectMapperProvider.cs" />
     <Compile Include="EventsArgs\CurrentCombatStatisticsChangedEventArgs.cs" />
     <Compile Include="Factories\ICombatStatisticsContainerFactory.cs" />

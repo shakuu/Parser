@@ -54,7 +54,6 @@
     <Compile Include="Contracts\ICommandResolutionHandler.cs" />
     <Compile Include="Contracts\ICommandResolutionHandlerChain.cs" />
     <Compile Include="Contracts\IExitCombatNotification.cs" />
-    <Compile Include="Contracts\ILiveStatisticsContainer.cs" />
     <Compile Include="Contracts\ILogFileParserEngine.cs" />
     <Compile Include="Engines\LogFileParserEngine.cs" />
     <Compile Include="EventsArgs\ExitCombatEventArgs.cs" />

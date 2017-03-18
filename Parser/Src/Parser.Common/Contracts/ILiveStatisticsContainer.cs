@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Parser.LogFile.Parser.Contracts
+namespace Parser.Common.Contracts
 {
     public interface ILiveStatisticsContainer
     {
