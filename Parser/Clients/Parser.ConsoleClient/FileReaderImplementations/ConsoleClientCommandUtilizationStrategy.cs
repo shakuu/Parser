@@ -1,7 +1,7 @@
 ﻿using System;
 
 using Parser.Common.Contracts;
-using Parser.LogFileReader.Contracts;
+using Parser.LogFile.Reader.Contracts;
 
 namespace Parser.ConsoleClient.FileReaderImplementations
 {

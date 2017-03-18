@@ -3,7 +3,7 @@
 using Ninject;
 
 using Parser.MvcClient.App_Start;
-using Parser.SignalR.Contracts;
+using Parser.LogFile.SignalR.Contracts;
 
 namespace Parser.MvcClient.SignalRHubs
 {
@@ -28,9 +28,8 @@ namespace Parser.MvcClient.SignalRHubs
             this.logFileParserHubService.ReleaseParsingSessionId(engineId);
         }
 
-        public void GetParsingSessionId()
+        public void GetParsingSessionId(string username)
         {
-            var username = Context.User?.Identity?.Name ?? "some string";
             var message = this.logFileParserHubService.GetParsingSessionId(username);
 
             Clients.Caller.UpdateParsingSessionId(message);

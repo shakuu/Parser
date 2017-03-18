@@ -20,7 +20,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
                 .FromAssembliesMatching("*.Common.*")
                 .SelectAllClasses()
                 .BindDefaultInterface()
-                .ConfigureFor<ProgressPartialCircleSvgPathStringProvider>(c => c.InSingletonScope());
+                .ConfigureFor<PartialCircleSvgPathProvider>(c => c.InSingletonScope());
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)

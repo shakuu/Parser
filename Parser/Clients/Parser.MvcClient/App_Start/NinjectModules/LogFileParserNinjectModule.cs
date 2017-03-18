@@ -4,9 +4,9 @@ using Ninject.Extensions.Conventions;
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
-using Parser.LogFileParser.CommandResolutionHandlers;
-using Parser.LogFileParser.Contracts;
-using Parser.LogFileParser.Managers;
+using Parser.LogFile.Parser.CommandResolutionHandlers;
+using Parser.LogFile.Parser.Contracts;
+using Parser.LogFile.Parser.Managers;
 
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
