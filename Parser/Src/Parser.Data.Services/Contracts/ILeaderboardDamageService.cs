@@ -4,6 +4,6 @@ namespace Parser.Data.Services.Contracts
 {
     public interface ILeaderboardDamageService
     {
-        DamageViewModel GetTopStoredCombatStatisticsOnPage(int pageNumber);
+        DamageViewModel GetTopStoredDamageOnPage(int pageNumber);
     }
 }

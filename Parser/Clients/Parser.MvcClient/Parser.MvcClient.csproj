@@ -363,7 +363,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\Leaderboard\damage.js" />
+    <Content Include="Scripts\Leaderboard\infinite-scroll-event.js" />
     <Content Include="Scripts\materialize\materialize.js" />
     <Content Include="Scripts\materialize\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -408,6 +408,7 @@
     <Content Include="Views\Leaderboard\Healing.cshtml" />
     <Content Include="Views\Live\Index.cshtml" />
     <Content Include="Views\Shared\_DamageDonePerSecondViewModelsPartial.cshtml" />
+    <Content Include="Views\Shared\_HealingDonePerSecondViewModelsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

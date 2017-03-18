@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Damage Leaderboard</h2>
+<h1>Damage Leaderboard</h1>
 
 <div id="damage-done-models">
     @Html.Partial("_DamageDonePerSecondViewModelsPartial", @Model)
@@ -14,9 +14,9 @@
 @section Styles
 {
     @Styles.Render("~/Content/leaderboard-css")
-    }
+}
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/damage")
+    @Scripts.Render("~/bundles/infinite-scroll-event")
 }
