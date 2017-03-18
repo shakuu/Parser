@@ -4,7 +4,7 @@ using Parser.Common.Contracts;
 
 namespace Parser.Common.Models
 {
-    public class LiveStatisticsContainer : ILiveStatisticsContainer
+    public class LiveCombatStatistics : ILiveCombatStatistics
     {
         public string CharacterName { get; set; }
 

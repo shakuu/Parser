@@ -2,7 +2,7 @@
 
 namespace Parser.Common.Contracts
 {
-    public interface ILiveStatisticsContainer
+    public interface ILiveCombatStatistics
     {
         string CharacterName { get; set; }
 
