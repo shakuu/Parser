@@ -40,9 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\IRemoteUserFactory.cs" />
     <Compile Include="IRemoteUser.cs" />
     <Compile Include="IRemoteUserProvider.cs" />
+    <Compile Include="Models\RemoteUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\RemoteUserProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
