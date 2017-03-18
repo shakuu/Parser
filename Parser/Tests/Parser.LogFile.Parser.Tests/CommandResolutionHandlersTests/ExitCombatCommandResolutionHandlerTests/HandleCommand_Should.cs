@@ -25,7 +25,7 @@ namespace Parser.LogFile.Parser.Tests.CommandResolutionHandlersTests.ExitCombatC
             exitCombatCommandResolutionHandler.HandleCommand(command.Object, combatStatisticsContainer.Object);
 
             // Assert
-            command.VerifyGet(c => c.TimeStamp, Times.Once);
+            command.VerifyGet(c => c.TimeStamp, Times.Exactly(2));
         }
 
         [Test]
