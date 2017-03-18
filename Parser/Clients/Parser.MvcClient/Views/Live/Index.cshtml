@@ -10,7 +10,13 @@
     @Html.Partial("_LiveStatisticsViewModel", Model)
 </section>
 
+@section Styles
+{
+    @Styles.Render("~/Content/leaderboard-css")
+}
+
 @section scripts
 {
     @Scripts.Render("~/bundles/live-update")
 }
+
