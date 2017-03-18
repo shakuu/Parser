@@ -6,6 +6,6 @@
 
         void EndParsingSession(string engineId);
 
-        void GetParsingSessionId();
+        void GetParsingSessionId(string username);
     }
 }
