@@ -24,10 +24,7 @@ namespace Parser.LogFile.Parser.CommandResolutionHandlers
 
         protected override ICombatStatisticsContainer HandleCommand(ICommand command, ICombatStatisticsContainer combatStatisticsContainer)
         {
-            if (combatStatisticsContainer.CurrentCombatStatistics?.ExitCombatTime == default(DateTime))
-            {
-                combatStatisticsContainer.CurrentCombatStatistics.ExitCombatTime = combatStatisticsContainer.CurrentCombatStatistics.EnterCombatTime.AddMinutes(60);
-            }
+            base.AssignExitCombatTimestamp(command, combatStatisticsContainer);
 
             combatStatisticsContainer.CurrentCombatStatistics = this.combatStatisticsFactory.CreateCombatStatistics();
             combatStatisticsContainer.AllCombatStatistics.Add(combatStatisticsContainer.CurrentCombatStatistics);
