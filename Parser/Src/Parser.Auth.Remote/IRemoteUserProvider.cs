@@ -1,6 +1,7 @@
 ﻿namespace Parser.Auth.Remote
 {
-    public interface IRemoteUserProvider
+    // TODO: 
+    public interface IRemoteUserProvider : IRemoteUserLoginService
     {
         IRemoteUser LoggedInRemoteUser { get; }
     }
