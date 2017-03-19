@@ -2,7 +2,7 @@
   margin-top: 25px;
   background-color: #333333;
   border: 5px solid #E69F5E;
-  border-radius: 25px;
+  border-radius: 25px !important;
   color: yellowgreen; }
   .jumbotron h1 {
     /*color: yellowgreen;*/
