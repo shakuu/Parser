@@ -4,6 +4,8 @@ using System.Net.Http;
 using Bytes2you.Validation;
 
 using Parser.Auth.Remote.Factories;
+using Parser.Auth.Remote.Models;
+using Parser.Common.Contracts;
 
 namespace Parser.Auth.Remote.Providers
 {
@@ -12,12 +14,20 @@ namespace Parser.Auth.Remote.Providers
         private const string RemoteUserAuthService = "http://localhost:50800/remote";
         private const string FixedUsernameForTesting = "myuser@user.com";
 
+        private readonly IJsonConvertProvider jsonConvertProvider;
+        private readonly IRemoteUserFactory remoteUserFactory;
+
         private IRemoteUser loggedInRemoteUser;
 
-        public RemoteUserProvider(IRemoteUserFactory remoteUserFactory)
+        public RemoteUserProvider(IJsonConvertProvider jsonConvertProvider, IRemoteUserFactory remoteUserFactory)
         {
+            Guard.WhenArgument(jsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
             Guard.WhenArgument(remoteUserFactory, nameof(IRemoteUserFactory)).IsNull().Throw();
 
+            this.jsonConvertProvider = jsonConvertProvider;
+            this.remoteUserFactory = remoteUserFactory;
+
+            // TODO: Testing
             this.loggedInRemoteUser = remoteUserFactory.CreateRemoteUser(RemoteUserProvider.FixedUsernameForTesting);
         }
 
@@ -44,8 +54,9 @@ namespace Parser.Auth.Remote.Providers
                 { "password", password }
             });
 
-            var resp = await client.PostAsync(RemoteUserProvider.RemoteUserAuthService, content);
-            var repsStr = await resp.Content.ReadAsStringAsync();
+            var response = await client.PostAsync(RemoteUserProvider.RemoteUserAuthService, content);
+            var remoteAuthResult = await response.Content.ReadAsStringAsync();
+            var responseResult = this.jsonConvertProvider.DeserializeObject<RemoteAuthResult>(remoteAuthResult);
         }
     }
 }

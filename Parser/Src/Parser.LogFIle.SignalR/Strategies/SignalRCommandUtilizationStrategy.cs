@@ -36,6 +36,9 @@ namespace Parser.LogFile.SignalR.Strategies
 
             var loggedRemoteUserUsername = this.GetLoggedRemoteUserUsername();
             this.GetParsingSessionid(loggedRemoteUserUsername, this.logFileParserHubProxyProvider);
+
+            // TODO: TESTING
+            this.remoteUserProvider.Login("test", "test");
         }
 
         /// <summary>
