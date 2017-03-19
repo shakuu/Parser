@@ -18,7 +18,7 @@ namespace Parser.MvcClient.Controllers
         public ActionResult Index()
         {
             var viewModel = this.liveService.GetLiveStatisticsViewModel("myuser@user.com");
-
+            
             return this.View(viewModel);
         }
 
