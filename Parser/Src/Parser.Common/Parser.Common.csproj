@@ -63,6 +63,7 @@
     <Compile Include="Contracts\IGenericEventHandlerProvider.cs" />
     <Compile Include="Contracts\IGuidStringProvider.cs" />
     <Compile Include="Contracts\ICombatStatistics.cs" />
+    <Compile Include="Contracts\IHttpClientProvider.cs" />
     <Compile Include="Contracts\IJsonConvertProvider.cs" />
     <Compile Include="Contracts\IGenericSubscribeProvider.cs" />
     <Compile Include="Contracts\ILiveCombatStatistics.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Providers\DateTimeProvider.cs" />
     <Compile Include="Providers\GenericEventHandlerProvider.cs" />
     <Compile Include="Providers\GuidStringProvider.cs" />
+    <Compile Include="Providers\HttpClientProvider.cs" />
     <Compile Include="Providers\JsonConvertProvider.cs" />
     <Compile Include="Providers\ObjectMapperProvider.cs" />
   </ItemGroup>
