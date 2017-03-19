@@ -2,6 +2,6 @@
 
     window.setInterval(function () {
         $("#update-form").submit();
-    }, 1000);
+    }, 1750);
 
 });
