@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net.Http;
 
 using Bytes2you.Validation;
 
@@ -14,49 +13,45 @@ namespace Parser.Auth.Remote.Providers
         private const string RemoteUserAuthService = "http://localhost:50800/remote";
         private const string FixedUsernameForTesting = "myuser@user.com";
 
+        private readonly IHttpClientProvider httpClientProvider;
         private readonly IJsonConvertProvider jsonConvertProvider;
         private readonly IRemoteUserFactory remoteUserFactory;
 
-        private IRemoteUser loggedInRemoteUser;
-
-        public RemoteUserProvider(IJsonConvertProvider jsonConvertProvider, IRemoteUserFactory remoteUserFactory)
+        public RemoteUserProvider(IHttpClientProvider httpClientProvider, IJsonConvertProvider jsonConvertProvider, IRemoteUserFactory remoteUserFactory)
         {
+            Guard.WhenArgument(httpClientProvider, nameof(IHttpClientProvider)).IsNull().Throw();
             Guard.WhenArgument(jsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
             Guard.WhenArgument(remoteUserFactory, nameof(IRemoteUserFactory)).IsNull().Throw();
 
+            this.httpClientProvider = httpClientProvider;
             this.jsonConvertProvider = jsonConvertProvider;
             this.remoteUserFactory = remoteUserFactory;
 
             // TODO: Testing
-            this.loggedInRemoteUser = remoteUserFactory.CreateRemoteUser(RemoteUserProvider.FixedUsernameForTesting);
+            this.LoggedInRemoteUser = remoteUserFactory.CreateRemoteUser(RemoteUserProvider.FixedUsernameForTesting);
         }
 
-        public IRemoteUser LoggedInRemoteUser
-        {
-            get
-            {
-                return this.loggedInRemoteUser;
-            }
-
-            private set
-            {
-                Guard.WhenArgument(value, nameof(this.LoggedInRemoteUser)).IsNull().Throw();
-
-                this.loggedInRemoteUser = value;
-            }
-        }
+        public IRemoteUser LoggedInRemoteUser { get; private set; }
 
         public async void Login(string username, string password)
         {
-            var client = new HttpClient();
-            var content = new FormUrlEncodedContent(new Dictionary<string, string>() {
+            var postContent = new Dictionary<string, string>
+            {
                 { "username", username },
                 { "password", password }
-            });
+            };
 
-            var response = await client.PostAsync(RemoteUserProvider.RemoteUserAuthService, content);
-            var remoteAuthResult = await response.Content.ReadAsStringAsync();
+            var remoteAuthResult = await this.httpClientProvider.PostAsync(RemoteUserProvider.RemoteUserAuthService, postContent);
             var responseResult = this.jsonConvertProvider.DeserializeObject<RemoteAuthResult>(remoteAuthResult);
+
+            if (!string.IsNullOrEmpty(responseResult.Result))
+            {
+                this.LoggedInRemoteUser = this.remoteUserFactory.CreateRemoteUser(username);
+            }
+            else
+            {
+                this.LoggedInRemoteUser = null;
+            }
         }
     }
 }
