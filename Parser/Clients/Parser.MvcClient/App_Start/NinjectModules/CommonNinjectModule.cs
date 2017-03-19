@@ -1,8 +1,11 @@
 ﻿using Ninject.Extensions.Conventions;
 using Ninject.Extensions.Conventions.Syntax;
+using Ninject.Extensions.Interception;
+using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 
 using Parser.Common.Html.Svg;
+using Parser.Common.Utilities.Providers;
 
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
@@ -12,6 +15,13 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         {
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
+
+            this.Kernel.InterceptReplace<IdentityProvider>(p => p.GetUsername(), this.GetUsernameTestingInterceptor);
+        }
+
+        private void GetUsernameTestingInterceptor(IInvocation invocation)
+        {
+            invocation.ReturnValue = "myuser@user.com";
         }
 
         private void BindAllClassesByConvention(IFromSyntax bind)

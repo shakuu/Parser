@@ -6,20 +6,14 @@ namespace Parser.Common.Utilities.Providers
 {
     public class IdentityProvider : IIdentityProvider
     {
-        public string Username
+        public string GetUsername()
         {
-            get
-            {
-                return HttpContext.Current.User.Identity.Name;
-            }
+            return HttpContext.Current.User.Identity.Name;
         }
 
-        public bool IsAuthenticated
+        public bool IsAuthenticated()
         {
-            get
-            {
-                return HttpContext.Current.User.Identity.IsAuthenticated;
-            }
+            return HttpContext.Current.User.Identity.IsAuthenticated;
         }
     }
 }

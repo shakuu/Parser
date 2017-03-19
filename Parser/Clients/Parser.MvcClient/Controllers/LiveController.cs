@@ -20,7 +20,7 @@ namespace Parser.MvcClient.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var username = this.identityProvider.Username;
+            var username = this.identityProvider.GetUsername();
             var viewModel = this.liveService.GetLiveStatisticsViewModel(username);
 
             return this.View(viewModel);
@@ -30,7 +30,7 @@ namespace Parser.MvcClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateLiveCombatStatistics()
         {
-            var username = this.identityProvider.Username;
+            var username = this.identityProvider.GetUsername();
             var viewModel = this.liveService.GetLiveStatisticsViewModel(username);
 
             return this.PartialView("_LiveStatisticsViewModel", viewModel);

@@ -2,8 +2,8 @@
 {
     public interface IIdentityProvider
     {
-        string Username { get; }
+        string GetUsername();
 
-        bool IsAuthenticated { get; }
+        bool IsAuthenticated();
     }
 }

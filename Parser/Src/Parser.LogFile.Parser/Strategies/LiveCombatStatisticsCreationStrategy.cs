@@ -41,6 +41,11 @@ namespace Parser.LogFile.Parser.Strategies
 
         private TimeSpan GetCombatDuration(ICombatStatistics combatStatistics)
         {
+            if (combatStatistics.EnterCombatTime > combatStatistics.ExitCombatTime)
+            {
+                combatStatistics.ExitCombatTime = combatStatistics.ExitCombatTime.AddDays(1);
+            }
+
             return combatStatistics.ExitCombatTime - combatStatistics.EnterCombatTime;
         }
 
