@@ -11,15 +11,12 @@ namespace Parser.LogFile.Parser.Strategies
     public class LiveCombatStatisticsCreationStrategy : ILiveCombatStatisticsCreationStrategy
     {
         private readonly ILiveCombatStatisticsFactory liveCombatStatisticsFactory;
-        private readonly IDateTimeProvider dateTimeProvider;
 
-        public LiveCombatStatisticsCreationStrategy(ILiveCombatStatisticsFactory liveCombatStatisticsFactory, IDateTimeProvider dateTimeProvider)
+        public LiveCombatStatisticsCreationStrategy(ILiveCombatStatisticsFactory liveCombatStatisticsFactory)
         {
             Guard.WhenArgument(liveCombatStatisticsFactory, nameof(ILiveCombatStatisticsFactory)).IsNull().Throw();
-            Guard.WhenArgument(dateTimeProvider, nameof(IDateTimeProvider)).IsNull().Throw();
 
             this.liveCombatStatisticsFactory = liveCombatStatisticsFactory;
-            this.dateTimeProvider = dateTimeProvider;
         }
 
         public ILiveCombatStatistics CreateLiveCombatStatistics(ICombatStatistics combatStatistics)

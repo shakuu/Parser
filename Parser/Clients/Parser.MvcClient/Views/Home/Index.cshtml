@@ -1,10 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Parser";
 }
 
 <div class="jumbotron">
     <h1>Parser</h1>
 </div>
-<a class="waves-effect waves-light btn">button</a>
-<a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
-<a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>button</a>
+
+@section Styles
+{
+    @Styles.Render("~/Content/home-css")
+}

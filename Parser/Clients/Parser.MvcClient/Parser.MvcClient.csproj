@@ -280,6 +280,18 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\footer\footer-css.css">
+      <DependentUpon>footer-css.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\footer\footer-css.min.css">
+      <DependentUpon>footer-css.css</DependentUpon>
+    </Content>
+    <Content Include="Content\home\home-css.css">
+      <DependentUpon>home-css.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\home\home-css.min.css">
+      <DependentUpon>home-css.css</DependentUpon>
+    </Content>
     <Content Include="Content\images\body_background.png" />
     <Content Include="Content\leaderboard\leaderboard.css">
       <DependentUpon>leaderboard.scss</DependentUpon>
@@ -349,6 +361,8 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Content\home\home-css.scss" />
+    <Content Include="Content\footer\footer-css.scss" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -411,6 +425,7 @@
     <Content Include="Views\Shared\_DamageDonePerSecondViewModelsPartial.cshtml" />
     <Content Include="Views\Shared\_HealingDonePerSecondViewModelsPartial.cshtml" />
     <Content Include="Views\Shared\_LiveStatisticsViewModel.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
