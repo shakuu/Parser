@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 
+using Parser.Common.Utilities.Contracts;
 using Parser.Data.Services.Contracts;
 
 namespace Parser.MvcClient.Controllers
@@ -8,17 +9,20 @@ namespace Parser.MvcClient.Controllers
     public class LiveController : Controller
     {
         private readonly ILiveService liveService;
+        private readonly IIdentityProvider identityProvider;
 
-        public LiveController(ILiveService liveService)
+        public LiveController(ILiveService liveService, IIdentityProvider identityProvider)
         {
             this.liveService = liveService;
+            this.identityProvider = identityProvider;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var viewModel = this.liveService.GetLiveStatisticsViewModel("myuser@user.com");
-            
+            var username = this.identityProvider.Username;
+            var viewModel = this.liveService.GetLiveStatisticsViewModel(username);
+
             return this.View(viewModel);
         }
 
@@ -26,7 +30,8 @@ namespace Parser.MvcClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateLiveCombatStatistics()
         {
-            var viewModel = this.liveService.GetLiveStatisticsViewModel("myuser@user.com");
+            var username = this.identityProvider.Username;
+            var viewModel = this.liveService.GetLiveStatisticsViewModel(username);
 
             return this.PartialView("_LiveStatisticsViewModel", viewModel);
         }

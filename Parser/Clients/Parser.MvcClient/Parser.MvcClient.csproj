@@ -439,6 +439,10 @@
       <Project>{fff46ef7-f592-41ee-993a-95be386e7a63}</Project>
       <Name>Parser.Common.Html</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Common.Utilities\Parser.Common.Utilities.csproj">
+      <Project>{aab4c13b-7f42-4995-8db1-4121f77147cc}</Project>
+      <Name>Parser.Common.Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
       <Name>Parser.Common</Name>
