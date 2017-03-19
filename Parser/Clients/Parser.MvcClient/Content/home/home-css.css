@@ -1,6 +1,10 @@
 ﻿.jumbotron {
-  margin-top: 25px; }
+  margin-top: 25px;
+  background-color: #333333;
+  border: 5px solid #E69F5E;
+  border-radius: 25px;
+  color: yellowgreen; }
   .jumbotron h1 {
-    color: yellowgreen;
+    /*color: yellowgreen;*/
     text-align: center; }
 
