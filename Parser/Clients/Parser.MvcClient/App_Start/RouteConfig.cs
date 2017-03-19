@@ -36,6 +36,12 @@ namespace Parser.MvcClient
             );
 
             routes.MapRoute(
+                name: "RemoteLogin",
+                url: "remote",
+                defaults: new { controller = "RemoteAuth", action = "Login" }
+            );
+
+            routes.MapRoute(
                 name: "Register",
                 url: "register",
                 defaults: new { controller = "Account", action = "Register" }
