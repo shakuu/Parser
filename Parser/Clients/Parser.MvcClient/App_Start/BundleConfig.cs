@@ -37,6 +37,12 @@ namespace Parser.MvcClient
 
             bundles.Add(new StyleBundle("~/Content/leaderboard-css").Include(
                       "~/Content/leaderboard/leaderboard.css"));
+
+            bundles.Add(new StyleBundle("~/Content/home-css").Include(
+                      "~/Content/home/home-css.css"));
+
+            bundles.Add(new StyleBundle("~/Content/footer-css").Include(
+                      "~/Content/footer/footer-css.css"));
         }
     }
 }

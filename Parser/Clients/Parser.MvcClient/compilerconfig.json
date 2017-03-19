@@ -2,5 +2,13 @@
   {
     "outputFile": "Content/leaderboard/leaderboard.css",
     "inputFile": "Content/leaderboard/leaderboard.scss"
+  },
+  {
+    "outputFile": "Content/home/home-css.css",
+    "inputFile": "Content/home/home-css.scss"
+  },
+  {
+    "outputFile": "Content/footer/footer-css.css",
+    "inputFile": "Content/footer/footer-css.scss"
   }
 ]

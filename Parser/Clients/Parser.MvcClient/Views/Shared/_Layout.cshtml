@@ -37,10 +37,9 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Parser</p>
-        </footer>
     </div>
+
+    @Html.Partial("_FooterPartial")
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap-materialize")
