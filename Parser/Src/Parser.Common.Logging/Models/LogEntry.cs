@@ -22,7 +22,7 @@ namespace Parser.Common.Logging.Models
 
         [Required]
         [MaxLength(200)]
-        public string Method { get; set; }
+        public string Action { get; set; }
 
         [Required]
         [MaxLength(200)]

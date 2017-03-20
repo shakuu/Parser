@@ -7,13 +7,13 @@ namespace Parser.Common.Logging.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addedtimestamptomodel : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addedtimestamptomodel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703201106134_added timestamp to model"; }
+            get { return "201703201235144_init"; }
         }
         
         string IMigrationMetadata.Source

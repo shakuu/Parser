@@ -57,17 +57,9 @@
     <Compile Include="ILoggingServicePersistentStorageStrategy.cs" />
     <Compile Include="LoggingServiceDbContext.cs" />
     <Compile Include="MessageType.cs" />
-    <Compile Include="Migrations\201703201046081_init.cs" />
-    <Compile Include="Migrations\201703201046081_init.Designer.cs">
-      <DependentUpon>201703201046081_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703201106134_added timestamp to model.cs" />
-    <Compile Include="Migrations\201703201106134_added timestamp to model.Designer.cs">
-      <DependentUpon>201703201106134_added timestamp to model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703201127149_added more props.cs" />
-    <Compile Include="Migrations\201703201127149_added more props.Designer.cs">
-      <DependentUpon>201703201127149_added more props.cs</DependentUpon>
+    <Compile Include="Migrations\201703201235144_init.cs" />
+    <Compile Include="Migrations\201703201235144_init.Designer.cs">
+      <DependentUpon>201703201235144_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LogEntry.cs" />
@@ -87,16 +79,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703201046081_init.resx">
-      <DependentUpon>201703201046081_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703201106134_added timestamp to model.resx">
-      <DependentUpon>201703201106134_added timestamp to model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703201127149_added more props.resx">
-      <DependentUpon>201703201127149_added more props.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703201235144_init.resx">
+      <DependentUpon>201703201235144_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

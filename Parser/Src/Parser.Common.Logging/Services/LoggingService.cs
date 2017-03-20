@@ -26,7 +26,7 @@ namespace Parser.Common.Logging.Services
 
             var logEntry = this.logEntryFactory.CreateLogEntry();
             logEntry.Controller = controller;
-            logEntry.Method = method;
+            logEntry.Action = method;
             logEntry.Message = message;
             logEntry.MessageType = messageType;
             logEntry.Timestamp = timestamp;

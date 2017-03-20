@@ -10,7 +10,7 @@ namespace Parser.Common.Logging
 
         DateTime Timestamp { get; set; }
 
-        string Method { get; set; }
+        string Action { get; set; }
 
         string Controller { get; set; }
     }
