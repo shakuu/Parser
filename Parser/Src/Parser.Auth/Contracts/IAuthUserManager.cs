@@ -7,5 +7,7 @@ namespace Parser.Auth.Contracts
     public interface IAuthUserManager
     {
         Task<IdentityResult> CreateAsync(AuthUser user, string password);
+
+        AuthUser FindByName(string userName);
     }
 }

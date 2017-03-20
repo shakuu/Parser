@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="AuthDbContext.cs" />
     <Compile Include="AuthUser.cs" />
+    <Compile Include="Contracts\IAuthDbContext.cs" />
     <Compile Include="Contracts\IAuthOwnerService.cs" />
     <Compile Include="Contracts\IAuthSignInManager.cs" />
     <Compile Include="Contracts\IAuthSignInManagerProvider.cs" />

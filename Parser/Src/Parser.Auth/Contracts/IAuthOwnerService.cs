@@ -4,6 +4,6 @@ namespace Parser.Auth.Contracts
 {
     public interface IAuthOwnerService
     {
-        void AddRoleAdmin(Guid userId);
+        void AddRoleAdmin(string username);
     }
 }

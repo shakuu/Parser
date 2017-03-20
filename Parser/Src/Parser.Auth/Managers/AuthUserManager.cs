@@ -66,5 +66,10 @@ namespace Parser.Auth.Managers
             }
             return manager;
         }
+
+        public AuthUser FindByName(string userName)
+        {
+            return this.FindByName(userName);
+        }
     }
 }
