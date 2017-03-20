@@ -9,11 +9,12 @@ using Microsoft.Owin.Security;
 
 using Parser.Auth.Managers;
 using Parser.Auth.ViewModels;
+using Parser.MvcClient.Controllers.Base;
 
 namespace Parser.MvcClient.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : LoggingController
     {
         private AuthSignInManager _signInManager;
         private AuthUserManager _userManager;

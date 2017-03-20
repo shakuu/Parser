@@ -4,10 +4,11 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 
 using Parser.Auth.Contracts;
+using Parser.MvcClient.Controllers.Base;
 
 namespace Parser.MvcClient.Controllers
 {
-    public class RemoteAuthController : Controller
+    public class RemoteAuthController : LoggingController
     {
         private readonly IIdentityAuthAccountService identityAuthAccountService;
 

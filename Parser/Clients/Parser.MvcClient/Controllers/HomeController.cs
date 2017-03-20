@@ -1,8 +1,10 @@
 ﻿using System.Web.Mvc;
 
+using Parser.MvcClient.Controllers.Base;
+
 namespace Parser.MvcClient.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : LoggingController
     {
         [HttpGet]
         public ActionResult Index()
