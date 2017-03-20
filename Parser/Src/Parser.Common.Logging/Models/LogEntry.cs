@@ -6,17 +6,6 @@ namespace Parser.Common.Logging.Models
 {
     public class LogEntry : ILogEntry
     {
-        public LogEntry(string message, MessageType messageType)
-        {
-            this.Message = message;
-            this.MessageType = messageType;
-        }
-
-        public LogEntry()
-        {
-
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -27,5 +16,16 @@ namespace Parser.Common.Logging.Models
 
         [Required]
         public MessageType MessageType { get; set; }
+
+        [Required]
+        public DateTime Timestamp { get; set; }
+
+        [Required]
+        [MaxLength(200)]
+        public string Method { get; set; }
+
+        [Required]
+        [MaxLength(200)]
+        public string Controller { get; set; }
     }
 }

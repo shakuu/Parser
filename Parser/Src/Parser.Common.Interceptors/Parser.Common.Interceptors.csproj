@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CachingInterceptor.cs" />
+    <Compile Include="LoggingInterceptor.cs" />
     <Compile Include="HttpContextCachingInterceptor.cs" />
     <Compile Include="Contracts\IHttpContextCacheReturnValues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +59,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Parser.Common.Logging\Parser.Common.Logging.csproj">
+      <Project>{a98c6c8a-3870-48c0-92e0-a3c2f3c012c7}</Project>
+      <Name>Parser.Common.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Parser.Common.Utilities\Parser.Common.Utilities.csproj">
       <Project>{aab4c13b-7f42-4995-8db1-4121f77147cc}</Project>
       <Name>Parser.Common.Utilities</Name>

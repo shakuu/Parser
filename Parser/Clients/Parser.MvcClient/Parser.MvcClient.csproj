@@ -260,6 +260,7 @@
     <Compile Include="App_Start\NinjectModules\DataViewModelsNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\LogFileParserNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\MvcClientNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\SignalRNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -455,6 +456,10 @@
     <ProjectReference Include="..\..\Src\Parser.Common.Html\Parser.Common.Html.csproj">
       <Project>{fff46ef7-f592-41ee-993a-95be386e7a63}</Project>
       <Name>Parser.Common.Html</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Common.Interceptors\Parser.Common.Interceptors.csproj">
+      <Project>{044ec167-75d8-4bd2-b893-5e9003f71de3}</Project>
+      <Name>Parser.Common.Interceptors</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Common.Utilities\Parser.Common.Utilities.csproj">
       <Project>{aab4c13b-7f42-4995-8db1-4121f77147cc}</Project>

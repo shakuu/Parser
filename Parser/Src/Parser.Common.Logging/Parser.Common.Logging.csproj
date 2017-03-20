@@ -61,6 +61,14 @@
     <Compile Include="Migrations\201703201046081_init.Designer.cs">
       <DependentUpon>201703201046081_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703201106134_added timestamp to model.cs" />
+    <Compile Include="Migrations\201703201106134_added timestamp to model.Designer.cs">
+      <DependentUpon>201703201106134_added timestamp to model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703201127149_added more props.cs" />
+    <Compile Include="Migrations\201703201127149_added more props.Designer.cs">
+      <DependentUpon>201703201127149_added more props.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +88,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703201046081_init.resx">
       <DependentUpon>201703201046081_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703201106134_added timestamp to model.resx">
+      <DependentUpon>201703201106134_added timestamp to model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703201127149_added more props.resx">
+      <DependentUpon>201703201127149_added more props.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

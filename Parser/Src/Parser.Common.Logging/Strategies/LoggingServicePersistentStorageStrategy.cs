@@ -15,13 +15,13 @@ namespace Parser.Common.Logging.Strategies
             this.loggingServiceDbContext = loggingServiceDbContext;
         }
 
-        public async void StoreLogEntry(LogEntry logEntry)
+        public void StoreLogEntry(LogEntry logEntry)
         {
             Guard.WhenArgument(logEntry, nameof(ILogEntry)).IsNull().Throw();
 
             this.loggingServiceDbContext.LogEntries.Add(logEntry);
 
-            await this.loggingServiceDbContext.SaveChangesAsync();
+            this.loggingServiceDbContext.SaveChanges();
         }
     }
 }
