@@ -1,28 +1,25 @@
 ﻿using Bytes2you.Validation;
 
-using Parser.Common.Logging.Factories;
+using Parser.Common.Logging.Models;
 
 namespace Parser.Common.Logging.Strategies
 {
     public class LoggingServicePersistentStorageStrategy : ILoggingServicePersistentStorageStrategy
     {
         private readonly ILoggingServiceDbContext loggingServiceDbContext;
-        private readonly ILogEntryFactory logEntryFactory;
 
-        public LoggingServicePersistentStorageStrategy(ILoggingServiceDbContext loggingServiceDbContext, ILogEntryFactory logEntryFactory)
+        public LoggingServicePersistentStorageStrategy(ILoggingServiceDbContext loggingServiceDbContext)
         {
             Guard.WhenArgument(loggingServiceDbContext, nameof(ILoggingServiceDbContext)).IsNull().Throw();
-            Guard.WhenArgument(logEntryFactory, nameof(ILogEntryFactory)).IsNull().Throw();
 
             this.loggingServiceDbContext = loggingServiceDbContext;
-            this.logEntryFactory = logEntryFactory;
         }
 
-        public async void StoreLogEntry(ILogEntry logEntry)
+        public async void StoreLogEntry(LogEntry logEntry)
         {
-            var entry = this.logEntryFactory.CreateLogEntry(logEntry);
+            Guard.WhenArgument(logEntry, nameof(ILogEntry)).IsNull().Throw();
 
-            this.loggingServiceDbContext.LogEntries.Add(entry);
+            this.loggingServiceDbContext.LogEntries.Add(logEntry);
 
             await this.loggingServiceDbContext.SaveChangesAsync();
         }

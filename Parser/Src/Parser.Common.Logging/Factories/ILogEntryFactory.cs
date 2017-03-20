@@ -4,6 +4,6 @@ namespace Parser.Common.Logging.Factories
 {
     public interface ILogEntryFactory
     {
-        LogEntry CreateLogEntry(ILogEntry logEntry);
+        LogEntry CreateLogEntry(string message, MessageType messageType);
     }
 }

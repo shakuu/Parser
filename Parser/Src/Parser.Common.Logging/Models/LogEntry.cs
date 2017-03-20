@@ -6,10 +6,10 @@ namespace Parser.Common.Logging.Models
 {
     public class LogEntry : ILogEntry
     {
-        public LogEntry(ILogEntry logEntry)
+        public LogEntry(string message, MessageType messageType)
         {
-            this.Message = logEntry.Message;
-            this.MessageType = logEntry.MessageType;
+            this.Message = message;
+            this.MessageType = messageType;
         }
 
         public LogEntry()

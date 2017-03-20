@@ -1,7 +1,9 @@
-﻿namespace Parser.Common.Logging
+﻿using Parser.Common.Logging.Models;
+
+namespace Parser.Common.Logging
 {
     public interface ILoggingServicePersistentStorageStrategy
     {
-        void StoreLogEntry(ILogEntry logEntry);
+        void StoreLogEntry(LogEntry logEntry);
     }
 }
