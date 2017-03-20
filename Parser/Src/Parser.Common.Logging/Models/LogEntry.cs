@@ -6,6 +6,17 @@ namespace Parser.Common.Logging.Models
 {
     public class LogEntry : ILogEntry
     {
+        public LogEntry(ILogEntry logEntry)
+        {
+            this.Message = logEntry.Message;
+            this.MessageType = logEntry.MessageType;
+        }
+
+        public LogEntry()
+        {
+
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
