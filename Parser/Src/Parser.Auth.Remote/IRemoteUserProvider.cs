@@ -3,6 +3,6 @@
     // TODO: 
     public interface IRemoteUserProvider
     {
-        IRemoteUser LoggedInRemoteUser { get; }
+        IRemoteUser GetLoggedInRemoteUser();
     }
 }
