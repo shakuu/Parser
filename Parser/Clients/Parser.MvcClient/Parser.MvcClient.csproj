@@ -251,6 +251,8 @@
     <Compile Include="App_Start\AutoMapperProfiles\ParserUserProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\StoredCombatStatisticsProfile.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\ControllerFactories\INinjectControllerFactory.cs" />
+    <Compile Include="App_Start\ControllerFactories\ParserControllerFactory.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectModules\AuthNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\AutoMapperNinjectModule.cs" />
@@ -260,12 +262,14 @@
     <Compile Include="App_Start\NinjectModules\DataViewModelsNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\LogFileParserNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\MvcClientNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\SignalRNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SignalRHubDependencyResolver\ParserHubConfigurationDependencyResolver.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Base\LoggingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaderboardController.cs" />
     <Compile Include="Controllers\LiveController.cs" />
@@ -430,6 +434,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Logging\" />
     <Folder Include="Views\RemoteAuth\" />
   </ItemGroup>
   <ItemGroup>
@@ -455,6 +460,14 @@
     <ProjectReference Include="..\..\Src\Parser.Common.Html\Parser.Common.Html.csproj">
       <Project>{fff46ef7-f592-41ee-993a-95be386e7a63}</Project>
       <Name>Parser.Common.Html</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Common.Interceptors\Parser.Common.Interceptors.csproj">
+      <Project>{044ec167-75d8-4bd2-b893-5e9003f71de3}</Project>
+      <Name>Parser.Common.Interceptors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Common.Logging\Parser.Common.Logging.csproj">
+      <Project>{a98c6c8a-3870-48c0-92e0-a3c2f3c012c7}</Project>
+      <Name>Parser.Common.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Common.Utilities\Parser.Common.Utilities.csproj">
       <Project>{aab4c13b-7f42-4995-8db1-4121f77147cc}</Project>

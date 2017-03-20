@@ -10,11 +10,12 @@ using Parser.Auth.Contracts;
 using Parser.Auth.Factories;
 using Parser.Auth.ViewModels;
 using Parser.Data.Models.Factories;
+using Parser.MvcClient.Controllers.Base;
 
 namespace Parser.MvcClient.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : LoggingController
     {
         private readonly IIdentityAuthAccountService identityAuthAccountService;
         private readonly IParserUserFactory parserUserFactory;

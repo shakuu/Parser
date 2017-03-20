@@ -60,7 +60,7 @@ namespace Parser.LogFile.SignalR.Strategies
 
         private string GetLoggedRemoteUserUsername()
         {
-            return this.remoteUserProvider.LoggedInRemoteUser?.Username;
+            return this.remoteUserProvider.GetLoggedInRemoteUser()?.Username;
         }
 
         private void InitializeLogFileParserHubProxy(IHubProxyProvider logFileParserHubProxyProvider)

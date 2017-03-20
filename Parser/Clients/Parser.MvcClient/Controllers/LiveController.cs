@@ -2,11 +2,12 @@
 
 using Parser.Common.Utilities.Contracts;
 using Parser.Data.Services.Contracts;
+using Parser.MvcClient.Controllers.Base;
 
 namespace Parser.MvcClient.Controllers
 {
     [Authorize]
-    public class LiveController : Controller
+    public class LiveController : LoggingController
     {
         private readonly ILiveService liveService;
         private readonly IIdentityProvider identityProvider;

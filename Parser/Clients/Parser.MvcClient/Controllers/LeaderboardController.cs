@@ -1,10 +1,11 @@
 ﻿using System.Web.Mvc;
 
 using Parser.Data.Services.Contracts;
+using Parser.MvcClient.Controllers.Base;
 
 namespace Parser.MvcClient.Controllers
 {
-    public class LeaderboardController : Controller
+    public class LeaderboardController : LoggingController
     {
         private const int OutputCacheDurationInSeconds = 60;
 
@@ -16,7 +17,7 @@ namespace Parser.MvcClient.Controllers
             this.leaderboardDamageService = leaderboardDamageService;
             this.leaderboardHealingService = leaderboardHealingService;
         }
-
+        
         [HttpGet]
         [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Damage()

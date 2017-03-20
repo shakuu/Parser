@@ -47,10 +47,11 @@
     <Compile Include="IRemoteUser.cs" />
     <Compile Include="IRemoteUserLoginService.cs" />
     <Compile Include="IRemoteUserProvider.cs" />
+    <Compile Include="IRemoteUserService.cs" />
     <Compile Include="Models\RemoteAuthResult.cs" />
     <Compile Include="Models\RemoteUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\RemoteUserProvider.cs" />
+    <Compile Include="Services\RemoteUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
