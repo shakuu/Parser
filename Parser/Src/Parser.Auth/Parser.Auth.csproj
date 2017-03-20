@@ -135,6 +135,7 @@
     <Compile Include="Services\AuthOwnerService.cs" />
     <Compile Include="Services\IdentityAuthAccountService.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\AuthUserViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
