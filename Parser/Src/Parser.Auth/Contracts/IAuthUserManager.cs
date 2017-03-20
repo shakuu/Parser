@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 
 using Microsoft.AspNet.Identity;
 
@@ -11,5 +12,7 @@ namespace Parser.Auth.Contracts
         AuthUser FindByName(string userName);
 
         IdentityResult AddToRole(string userId, string role);
+
+        IQueryable<AuthUser> AuthUsers { get; }
     }
 }
