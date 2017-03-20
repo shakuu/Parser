@@ -465,6 +465,10 @@
       <Project>{044ec167-75d8-4bd2-b893-5e9003f71de3}</Project>
       <Name>Parser.Common.Interceptors</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Common.Logging\Parser.Common.Logging.csproj">
+      <Project>{a98c6c8a-3870-48c0-92e0-a3c2f3c012c7}</Project>
+      <Name>Parser.Common.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Common.Utilities\Parser.Common.Utilities.csproj">
       <Project>{aab4c13b-7f42-4995-8db1-4121f77147cc}</Project>
       <Name>Parser.Common.Utilities</Name>
