@@ -50,7 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILogEntry.cs" />
     <Compile Include="ILoggingService.cs" />
+    <Compile Include="ILoggingServiceDbContext.cs" />
+    <Compile Include="ILoggingServicePersistentStorageStrategy.cs" />
+    <Compile Include="LoggingServiceDbContext.cs" />
     <Compile Include="MessageType.cs" />
     <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +62,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Parser.Common.Constants\Parser.Common.Constants.csproj">
+      <Project>{d0fccf6c-6b4b-4cc9-819f-6e6fcd2edc3c}</Project>
+      <Name>Parser.Common.Constants</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

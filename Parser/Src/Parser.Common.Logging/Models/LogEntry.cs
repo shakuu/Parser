@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Parser.Common.Logging.Models
 {
-    public class LogEntry
+    public class LogEntry : ILogEntry
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
