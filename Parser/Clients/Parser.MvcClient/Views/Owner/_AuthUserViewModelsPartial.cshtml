@@ -1,0 +1,27 @@
+﻿@model Parser.Auth.ViewModels.OwnerViewModel
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Promote</th>
+    </tr>
+
+    @foreach (var viewModel in Model.AuthUsers)
+    {
+        <tr>
+            <td>@viewModel.Username</td>
+            <td>
+                <button class="btn btn-success">Promote</button>
+            </td>
+        </tr>
+    }
+</table>
+
+@using (Ajax.BeginForm("GetUsersOnPage", new { pageNumber = Model.PageNumber }, new AjaxOptions()
+{
+    UpdateTargetId = "users",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "POST"
+}, new { id = "update-form" }))
+{
+    @Html.AntiForgeryToken()
+}

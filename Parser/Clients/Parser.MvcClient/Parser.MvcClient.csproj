@@ -436,6 +436,7 @@
     <Content Include="Views\Administration\Index.cshtml" />
     <Content Include="Views\Owner\Index.cshtml" />
     <Content Include="Views\Owner\_AddRoleResultPartial.cshtml" />
+    <Content Include="Views\Owner\_AuthUserViewModelsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

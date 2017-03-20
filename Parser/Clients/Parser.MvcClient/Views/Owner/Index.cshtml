@@ -4,5 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model Parser.Auth.ViewModels.OwnerViewModel
+
 <h2>Owner</h2>
 
+<div class="well">
+    <section class="users">
+        @Html.Partial("_AuthUserViewModelsPartial", Model)
+    </section>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/infinite-scroll-event")
+}

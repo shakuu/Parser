@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using Parser.Auth.ViewModels;
+﻿using Parser.Auth.ViewModels;
 
 namespace Parser.Auth.Contracts
 {
@@ -8,6 +6,6 @@ namespace Parser.Auth.Contracts
     {
         void AddRoleAdmin(string username);
 
-        IEnumerable<AuthUserViewModel> GetAuthUsersOnPage(int pageNumber);
+        OwnerViewModel GetAuthUsersOnPage(int pageNumber);
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 
 using Bytes2you.Validation;
@@ -30,13 +29,19 @@ namespace Parser.Auth.Services
             this.authUserManagerProvider.UserManager.AddToRole(user.Id, AuthOwnerService.AdminRole);
         }
 
-        public IEnumerable<AuthUserViewModel> GetAuthUsersOnPage(int pageNumber)
+        public OwnerViewModel GetAuthUsersOnPage(int pageNumber)
         {
-            return this.authUserManagerProvider.UserManager.AuthUsers
-                .Skip(pageNumber * AuthOwnerService.DefaultPageSize)
-                .Take(AuthOwnerService.DefaultPageSize)
+            var viewModel = new OwnerViewModel();
+
+            viewModel.AuthUsers = this.authUserManagerProvider.UserManager.AuthUsers
+                .OrderBy(u => u.UserName)
+                .Take(AuthOwnerService.DefaultPageSize * pageNumber)
                 .Select(u => new AuthUserViewModel() { Username = u.UserName })
                 .ToList();
+
+            viewModel.PageNumber = viewModel.AuthUsers.Count() / AuthOwnerService.DefaultPageSize + 1;
+
+            return viewModel;
         }
     }
 }
