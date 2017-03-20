@@ -10,7 +10,7 @@
         <tr>
             <td>@viewModel.Username</td>
             <td>
-                <button class="btn btn-success">Promote</button>
+                <a class="btn-promote waves-effect waves-light btn" data-username="@viewModel.Username">Promote</a>
             </td>
         </tr>
     }
@@ -24,4 +24,15 @@
 }, new { id = "update-form" }))
 {
     @Html.AntiForgeryToken()
+}
+
+@using (Ajax.BeginForm("Index", null, new AjaxOptions()
+{
+    UpdateTargetId = "promote-result",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "POST"
+}, new { id = "promote-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("username", "", new { id = "hidden-username" })
 }
