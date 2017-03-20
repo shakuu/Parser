@@ -17,14 +17,16 @@ namespace Parser.MvcClient.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index(string username)
         {
-            return View();
+            this.authOwnerService.AddRoleAdmin(username);
+
+            return this.PartialView("_AddRoleResultPartial");
         }
     }
 }
