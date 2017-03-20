@@ -5,7 +5,7 @@ namespace Parser.MvcClient.App_Start
 {
     using System;
     using System.Web;
-
+    using System.Web.Mvc;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
@@ -52,6 +52,7 @@ namespace Parser.MvcClient.App_Start
                 RegisterServices(kernel);
                 NinjectWebCommon.Kernel = kernel;
 
+                ControllerBuilder.Current.SetControllerFactory(kernel.Get<IControllerFactory>());
                 return kernel;
             }
             catch
@@ -75,6 +76,7 @@ namespace Parser.MvcClient.App_Start
             kernel.Load(new DataServicesNinjectModule());
             kernel.Load(new DataViewModelsNinjectModule());
             kernel.Load(new LogFileParserNinjectModule());
+            kernel.Load(new MvcClientNinjectModule());
             kernel.Load(new SignalRNinjectModule());
         }
     }

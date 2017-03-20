@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LogEntry.cs" />
+    <Compile Include="ParserLoggingAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\LoggingService.cs" />
     <Compile Include="Strategies\LoggingServicePersistentStorageStrategy.cs" />

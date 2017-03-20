@@ -251,6 +251,8 @@
     <Compile Include="App_Start\AutoMapperProfiles\ParserUserProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\StoredCombatStatisticsProfile.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\ControllerFactories\INinjectControllerFactory.cs" />
+    <Compile Include="App_Start\ControllerFactories\ParserControllerFactory.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectModules\AuthNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\AutoMapperNinjectModule.cs" />
