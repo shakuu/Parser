@@ -56,6 +56,11 @@
     <Compile Include="ILoggingServicePersistentStorageStrategy.cs" />
     <Compile Include="LoggingServiceDbContext.cs" />
     <Compile Include="MessageType.cs" />
+    <Compile Include="Migrations\201703201046081_init.cs" />
+    <Compile Include="Migrations\201703201046081_init.Designer.cs">
+      <DependentUpon>201703201046081_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +73,11 @@
       <Project>{d0fccf6c-6b4b-4cc9-819f-6e6fcd2edc3c}</Project>
       <Name>Parser.Common.Constants</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703201046081_init.resx">
+      <DependentUpon>201703201046081_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
