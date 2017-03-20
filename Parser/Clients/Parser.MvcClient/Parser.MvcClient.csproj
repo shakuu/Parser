@@ -269,6 +269,7 @@
     <Compile Include="App_Start\SignalRHubDependencyResolver\ParserHubConfigurationDependencyResolver.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\Base\LoggingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaderboardController.cs" />
@@ -431,6 +432,7 @@
     <Content Include="Views\Shared\_HealingDonePerSecondViewModelsPartial.cshtml" />
     <Content Include="Views\Shared\_LiveStatisticsViewModel.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
