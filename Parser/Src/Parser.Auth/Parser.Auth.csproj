@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="AuthDbContext.cs" />
     <Compile Include="AuthUser.cs" />
+    <Compile Include="Contracts\IAuthOwnerService.cs" />
     <Compile Include="Contracts\IAuthSignInManager.cs" />
     <Compile Include="Contracts\IAuthSignInManagerProvider.cs" />
     <Compile Include="Contracts\IAuthUserManager.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Providers\AuthUserManagerProvider.cs" />
     <Compile Include="Providers\EmailProvider.cs" />
     <Compile Include="Providers\SmsProvider.cs" />
+    <Compile Include="Services\AuthOwnerService.cs" />
     <Compile Include="Services\IdentityAuthAccountService.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
