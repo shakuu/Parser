@@ -4,6 +4,7 @@ using Ninject.Extensions.Interception;
 using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 
+using Parser.Auth.Remote;
 using Parser.Auth.Remote.Models;
 using Parser.Auth.Remote.Services;
 
@@ -15,6 +16,8 @@ namespace Parser.ConsoleClient.NinjectModules
         {
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
+
+            this.Bind(typeof(IRemoteUserProvider), typeof(IRemoteUserLoginService)).To<RemoteUserService>().InSingletonScope();
 
             // TODO: Delete
             this.Kernel.InterceptReplace<RemoteUserService>(s => s.GetLoggedInRemoteUser(), this.GetLoggedInRemoteUserInterceptMethod);
