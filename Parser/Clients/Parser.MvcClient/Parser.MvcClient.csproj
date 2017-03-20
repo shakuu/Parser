@@ -275,6 +275,7 @@
     <Compile Include="Controllers\LeaderboardController.cs" />
     <Compile Include="Controllers\LiveController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OwnerController.cs" />
     <Compile Include="Controllers\RemoteAuthController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -433,6 +434,7 @@
     <Content Include="Views\Shared\_LiveStatisticsViewModel.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
     <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\Owner\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
