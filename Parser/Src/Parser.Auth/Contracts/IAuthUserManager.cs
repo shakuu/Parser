@@ -9,5 +9,7 @@ namespace Parser.Auth.Contracts
         Task<IdentityResult> CreateAsync(AuthUser user, string password);
 
         AuthUser FindByName(string userName);
+
+        IdentityResult AddToRole(string userId, string role);
     }
 }

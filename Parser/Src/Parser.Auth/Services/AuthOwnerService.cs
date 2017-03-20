@@ -1,7 +1,5 @@
-﻿using System.Linq;
+﻿using Bytes2you.Validation;
 
-using Bytes2you.Validation;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Parser.Auth.Contracts;
 
 namespace Parser.Auth.Services
@@ -10,31 +8,19 @@ namespace Parser.Auth.Services
     {
         private const string AdminRole = "Admin";
 
-        private readonly IAuthDbContext authDbContext;
+        private readonly IAuthUserManagerProvider authUserManagerProvider;
 
-        public AuthOwnerService(IAuthDbContext authDbContext)
+        public AuthOwnerService(IAuthUserManagerProvider authUserManagerProvider)
         {
-            Guard.WhenArgument(authDbContext, nameof(IAuthDbContext)).IsNull().Throw();
+            Guard.WhenArgument(authUserManagerProvider, nameof(IAuthUserManagerProvider)).IsNull().Throw();
 
-            this.authDbContext = authDbContext;
+            this.authUserManagerProvider = authUserManagerProvider;
         }
 
         public void AddRoleAdmin(string username)
         {
-            var role = this.authDbContext.Roles.FirstOrDefault(r => r.Name == AuthOwnerService.AdminRole);
-            if (role == null)
-            {
-                role = new IdentityRole();
-                role.Name = AuthOwnerService.AdminRole;
-
-                this.authDbContext.Roles.Add(role);
-            }
-
-            var user = this.authDbContext.Users.FirstOrDefault(u => u.UserName == username);
-            if (user != null)
-            {
-                //user.Roles.Add();
-            }
+            var user = this.authUserManagerProvider.UserManager.FindByName(username);
+            this.authUserManagerProvider.UserManager.AddToRole(user.Id, AuthOwnerService.AdminRole);
         }
     }
 }

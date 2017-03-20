@@ -71,5 +71,10 @@ namespace Parser.Auth.Managers
         {
             return this.FindByName(userName);
         }
+
+        public IdentityResult AddToRole(string userId, string role)
+        {
+            return this.AddToRole(userId, role);
+        }
     }
 }
