@@ -1,10 +1,10 @@
+using System.Data.Entity.Migrations;
+using System.Linq;
+
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace Parser.Auth.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     internal sealed class Configuration : DbMigrationsConfiguration<Parser.Auth.AuthDbContext>
     {
         public Configuration()
@@ -15,6 +15,15 @@ namespace Parser.Auth.Migrations
 
         protected override void Seed(Parser.Auth.AuthDbContext context)
         {
+            if (!context.Roles.Any())
+            {
+                var adminRole = new IdentityRole("Admin");
+
+                context.Roles.Add(adminRole);
+
+                context.SaveChanges();
+            }
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

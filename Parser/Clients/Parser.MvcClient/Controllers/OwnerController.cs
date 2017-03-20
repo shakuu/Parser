@@ -31,7 +31,8 @@ namespace Parser.MvcClient.Controllers
         {
             this.authOwnerService.AddRoleAdmin(username);
 
-            return this.PartialView("_AddRoleResultPartial");
+            //return this.PartialView("_AddRoleResultPartial");
+            return this.Content("Success");
         }
 
         [HttpPost]

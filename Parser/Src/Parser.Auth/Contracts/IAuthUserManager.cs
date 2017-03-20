@@ -9,9 +9,9 @@ namespace Parser.Auth.Contracts
     {
         Task<IdentityResult> CreateAsync(AuthUser user, string password);
 
-        AuthUser FindByName(string userName);
+        AuthUser FindByUsername(string userName);
 
-        IdentityResult AddToRole(string userId, string role);
+        IdentityResult AddUserToRole(string userId, string role);
 
         IQueryable<AuthUser> AuthUsers { get; }
     }

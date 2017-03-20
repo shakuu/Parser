@@ -76,12 +76,12 @@ namespace Parser.Auth.Managers
             return manager;
         }
 
-        public AuthUser FindByName(string userName)
+        public AuthUser FindByUsername(string userName)
         {
             return this.FindByName(userName);
         }
 
-        public IdentityResult AddToRole(string userId, string role)
+        public IdentityResult AddUserToRole(string userId, string role)
         {
             return this.AddToRole(userId, role);
         }

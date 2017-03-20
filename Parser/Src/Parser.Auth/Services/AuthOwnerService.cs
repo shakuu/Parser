@@ -25,8 +25,8 @@ namespace Parser.Auth.Services
 
         public void AddRoleAdmin(string username)
         {
-            var user = this.authUserManagerProvider.UserManager.FindByName(username);
-            this.authUserManagerProvider.UserManager.AddToRole(user.Id, AuthOwnerService.AdminRole);
+            var user = this.authUserManagerProvider.UserManager.FindByUsername(username);
+            this.authUserManagerProvider.UserManager.AddUserToRole(user.Id, AuthOwnerService.AdminRole);
         }
 
         public OwnerViewModel GetAuthUsersOnPage(int pageNumber)
