@@ -1,0 +1,21 @@
+﻿@model Parser.Data.ViewModels.AdminFab.AdminFabViewModel
+
+@if (Model.IsOwner || Model.IsAdmin)
+{
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+            @if (Model.IsOwner)
+            {
+                <li><a href="/owner" class="btn-floating green"><i class="material-icons">pets</i></a></li>
+            }
+
+            @if (Model.IsAdmin)
+            {
+                <li><a href="/admin" class="btn-floating blue"><i class="material-icons">build</i></a></li>
+            }
+        </ul>
+    </div>
+}

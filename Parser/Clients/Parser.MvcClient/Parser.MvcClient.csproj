@@ -268,7 +268,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SignalRHubDependencyResolver\ParserHubConfigurationDependencyResolver.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\ViewEnginesConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminFabController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\Base\LoggingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -389,6 +391,7 @@
     <Content Include="Scripts\materialize\materialize.js" />
     <Content Include="Scripts\materialize\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Owner\demote.js" />
     <Content Include="Scripts\Owner\promote.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -438,6 +441,7 @@
     <Content Include="Views\Owner\Index.cshtml" />
     <Content Include="Views\Owner\_AddRoleResultPartial.cshtml" />
     <Content Include="Views\Owner\_AuthUserViewModelsPartial.cshtml" />
+    <Content Include="Views\AdminFab\_AdminFabPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -463,6 +467,10 @@
     <ProjectReference Include="..\..\Src\Parser.Auth\Parser.Auth.csproj">
       <Project>{8ff46e09-d8c2-43b5-995f-b521cd076487}</Project>
       <Name>Parser.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Common.Constants\Parser.Common.Constants.csproj">
+      <Project>{D0FCCF6C-6B4B-4CC9-819F-6E6FCD2EDC3C}</Project>
+      <Name>Parser.Common.Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Common.Html\Parser.Common.Html.csproj">
       <Project>{fff46ef7-f592-41ee-993a-95be386e7a63}</Project>

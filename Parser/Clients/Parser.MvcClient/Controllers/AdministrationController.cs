@@ -1,8 +1,10 @@
 ﻿using System.Web.Mvc;
 
+using Parser.Common.Constants.Configuration;
+
 namespace Parser.MvcClient.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = UserRoles.AdminRole)]
     public class AdministrationController : Controller
     {
         [HttpGet]
