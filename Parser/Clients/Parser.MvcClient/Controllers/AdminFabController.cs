@@ -4,7 +4,7 @@ namespace Parser.MvcClient.Controllers
 {
     public class AdminFabController : Controller
     {
-        [HttpGet]
+        [ChildActionOnly]
         public ActionResult AdminFab()
         {
             return this.PartialView();
