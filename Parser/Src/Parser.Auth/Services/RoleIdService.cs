@@ -24,6 +24,8 @@ namespace Parser.Auth.Services
 
         public string GetIdForRole(string roleName)
         {
+            Guard.WhenArgument(roleName, nameof(roleName)).IsNullOrEmpty().Throw();
+
             var roleIdIsMemorized = this.memorizedRoleIds.ContainsKey(roleName);
             if (roleIdIsMemorized == false)
             {

@@ -15,15 +15,15 @@ namespace Parser.Auth.Services
         private const string AdminRole = "Admin";
 
         private readonly IAuthUserManagerProvider authUserManagerProvider;
-        private readonly IAuthDbContext authDbContext;
+        private readonly IRoleIdService roleIdService;
 
-        public AuthOwnerService(IAuthUserManagerProvider authUserManagerProvider, IAuthDbContext authDbContext)
+        public AuthOwnerService(IAuthUserManagerProvider authUserManagerProvider, IRoleIdService roleIdService)
         {
             Guard.WhenArgument(authUserManagerProvider, nameof(IAuthUserManagerProvider)).IsNull().Throw();
-            Guard.WhenArgument(authDbContext, nameof(IAuthDbContext)).IsNull().Throw();
+            Guard.WhenArgument(roleIdService, nameof(IRoleIdService)).IsNull().Throw();
 
             this.authUserManagerProvider = authUserManagerProvider;
-            this.authDbContext = authDbContext;
+            this.roleIdService = roleIdService;
         }
 
         public void AddRoleAdmin(string username)
@@ -42,7 +42,7 @@ namespace Parser.Auth.Services
         {
             var viewModel = new OwnerViewModel();
 
-            var adminRoleId = this.authDbContext.Roles.Where(r => r.Name == "Admin").Select(r => r.Id).FirstOrDefault();
+            var adminRoleId = this.roleIdService.GetIdForRole(AuthOwnerService.AdminRole);
 
             viewModel.AuthUsers = this.authUserManagerProvider.UserManager.AuthUsers
                 .OrderBy(u => u.UserName)
