@@ -17,7 +17,6 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
-        //[OutputCache(Duration = OwnerController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Index()
         {
             var viewModel = this.authOwnerService.GetAuthUsersOnPage(1);
@@ -27,26 +26,25 @@ namespace Parser.MvcClient.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Promote(string username)
+        public ActionResult Promote(string username, int pageNumber)
         {
             this.authOwnerService.AddRoleAdmin(username);
+            var viewModel = this.authOwnerService.GetAuthUsersOnPage(pageNumber);
 
-            //return this.PartialView("_AddRoleResultPartial");
-            return this.Content("Success");
+            return this.PartialView("_AuthUserViewModelsPartial", viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Demote(string username)
+        public ActionResult Demote(string username, int pageNumber)
         {
-            //this.authOwnerService.AddRoleAdmin(username);
+            this.authOwnerService.RemoveRoleAdmin(username);
+            var viewModel = this.authOwnerService.GetAuthUsersOnPage(pageNumber);
 
-            //return this.PartialView("_AddRoleResultPartial");
-            return this.Content("Success");
+            return this.PartialView("_AuthUserViewModelsPartial", viewModel);
         }
 
         [HttpPost]
-        [OutputCache(Duration = OwnerController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         [ValidateAntiForgeryToken]
         public ActionResult GetUsersOnPage(int pageNumber)
         {

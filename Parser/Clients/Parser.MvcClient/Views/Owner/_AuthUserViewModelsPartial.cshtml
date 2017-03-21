@@ -35,22 +35,24 @@
 
 @using (Ajax.BeginForm("Promote", null, new AjaxOptions()
 {
-    UpdateTargetId = "promote-result",
+    UpdateTargetId = "users",
     InsertionMode = InsertionMode.Replace,
     HttpMethod = "POST"
 }, new { id = "promote-form" }))
 {
     @Html.AntiForgeryToken()
     @Html.Hidden("username", "", new { id = "hidden-username" })
+    @Html.HiddenFor(m => m.PageNumber)
 }
 
 @using (Ajax.BeginForm("Demote", null, new AjaxOptions()
 {
-    UpdateTargetId = "promote-result",
+    UpdateTargetId = "users",
     InsertionMode = InsertionMode.Replace,
     HttpMethod = "POST"
 }, new { id = "demote-form" }))
 {
     @Html.AntiForgeryToken()
     @Html.Hidden("username", "", new { id = "hidden-username-demote" })
+    @Html.HiddenFor(m => m.PageNumber)
 }
