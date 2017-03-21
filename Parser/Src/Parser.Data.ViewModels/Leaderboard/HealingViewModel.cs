@@ -8,7 +8,15 @@ namespace Parser.Data.ViewModels.Leaderboard
         {
             this.PageNumber = pageNumber;
             this.HealingDonePerSecondViewModels = healingDonePerSecondViewModels;
-            this.MaximumHealingDonePerSecond = this.HealingDonePerSecondViewModels[0]?.HealingDonePerSecond ?? 0;
+
+            if (this.HealingDonePerSecondViewModels.Count > 0)
+            {
+                this.MaximumHealingDonePerSecond = this.HealingDonePerSecondViewModels[0]?.HealingDonePerSecond ?? 0;
+            }
+            else
+            {
+                this.MaximumHealingDonePerSecond = 0;
+            }
 
             this.CalculatePercentageOfBestPropertyForViewModels();
         }

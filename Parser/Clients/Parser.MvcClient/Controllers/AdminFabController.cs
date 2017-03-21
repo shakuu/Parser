@@ -5,9 +5,9 @@ namespace Parser.MvcClient.Controllers
     public class AdminFabController : Controller
     {
         [ChildActionOnly]
-        public ActionResult AdminFab()
+        public ActionResult DisplayAdminFab()
         {
-            return this.PartialView();
+            return this.PartialView("_AdminFabPartial");
         }
     }
 }
