@@ -269,6 +269,7 @@
     <Compile Include="App_Start\SignalRHubDependencyResolver\ParserHubConfigurationDependencyResolver.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminFabController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\Base\LoggingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -438,6 +439,7 @@
     <Content Include="Views\Owner\Index.cshtml" />
     <Content Include="Views\Owner\_AddRoleResultPartial.cshtml" />
     <Content Include="Views\Owner\_AuthUserViewModelsPartial.cshtml" />
+    <Content Include="Views\AdminFab\_AdminFabPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
