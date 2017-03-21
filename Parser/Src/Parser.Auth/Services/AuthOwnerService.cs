@@ -5,14 +5,13 @@ using Bytes2you.Validation;
 
 using Parser.Auth.Contracts;
 using Parser.Auth.ViewModels;
+using Parser.Common.Constants.Configuration;
 
 namespace Parser.Auth.Services
 {
     public class AuthOwnerService : IAuthOwnerService
     {
         private const int DefaultPageSize = 50;
-
-        private const string AdminRole = "Admin";
 
         private readonly IAuthUserManagerProvider authUserManagerProvider;
         private readonly IRoleIdService roleIdService;
@@ -29,20 +28,20 @@ namespace Parser.Auth.Services
         public void AddRoleAdmin(string username)
         {
             var user = this.authUserManagerProvider.UserManager.FindByUsername(username);
-            this.authUserManagerProvider.UserManager.AddUserToRole(user.Id, AuthOwnerService.AdminRole);
+            this.authUserManagerProvider.UserManager.AddUserToRole(user.Id, UserRoles.AdminRole);
         }
 
         public void RemoveRoleAdmin(string username)
         {
             var user = this.authUserManagerProvider.UserManager.FindByUsername(username);
-            this.authUserManagerProvider.UserManager.RemoveUserFromRole(user.Id, AuthOwnerService.AdminRole);
+            this.authUserManagerProvider.UserManager.RemoveUserFromRole(user.Id, UserRoles.AdminRole);
         }
 
         public OwnerViewModel GetAuthUsersOnPage(int pageNumber)
         {
             var viewModel = new OwnerViewModel();
 
-            var adminRoleId = this.roleIdService.GetIdForRole(AuthOwnerService.AdminRole);
+            var adminRoleId = this.roleIdService.GetIdForRole(UserRoles.AdminRole);
 
             viewModel.AuthUsers = this.authUserManagerProvider.UserManager.AuthUsers
                 .OrderBy(u => u.UserName)

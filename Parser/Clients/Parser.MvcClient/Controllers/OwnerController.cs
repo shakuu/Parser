@@ -1,10 +1,11 @@
 ﻿using System.Web.Mvc;
 
 using Parser.Auth.Contracts;
+using Parser.Common.Constants.Configuration;
 
 namespace Parser.MvcClient.Controllers
 {
-    [Authorize(Users = "myuser@user.com")]
+    [Authorize(Users = UserRoles.OwnerAccountName)]
     public class OwnerController : Controller
     {
         private const int OutputCacheDurationInSeconds = 300;
