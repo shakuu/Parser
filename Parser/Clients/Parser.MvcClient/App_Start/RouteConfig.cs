@@ -12,6 +12,12 @@ namespace Parser.MvcClient
             routes.LowercaseUrls = true;
 
             routes.MapRoute(
+                name: "Owner",
+                url: "owner",
+                defaults: new { controller = "Owner", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "TopDps",
                 url: "damage",
                 defaults: new { controller = "Leaderboard", action = "Damage" }
@@ -33,6 +39,12 @@ namespace Parser.MvcClient
                 name: "Login",
                 url: "login",
                 defaults: new { controller = "Account", action = "Login" }
+            );
+
+            routes.MapRoute(
+                name: "RemoteLogin",
+                url: "remote",
+                defaults: new { controller = "RemoteAuth", action = "Login" }
             );
 
             routes.MapRoute(

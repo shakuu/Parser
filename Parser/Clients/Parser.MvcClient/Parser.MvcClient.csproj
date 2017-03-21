@@ -251,6 +251,8 @@
     <Compile Include="App_Start\AutoMapperProfiles\ParserUserProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\StoredCombatStatisticsProfile.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\ControllerFactories\INinjectControllerFactory.cs" />
+    <Compile Include="App_Start\ControllerFactories\ParserControllerFactory.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectModules\AuthNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\AutoMapperNinjectModule.cs" />
@@ -260,16 +262,21 @@
     <Compile Include="App_Start\NinjectModules\DataViewModelsNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\LogFileParserNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\MvcClientNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\SignalRNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SignalRHubDependencyResolver\ParserHubConfigurationDependencyResolver.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\Base\LoggingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaderboardController.cs" />
     <Compile Include="Controllers\LiveController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OwnerController.cs" />
+    <Compile Include="Controllers\RemoteAuthController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -280,6 +287,18 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\footer\footer-css.css">
+      <DependentUpon>footer-css.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\footer\footer-css.min.css">
+      <DependentUpon>footer-css.css</DependentUpon>
+    </Content>
+    <Content Include="Content\home\home-css.css">
+      <DependentUpon>home-css.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\home\home-css.min.css">
+      <DependentUpon>home-css.css</DependentUpon>
+    </Content>
     <Content Include="Content\images\body_background.png" />
     <Content Include="Content\leaderboard\leaderboard.css">
       <DependentUpon>leaderboard.scss</DependentUpon>
@@ -349,6 +368,8 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Content\home\home-css.scss" />
+    <Content Include="Content\footer\footer-css.scss" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -368,6 +389,7 @@
     <Content Include="Scripts\materialize\materialize.js" />
     <Content Include="Scripts\materialize\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Owner\promote.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -411,9 +433,16 @@
     <Content Include="Views\Shared\_DamageDonePerSecondViewModelsPartial.cshtml" />
     <Content Include="Views\Shared\_HealingDonePerSecondViewModelsPartial.cshtml" />
     <Content Include="Views\Shared\_LiveStatisticsViewModel.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\Owner\Index.cshtml" />
+    <Content Include="Views\Owner\_AddRoleResultPartial.cshtml" />
+    <Content Include="Views\Owner\_AuthUserViewModelsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Logging\" />
+    <Folder Include="Views\RemoteAuth\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -438,6 +467,18 @@
     <ProjectReference Include="..\..\Src\Parser.Common.Html\Parser.Common.Html.csproj">
       <Project>{fff46ef7-f592-41ee-993a-95be386e7a63}</Project>
       <Name>Parser.Common.Html</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Common.Interceptors\Parser.Common.Interceptors.csproj">
+      <Project>{044ec167-75d8-4bd2-b893-5e9003f71de3}</Project>
+      <Name>Parser.Common.Interceptors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Common.Logging\Parser.Common.Logging.csproj">
+      <Project>{a98c6c8a-3870-48c0-92e0-a3c2f3c012c7}</Project>
+      <Name>Parser.Common.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Common.Utilities\Parser.Common.Utilities.csproj">
+      <Project>{aab4c13b-7f42-4995-8db1-4121f77147cc}</Project>
+      <Name>Parser.Common.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>

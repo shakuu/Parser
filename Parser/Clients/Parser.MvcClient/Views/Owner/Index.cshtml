@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Owner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Parser.Auth.ViewModels.OwnerViewModel
+
+<h2>Owner</h2>
+
+<div id="promote-result"></div>
+
+<div class="well">
+    <section id="users">
+        @Html.Partial("_AuthUserViewModelsPartial", Model)
+    </section>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/owner")
+}

@@ -34,16 +34,18 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Parser</p>
-        </footer>
-    </div>
+    <main>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+        </div>
+    </main>
+    @Html.Partial("_FooterPartial")
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap-materialize")
+    @Styles.Render("~/Content/footer-css")
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

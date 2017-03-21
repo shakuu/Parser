@@ -1,7 +1,13 @@
 ﻿$(document).ready(function () {
 
-    window.setInterval(function () {
-        $("#update-form").submit();
-    }, 1000);
+    var updateToggle = $("#update-toggle");
 
+    window.setInterval(function () {
+
+        if (updateToggle.is(":checked")) {
+            $("#update-form").submit();
+        }
+
+    }, 1000);
+    
 });

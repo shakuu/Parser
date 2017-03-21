@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -16,6 +17,14 @@ namespace Parser.Auth.Managers
         public AuthUserManager(IUserStore<AuthUser> store)
             : base(store)
         {
+        }
+
+        public IQueryable<AuthUser> AuthUsers
+        {
+            get
+            {
+                return this.Users;
+            }
         }
 
         public static AuthUserManager Create(IdentityFactoryOptions<AuthUserManager> options, IOwinContext context)
@@ -65,6 +74,16 @@ namespace Parser.Auth.Managers
                     new DataProtectorTokenProvider<AuthUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+        }
+
+        public AuthUser FindByUsername(string userName)
+        {
+            return this.FindByName(userName);
+        }
+
+        public IdentityResult AddUserToRole(string userId, string role)
+        {
+            return this.AddToRole(userId, role);
         }
     }
 }

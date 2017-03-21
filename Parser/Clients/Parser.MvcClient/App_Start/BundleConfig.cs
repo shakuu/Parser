@@ -20,6 +20,10 @@ namespace Parser.MvcClient
             bundles.Add(new ScriptBundle("~/bundles/live-update").Include(
                         "~/Scripts/Live/timer-update.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/owner").Include(
+                        "~/Scripts/Live/timer-update.js",
+                        "~/Scripts/Owner/promote.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -37,6 +41,12 @@ namespace Parser.MvcClient
 
             bundles.Add(new StyleBundle("~/Content/leaderboard-css").Include(
                       "~/Content/leaderboard/leaderboard.css"));
+
+            bundles.Add(new StyleBundle("~/Content/home-css").Include(
+                      "~/Content/home/home-css.css"));
+
+            bundles.Add(new StyleBundle("~/Content/footer-css").Include(
+                      "~/Content/footer/footer-css.css"));
         }
     }
 }
