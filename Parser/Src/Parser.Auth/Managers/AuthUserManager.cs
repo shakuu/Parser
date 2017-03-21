@@ -85,5 +85,10 @@ namespace Parser.Auth.Managers
         {
             return this.AddToRole(userId, role);
         }
+
+        public IdentityResult RemoveUserFromRole(string userId, string role)
+        {
+            return this.RemoveFromRole(userId, role);
+        }
     }
 }

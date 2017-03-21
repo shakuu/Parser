@@ -10,7 +10,14 @@
         <tr>
             <td>@viewModel.Username</td>
             <td>
-                <a class="btn-promote waves-effect waves-light btn" data-username="@viewModel.Username">Promote</a>
+                @if (viewModel.IsAdmin)
+                {
+                    <a class="btn-demote red waves-effect waves-light btn" data-username="@viewModel.Username">Demote</a>
+                }
+                else
+                {
+                    <a class="btn-promote waves-effect waves-light btn" data-username="@viewModel.Username">Promote</a>
+                }
             </td>
         </tr>
     }
@@ -26,7 +33,7 @@
     @Html.AntiForgeryToken()
 }
 
-@using (Ajax.BeginForm("Index", null, new AjaxOptions()
+@using (Ajax.BeginForm("Promote", null, new AjaxOptions()
 {
     UpdateTargetId = "promote-result",
     InsertionMode = InsertionMode.Replace,
@@ -35,4 +42,15 @@
 {
     @Html.AntiForgeryToken()
     @Html.Hidden("username", "", new { id = "hidden-username" })
+}
+
+@using (Ajax.BeginForm("Demote", null, new AjaxOptions()
+{
+    UpdateTargetId = "promote-result",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "POST"
+}, new { id = "demote-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("username", "", new { id = "hidden-username-demote" })
 }

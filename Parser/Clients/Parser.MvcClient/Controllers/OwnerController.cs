@@ -17,7 +17,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
-        [OutputCache(Duration = OwnerController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
+        //[OutputCache(Duration = OwnerController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Index()
         {
             var viewModel = this.authOwnerService.GetAuthUsersOnPage(1);
@@ -27,9 +27,19 @@ namespace Parser.MvcClient.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(string username)
+        public ActionResult Promote(string username)
         {
             this.authOwnerService.AddRoleAdmin(username);
+
+            //return this.PartialView("_AddRoleResultPartial");
+            return this.Content("Success");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Demote(string username)
+        {
+            //this.authOwnerService.AddRoleAdmin(username);
 
             //return this.PartialView("_AddRoleResultPartial");
             return this.Content("Success");
