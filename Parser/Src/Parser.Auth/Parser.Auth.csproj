@@ -111,6 +111,7 @@
     <Compile Include="Contracts\IAuthUserManager.cs" />
     <Compile Include="Contracts\IAuthUserManagerProvider.cs" />
     <Compile Include="Contracts\IIdentityAuthAccountService.cs" />
+    <Compile Include="Contracts\IRoleIdService.cs" />
     <Compile Include="Factories\IAuthUserFactory.cs" />
     <Compile Include="Managers\AuthSignInManager.cs" />
     <Compile Include="Managers\AuthUserManager.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Providers\SmsProvider.cs" />
     <Compile Include="Services\AuthOwnerService.cs" />
     <Compile Include="Services\IdentityAuthAccountService.cs" />
+    <Compile Include="Services\RoleIdService.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\AuthUserViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
