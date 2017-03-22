@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Bytes2you.Validation;
 
@@ -27,7 +26,6 @@ namespace Parser.Data.Services
         public IEnumerable<LogEntryViewModel> GetErrorsForPeriod(int periodInHours)
         {
             var logEntries = this.logReportingDataProvider.GetErrorsForPeriod(periodInHours);
-
             var viewModels = this.objectMapperProvider.Map<IEnumerable<LogEntryViewModel>>(logEntries);
 
             return viewModels;
