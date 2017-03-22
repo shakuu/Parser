@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Parser.Data.ViewModels.Administration.LogEntryViewModel>
+
+<table>
+    <tr>
+        <th>Time Stamp</th>
+        <th>Message</th>
+        <th>Controller</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var viewModel in Model)
+    {
+        <tr>
+            <td>@viewModel.Timestamp.ToShortTimeString()</td>
+            <td>@viewModel.Message</td>
+            <td>@viewModel.Controller</td>
+            <td>@viewModel.Action</td>
+        </tr>
+    }
+</table>

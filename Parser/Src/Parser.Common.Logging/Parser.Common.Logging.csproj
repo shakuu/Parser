@@ -55,6 +55,7 @@
     <Compile Include="ILoggingService.cs" />
     <Compile Include="ILoggingServiceDbContext.cs" />
     <Compile Include="ILoggingServicePersistentStorageStrategy.cs" />
+    <Compile Include="ILogReportingDataProvider.cs" />
     <Compile Include="LoggingServiceDbContext.cs" />
     <Compile Include="MessageType.cs" />
     <Compile Include="Migrations\201703201235144_init.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\LoggingService.cs" />
+    <Compile Include="DataProviders\LogReportingDataProvider.cs" />
     <Compile Include="Strategies\LoggingServicePersistentStorageStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +77,10 @@
     <ProjectReference Include="..\Parser.Common.Constants\Parser.Common.Constants.csproj">
       <Project>{d0fccf6c-6b4b-4cc9-819f-6e6fcd2edc3c}</Project>
       <Name>Parser.Common.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">
+      <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
+      <Name>Parser.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
