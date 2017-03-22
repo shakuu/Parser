@@ -20,7 +20,7 @@ namespace Parser.MvcClient.Controllers
         {
             var viewModel = this.administrationService.GetErrorsForPeriod(24);
 
-            return View();
+            return View(viewModel);
         }
     }
 }

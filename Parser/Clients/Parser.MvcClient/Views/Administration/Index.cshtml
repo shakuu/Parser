@@ -1,8 +1,12 @@
-﻿
+﻿@model IEnumerable<Parser.Data.ViewModels.Administration.LogEntryViewModel>
 @{
     ViewBag.Title = "Administration";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2 style="color: yellowgreen; text-align:center;">Administration</h2>
+
+<div class="well" id="log-entries">
+    @Html.Partial("_LogEntryViewModelPartial", Model)
+</div>
 

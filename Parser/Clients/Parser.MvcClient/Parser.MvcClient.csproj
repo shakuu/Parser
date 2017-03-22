@@ -443,6 +443,7 @@
     <Content Include="Views\Owner\_AddRoleResultPartial.cshtml" />
     <Content Include="Views\Owner\_AuthUserViewModelsPartial.cshtml" />
     <Content Include="Views\AdminFab\_AdminFabPartial.cshtml" />
+    <Content Include="Views\Administration\_LogEntryViewModelPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
