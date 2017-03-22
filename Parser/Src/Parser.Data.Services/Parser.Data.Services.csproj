@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministrationService.cs" />
+    <Compile Include="Contracts\IAdministrationService.cs" />
     <Compile Include="Contracts\ICreateParserUserService.cs" />
     <Compile Include="Contracts\ILeaderboardDamageService.cs" />
     <Compile Include="Contracts\ILeaderboardHealingService.cs" />
@@ -56,6 +58,10 @@
     <Compile Include="Strategies\CombatStatisticsPersistentStorageStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Parser.Common.Logging\Parser.Common.Logging.csproj">
+      <Project>{a98c6c8a-3870-48c0-92e0-a3c2f3c012c7}</Project>
+      <Name>Parser.Common.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
       <Name>Parser.Common</Name>

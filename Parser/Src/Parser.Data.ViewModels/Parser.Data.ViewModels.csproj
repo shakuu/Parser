@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminFab\AdminFabViewModel.cs" />
+    <Compile Include="Administration\LogEntryViewModel.cs" />
     <Compile Include="Factories\IAdminFabViewModelFactory.cs" />
     <Compile Include="Factories\IDamageViewModelFactory.cs" />
     <Compile Include="Factories\IHealingDonePerSecondViewModelFactory.cs" />

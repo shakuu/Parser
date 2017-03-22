@@ -4,7 +4,7 @@ using Parser.Common.Logging.Models;
 
 namespace Parser.Common.Logging
 {
-    public interface ILogReportingService
+    public interface ILogReportingDataProvider
     {
         IEnumerable<LogEntry> GetErrorsForPeriod(int periodInHours);
     }

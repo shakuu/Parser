@@ -6,14 +6,14 @@ using Bytes2you.Validation;
 using Parser.Common.Contracts;
 using Parser.Common.Logging.Models;
 
-namespace Parser.Common.Logging.Services
+namespace Parser.Common.Logging.DataProviders
 {
-    public class LogReportingService : ILogReportingService
+    public class LogReportingDataProvider : ILogReportingDataProvider
     {
         private readonly ILoggingServiceDbContext loggingServiceDbContext;
         private readonly IDateTimeProvider dateTimeProvider;
 
-        public LogReportingService(ILoggingServiceDbContext loggingServiceDbContext, IDateTimeProvider dateTimeProvider)
+        public LogReportingDataProvider(ILoggingServiceDbContext loggingServiceDbContext, IDateTimeProvider dateTimeProvider)
         {
             Guard.WhenArgument(loggingServiceDbContext, nameof(ILoggingServiceDbContext)).IsNull().Throw();
             Guard.WhenArgument(dateTimeProvider, nameof(IDateTimeProvider)).IsNull().Throw();
