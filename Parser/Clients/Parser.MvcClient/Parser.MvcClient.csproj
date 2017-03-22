@@ -248,6 +248,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperProfiles\LogEntryProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\ParserUserProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\StoredCombatStatisticsProfile.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
