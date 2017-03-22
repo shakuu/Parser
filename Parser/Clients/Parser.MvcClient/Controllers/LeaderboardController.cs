@@ -17,7 +17,7 @@ namespace Parser.MvcClient.Controllers
             this.leaderboardDamageService = leaderboardDamageService;
             this.leaderboardHealingService = leaderboardHealingService;
         }
-        
+
         [HttpGet]
         [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Damage()
