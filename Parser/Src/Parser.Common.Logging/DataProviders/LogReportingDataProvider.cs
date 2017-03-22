@@ -29,8 +29,9 @@ namespace Parser.Common.Logging.DataProviders
                 periodInHours = 1;
             }
 
+            var timestampConstraint = this.dateTimeProvider.GetUtcNow().AddHours(-periodInHours);
             return this.loggingServiceDbContext.LogEntries
-                .Where(l => l.Timestamp > this.dateTimeProvider.GetUtcNow().AddHours(-periodInHours) && l.MessageType == MessageType.Error)
+                .Where(l => l.Timestamp > timestampConstraint && l.MessageType == MessageType.Error)
                 .OrderByDescending(l => l.Timestamp)
                 .ToList();
         }
