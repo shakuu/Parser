@@ -22,7 +22,7 @@ namespace Parser.Common.Logging.DataProviders
             this.dateTimeProvider = dateTimeProvider;
         }
 
-        public IEnumerable<LogEntry> GetErrorsForPeriod(int periodInHours)
+        public IEnumerable<LogEntry> GetLogEntriesForPeriod(int periodInHours, MessageType messageType)
         {
             if (periodInHours < 1)
             {
@@ -31,7 +31,7 @@ namespace Parser.Common.Logging.DataProviders
 
             var timestampConstraint = this.dateTimeProvider.GetUtcNow().AddHours(-periodInHours);
             return this.loggingServiceDbContext.LogEntries
-                .Where(l => l.Timestamp > timestampConstraint && l.MessageType == MessageType.Error)
+                .Where(l => l.Timestamp > timestampConstraint && l.MessageType == messageType)
                 .OrderByDescending(l => l.Timestamp)
                 .ToList();
         }
