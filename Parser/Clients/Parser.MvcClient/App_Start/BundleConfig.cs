@@ -20,6 +20,9 @@ namespace Parser.MvcClient
             bundles.Add(new ScriptBundle("~/bundles/live-update").Include(
                         "~/Scripts/Live/timer-update.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+                        "~/Scripts/Administration/administration.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/owner").Include(
                         "~/Scripts/Live/timer-update.js",
                         "~/Scripts/Owner/promote.js",

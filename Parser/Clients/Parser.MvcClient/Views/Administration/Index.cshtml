@@ -15,8 +15,12 @@
 {
     @Html.AntiForgeryToken()
 
-    @Html.EnumDropDownListFor(m => m.MessageType, new { id = "dropdown-message-type" })
-    @Html.EnumDropDownListFor(m => m.PeriodType, new { id = "dropdown-period-type" })
+    <div class="well">
+        <div class="row">
+            @Html.EnumDropDownListFor(m => m.MessageType, new { id = "dropdown-message-type", @class = "input-field col s6" })
+            @Html.EnumDropDownListFor(m => m.PeriodType, new { id = "dropdown-period-type", @class = "input-field col s6" })
+        </div>
+    </div>
 }
 
 <div class="well" id="log-entries">
@@ -24,3 +28,8 @@
     @Html.Action("DisplayLogEntries")
 
 </div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/admin");
+}

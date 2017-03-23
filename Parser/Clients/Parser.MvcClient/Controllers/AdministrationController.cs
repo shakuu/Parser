@@ -10,6 +10,8 @@ namespace Parser.MvcClient.Controllers
     [Authorize(Roles = UserRoles.AdminRole)]
     public class AdministrationController : Controller
     {
+        private const int OutputCacheDurationInSeconds = 60;
+
         private readonly IAdministrationService administrationService;
         private readonly IAdministrationIndexViewModelFactory administrationIndexViewModelFactory;
 
@@ -20,6 +22,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
+        [OutputCache(Duration = AdministrationController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Index()
         {
             var viewModel = this.administrationIndexViewModelFactory.CreateAdministrationIndexViewModel();
@@ -36,6 +39,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpPost]
+        [OutputCache(Duration = AdministrationController.OutputCacheDurationInSeconds, VaryByParam = "periodType;messageType", Location = System.Web.UI.OutputCacheLocation.Any)]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateLogEntries(PeriodType periodType, MessageType messageType)
         {
