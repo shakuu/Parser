@@ -44,6 +44,7 @@
     <Compile Include="Administration\AdministrationIndexViewModel.cs" />
     <Compile Include="Administration\LogEntryViewModel.cs" />
     <Compile Include="Factories\IAdminFabViewModelFactory.cs" />
+    <Compile Include="Factories\IAdministrationIndexViewModelFactory.cs" />
     <Compile Include="Factories\IDamageViewModelFactory.cs" />
     <Compile Include="Factories\IHealingDonePerSecondViewModelFactory.cs" />
     <Compile Include="Factories\IHealingViewModelFactory.cs" />

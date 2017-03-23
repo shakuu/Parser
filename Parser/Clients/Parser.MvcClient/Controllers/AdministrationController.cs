@@ -3,7 +3,7 @@
 using Parser.Common.Constants.Configuration;
 using Parser.Common.Logging;
 using Parser.Data.Services.Contracts;
-using Parser.Data.ViewModels.Administration;
+using Parser.Data.ViewModels.Factories;
 
 namespace Parser.MvcClient.Controllers
 {
@@ -11,16 +11,18 @@ namespace Parser.MvcClient.Controllers
     public class AdministrationController : Controller
     {
         private readonly IAdministrationService administrationService;
+        private readonly IAdministrationIndexViewModelFactory administrationIndexViewModelFactory;
 
-        public AdministrationController(IAdministrationService administrationService)
+        public AdministrationController(IAdministrationService administrationService, IAdministrationIndexViewModelFactory administrationIndexViewModelFactory)
         {
             this.administrationService = administrationService;
+            this.administrationIndexViewModelFactory = administrationIndexViewModelFactory;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var viewModel = new AdministrationIndexViewModel();
+            var viewModel = this.administrationIndexViewModelFactory.CreateAdministrationIndexViewModel();
 
             return View(viewModel);
         }
