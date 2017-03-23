@@ -6,6 +6,6 @@ namespace Parser.Common.Logging
 {
     public interface ILogReportingDataProvider
     {
-        IEnumerable<LogEntry> GetErrorsForPeriod(int periodInHours);
+        IEnumerable<LogEntry> GetLogEntriesForPeriod(int periodInHours, MessageType messageType);
     }
 }

@@ -23,9 +23,9 @@ namespace Parser.Data.Services
             this.objectMapperProvider = objectMapperProvider;
         }
 
-        public IEnumerable<LogEntryViewModel> GetErrorsForPeriod(int periodInHours)
+        public IEnumerable<LogEntryViewModel> GetLogEntriesForPeriod(int periodInHours, MessageType messageType)
         {
-            var logEntries = this.logReportingDataProvider.GetErrorsForPeriod(periodInHours);
+            var logEntries = this.logReportingDataProvider.GetLogEntriesForPeriod(periodInHours, messageType);
             var viewModels = this.objectMapperProvider.Map<IEnumerable<LogEntryViewModel>>(logEntries);
 
             return viewModels;

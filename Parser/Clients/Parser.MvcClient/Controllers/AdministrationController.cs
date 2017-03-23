@@ -30,7 +30,7 @@ namespace Parser.MvcClient.Controllers
         [HttpGet]
         public ActionResult DisplayLogEntries()
         {
-            var viewModel = this.administrationService.GetErrorsForPeriod(24);
+            var viewModel = this.administrationService.GetLogEntriesForPeriod(24, MessageType.Error);
 
             return this.PartialView("_LogEntryViewModelPartial", viewModel);
         }
@@ -39,7 +39,7 @@ namespace Parser.MvcClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateLogEntries(PeriodType periodType, MessageType messageType)
         {
-            var viewModel = this.administrationService.GetErrorsForPeriod((int)periodType);
+            var viewModel = this.administrationService.GetLogEntriesForPeriod((int)periodType, messageType);
 
             return this.PartialView("_LogEntryViewModelPartial", viewModel);
         }
