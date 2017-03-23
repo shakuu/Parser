@@ -7,7 +7,7 @@ namespace Parser.Data.ViewModels.Administration
         public AdministrationIndexViewModel()
         {
             this.MessageType = MessageType.Error;
-            this.PeriodType = PeriodType.Hour;
+            this.PeriodType = PeriodType.Day;
         }
 
         public MessageType MessageType { get; set; }
