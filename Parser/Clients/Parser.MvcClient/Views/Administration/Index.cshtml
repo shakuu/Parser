@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Parser.Data.ViewModels.Administration.LogEntryViewModel>
+﻿@model Parser.Data.ViewModels.Administration.AdministrationIndexViewModel
 @{
     ViewBag.Title = "Administration";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,14 +6,21 @@
 
 <h1 style="color: yellowgreen; text-align:center;">Administration</h1>
 
+@using (Ajax.BeginForm("UpdateLogEntries", null, new AjaxOptions()
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "log-entries"
+}, new { id = "update-log-entries-form" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.EnumDropDownListFor(m => m.MessageType, new { id = "dropdown-message-type" })
+    @Html.EnumDropDownListFor(m => m.PeriodType, new { id = "dropdown-period-type" })
+}
+
 <div class="well" id="log-entries">
 
-    @if (Model.Count() == 0)
-    {
-        <h2 class="info">No error occurred.</h2>
-    }
-    else
-    {
-        @Html.Partial("_LogEntryViewModelPartial", Model)
-    }
+    @Html.Action("DisplayLogEntries")
+
 </div>
