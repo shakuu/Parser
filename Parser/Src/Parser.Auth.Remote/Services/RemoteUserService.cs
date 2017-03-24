@@ -10,8 +10,7 @@ namespace Parser.Auth.Remote.Services
 {
     public class RemoteUserService : IRemoteUserService, IRemoteUserProvider, IRemoteUserLoginService
     {
-        private const string RemoteUserAuthService = "http://localhost:50800/remote";
-        private const string FixedUsernameForTesting = "myuser@user.com";
+        private const string RemoteUserAuthService = "http://parser-mvc.azurewebsites.net/";
 
         private readonly IHttpClientProvider httpClientProvider;
         private readonly IJsonConvertProvider jsonConvertProvider;

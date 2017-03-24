@@ -66,7 +66,7 @@ namespace Parser.LogFile.SignalR.Tests.ServicesTests.SignalRHubConnectionService
             var hubConnectionProvider = new Mock<IHubConnectionProvider>();
             hubConnectionProviderFactory.Setup(f => f.CreateHubConnectionProvider(It.IsAny<string>())).Returns(hubConnectionProvider.Object);
 
-            var hubConnectionUrl = "http://localhost:50800";
+            var hubConnectionUrl = "http://parser-mvc.azurewebsites.net/";
 
             // Act
             var signalRHubConnectionService = new SignalRHubConnectionService(hubConnectionProviderFactory.Object, hubProxyProviderFactory.Object);
