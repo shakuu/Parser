@@ -14,6 +14,7 @@ namespace Parser.LogFile.SignalR.Strategies
     {
         private const string HubName = "LogFileParserHub";
 
+        private readonly ICommandUtilizationUpdateStrategy commandUtilizationUpdateStrategy;
         private readonly ICommandJsonConvertProvider commandJsonConvertProvider;
         private readonly IRemoteUserProvider remoteUserProvider;
 
@@ -21,12 +22,15 @@ namespace Parser.LogFile.SignalR.Strategies
 
         private string parsingSessionId;
 
-        public SignalRCommandUtilizationStrategy(ISignalRHubConnectionService signalRHubConnectionService, ICommandJsonConvertProvider commandJsonConvertProvider, IRemoteUserProvider remoteUserProvider)
+        public SignalRCommandUtilizationStrategy(ICommandUtilizationUpdateStrategy commandUtilizationUpdateStrategy, ISignalRHubConnectionService signalRHubConnectionService, ICommandJsonConvertProvider commandJsonConvertProvider, IRemoteUserProvider remoteUserProvider)
         {
             Guard.WhenArgument(signalRHubConnectionService, nameof(ISignalRHubConnectionService)).IsNull().Throw();
+
+            Guard.WhenArgument(commandUtilizationUpdateStrategy, nameof(ICommandUtilizationUpdateStrategy)).IsNull().Throw();
             Guard.WhenArgument(commandJsonConvertProvider, nameof(IJsonConvertProvider)).IsNull().Throw();
             Guard.WhenArgument(remoteUserProvider, nameof(IRemoteUserProvider)).IsNull().Throw();
 
+            this.commandUtilizationUpdateStrategy = commandUtilizationUpdateStrategy;
             this.commandJsonConvertProvider = commandJsonConvertProvider;
             this.remoteUserProvider = remoteUserProvider;
 
@@ -66,7 +70,7 @@ namespace Parser.LogFile.SignalR.Strategies
         private void InitializeLogFileParserHubProxy(IHubProxyProvider logFileParserHubProxyProvider)
         {
             // TODO: DELETE CW
-            logFileParserHubProxyProvider.On<string>("UpdateStatus", (update) => System.Console.WriteLine(update));
+            logFileParserHubProxyProvider.On<string>("UpdateStatus", (update) => this.commandUtilizationUpdateStrategy.DisplayUpdate(update));
             logFileParserHubProxyProvider.On<string>("UpdateParsingSessionId", this.OnUpdateParsingSessionId);
         }
 

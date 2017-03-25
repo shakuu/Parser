@@ -8,6 +8,7 @@ using Parser.Common.Contracts;
 using Parser.LogFile.Reader.Contracts;
 using Parser.LogFile.Reader.Strategies;
 using Parser.LogFile.SignalR.Strategies;
+using Parser.WPFClient.Implementations;
 using Parser.WPFClient.Interceptors;
 
 namespace Parser.WPFClient.NinjectModules
@@ -20,6 +21,7 @@ namespace Parser.WPFClient.NinjectModules
             this.Bind(this.BindAllClassesByConvention);
 
             this.Bind<ICommandUtilizationStrategy>().To<SignalRCommandUtilizationStrategy>().InSingletonScope();
+            this.Bind(typeof(ICommandUtilizationUpdateStrategy), typeof(ILabelContainer)).To<WpfCommandUtilizationUpdateStrategy>().InSingletonScope();
 
             //this.Bind<ICommandUtilizationStrategy>().To<ConsoleClientCommandUtilizationStrategy>().InSingletonScope();
             //this.Kernel.InterceptReplace<ConsoleClientCommandUtilizationStrategy>(s => s.UtilizeCommand(null), this.ICommandUtilizationStrategyUtilizeCommandMethod);

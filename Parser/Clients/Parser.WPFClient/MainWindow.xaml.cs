@@ -13,7 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Ninject;
+
 using Parser.LogFile.Reader.Contracts;
+using Parser.WPFClient.Implementations;
 using Parser.WPFClient.NinjectModules;
 
 namespace Parser.WPFClient
@@ -30,6 +32,9 @@ namespace Parser.WPFClient
             InitializeComponent();
 
             this.engine = NinjectStandardKernelProvider.Kernel.Get<ILogFileReaderEngine>();
+
+            var updateStrategy = NinjectStandardKernelProvider.Kernel.Get<ILabelContainer>();
+            updateStrategy.Label = this.LabelTimestamp;
 
             this.BtnStop.Visibility = Visibility.Hidden;
         }
