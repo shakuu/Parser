@@ -1,7 +1,9 @@
-﻿namespace Parser.Auth.Remote
+﻿using System.Threading.Tasks;
+
+namespace Parser.Auth.Remote
 {
     public interface IRemoteUserLoginService
     {
-        void Login(string username, string password);
+        Task Login(string username, string password);
     }
 }

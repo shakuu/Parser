@@ -5,12 +5,13 @@ using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 
 using Parser.Common.Contracts;
-using Parser.ConsoleClient.FileReaderImplementations;
 using Parser.LogFile.Reader.Contracts;
 using Parser.LogFile.Reader.Strategies;
 using Parser.LogFile.SignalR.Strategies;
+using Parser.WPFClient.Implementations;
+using Parser.WPFClient.Interceptors;
 
-namespace Parser.ConsoleClient.NinjectModules
+namespace Parser.WPFClient.NinjectModules
 {
     internal class LogFileReaderNinjectModule : NinjectModule
     {
@@ -20,7 +21,7 @@ namespace Parser.ConsoleClient.NinjectModules
             this.Bind(this.BindAllClassesByConvention);
 
             this.Bind<ICommandUtilizationStrategy>().To<SignalRCommandUtilizationStrategy>().InSingletonScope();
-            this.Bind<ICommandUtilizationUpdateStrategy>().To<ConsoleCommandUtilizationUpdateStrategy>().InSingletonScope();
+            this.Bind(typeof(ICommandUtilizationUpdateStrategy), typeof(IOnUpdateContainer)).To<WpfCommandUtilizationUpdateStrategy>().InSingletonScope();
 
             //this.Bind<ICommandUtilizationStrategy>().To<ConsoleClientCommandUtilizationStrategy>().InSingletonScope();
             //this.Kernel.InterceptReplace<ConsoleClientCommandUtilizationStrategy>(s => s.UtilizeCommand(null), this.ICommandUtilizationStrategyUtilizeCommandMethod);

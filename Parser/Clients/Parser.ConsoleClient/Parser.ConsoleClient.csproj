@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileReaderImplementations\ConsoleClientCommandUtilizationStrategy.cs" />
+    <Compile Include="FileReaderImplementations\ConsoleCommandUtilizationUpdateStrategy.cs" />
     <Compile Include="FileReaderImplementations\LogFilePathDiscoveryStrategyTestingInterceptor.cs" />
     <Compile Include="NinjectModules\AuthRemoteNinjectModule.cs" />
     <Compile Include="NinjectModules\CommonNinjectModule.cs" />

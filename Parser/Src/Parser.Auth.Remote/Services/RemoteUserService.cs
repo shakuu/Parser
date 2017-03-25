@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Bytes2you.Validation;
 
@@ -10,7 +11,7 @@ namespace Parser.Auth.Remote.Services
 {
     public class RemoteUserService : IRemoteUserService, IRemoteUserProvider, IRemoteUserLoginService
     {
-        private const string RemoteUserAuthService = "http://parser-mvc.azurewebsites.net/";
+        private const string RemoteUserAuthService = "http://parser-mvc.azurewebsites.net/remote";
 
         private readonly IHttpClientProvider httpClientProvider;
         private readonly IJsonConvertProvider jsonConvertProvider;
@@ -34,7 +35,7 @@ namespace Parser.Auth.Remote.Services
             return this.LoggedInRemoteUser;
         }
 
-        public async void Login(string username, string password)
+        public async Task Login(string username, string password)
         {
             var postContent = new Dictionary<string, string>
             {

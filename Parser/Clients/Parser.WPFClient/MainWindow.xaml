@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Parser.WPFClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="ParserDesktop" Height="350" Width="480"
+        Background="#333333">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="160*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Name="BtnStart" Background="YellowGreen" BorderBrush="YellowGreen" Content="Start" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Height="40" Click="BtnStart_Click" Grid.Column="1"/>
+        <Button Name="BtnStop" Background="Red" BorderBrush="Red" Content="Stop" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Height="40" Click="BtnStop_Click" Grid.Column="1"/>
+
+        <TextBox Name="TbUsername" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="TbPassword" HorizontalAlignment="Left" Height="30" Margin="10,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button Name="BtnLogin" Content="Login" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Width="75" Click="BtnLogin_Click" />
+        <Label Name="LabelUsername" Foreground="White" Visibility="Hidden" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <Label Name="LabelTimestamp" HorizontalContentAlignment="Center" Foreground="White" Content="" Grid.Column="1" HorizontalAlignment="Center" Margin="10,200,10,80" VerticalAlignment="Center" Height="35" Width="138"/>
+
     </Grid>
 </Window>

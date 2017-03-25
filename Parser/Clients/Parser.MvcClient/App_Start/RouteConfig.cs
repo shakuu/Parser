@@ -60,6 +60,12 @@ namespace Parser.MvcClient
             );
 
             routes.MapRoute(
+                name: "Download",
+                url: "download",
+                defaults: new { controller = "Home", action = "Download" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
                 defaults: new { controller = "Home", action = "Index" }
