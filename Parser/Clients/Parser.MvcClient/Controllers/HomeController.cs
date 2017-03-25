@@ -14,7 +14,7 @@ namespace Parser.MvcClient.Controllers
 
         public ActionResult Download()
         {
-            return this.File("~/App_Data/Parser.zip", "zip", "Parser.zip");
+            return this.File("~/App_Data/Parser.zip", System.Net.Mime.MediaTypeNames.Application.Zip, "Parser.zip");
         }
     }
 }
