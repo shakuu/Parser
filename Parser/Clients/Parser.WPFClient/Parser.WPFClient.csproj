@@ -91,7 +91,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Implementations\ILabelContainer.cs" />
+    <Compile Include="Implementations\IOnUpdateContainer.cs" />
+    <Compile Include="Implementations\UpdateEventArgs.cs" />
     <Compile Include="Implementations\WpfCommandUtilizationUpdateStrategy.cs" />
     <Compile Include="Interceptors\LogFilePathDiscoveryStrategyTestingInterceptor.cs" />
     <Compile Include="MainWindow.xaml.cs">

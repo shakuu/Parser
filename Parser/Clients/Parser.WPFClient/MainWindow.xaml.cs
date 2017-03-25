@@ -33,8 +33,8 @@ namespace Parser.WPFClient
 
             this.engine = NinjectStandardKernelProvider.Kernel.Get<ILogFileReaderEngine>();
 
-            var updateStrategy = NinjectStandardKernelProvider.Kernel.Get<ILabelContainer>();
-            updateStrategy.Label = this.LabelTimestamp;
+            var updateStrategy = NinjectStandardKernelProvider.Kernel.Get<IOnUpdateContainer>();
+            updateStrategy.OnUpdate += this.OnUpdate;
 
             this.BtnStop.Visibility = Visibility.Hidden;
         }
@@ -53,6 +53,14 @@ namespace Parser.WPFClient
 
             this.BtnStop.Visibility = Visibility.Hidden;
             this.BtnStart.Visibility = Visibility.Visible;
+        }
+
+        private void OnUpdate(object sender, UpdateEventArgs args)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                this.LabelTimestamp.Content = args.UpdateMessage;
+            });
         }
     }
 }

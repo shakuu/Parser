@@ -1,19 +1,16 @@
-﻿using System.Windows.Controls;
+﻿using System;
 
 using Parser.LogFile.Reader.Contracts;
 
 namespace Parser.WPFClient.Implementations
 {
-    public class WpfCommandUtilizationUpdateStrategy : ICommandUtilizationUpdateStrategy, ILabelContainer
+    public class WpfCommandUtilizationUpdateStrategy : ICommandUtilizationUpdateStrategy, IOnUpdateContainer
     {
-        public Label Label { get; set; }
+        public event EventHandler<UpdateEventArgs> OnUpdate;
 
         public void DisplayUpdate(string update)
         {
-            if (this.Label != null)
-            {
-                this.Label.Content = update;
-            }
+            this.OnUpdate?.Invoke(null, new UpdateEventArgs(update));
         }
     }
 }
