@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Parser.WPFClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="ParserDesktop" Height="350" Width="480"
+        Background="#333333">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="160*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Name="BtnStart" Background="YellowGreen" BorderBrush="YellowGreen" Content="Start" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Height="40" Click="BtnStart_Click" Grid.Column="1"/>
+        <Button Name="BtnStop" Background="Red" BorderBrush="Red" Content="Stop" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Height="40" Click="BtnStop_Click" Grid.Column="1"/>
+
     </Grid>
 </Window>

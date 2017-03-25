@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ninject;
+using Parser.LogFile.Reader.Contracts;
+using Parser.WPFClient.NinjectModules;
 
 namespace Parser.WPFClient
 {
@@ -20,9 +23,31 @@ namespace Parser.WPFClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly ILogFileReaderEngine engine;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            this.engine = NinjectStandardKernelProvider.Kernel.Get<ILogFileReaderEngine>();
+
+            this.BtnStop.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            this.engine.StartAsync();
+
+            this.BtnStart.Visibility = Visibility.Hidden;
+            this.BtnStop.Visibility = Visibility.Visible;
+        }
+
+        private void BtnStop_Click(object sender, RoutedEventArgs e)
+        {
+            this.engine.Stop();
+
+            this.BtnStop.Visibility = Visibility.Hidden;
+            this.BtnStart.Visibility = Visibility.Visible;
         }
     }
 }
