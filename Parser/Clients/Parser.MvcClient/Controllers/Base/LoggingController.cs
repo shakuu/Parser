@@ -52,14 +52,14 @@ namespace Parser.MvcClient.Controllers.Base
             this.Controller = (string)requestContext.RouteData.Values["controller"];
             this.Action = (string)requestContext.RouteData.Values["action"];
 
-            this.LoggingService.Log(this.Controller, this.Action, LoggingController.BeginExecutionMessage, MessageType.Info, this.dateTimeProvider.GetUtcNow());
+            this.LoggingService.Log(this.Controller, this.Action, LoggingController.BeginExecutionMessage, MessageType.Info, this.DateTimeProvider.GetUtcNow());
 
             return base.BeginExecute(requestContext, callback, state);
         }
 
         protected override void OnException(ExceptionContext filterContext)
         {
-            this.LoggingService.Log(this.Controller, this.Action, filterContext.Exception.Message, MessageType.Error, this.dateTimeProvider.GetUtcNow());
+            this.LoggingService.Log(this.Controller, this.Action, filterContext.Exception.Message, MessageType.Error, this.DateTimeProvider.GetUtcNow());
 
             base.OnException(filterContext);
         }

@@ -76,7 +76,9 @@
   <ItemGroup>
     <Compile Include="ControllersTests\LeaderboardControllerTests\Constructor_Should.cs" />
     <Compile Include="ControllersTests\LeaderboardControllerTests\GetDamage_Should.cs" />
+    <Compile Include="ControllersTests\LeaderboardControllerTests\GetHealing_Should.cs" />
     <Compile Include="ControllersTests\LeaderboardControllerTests\PostDamage_Should.cs" />
+    <Compile Include="ControllersTests\LeaderboardControllerTests\PostHealing_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
