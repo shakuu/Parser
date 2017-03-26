@@ -16,7 +16,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
 
-            this.Kernel.InterceptReplace<IdentityProvider>(p => p.GetUsername(), this.GetUsernameTestingInterceptor);
+            //this.Kernel.InterceptReplace<IdentityProvider>(p => p.GetUsername(), this.GetUsernameTestingInterceptor);
         }
 
         private void GetUsernameTestingInterceptor(IInvocation invocation)

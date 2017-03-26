@@ -15,5 +15,10 @@ namespace Parser.Common.Utilities.Providers
         {
             return HttpContext.Current.User.Identity.IsAuthenticated;
         }
+
+        public bool IsInRole(string role)
+        {
+            return HttpContext.Current.User.IsInRole(role);
+        }
     }
 }

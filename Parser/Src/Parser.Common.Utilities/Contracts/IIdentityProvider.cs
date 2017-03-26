@@ -5,5 +5,7 @@
         string GetUsername();
 
         bool IsAuthenticated();
+
+        bool IsInRole(string role);
     }
 }
