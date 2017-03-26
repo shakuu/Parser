@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 
+using Bytes2you.Validation;
+
 using Parser.Common.Utilities.Contracts;
 using Parser.Data.Services.Contracts;
 using Parser.MvcClient.Controllers.Base;
@@ -14,6 +16,9 @@ namespace Parser.MvcClient.Controllers
 
         public LiveController(ILiveService liveService, IIdentityProvider identityProvider)
         {
+            Guard.WhenArgument(liveService, nameof(ILiveService)).IsNull().Throw();
+            Guard.WhenArgument(identityProvider, nameof(IIdentityProvider)).IsNull().Throw();
+
             this.liveService = liveService;
             this.identityProvider = identityProvider;
         }

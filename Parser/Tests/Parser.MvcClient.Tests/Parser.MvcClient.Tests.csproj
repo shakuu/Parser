@@ -81,6 +81,8 @@
     <Compile Include="ControllersTests\LeaderboardControllerTests\GetHealing_Should.cs" />
     <Compile Include="ControllersTests\LeaderboardControllerTests\PostDamage_Should.cs" />
     <Compile Include="ControllersTests\LeaderboardControllerTests\PostHealing_Should.cs" />
+    <Compile Include="ControllersTests\LiveControllerTests\Constructor_Should.cs" />
+    <Compile Include="ControllersTests\LiveControllerTests\Index_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
