@@ -74,6 +74,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllersTests\AdminFabControllerTests\Constructor_Should.cs" />
     <Compile Include="ControllersTests\LeaderboardControllerTests\Constructor_Should.cs" />
     <Compile Include="ControllersTests\LeaderboardControllerTests\GetDamage_Should.cs" />
     <Compile Include="ControllersTests\LeaderboardControllerTests\GetHealing_Should.cs" />
@@ -89,6 +90,10 @@
     <ProjectReference Include="..\..\Clients\Parser.MvcClient\Parser.MvcClient.csproj">
       <Project>{d9f745db-11aa-4214-80bc-065e0bc813ac}</Project>
       <Name>Parser.MvcClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Common.Utilities\Parser.Common.Utilities.csproj">
+      <Project>{aab4c13b-7f42-4995-8db1-4121f77147cc}</Project>
+      <Name>Parser.Common.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Data.Services\Parser.Data.Services.csproj">
       <Project>{222f5aef-1d88-4b7f-905f-b39c0adf4ee8}</Project>
