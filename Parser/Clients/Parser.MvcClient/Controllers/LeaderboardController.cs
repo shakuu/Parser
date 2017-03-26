@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 
+using Bytes2you.Validation;
+
 using Parser.Data.Services.Contracts;
 using Parser.MvcClient.Controllers.Base;
 
@@ -14,6 +16,9 @@ namespace Parser.MvcClient.Controllers
 
         public LeaderboardController(ILeaderboardDamageService leaderboardDamageService, ILeaderboardHealingService leaderboardHealingService)
         {
+            Guard.WhenArgument(leaderboardDamageService, nameof(ILeaderboardDamageService)).IsNull().Throw();
+            Guard.WhenArgument(leaderboardHealingService, nameof(ILeaderboardHealingService)).IsNull().Throw();
+
             this.leaderboardDamageService = leaderboardDamageService;
             this.leaderboardHealingService = leaderboardHealingService;
         }
