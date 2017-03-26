@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 
+using Bytes2you.Validation;
+
 using Parser.Auth.Contracts;
 using Parser.Common.Constants.Configuration;
 
@@ -14,6 +16,8 @@ namespace Parser.MvcClient.Controllers
 
         public OwnerController(IAuthOwnerService authOwnerService)
         {
+            Guard.WhenArgument(authOwnerService, nameof(IAuthOwnerService)).IsNull().Throw();
+
             this.authOwnerService = authOwnerService;
         }
 
