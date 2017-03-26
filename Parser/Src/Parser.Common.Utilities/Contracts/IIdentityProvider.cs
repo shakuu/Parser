@@ -7,5 +7,7 @@
         bool IsAuthenticated();
 
         bool IsInRole(string role);
+
+        bool IsOwner();
     }
 }

@@ -25,7 +25,7 @@ namespace Parser.MvcClient.Controllers
         [ChildActionOnly]
         public ActionResult DisplayAdminFab()
         {
-            var isOwnerAccount = this.identityProvider.GetUsername() == UserRoles.OwnerAccountName;
+            var isOwnerAccount = this.identityProvider.IsOwner();
             var isAdminRole = this.identityProvider.IsInRole(UserRoles.AdminRole);
 
             var viewModel = this.adminFabViewModelFactory.CreateAdminFabViewModel(isOwnerAccount, isAdminRole);
