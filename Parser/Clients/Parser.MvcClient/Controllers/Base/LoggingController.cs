@@ -14,14 +14,33 @@ namespace Parser.MvcClient.Controllers.Base
     {
         private const string BeginExecutionMessage = "Begin execution";
 
-        private readonly ILoggingService loggingService;
-        private readonly IDateTimeProvider dateTimeProvider;
+        private ILoggingService loggingService;
+        private IDateTimeProvider dateTimeProvider;
 
-        public LoggingController()
+        private ILoggingService LoggingService
         {
-            // Do not want to contaminate inheriting controllers' constructors.
-            this.loggingService = NinjectWebCommon.Kernel.Get<ILoggingService>();
-            this.dateTimeProvider = NinjectWebCommon.Kernel.Get<IDateTimeProvider>();
+            get
+            {
+                if (this.loggingService == null)
+                {
+                    this.loggingService = NinjectWebCommon.Kernel.Get<ILoggingService>();
+                }
+
+                return this.loggingService;
+            }
+        }
+
+        private IDateTimeProvider DateTimeProvider
+        {
+            get
+            {
+                if (this.dateTimeProvider == null)
+                {
+                    this.dateTimeProvider = NinjectWebCommon.Kernel.Get<IDateTimeProvider>();
+                }
+
+                return this.dateTimeProvider;
+            }
         }
 
         private string Controller { get; set; }
@@ -33,14 +52,14 @@ namespace Parser.MvcClient.Controllers.Base
             this.Controller = (string)requestContext.RouteData.Values["controller"];
             this.Action = (string)requestContext.RouteData.Values["action"];
 
-            this.loggingService.Log(this.Controller, this.Action, LoggingController.BeginExecutionMessage, MessageType.Info, this.dateTimeProvider.GetUtcNow());
+            this.LoggingService.Log(this.Controller, this.Action, LoggingController.BeginExecutionMessage, MessageType.Info, this.DateTimeProvider.GetUtcNow());
 
             return base.BeginExecute(requestContext, callback, state);
         }
 
         protected override void OnException(ExceptionContext filterContext)
         {
-            this.loggingService.Log(this.Controller, this.Action, filterContext.Exception.Message, MessageType.Error, this.dateTimeProvider.GetUtcNow());
+            this.LoggingService.Log(this.Controller, this.Action, filterContext.Exception.Message, MessageType.Error, this.DateTimeProvider.GetUtcNow());
 
             base.OnException(filterContext);
         }
