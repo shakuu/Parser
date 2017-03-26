@@ -11,7 +11,7 @@ using Parser.MvcClient.Controllers;
 namespace Parser.MvcClient.Tests.ControllersTests.LiveControllerTests
 {
     [TestFixture]
-    public class Index_Should
+    public class UpdateLiveCombatStatistics_Should
     {
         [Test]
         public void InvokeIIdentityProvider_GetUsernameMethodOnce()
@@ -24,8 +24,8 @@ namespace Parser.MvcClient.Tests.ControllersTests.LiveControllerTests
 
             // Act
             liveController
-                .WithCallTo(c => c.Index())
-                .ShouldRenderDefaultView();
+                .WithCallTo(c => c.UpdateLiveCombatStatistics())
+                .ShouldRenderPartialView("_LiveStatisticsViewModel");
 
             // Assert
             identityProvider.Verify(p => p.GetUsername(), Times.Once);
@@ -45,8 +45,8 @@ namespace Parser.MvcClient.Tests.ControllersTests.LiveControllerTests
 
             // Act
             liveController
-                .WithCallTo(c => c.Index())
-                .ShouldRenderDefaultView();
+                .WithCallTo(c => c.UpdateLiveCombatStatistics())
+                .ShouldRenderPartialView("_LiveStatisticsViewModel");
 
             // Assert
             liveService.Verify(s => s.GetLiveStatisticsViewModel(username), Times.Once);
@@ -66,8 +66,8 @@ namespace Parser.MvcClient.Tests.ControllersTests.LiveControllerTests
 
             // Act & Assert
             liveController
-                .WithCallTo(c => c.Index())
-                .ShouldRenderDefaultView()
+                .WithCallTo(c => c.UpdateLiveCombatStatistics())
+                .ShouldRenderPartialView("_LiveStatisticsViewModel")
                 .WithModel<LiveStatisticsViewModel>(actualViewModel =>
                 {
                     Assert.That(actualViewModel, Is.SameAs(expectedViewModel));
