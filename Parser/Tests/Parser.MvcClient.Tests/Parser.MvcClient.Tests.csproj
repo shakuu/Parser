@@ -85,6 +85,7 @@
     <Compile Include="ControllersTests\LiveControllerTests\Index_Should.cs" />
     <Compile Include="ControllersTests\LiveControllerTests\UpdateLiveCombatStatistics_Should.cs" />
     <Compile Include="ControllersTests\OwnerControllerTests\Constructor_Should.cs" />
+    <Compile Include="ControllersTests\OwnerControllerTests\Index_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
