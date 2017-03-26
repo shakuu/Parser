@@ -96,6 +96,10 @@
       <Project>{d9f745db-11aa-4214-80bc-065e0bc813ac}</Project>
       <Name>Parser.MvcClient</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Src\Parser.Auth\Parser.Auth.csproj">
+      <Project>{8ff46e09-d8c2-43b5-995f-b521cd076487}</Project>
+      <Name>Parser.Auth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Common.Constants\Parser.Common.Constants.csproj">
       <Project>{d0fccf6c-6b4b-4cc9-819f-6e6fcd2edc3c}</Project>
       <Name>Parser.Common.Constants</Name>
