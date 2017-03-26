@@ -1,10 +1,11 @@
 ﻿using Moq;
 using NUnit.Framework;
 
+using TestStack.FluentMVCTesting;
+
 using Parser.Auth.Contracts;
 using Parser.Auth.ViewModels;
 using Parser.MvcClient.Controllers;
-using TestStack.FluentMVCTesting;
 
 namespace Parser.MvcClient.Tests.ControllersTests.OwnerControllerTests
 {
