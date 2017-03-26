@@ -37,6 +37,11 @@ namespace Parser.MvcClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Damage(int? pageNumber)
         {
+            if (!pageNumber.HasValue)
+            {
+                pageNumber = 0;
+            }
+
             var viewModel = this.leaderboardDamageService.GetTopStoredDamageOnPage(pageNumber.Value + 1);
 
             return this.PartialView("_DamageDonePerSecondViewModelsPartial", viewModel);
@@ -56,6 +61,11 @@ namespace Parser.MvcClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Healing(int? pageNumber)
         {
+            if (!pageNumber.HasValue)
+            {
+                pageNumber = 0;
+            }
+
             var viewModel = this.leaderboardHealingService.GetTopStoredHealingOnPage(pageNumber.Value + 1);
 
             return this.PartialView("_HealingDonePerSecondViewModelsPartial", viewModel);
