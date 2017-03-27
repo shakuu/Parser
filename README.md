@@ -16,3 +16,4 @@
 ![Initial](./Screenshots/Parser.Leaderboard.png)
 ![Initial](./Screenshots/Parser.Live.Off.png)
 ![Initial](./Screenshots/Parser.Live.On.png)
+![Initial](./Screenshots/Parser.Admin.png)
