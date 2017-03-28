@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNet.SignalR;
 
-using Ninject;
+using Bytes2you.Validation;
 
-using Parser.MvcClient.App_Start;
 using Parser.LogFile.SignalR.Contracts;
 
 namespace Parser.MvcClient.SignalRHubs
@@ -11,9 +10,11 @@ namespace Parser.MvcClient.SignalRHubs
     {
         private readonly ILogFileParserHubService logFileParserHubService;
 
-        public LogFileParserHub()
+        public LogFileParserHub(ILogFileParserHubService logFileParserHubService)
         {
-            this.logFileParserHubService = NinjectWebCommon.Kernel.Get<ILogFileParserHubService>();
+            Guard.WhenArgument(logFileParserHubService, nameof(ILogFileParserHubService)).IsNull().Throw();
+
+            this.logFileParserHubService = logFileParserHubService;
         }
 
         public void SendCommand(string engineId, string serializedCommand)
