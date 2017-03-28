@@ -5,7 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Parser.Auth.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<Parser.Auth.AuthDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<Parser.Auth.AuthDbContext>
     {
         public Configuration()
         {
