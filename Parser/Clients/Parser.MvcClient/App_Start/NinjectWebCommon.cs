@@ -5,7 +5,6 @@ namespace Parser.MvcClient.App_Start
 {
     using System;
     using System.Web;
-    using System.Web.Mvc;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
