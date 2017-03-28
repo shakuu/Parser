@@ -1,10 +1,12 @@
-﻿@model Parser.Data.ViewModels.Administration.AdministrationIndexViewModel
+﻿@using Parser.MvcClient.App_Start
+@model Parser.Data.ViewModels.Administration.AdministrationIndexViewModel
 @{
     ViewBag.Title = "Administration";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1 style="color: yellowgreen; text-align:center;">Administration</h1>
+<h3 style="color: yellowgreen; text-align:center;">Startup Timestamp: @NinjectWebCommon.StartupTimestampProvider.LatestStartupTimestamp.ToLongTimeString()</h3>
 
 @using (Ajax.BeginForm("UpdateLogEntries", null, new AjaxOptions()
 {
