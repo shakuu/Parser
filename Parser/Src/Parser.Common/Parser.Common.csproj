@@ -68,6 +68,7 @@
     <Compile Include="Contracts\ICurrentCombatStatisticsChangedNotification.cs" />
     <Compile Include="Contracts\ICurrentCombatStatisticsChangedSubscribeProvider.cs" />
     <Compile Include="Contracts\IDateTimeProvider.cs" />
+    <Compile Include="Contracts\IStartupTimestampProvider.cs" />
     <Compile Include="Contracts\IFinalizedCombatStatistics.cs" />
     <Compile Include="Contracts\IGenericEventHandlerProvider.cs" />
     <Compile Include="Contracts\IGuidStringProvider.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Providers\HttpClientProvider.cs" />
     <Compile Include="Providers\JsonConvertProvider.cs" />
     <Compile Include="Providers\ObjectMapperProvider.cs" />
+    <Compile Include="Providers\StartupTimestampProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

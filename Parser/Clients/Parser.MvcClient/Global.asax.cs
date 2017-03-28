@@ -13,6 +13,8 @@ namespace Parser.MvcClient
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ViewEnginesConfig.RegisterViewEngines();
+            DatabaseConfig.InitializeDatabase();
+            SignalRConfig.InitializeSignalRResolver();
         }
     }
 }
