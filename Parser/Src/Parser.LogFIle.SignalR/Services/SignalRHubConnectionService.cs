@@ -8,6 +8,7 @@ namespace Parser.LogFile.SignalR.Services
 {
     public class SignalRHubConnectionService : ISignalRHubConnectionService
     {
+        private const string HubConnectionAzure = "http://parser-mvc.azurewebsites.net/";
         private const string HubConnectionUrl = "http://localhost:50800";
 
         private readonly IHubConnectionProvider hubConnectionProvider;
@@ -20,7 +21,7 @@ namespace Parser.LogFile.SignalR.Services
             Guard.WhenArgument(hubConnectionProviderFactory, nameof(IHubConnectionProviderFactory)).IsNull().Throw();
             Guard.WhenArgument(hubProxyProviderFactory, nameof(IHubProxyProviderFactory)).IsNull().Throw();
 
-            this.hubConnectionProvider = hubConnectionProviderFactory.CreateHubConnectionProvider(SignalRHubConnectionService.HubConnectionUrl);
+            this.hubConnectionProvider = hubConnectionProviderFactory.CreateHubConnectionProvider(SignalRHubConnectionService.HubConnectionAzure);
             this.hubProxyProviderFactory = hubProxyProviderFactory;
 
             this.hubProxyProviders = new Dictionary<string, IHubProxyProvider>();

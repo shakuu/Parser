@@ -13,6 +13,8 @@ namespace Parser.Auth.Contracts
 
         IdentityResult AddUserToRole(string userId, string role);
 
+        IdentityResult RemoveUserFromRole(string userId, string role);
+
         IQueryable<AuthUser> AuthUsers { get; }
     }
 }

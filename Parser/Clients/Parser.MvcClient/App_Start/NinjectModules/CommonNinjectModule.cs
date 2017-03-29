@@ -5,6 +5,7 @@ using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 
 using Parser.Common.Html.Svg;
+using Parser.Common.Providers;
 using Parser.Common.Utilities.Providers;
 
 namespace Parser.MvcClient.App_Start.NinjectModules
@@ -16,7 +17,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
 
-            this.Kernel.InterceptReplace<IdentityProvider>(p => p.GetUsername(), this.GetUsernameTestingInterceptor);
+            //this.Kernel.InterceptReplace<IdentityProvider>(p => p.GetUsername(), this.GetUsernameTestingInterceptor);
         }
 
         private void GetUsernameTestingInterceptor(IInvocation invocation)
@@ -30,7 +31,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
                 .FromAssembliesMatching("*.Common.*")
                 .SelectAllClasses()
                 .BindDefaultInterface()
-                .ConfigureFor<PartialCircleSvgPathProvider>(c => c.InSingletonScope());
+                .ConfigureFor<PartialCircleSvgPathProvider>(c => c.InSingletonScope())
+                .ConfigureFor<StartupTimestampProvider>(c => c.InSingletonScope());
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)

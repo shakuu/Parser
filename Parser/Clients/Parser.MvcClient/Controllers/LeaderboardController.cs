@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 
+using Bytes2you.Validation;
+
 using Parser.Data.Services.Contracts;
 using Parser.MvcClient.Controllers.Base;
 
@@ -14,10 +16,13 @@ namespace Parser.MvcClient.Controllers
 
         public LeaderboardController(ILeaderboardDamageService leaderboardDamageService, ILeaderboardHealingService leaderboardHealingService)
         {
+            Guard.WhenArgument(leaderboardDamageService, nameof(ILeaderboardDamageService)).IsNull().Throw();
+            Guard.WhenArgument(leaderboardHealingService, nameof(ILeaderboardHealingService)).IsNull().Throw();
+
             this.leaderboardDamageService = leaderboardDamageService;
             this.leaderboardHealingService = leaderboardHealingService;
         }
-        
+
         [HttpGet]
         [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Damage()
@@ -32,6 +37,8 @@ namespace Parser.MvcClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Damage(int? pageNumber)
         {
+            pageNumber = this.ValidatePageNumber(pageNumber);
+
             var viewModel = this.leaderboardDamageService.GetTopStoredDamageOnPage(pageNumber.Value + 1);
 
             return this.PartialView("_DamageDonePerSecondViewModelsPartial", viewModel);
@@ -51,9 +58,29 @@ namespace Parser.MvcClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Healing(int? pageNumber)
         {
+            pageNumber = this.ValidatePageNumber(pageNumber);
+
             var viewModel = this.leaderboardHealingService.GetTopStoredHealingOnPage(pageNumber.Value + 1);
 
             return this.PartialView("_HealingDonePerSecondViewModelsPartial", viewModel);
+        }
+
+        private int? ValidatePageNumber(int? pageNumber)
+        {
+            if (!pageNumber.HasValue)
+            {
+                pageNumber = 0;
+            }
+            else if (pageNumber == int.MaxValue)
+            {
+                pageNumber = 0;
+            }
+            else if (pageNumber < 0)
+            {
+                pageNumber = 0;
+            }
+
+            return pageNumber;
         }
     }
 }

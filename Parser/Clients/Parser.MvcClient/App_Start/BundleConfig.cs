@@ -20,9 +20,13 @@ namespace Parser.MvcClient
             bundles.Add(new ScriptBundle("~/bundles/live-update").Include(
                         "~/Scripts/Live/timer-update.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+                        "~/Scripts/Administration/administration.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/owner").Include(
                         "~/Scripts/Live/timer-update.js",
-                        "~/Scripts/Owner/promote.js"));
+                        "~/Scripts/Owner/promote.js",
+                        "~/Scripts/Owner/demote.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

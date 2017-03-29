@@ -18,6 +18,12 @@ namespace Parser.MvcClient
             );
 
             routes.MapRoute(
+                name: "Admin",
+                url: "admin",
+                defaults: new { controller = "Administration", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "TopDps",
                 url: "damage",
                 defaults: new { controller = "Leaderboard", action = "Damage" }
@@ -51,6 +57,12 @@ namespace Parser.MvcClient
                 name: "Register",
                 url: "register",
                 defaults: new { controller = "Account", action = "Register" }
+            );
+
+            routes.MapRoute(
+                name: "Download",
+                url: "download",
+                defaults: new { controller = "Home", action = "Download" }
             );
 
             routes.MapRoute(

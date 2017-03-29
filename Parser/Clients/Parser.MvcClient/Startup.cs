@@ -10,9 +10,6 @@ namespace Parser.MvcClient
     {
         public void Configuration(IAppBuilder app)
         {
-            //var hubConfiguration = new HubConfiguration();
-            //hubConfiguration.Resolver = new ParserHubConfigurationDependencyResolver(NinjectWebCommon.Kernel);
-
             app.UseCors(CorsOptions.AllowAll);
             app.MapSignalR();
             ConfigureAuth(app);

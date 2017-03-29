@@ -18,6 +18,7 @@ namespace Parser.LogFile.SignalR.Tests.StrategiesTests.SignalRCommandUtilization
         public void CreateValidInstance_WhenParametersAreCorrect()
         {
             // Arrange
+            var commandUtilizationUpdateStrategy = new Mock<ICommandUtilizationUpdateStrategy>();
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
             var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
             var remoteUserProvider = new Mock<IRemoteUserProvider>();
@@ -26,7 +27,7 @@ namespace Parser.LogFile.SignalR.Tests.StrategiesTests.SignalRCommandUtilization
             signalRHubConnectionService.Setup(s => s.GetHubProxyProvider(It.IsAny<string>())).Returns(hubProxyProvider.Object);
 
             // Act
-            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider.Object, remoteUserProvider.Object);
+            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(commandUtilizationUpdateStrategy.Object, signalRHubConnectionService.Object, commandJsonConvertProvider.Object, remoteUserProvider.Object);
 
             // Assert
             Assert.That(signalRCommandUtilizationStrategy, Is.Not.Null.And.InstanceOf<ICommandUtilizationStrategy>());
@@ -36,13 +37,14 @@ namespace Parser.LogFile.SignalR.Tests.StrategiesTests.SignalRCommandUtilization
         public void ThrowArgumentNullException_WhenISignalRHubConnectionServiceParameterIsNull()
         {
             // Arrange
+            var commandUtilizationUpdateStrategy = new Mock<ICommandUtilizationUpdateStrategy>();
             ISignalRHubConnectionService signalRHubConnectionService = null;
             var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
             var remoteUserProvider = new Mock<IRemoteUserProvider>();
 
             // Act & Assert
             Assert.That(
-                () => new SignalRCommandUtilizationStrategy(signalRHubConnectionService, commandJsonConvertProvider.Object, remoteUserProvider.Object),
+                () => new SignalRCommandUtilizationStrategy(commandUtilizationUpdateStrategy.Object, signalRHubConnectionService, commandJsonConvertProvider.Object, remoteUserProvider.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ISignalRHubConnectionService)));
         }
 
@@ -50,13 +52,14 @@ namespace Parser.LogFile.SignalR.Tests.StrategiesTests.SignalRCommandUtilization
         public void ThrowArgumentNullException_WhenIJsonConvertProviderParameterIsNull()
         {
             // Arrange
+            var commandUtilizationUpdateStrategy = new Mock<ICommandUtilizationUpdateStrategy>();
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
             ICommandJsonConvertProvider commandJsonConvertProvider = null;
             var remoteUserProvider = new Mock<IRemoteUserProvider>();
 
             // Act & Assert
             Assert.That(
-                () => new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider, remoteUserProvider.Object),
+                () => new SignalRCommandUtilizationStrategy(commandUtilizationUpdateStrategy.Object, signalRHubConnectionService.Object, commandJsonConvertProvider, remoteUserProvider.Object),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IJsonConvertProvider)));
         }
 
@@ -64,6 +67,7 @@ namespace Parser.LogFile.SignalR.Tests.StrategiesTests.SignalRCommandUtilization
         public void InvokeISignalRHubConnectionService_GetHubProxyProviderMethod_WithCorrectParameter()
         {
             // Arrange
+            var commandUtilizationUpdateStrategy = new Mock<ICommandUtilizationUpdateStrategy>();
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
             var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
             var remoteUserProvider = new Mock<IRemoteUserProvider>();
@@ -74,7 +78,7 @@ namespace Parser.LogFile.SignalR.Tests.StrategiesTests.SignalRCommandUtilization
             var expectedHubName = "LogFileParserHub";
 
             // Act
-            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider.Object, remoteUserProvider.Object);
+            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(commandUtilizationUpdateStrategy.Object, signalRHubConnectionService.Object, commandJsonConvertProvider.Object, remoteUserProvider.Object);
 
             // Assert
             signalRHubConnectionService.Verify(s => s.GetHubProxyProvider(expectedHubName), Times.Once);
@@ -84,6 +88,7 @@ namespace Parser.LogFile.SignalR.Tests.StrategiesTests.SignalRCommandUtilization
         public void InvokeIHubProxyProvider_OnMethod_WithCorrectHubMethodNameParameter()
         {
             // Arrange
+            var commandUtilizationUpdateStrategy = new Mock<ICommandUtilizationUpdateStrategy>();
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
             var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
             var remoteUserProvider = new Mock<IRemoteUserProvider>();
@@ -94,7 +99,7 @@ namespace Parser.LogFile.SignalR.Tests.StrategiesTests.SignalRCommandUtilization
             var expectedHubMethodName = "UpdateParsingSessionId";
 
             // Act
-            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider.Object, remoteUserProvider.Object);
+            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(commandUtilizationUpdateStrategy.Object, signalRHubConnectionService.Object, commandJsonConvertProvider.Object, remoteUserProvider.Object);
 
             // Assert
             hubProxyProvider.Verify(p => p.On<string>(expectedHubMethodName, It.IsAny<Action<string>>()), Times.Once);
@@ -104,6 +109,7 @@ namespace Parser.LogFile.SignalR.Tests.StrategiesTests.SignalRCommandUtilization
         public void InvokeIHubProxyProvider_InvokeMethod_WithCorrectHubMethodNameParameter()
         {
             // Arrange
+            var commandUtilizationUpdateStrategy = new Mock<ICommandUtilizationUpdateStrategy>();
             var signalRHubConnectionService = new Mock<ISignalRHubConnectionService>();
             var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
             var remoteUserProvider = new Mock<IRemoteUserProvider>();
@@ -115,7 +121,7 @@ namespace Parser.LogFile.SignalR.Tests.StrategiesTests.SignalRCommandUtilization
             string expectedUsername = null;
 
             // Act
-            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(signalRHubConnectionService.Object, commandJsonConvertProvider.Object, remoteUserProvider.Object);
+            var signalRCommandUtilizationStrategy = new SignalRCommandUtilizationStrategy(commandUtilizationUpdateStrategy.Object, signalRHubConnectionService.Object, commandJsonConvertProvider.Object, remoteUserProvider.Object);
 
             // Assert
             hubProxyProvider.Verify(p => p.Invoke(expectedHubMethodName, expectedUsername), Times.Once);

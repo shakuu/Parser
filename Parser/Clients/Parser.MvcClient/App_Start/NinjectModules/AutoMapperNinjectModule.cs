@@ -20,6 +20,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             {
                 configuration.AddProfile<ParserUserProfile>();
                 configuration.AddProfile<StoredCombatStatisticsProfile>();
+                configuration.AddProfile<LogEntryProfile>();
             });
 
             mapperConfiguration.AssertConfigurationIsValid();

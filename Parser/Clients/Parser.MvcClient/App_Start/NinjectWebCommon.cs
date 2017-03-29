@@ -11,11 +11,14 @@ namespace Parser.MvcClient.App_Start
     using Ninject;
     using Ninject.Web.Common;
 
+    using Parser.Common.Contracts;
     using Parser.MvcClient.App_Start.NinjectModules;
 
     public static class NinjectWebCommon
     {
         public static IKernel Kernel { get; private set; }
+
+        public static IStartupTimestampProvider StartupTimestampProvider { get; private set; }
 
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
@@ -51,7 +54,8 @@ namespace Parser.MvcClient.App_Start
 
                 RegisterServices(kernel);
                 NinjectWebCommon.Kernel = kernel;
-                
+                NinjectWebCommon.StartupTimestampProvider = kernel.Get<IStartupTimestampProvider>();
+
                 return kernel;
             }
             catch

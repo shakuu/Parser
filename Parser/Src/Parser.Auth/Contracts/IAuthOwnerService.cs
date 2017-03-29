@@ -6,6 +6,8 @@ namespace Parser.Auth.Contracts
     {
         void AddRoleAdmin(string username);
 
+        void RemoveRoleAdmin(string username);
+
         OwnerViewModel GetAuthUsersOnPage(int pageNumber);
     }
 }

@@ -1,10 +1,13 @@
 ﻿using System.Web.Mvc;
 
+using Bytes2you.Validation;
+
 using Parser.Auth.Contracts;
+using Parser.Common.Constants.Configuration;
 
 namespace Parser.MvcClient.Controllers
 {
-    [Authorize(Users = "myuser@user.com")]
+    [Authorize(Users = UserRoles.OwnerAccountName)]
     public class OwnerController : Controller
     {
         private const int OutputCacheDurationInSeconds = 300;
@@ -13,11 +16,12 @@ namespace Parser.MvcClient.Controllers
 
         public OwnerController(IAuthOwnerService authOwnerService)
         {
+            Guard.WhenArgument(authOwnerService, nameof(IAuthOwnerService)).IsNull().Throw();
+
             this.authOwnerService = authOwnerService;
         }
 
         [HttpGet]
-        [OutputCache(Duration = OwnerController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Index()
         {
             var viewModel = this.authOwnerService.GetAuthUsersOnPage(1);
@@ -27,22 +31,55 @@ namespace Parser.MvcClient.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(string username)
+        public ActionResult Promote(string username, int? pageNumber)
         {
-            this.authOwnerService.AddRoleAdmin(username);
+            pageNumber = this.ValidatePageNumber(pageNumber);
 
-            //return this.PartialView("_AddRoleResultPartial");
-            return this.Content("Success");
+            this.authOwnerService.AddRoleAdmin(username);
+            var viewModel = this.authOwnerService.GetAuthUsersOnPage(pageNumber.Value);
+
+            return this.PartialView("_AuthUserViewModelsPartial", viewModel);
         }
 
         [HttpPost]
-        [OutputCache(Duration = OwnerController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         [ValidateAntiForgeryToken]
-        public ActionResult GetUsersOnPage(int pageNumber)
+        public ActionResult Demote(string username, int? pageNumber)
         {
-            var viewModel = this.authOwnerService.GetAuthUsersOnPage(pageNumber + 1);
+            pageNumber = this.ValidatePageNumber(pageNumber);
+
+            this.authOwnerService.RemoveRoleAdmin(username);
+            var viewModel = this.authOwnerService.GetAuthUsersOnPage(pageNumber.Value);
 
             return this.PartialView("_AuthUserViewModelsPartial", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GetUsersOnPage(int? pageNumber)
+        {
+            pageNumber = this.ValidatePageNumber(pageNumber);
+
+            var viewModel = this.authOwnerService.GetAuthUsersOnPage(pageNumber.Value + 1);
+
+            return this.PartialView("_AuthUserViewModelsPartial", viewModel);
+        }
+
+        private int? ValidatePageNumber(int? pageNumber)
+        {
+            if (!pageNumber.HasValue)
+            {
+                pageNumber = 0;
+            }
+            else if (pageNumber == int.MaxValue)
+            {
+                pageNumber = 0;
+            }
+            else if (pageNumber < 0)
+            {
+                pageNumber = 0;
+            }
+
+            return pageNumber;
         }
     }
 }
