@@ -30,6 +30,5 @@ namespace Parser.MvcClient.App_Start.SignalRHubDependencyResolver
         {
             return this.kernel.GetAll(serviceType).Concat(base.GetServices(serviceType));
         }
-
     }
 }
