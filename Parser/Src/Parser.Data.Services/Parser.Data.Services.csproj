@@ -67,6 +67,10 @@
     <Compile Include="Strategies\CombatStatisticsPersistentStorageStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Parser.Common.Html\Parser.Common.Html.csproj">
+      <Project>{fff46ef7-f592-41ee-993a-95be386e7a63}</Project>
+      <Name>Parser.Common.Html</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Parser.Common.Logging\Parser.Common.Logging.csproj">
       <Project>{a98c6c8a-3870-48c0-92e0-a3c2f3c012c7}</Project>
       <Name>Parser.Common.Logging</Name>
