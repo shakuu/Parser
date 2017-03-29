@@ -116,7 +116,7 @@ namespace Parser.Common.Interceptors.Tests.CachingInterceptorTests
             var dateTimeProviderUtcNow = DateTime.Parse("00:00:00.000");
             dateTimeProvider.Setup(p => p.GetUtcNow()).Returns(dateTimeProviderUtcNow);
 
-            var expectedAbsoluteExpirationParameterValue = dateTimeProviderUtcNow.AddMinutes(5);
+            var expectedAbsoluteExpirationParameterValue = dateTimeProviderUtcNow.AddMinutes(1);
 
             // Act
             cachingInterceptor.Intercept(invocation.Object);
