@@ -24,7 +24,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
-        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
+        //[OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Damage()
         {
             var viewModel = this.leaderboardDamageService.GetTopStoredDamageOnPage(0);
@@ -33,7 +33,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpPost]
-        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
+        //[OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
         [ValidateAntiForgeryToken]
         public ActionResult Damage(int? pageNumber)
         {
@@ -45,7 +45,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpGet]
-        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
+        //[OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.Any)]
         public ActionResult Healing()
         {
             var viewModel = this.leaderboardHealingService.GetTopStoredHealingOnPage(0);
@@ -54,7 +54,7 @@ namespace Parser.MvcClient.Controllers
         }
 
         [HttpPost]
-        [OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
+        //[OutputCache(Duration = LeaderboardController.OutputCacheDurationInSeconds, VaryByParam = "pageNumber", Location = System.Web.UI.OutputCacheLocation.Any)]
         [ValidateAntiForgeryToken]
         public ActionResult Healing(int? pageNumber)
         {

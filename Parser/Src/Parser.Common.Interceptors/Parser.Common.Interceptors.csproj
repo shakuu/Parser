@@ -62,6 +62,7 @@
     <Compile Include="LoggingInterceptor.cs" />
     <Compile Include="HttpContextCachingInterceptor.cs" />
     <Compile Include="Contracts\IHttpContextCacheReturnValues.cs" />
+    <Compile Include="ParameterizedCachingInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

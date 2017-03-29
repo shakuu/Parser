@@ -9,7 +9,7 @@ namespace Parser.Common.Interceptors
 {
     public class CachingInterceptor : IInterceptor
     {
-        private const double CacheTimeoutPeriodInMinutes = 5;
+        private const double CacheTimeoutPeriodInMinutes = 1;
 
         private readonly ICacheProvider cacheProvider;
         private readonly IDateTimeProvider dateTimeProvider;
@@ -47,7 +47,7 @@ namespace Parser.Common.Interceptors
             this.cacheProvider.Add(methodName, returnValue, absoluteExpiration);
         }
 
-        private string GetInvokedMethodName(IInvocation invocation)
+        protected virtual string GetInvokedMethodName(IInvocation invocation)
         {
             var invokedMethodName = invocation.Request.Method.Name;
 

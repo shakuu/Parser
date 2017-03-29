@@ -4,7 +4,8 @@ using Ninject.Extensions.Interception;
 using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 
-using Parser.Data.Services.Strategies;
+using Parser.Common.Interceptors;
+using Parser.Data.Services;
 
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
@@ -28,7 +29,9 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             bind
                 .FromAssembliesMatching("*.Data.Services.*")
                 .SelectAllClasses()
-                .BindDefaultInterface();
+                .BindDefaultInterface()
+                .ConfigureFor<LeaderboardDamageService>(c => c.Intercept().With<ParameterizedCachingInterceptor>())
+                .ConfigureFor<LeaderboardHealingService>(c => c.Intercept().With<ParameterizedCachingInterceptor>());
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)
