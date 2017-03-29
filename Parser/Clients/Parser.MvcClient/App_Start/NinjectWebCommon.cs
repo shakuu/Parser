@@ -5,17 +5,20 @@ namespace Parser.MvcClient.App_Start
 {
     using System;
     using System.Web;
-
+    using System.Web.Mvc;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
 
+    using Parser.Common.Contracts;
     using Parser.MvcClient.App_Start.NinjectModules;
 
     public static class NinjectWebCommon
     {
         public static IKernel Kernel { get; private set; }
+
+        public static IStartupTimestampProvider StartupTimestampProvider { get; private set; }
 
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
@@ -51,6 +54,7 @@ namespace Parser.MvcClient.App_Start
 
                 RegisterServices(kernel);
                 NinjectWebCommon.Kernel = kernel;
+                NinjectWebCommon.StartupTimestampProvider = kernel.Get<IStartupTimestampProvider>();
 
                 return kernel;
             }
@@ -71,6 +75,7 @@ namespace Parser.MvcClient.App_Start
             kernel.Load(new AutoMapperNinjectModule());
             kernel.Load(new CommonNinjectModule());
             kernel.Load(new DataNinjectModule());
+            kernel.Load(new DataModelsNinjectModule());
             kernel.Load(new DataServicesNinjectModule());
             kernel.Load(new DataViewModelsNinjectModule());
             kernel.Load(new LogFileParserNinjectModule());

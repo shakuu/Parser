@@ -4,9 +4,9 @@ using Ninject.Extensions.Conventions;
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
-using Parser.LogFileParser.CommandResolutionHandlers;
-using Parser.LogFileParser.Contracts;
-using Parser.LogFileParser.Managers;
+using Parser.LogFile.Parser.CommandResolutionHandlers;
+using Parser.LogFile.Parser.Contracts;
+using Parser.LogFile.Parser.Managers;
 
 namespace Parser.MvcClient.App_Start.NinjectModules
 {
@@ -23,7 +23,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         private void BindAllClassesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.LogFileParser.*")
+                .FromAssembliesMatching("*.LogFile.Parser.*")
                 .SelectAllClasses()
                 .BindDefaultInterface()
                 .ConfigureFor<LogFileParserEngineManager>(m => m.InSingletonScope());
@@ -32,7 +32,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         private void BindFactoriesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.LogFileParser.*")
+                .FromAssembliesMatching("*.LogFile.Parser.*")
                 .SelectAllInterfaces()
                 .EndingWith("Factory")
                 .BindToFactory()
@@ -44,9 +44,11 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             var enterCombatCommandResolutionHandler = context.Kernel.Get<EnterCombatCommandResolutionHandler>();
             var exitCombatCommandResolutionHandler = context.Kernel.Get<ExitCombatCommandResolutionHandler>();
             var damageCombatCommandResolutionHandler = context.Kernel.Get<DamageCommandResolutionHandler>();
+            var healCommandResolutionHandler = context.Kernel.Get<HealCommandResolutionHandler>();
 
             enterCombatCommandResolutionHandler.NextCommandResolutionHandler = exitCombatCommandResolutionHandler;
             exitCombatCommandResolutionHandler.NextCommandResolutionHandler = damageCombatCommandResolutionHandler;
+            damageCombatCommandResolutionHandler.NextCommandResolutionHandler = healCommandResolutionHandler;
 
             return enterCombatCommandResolutionHandler;
         }

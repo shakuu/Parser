@@ -1,0 +1,22 @@
+﻿@model Parser.Data.ViewModels.Leaderboard.DamageViewModel
+
+@{
+    ViewBag.Title = "Damage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Damage Leaderboard</h1>
+
+<div id="damage-done-models">
+    @Html.Partial("_DamageDonePerSecondViewModelsPartial", @Model)
+</div>
+
+@section Styles
+{
+    @Styles.Render("~/Content/leaderboard-css")
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/infinite-scroll-event")
+}

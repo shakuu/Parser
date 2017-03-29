@@ -29,6 +29,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Base|AnyCPU'">
+    <OutputPath>bin\Base\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -40,11 +49,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminFab\AdminFabViewModel.cs" />
+    <Compile Include="Administration\AdministrationIndexViewModel.cs" />
+    <Compile Include="Administration\LogEntryViewModel.cs" />
+    <Compile Include="Factories\IAdminFabViewModelFactory.cs" />
+    <Compile Include="Factories\IAdministrationIndexViewModelFactory.cs" />
+    <Compile Include="Factories\IDamageViewModelFactory.cs" />
+    <Compile Include="Factories\IHealingDonePerSecondViewModelFactory.cs" />
+    <Compile Include="Factories\IHealingViewModelFactory.cs" />
+    <Compile Include="Factories\ILiveStatisticsViewModelFactory.cs" />
+    <Compile Include="Factories\IParameterCtorHealingDonePerSecondViewModelFactory.cs" />
     <Compile Include="Factories\IRegisterParserUserViewModelFactory.cs" />
+    <Compile Include="Leaderboard\DamageDonePerSecondViewModel.cs" />
+    <Compile Include="Leaderboard\DamageViewModel.cs" />
+    <Compile Include="Leaderboard\HealingDonePerSecondViewModel.cs" />
+    <Compile Include="Leaderboard\HealingViewModel.cs" />
+    <Compile Include="Leaderboard\ParameterCtorHealingDonePerSecondViewModel.cs" />
+    <Compile Include="Live\LiveStatisticsViewModel.cs" />
     <Compile Include="ParserUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterParserUserViewModel.cs" />
     <Compile Include="StoredCombatStatisticsViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Parser.Common.Logging\Parser.Common.Logging.csproj">
+      <Project>{a98c6c8a-3870-48c0-92e0-a3c2f3c012c7}</Project>
+      <Name>Parser.Common.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -23,7 +23,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             bind
                 .FromAssembliesMatching("Parser.Data.dll")
                 .SelectAllClasses()
-                .BindDefaultInterface();
+                .BindDefaultInterface()
+                .ConfigureFor<ParserDbContext>(c => c.InRequestScope());
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)

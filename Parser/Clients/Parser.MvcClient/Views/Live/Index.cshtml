@@ -1,0 +1,33 @@
+﻿@model Parser.Data.ViewModels.Live.LiveStatisticsViewModel
+@{
+    ViewBag.Title = "Live";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Live</h1>
+
+<section id="toggle">
+    <div class="switch">
+        <label>
+            Off
+            <input id="update-toggle" type="checkbox">
+            <span class="lever"></span>
+            On
+        </label>
+    </div>
+</section>
+
+<section id="live-statistics">
+    @Html.Partial("_LiveStatisticsViewModel", Model)
+</section>
+
+@section Styles
+{
+    @Styles.Render("~/Content/leaderboard-css")
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/live-update")
+}
+

@@ -29,6 +29,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Base|AnyCPU'">
+    <OutputPath>bin\Base\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
@@ -78,9 +87,9 @@
       <Project>{a8f6950c-0ff4-4fb2-9f0b-dff894db7fa9}</Project>
       <Name>Parser.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Src\Parser.LogFileParser\Parser.LogFileParser.csproj">
+    <ProjectReference Include="..\..\Src\Parser.LogFile.Parser\Parser.LogFile.Parser.csproj">
       <Project>{3510b5ae-3b17-45a0-8786-bcb569cb592b}</Project>
-      <Name>Parser.LogFileParser</Name>
+      <Name>Parser.LogFile.Parser</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

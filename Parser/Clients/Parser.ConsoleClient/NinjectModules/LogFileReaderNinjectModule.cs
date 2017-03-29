@@ -6,9 +6,9 @@ using Ninject.Modules;
 
 using Parser.Common.Contracts;
 using Parser.ConsoleClient.FileReaderImplementations;
-using Parser.LogFileReader.Contracts;
-using Parser.LogFileReader.Strategies;
-using Parser.SignalR.Strategies;
+using Parser.LogFile.Reader.Contracts;
+using Parser.LogFile.Reader.Strategies;
+using Parser.LogFile.SignalR.Strategies;
 
 namespace Parser.ConsoleClient.NinjectModules
 {
@@ -20,6 +20,7 @@ namespace Parser.ConsoleClient.NinjectModules
             this.Bind(this.BindAllClassesByConvention);
 
             this.Bind<ICommandUtilizationStrategy>().To<SignalRCommandUtilizationStrategy>().InSingletonScope();
+            this.Bind<ICommandUtilizationUpdateStrategy>().To<ConsoleCommandUtilizationUpdateStrategy>().InSingletonScope();
 
             //this.Bind<ICommandUtilizationStrategy>().To<ConsoleClientCommandUtilizationStrategy>().InSingletonScope();
             //this.Kernel.InterceptReplace<ConsoleClientCommandUtilizationStrategy>(s => s.UtilizeCommand(null), this.ICommandUtilizationStrategyUtilizeCommandMethod);
@@ -33,7 +34,7 @@ namespace Parser.ConsoleClient.NinjectModules
         private void BindFactoriesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.LogFileReader.*")
+                .FromAssembliesMatching("*.LogFile.Reader.*")
                 .SelectAllInterfaces()
                 .EndingWith("Factory")
                 .BindToFactory()
@@ -43,7 +44,7 @@ namespace Parser.ConsoleClient.NinjectModules
         private void BindAllClassesByConvention(IFromSyntax bind)
         {
             bind
-                .FromAssembliesMatching("*.LogFileReader.*")
+                .FromAssembliesMatching("*.LogFile.Reader.*")
                 .SelectAllClasses()
                 .BindDefaultInterface()
                 // TODO: Remove: Intercepting with testing input

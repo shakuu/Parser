@@ -7,7 +7,7 @@ using Parser.Common.Contracts;
 using Parser.Data.Contracts;
 using Parser.Data.Factories;
 using Parser.Data.Services.Strategies;
-using Parser.LogFileParser.Contracts;
+using Parser.LogFile.Parser.Contracts;
 
 namespace Parser.Data.Services.Tests.StrategiesTests.CombatStatisticsPersistentStorageStrategyTests
 {

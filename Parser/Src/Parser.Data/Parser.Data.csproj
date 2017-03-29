@@ -29,6 +29,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Base|AnyCPU'">
+    <OutputPath>bin\Base\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
@@ -56,9 +65,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IDamageViewModelDataProvider.cs" />
     <Compile Include="Contracts\IDbContext.cs" />
     <Compile Include="Contracts\IEntityFrameworkRepository.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
+    <Compile Include="Contracts\IHealingViewModelDataProvider.cs" />
     <Compile Include="Contracts\IParserDbContext.cs" />
     <Compile Include="Contracts\IEntityFrameworkTransaction.cs" />
     <Compile Include="BusinessTransactions\EntityFrameworkTransaction.cs" />
@@ -66,6 +77,8 @@
     <Compile Include="Contracts\IStoredCombatStatisticsDataProvider.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsProjectionRepository.cs" />
     <Compile Include="Contracts\IStoredCombatStatisticsRepository.cs" />
+    <Compile Include="DataProviders\DamageViewModelDataProvider.cs" />
+    <Compile Include="DataProviders\HealingViewModelDataProvider.cs" />
     <Compile Include="DataProviders\ParserUserDataProvider.cs" />
     <Compile Include="DataProviders\StoredCombatStatisticsDataProvider.cs" />
     <Compile Include="Factories\IEntityFrameworkTransactionFactory.cs" />
@@ -93,6 +106,10 @@
     <ProjectReference Include="..\Parser.Common.Constants\Parser.Common.Constants.csproj">
       <Project>{d0fccf6c-6b4b-4cc9-819f-6e6fcd2edc3c}</Project>
       <Name>Parser.Common.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Parser.Common.Html\Parser.Common.Html.csproj">
+      <Project>{FFF46EF7-F592-41EE-993A-95BE386E7A63}</Project>
+      <Name>Parser.Common.Html</Name>
     </ProjectReference>
     <ProjectReference Include="..\Parser.Common\Parser.Common.csproj">
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>

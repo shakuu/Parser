@@ -29,6 +29,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Base|AnyCPU'">
+    <OutputPath>bin\Base\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
@@ -59,12 +68,15 @@
     <Compile Include="Contracts\ICurrentCombatStatisticsChangedNotification.cs" />
     <Compile Include="Contracts\ICurrentCombatStatisticsChangedSubscribeProvider.cs" />
     <Compile Include="Contracts\IDateTimeProvider.cs" />
+    <Compile Include="Contracts\IStartupTimestampProvider.cs" />
     <Compile Include="Contracts\IFinalizedCombatStatistics.cs" />
     <Compile Include="Contracts\IGenericEventHandlerProvider.cs" />
     <Compile Include="Contracts\IGuidStringProvider.cs" />
     <Compile Include="Contracts\ICombatStatistics.cs" />
+    <Compile Include="Contracts\IHttpClientProvider.cs" />
     <Compile Include="Contracts\IJsonConvertProvider.cs" />
     <Compile Include="Contracts\IGenericSubscribeProvider.cs" />
+    <Compile Include="Contracts\ILiveCombatStatistics.cs" />
     <Compile Include="Contracts\IObjectMapperProvider.cs" />
     <Compile Include="EventsArgs\CurrentCombatStatisticsChangedEventArgs.cs" />
     <Compile Include="Factories\ICombatStatisticsContainerFactory.cs" />
@@ -72,18 +84,22 @@
     <Compile Include="Factories\ICombatStatisticsFactory.cs" />
     <Compile Include="Factories\ICurrentCombatStatisticsChangedEventArgsFactory.cs" />
     <Compile Include="Factories\IFinalizedCombatStatisticsFactory.cs" />
+    <Compile Include="Factories\ILiveCombatStatisticsFactory.cs" />
     <Compile Include="Models\CombatStatisticsContainer.cs" />
     <Compile Include="Models\Command.cs" />
     <Compile Include="Models\CombatStatistics.cs" />
     <Compile Include="Models\FinalizedCombatStatistics.cs" />
+    <Compile Include="Models\LiveCombatStatistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CommandJsonConvertProvider.cs" />
     <Compile Include="Providers\CurrentCombatStatisticsChangedEventHandlerProvider.cs" />
     <Compile Include="Providers\DateTimeProvider.cs" />
     <Compile Include="Providers\GenericEventHandlerProvider.cs" />
     <Compile Include="Providers\GuidStringProvider.cs" />
+    <Compile Include="Providers\HttpClientProvider.cs" />
     <Compile Include="Providers\JsonConvertProvider.cs" />
     <Compile Include="Providers\ObjectMapperProvider.cs" />
+    <Compile Include="Providers\StartupTimestampProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

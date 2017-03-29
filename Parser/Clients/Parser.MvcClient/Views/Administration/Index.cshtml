@@ -1,0 +1,37 @@
+﻿@using Parser.MvcClient.App_Start
+@model Parser.Data.ViewModels.Administration.AdministrationIndexViewModel
+@{
+    ViewBag.Title = "Administration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="color: yellowgreen; text-align:center;">Administration</h1>
+<h3 style="color: yellowgreen; text-align:center;">Startup Timestamp: @NinjectWebCommon.StartupTimestampProvider.LatestStartupTimestamp.ToLongTimeString()</h3>
+
+@using (Ajax.BeginForm("UpdateLogEntries", null, new AjaxOptions()
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "log-entries"
+}, new { id = "update-log-entries-form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="well">
+        <div class="row">
+            @Html.EnumDropDownListFor(m => m.MessageType, new { id = "dropdown-message-type", @class = "input-field col s6" })
+            @Html.EnumDropDownListFor(m => m.PeriodType, new { id = "dropdown-period-type", @class = "input-field col s6" })
+        </div>
+    </div>
+}
+
+<div class="well" id="log-entries">
+
+    @Html.Action("DisplayLogEntries")
+
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/admin");
+}

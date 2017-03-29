@@ -15,5 +15,9 @@ namespace Parser.Common.Models
         public double DamageTaken { get; set; }
 
         public double DamageTakenPerSecond { get; set; }
+
+        public double HealingDone { get; set; }
+
+        public double HealingDonePerSecond { get; set; }
     }
 }

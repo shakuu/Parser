@@ -1,0 +1,58 @@
+﻿@model Parser.Auth.ViewModels.OwnerViewModel
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Promote</th>
+    </tr>
+
+    @foreach (var viewModel in Model.AuthUsers)
+    {
+        <tr>
+            <td>@viewModel.Username</td>
+            <td>
+                @if (viewModel.IsAdmin)
+                {
+                    <a class="btn-demote red waves-effect waves-light btn" data-username="@viewModel.Username">Demote</a>
+                }
+                else
+                {
+                    <a class="btn-promote waves-effect waves-light btn" data-username="@viewModel.Username">Promote</a>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+@using (Ajax.BeginForm("GetUsersOnPage", new { pageNumber = Model.PageNumber }, new AjaxOptions()
+{
+    UpdateTargetId = "users",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "POST"
+}, new { id = "update-form" }))
+{
+    @Html.AntiForgeryToken()
+}
+
+@using (Ajax.BeginForm("Promote", null, new AjaxOptions()
+{
+    UpdateTargetId = "users",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "POST"
+}, new { id = "promote-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("username", "", new { id = "hidden-username" })
+    @Html.HiddenFor(m => m.PageNumber)
+}
+
+@using (Ajax.BeginForm("Demote", null, new AjaxOptions()
+{
+    UpdateTargetId = "users",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "POST"
+}, new { id = "demote-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("username", "", new { id = "hidden-username-demote" })
+    @Html.HiddenFor(m => m.PageNumber)
+}

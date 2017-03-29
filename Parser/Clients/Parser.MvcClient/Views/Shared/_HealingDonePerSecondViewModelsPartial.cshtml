@@ -1,0 +1,56 @@
+﻿@model Parser.Data.ViewModels.Leaderboard.HealingViewModel
+@{
+    Layout = null;
+}
+
+@Html.HiddenFor(m => m.PageNumber, new { id = "current-page-number" })
+
+@for (var index = 0; index < Model.HealingDonePerSecondViewModels.Count; index++)
+{
+    var viewModel = Model.HealingDonePerSecondViewModels[index];
+
+    <div class="row">
+        <div class="col s12 m12 grey darken-3 damage-container">
+            <div class="col inner-container">
+                <div class="card blue-grey">
+                    <div class="card-image">
+                        <svg width="300" height="300">
+
+                            @if (string.IsNullOrEmpty(viewModel.SvgString) == false)
+                            {
+                                <path d="@viewModel.SvgString" fill="none" stroke="yellowgreen" stroke-width="10" />
+                            }
+                            else
+                            {
+                                <circle cx="150" cy="150" fill="none" r="75" stroke="yellowgreen" stroke-width="10" />
+                            }
+
+                            <text class="svg-percentile card-title" x="155" y="155" fill="yellowgreen" text-anchor="middle">@viewModel.PercentageOfBest%</text>
+                        </svg>
+                    </div>
+                    <div class="card-action">
+                        <a href="#"># @(index + 1)</a>
+                    </div>
+                </div>
+            </div>
+            <div class="outter-container col m6">
+                <header>
+                    <h3>@viewModel.CharacterName</h3>
+                </header>
+                <section>
+                    <h4>@string.Format("{0:f2}", viewModel.HealingDonePerSecond)</h4>
+                </section>
+            </div>
+        </div>
+    </div>
+}
+
+@using (Ajax.BeginForm("Healing", new { pageNumber = Model.PageNumber }, new AjaxOptions()
+{
+    UpdateTargetId = "healing-done-models",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "POST"
+}, new { id = "update-form" }))
+{
+    @Html.AntiForgeryToken()
+}

@@ -1,0 +1,21 @@
+﻿@model Parser.Data.ViewModels.Leaderboard.HealingViewModel
+@{
+    ViewBag.Title = "Healing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Healing Leaderboard</h1>
+
+<div id="healing-done-models">
+    @Html.Partial("_HealingDonePerSecondViewModelsPartial", @Model)
+</div>
+
+@section Styles
+{
+    @Styles.Render("~/Content/leaderboard-css")
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/infinite-scroll-event")
+}

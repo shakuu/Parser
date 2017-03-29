@@ -1,0 +1,29 @@
+﻿h1, h2, h3, h4 {
+    color: yellowgreen;
+    text-align: center;
+}
+
+.row {
+    .damage-container {
+        background-color: #333333;
+        /*border: 5px solid #FFAB40;*/
+        border: 5px solid #E69F5E;
+        border-radius: 25px;
+
+        .inner-container {
+            padding: 15px;
+            width: 330px;
+
+            .card {
+
+                .card-action {
+                    font-size: 17px;
+                }
+            }
+        }
+
+        .outter-container {
+            padding: 15px;
+        }
+    }
+}

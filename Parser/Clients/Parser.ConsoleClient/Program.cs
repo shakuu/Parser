@@ -1,7 +1,7 @@
 ﻿using Ninject;
 
 using Parser.ConsoleClient.NinjectModules;
-using Parser.LogFileReader.Contracts;
+using Parser.LogFile.Reader.Contracts;
 
 namespace Parser.ConsoleClient
 {

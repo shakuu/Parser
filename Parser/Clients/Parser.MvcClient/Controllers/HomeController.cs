@@ -1,30 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+
+using Parser.MvcClient.Controllers.Base;
 
 namespace Parser.MvcClient.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : LoggingController
     {
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Download()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return this.File("~/App_Data/Parser.zip", System.Net.Mime.MediaTypeNames.Application.Zip, "Parser.zip");
         }
     }
 }

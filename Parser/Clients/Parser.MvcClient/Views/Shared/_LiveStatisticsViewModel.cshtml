@@ -1,0 +1,32 @@
+﻿@model Parser.Data.ViewModels.Live.LiveStatisticsViewModel
+@{
+    Layout = null;
+}
+
+@if (Model == null)
+{
+    <div class="well blue-grey">
+        <h1>NO DATA AVAILABLE!</h1>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="damage-container">
+            <h2>@Model.CharacterName</h2>
+            <h2>@Model.CombatDuration.TotalSeconds Sec</h2>
+            <h2>@string.Format("{0:f2}", Model.DamageDonePerSecond) DPS</h2>
+            <h2>@string.Format("{0:f2}", Model.HealingDonePerSecond) HPS</h2>
+        </div>
+    </div>
+}
+
+@using (Ajax.BeginForm("UpdateLiveCombatStatistics", null, new AjaxOptions()
+{
+    UpdateTargetId = "live-statistics",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "POST"
+}, new { id = "update-form" }))
+{
+    @Html.AntiForgeryToken()
+}
