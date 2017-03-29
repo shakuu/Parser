@@ -4,6 +4,13 @@ namespace Parser.Data.ViewModels.Leaderboard
 {
     public class DamageViewModel
     {
+        public DamageViewModel(int pageNumber, double maximumDamageDonePerSecond, IList<DamageDonePerSecondViewModel> damageDonePerSecondViewModels)
+        {
+            this.PageNumber = pageNumber;
+            this.MaximumDamageDonePerSecond = maximumDamageDonePerSecond;
+            this.DamageDonePerSecondViewModels = damageDonePerSecondViewModels;
+        }
+
         public DamageViewModel(int pageNumber, IList<DamageDonePerSecondViewModel> damageDonePerSecondViewModels)
         {
             this.PageNumber = pageNumber;
@@ -32,6 +39,10 @@ namespace Parser.Data.ViewModels.Leaderboard
             foreach (var viewModel in this.DamageDonePerSecondViewModels)
             {
                 var percentage = (int)(viewModel.DamageDonePerSecond / this.MaximumDamageDonePerSecond * 100);
+                if (percentage < 0)
+                {
+                    percentage = 0;
+                }
 
                 viewModel.PercentageOfBest = percentage;
             }

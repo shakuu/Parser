@@ -16,6 +16,7 @@ namespace Parser.Data.DataProviders
         private const int DefaultSvgElementSize = 300;
         private const int DefaultPercentageBarRadius = 75;
         private const int DefaultPageSize = 5;
+        private const int DefaultPageNumber = 1;
 
         private readonly IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository;
         private readonly IPartialCircleSvgPathProvider partialCircleSvgPathProvider;
@@ -32,15 +33,20 @@ namespace Parser.Data.DataProviders
             this.damageViewModelFactory = damageViewModelFactory;
         }
 
-        public DamageViewModel GetDamageViewModelOnPage(int pageNumber)
+        public DamageViewModel GetDamageViewModelOnPage(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0)
             {
-                pageNumber = 1;
+                pageNumber = DamageViewModelDataProvider.DefaultPageNumber;
             }
 
-            var damageDonePerSecondViewModels = this.GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(pageNumber);
-            pageNumber = damageDonePerSecondViewModels.Count / DamageViewModelDataProvider.DefaultPageSize;
+            if (pageSize <= 0)
+            {
+                pageSize = DamageViewModelDataProvider.DefaultPageSize;
+            }
+
+            var damageDonePerSecondViewModels = this.GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(pageNumber, pageSize);
+            pageNumber = damageDonePerSecondViewModels.Count / pageSize;
 
             var damageViewModel = this.damageViewModelFactory.CreateDamageViewModel(pageNumber, damageDonePerSecondViewModels);
             foreach (var viewModel in damageViewModel.DamageDonePerSecondViewModels)
@@ -51,11 +57,12 @@ namespace Parser.Data.DataProviders
             return damageViewModel;
         }
 
-        private IList<DamageDonePerSecondViewModel> GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber)
+        private IList<DamageDonePerSecondViewModel> GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber, int pageSize)
         {
             return this.storedCombatStatisticsEntityFrameworkRepository.Entities
                 .OrderByDescending(e => e.DamageDonePerSecond)
-                .Take(DamageViewModelDataProvider.DefaultPageSize * pageNumber)
+                .Skip(pageSize * pageNumber)
+                .Take(pageSize)
                 .Select(e => new DamageDonePerSecondViewModel() { Id = e.Id, CharacterName = e.CharacterName, DamageDonePerSecond = e.DamageDonePerSecond })
                 .ToList();
         }

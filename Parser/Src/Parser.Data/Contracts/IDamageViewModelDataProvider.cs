@@ -4,6 +4,6 @@ namespace Parser.Data.Contracts
 {
     public interface IDamageViewModelDataProvider
     {
-        DamageViewModel GetDamageViewModelOnPage(int pageNumber);
+        DamageViewModel GetDamageViewModelOnPage(int pageNumber, int pageSize);
     }
 }

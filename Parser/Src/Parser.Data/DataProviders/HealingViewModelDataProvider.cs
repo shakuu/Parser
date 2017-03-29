@@ -16,46 +16,53 @@ namespace Parser.Data.DataProviders
         private const int DefaultSvgElementSize = 300;
         private const int DefaultPercentageBarRadius = 75;
         private const int DefaultPageSize = 5;
+        private const int DefaultPageNumber = 1;
 
         private readonly IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository;
         private readonly IPartialCircleSvgPathProvider partialCircleSvgPathProvider;
-        private readonly IHealingViewModelFactory damageViewModelFactory;
+        private readonly IHealingViewModelFactory healingViewModelFactory;
 
-        public HealingViewModelDataProvider(IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository, IPartialCircleSvgPathProvider partialCircleSvgPathProvider, IHealingViewModelFactory damageViewModelFactory)
+        public HealingViewModelDataProvider(IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository, IPartialCircleSvgPathProvider partialCircleSvgPathProvider, IHealingViewModelFactory healingViewModelFactory)
         {
             Guard.WhenArgument(storedCombatStatisticsEntityFrameworkRepository, nameof(IEntityFrameworkRepository<StoredCombatStatistics>)).IsNull().Throw();
             Guard.WhenArgument(partialCircleSvgPathProvider, nameof(IPartialCircleSvgPathProvider)).IsNull().Throw();
-            Guard.WhenArgument(damageViewModelFactory, nameof(IHealingViewModelFactory)).IsNull().Throw();
+            Guard.WhenArgument(healingViewModelFactory, nameof(IHealingViewModelFactory)).IsNull().Throw();
 
             this.storedCombatStatisticsEntityFrameworkRepository = storedCombatStatisticsEntityFrameworkRepository;
             this.partialCircleSvgPathProvider = partialCircleSvgPathProvider;
-            this.damageViewModelFactory = damageViewModelFactory;
+            this.healingViewModelFactory = healingViewModelFactory;
         }
 
-        public HealingViewModel GetHealingViewModelOnPage(int pageNumber)
+        public HealingViewModel GetHealingViewModelOnPage(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0)
             {
-                pageNumber = 1;
+                pageNumber = HealingViewModelDataProvider.DefaultPageNumber;
             }
 
-            var healingDonePerSecondViewModels = this.GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(pageNumber);
-            pageNumber = healingDonePerSecondViewModels.Count / HealingViewModelDataProvider.DefaultPageSize;
+            if (pageSize <= 0)
+            {
+                pageSize = HealingViewModelDataProvider.DefaultPageSize;
+            }
 
-            var damageViewModel = this.damageViewModelFactory.CreateHealingViewModell(pageNumber, healingDonePerSecondViewModels);
-            foreach (var viewModel in damageViewModel.HealingDonePerSecondViewModels)
+            var healingDonePerSecondViewModels = this.GetTopStoredCombatStatisticsByHealingDonePerSecondOnPage(pageNumber, pageSize);
+            pageNumber = healingDonePerSecondViewModels.Count / pageSize;
+
+            var healingViewModel = this.healingViewModelFactory.CreateHealingViewModell(pageNumber, healingDonePerSecondViewModels);
+            foreach (var viewModel in healingViewModel.HealingDonePerSecondViewModels)
             {
                 viewModel.SvgString = this.partialCircleSvgPathProvider.GetSvgPath(viewModel.PercentageOfBest, HealingViewModelDataProvider.DefaultPercentageBarRadius, HealingViewModelDataProvider.DefaultSvgElementSize);
             }
 
-            return damageViewModel;
+            return healingViewModel;
         }
 
-        private IList<HealingDonePerSecondViewModel> GetTopStoredCombatStatisticsByDamageDonePerSecondOnPage(int pageNumber)
+        private IList<HealingDonePerSecondViewModel> GetTopStoredCombatStatisticsByHealingDonePerSecondOnPage(int pageNumber, int pageSize)
         {
             return this.storedCombatStatisticsEntityFrameworkRepository.Entities
                 .OrderByDescending(e => e.HealingDonePerSecond)
-                .Take(HealingViewModelDataProvider.DefaultPageSize * pageNumber)
+                .Skip(pageSize * pageNumber)
+                .Take(pageSize)
                 .Select(e => new HealingDonePerSecondViewModel() { Id = e.Id, CharacterName = e.CharacterName, HealingDonePerSecond = e.HealingDonePerSecond })
                 .ToList();
         }
