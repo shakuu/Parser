@@ -9,6 +9,8 @@ namespace Parser.Data.ViewModels.Leaderboard
             this.PageNumber = pageNumber;
             this.MaximumDamageDonePerSecond = maximumDamageDonePerSecond;
             this.DamageDonePerSecondViewModels = damageDonePerSecondViewModels;
+
+            this.CalculatePercentageOfBestPropertyForViewModels();
         }
 
         public DamageViewModel(int pageNumber, IList<DamageDonePerSecondViewModel> damageDonePerSecondViewModels)
