@@ -17,7 +17,7 @@ namespace Parser.Common.Interceptors
         protected override string GetInvokedMethodName(IInvocation invocation)
         {
             var invokedMethodName = new StringBuilder();
-            invokedMethodName.Append(invocation.Request.Method.Name);
+            invokedMethodName.Append($"{invocation.Request.Target};{invocation.Request.Method.Name}");
 
             var invocationArguments = invocation.Request.Arguments;
             for (int invocationArgumentsIndex = 0; invocationArgumentsIndex < invocationArguments.Length; invocationArgumentsIndex++)
