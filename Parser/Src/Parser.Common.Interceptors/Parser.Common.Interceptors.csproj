@@ -59,11 +59,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CachingInterceptor.cs" />
+    <Compile Include="IShouldCacheInvocationReturnValueStrategy.cs" />
     <Compile Include="LoggingInterceptor.cs" />
     <Compile Include="HttpContextCachingInterceptor.cs" />
     <Compile Include="Contracts\IHttpContextCacheReturnValues.cs" />
+    <Compile Include="ManagedCachingInterceptor.cs" />
     <Compile Include="ParameterizedCachingInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShouldCacheInvocationReturnValueStrategies\DefaultShouldCacheInvocationReturnValueStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -82,5 +85,6 @@
       <Name>Parser.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

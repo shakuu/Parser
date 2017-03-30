@@ -5,6 +5,8 @@ using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 
 using Parser.Common.Html.Svg;
+using Parser.Common.Interceptors;
+using Parser.Common.Interceptors.ShouldCacheInvocationReturnValueStrategies;
 using Parser.Common.Providers;
 using Parser.Common.Utilities.Providers;
 
@@ -16,6 +18,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
         {
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
+
+            this.Bind<IShouldCacheInvocationReturnValueStrategy>().To<DefaultShouldCacheInvocationReturnValueStrategy>();
 
             //this.Kernel.InterceptReplace<IdentityProvider>(p => p.GetUsername(), this.GetUsernameTestingInterceptor);
         }
