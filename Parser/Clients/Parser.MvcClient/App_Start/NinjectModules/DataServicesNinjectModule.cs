@@ -16,6 +16,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
 
+            this.Bind<IInterceptor>().To<ParameterizedCachingInterceptor>().WhenInjectedExactlyInto<ManagedCachingInterceptor>();
+
             //Kernel.InterceptReplace<CombatStatisticsPersistentStorageStrategy>(s => s.StoreCombatStatistics(null), this.InterceptedStoreCombatStatisticsMethod);
         }
 
@@ -30,8 +32,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
                 .FromAssembliesMatching("*.Data.Services.*")
                 .SelectAllClasses()
                 .BindDefaultInterface()
-                .ConfigureFor<LeaderboardDamageService>(c => c.Intercept().With<ParameterizedCachingInterceptor>())
-                .ConfigureFor<LeaderboardHealingService>(c => c.Intercept().With<ParameterizedCachingInterceptor>());
+                .ConfigureFor<LeaderboardDamageService>(c => c.Intercept().With<ManagedCachingInterceptor>())
+                .ConfigureFor<LeaderboardHealingService>(c => c.Intercept().With<ManagedCachingInterceptor>());
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)

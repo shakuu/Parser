@@ -28,8 +28,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
                 .SelectAllClasses()
                 .BindDefaultInterface()
                 .ConfigureFor<ParserDbContext>(c => c.InRequestScope())
-                .ConfigureFor<DamageViewModelDataProvider>(c => c.Intercept().With<ParameterizedCachingInterceptor>())
-                .ConfigureFor<HealingViewModelDataProvider>(c => c.Intercept().With<ParameterizedCachingInterceptor>());
+                .ConfigureFor<DamageViewModelDataProvider>(c => c.Intercept().With<ManagedCachingInterceptor>())
+                .ConfigureFor<HealingViewModelDataProvider>(c => c.Intercept().With<ManagedCachingInterceptor>());
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)
