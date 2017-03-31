@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+
 using Ninject;
 
 using Parser.Auth.Remote;
@@ -58,7 +59,7 @@ namespace Parser.WPFClient
         private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             var username = this.TbUsername.Text;
-            var password = this.TbPassword.Text;
+            var password = this.TbPassword.Password;
 
             if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
             {
@@ -67,6 +68,8 @@ namespace Parser.WPFClient
 
             if (this.remoteUserService.GetLoggedInRemoteUser() != null)
             {
+                this.LabelTbUsername.Visibility = Visibility.Hidden;
+                this.LabelTbPassword.Visibility = Visibility.Hidden;
                 this.TbUsername.Visibility = Visibility.Hidden;
                 this.TbPassword.Visibility = Visibility.Hidden;
                 this.BtnLogin.Visibility = Visibility.Hidden;
