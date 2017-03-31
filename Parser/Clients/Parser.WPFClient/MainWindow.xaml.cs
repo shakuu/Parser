@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+
 using Ninject;
 
 using Parser.Auth.Remote;
