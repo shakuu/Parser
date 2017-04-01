@@ -1,14 +1,15 @@
-﻿@model Parser.Data.ViewModels.Leaderboard.HealingViewModel
+﻿@model Parser.Data.ViewModels.Leaderboard.LeaderboardViewModel
 @{
     Layout = null;
 }
 
 @Html.HiddenFor(m => m.PageNumber, new { id = "current-page-number" })
 
-@for (var index = 0; index < Model.HealingDonePerSecondViewModels.Count; index++)
+@{
+    var index = 0;
+}
+@foreach (var viewModel in Model.OutputPerSecondViewModels)
 {
-    var viewModel = Model.HealingDonePerSecondViewModels[index];
-
     <div class="row">
         <div class="col s12 m12 grey darken-3 damage-container">
             <div class="col inner-container">
@@ -38,7 +39,7 @@
                     <h3>@viewModel.CharacterName</h3>
                 </header>
                 <section>
-                    <h4>@string.Format("{0:f2}", viewModel.HealingDonePerSecond)</h4>
+                    <h4>@string.Format("{0:f2}", viewModel.OutputPerSecond)</h4>
                 </section>
             </div>
         </div>
