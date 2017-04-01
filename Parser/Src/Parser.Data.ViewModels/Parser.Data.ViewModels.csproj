@@ -57,6 +57,7 @@
     <Compile Include="Factories\IDamageViewModelFactory.cs" />
     <Compile Include="Factories\IHealingDonePerSecondViewModelFactory.cs" />
     <Compile Include="Factories\IHealingViewModelFactory.cs" />
+    <Compile Include="Factories\ILeaderboardViewModelFactory.cs" />
     <Compile Include="Factories\ILiveStatisticsViewModelFactory.cs" />
     <Compile Include="Factories\IParameterCtorHealingDonePerSecondViewModelFactory.cs" />
     <Compile Include="Factories\IRegisterParserUserViewModelFactory.cs" />
