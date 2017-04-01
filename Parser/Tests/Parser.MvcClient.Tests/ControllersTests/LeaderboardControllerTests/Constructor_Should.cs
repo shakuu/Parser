@@ -16,11 +16,10 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
         public void CreateCorrectInstance_WhenParametersAreValid()
         {
             // Arrange
-            var leaderboardDamageService = new Mock<ILeaderboardDamageService>();
-            var leaderboardHealingService = new Mock<ILeaderboardHealingService>();
+            var leaderboardService = new Mock<ILeaderboardService>();
 
             // Act
-            var actualInstance = new LeaderboardController(leaderboardDamageService.Object, leaderboardHealingService.Object);
+            var actualInstance = new LeaderboardController(leaderboardService.Object);
 
             // Assert
             Assert.That(actualInstance, Is.Not.Null);
@@ -31,26 +30,12 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
         public void ThrowArgumentNullException_WhenILeaderboardDamageServiceParameterIsNull()
         {
             // Arrange
-            ILeaderboardDamageService leaderboardDamageService = null;
-            var leaderboardHealingService = new Mock<ILeaderboardHealingService>();
+            ILeaderboardService leaderboardService = null;
 
             // Act & Assert
             Assert.That(
-                () => new LeaderboardController(leaderboardDamageService, leaderboardHealingService.Object),
-                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ILeaderboardDamageService)));
-        }
-
-        [Test]
-        public void ThrowArgumentNullException_WhenILeaderboardHealingServiceParameterIsNull()
-        {
-            // Arrange
-            var leaderboardDamageService = new Mock<ILeaderboardDamageService>();
-            ILeaderboardHealingService leaderboardHealingService = null;
-
-            // Act & Assert
-            Assert.That(
-                () => new LeaderboardController(leaderboardDamageService.Object, leaderboardHealingService),
-                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ILeaderboardHealingService)));
+                () => new LeaderboardController(leaderboardService),
+                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ILeaderboardService)));
         }
     }
 }

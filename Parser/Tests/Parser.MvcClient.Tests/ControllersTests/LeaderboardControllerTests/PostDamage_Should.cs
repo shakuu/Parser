@@ -21,93 +21,80 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
         public void InvokeILeaderboardDamageService_GetTopStoredDamageOnPageMethodOnceWithCorrectParameter(int pageNumber)
         {
             // Arrange
-            var leaderboardDamageService = new Mock<ILeaderboardDamageService>();
-            var leaderboardHealingService = new Mock<ILeaderboardHealingService>();
+            var leaderboardService = new Mock<ILeaderboardService>();
 
-            var leaderboardController = new LeaderboardController(leaderboardDamageService.Object, leaderboardHealingService.Object);
+            var leaderboardController = new LeaderboardController(leaderboardService.Object);
 
             // Act
-            leaderboardController
-                .WithCallTo(c => c.Damage(pageNumber))
-                .ShouldRenderPartialView("_DamageDonePerSecondViewModelsPartial");
+            leaderboardController.WithCallTo(c => c.Damage(pageNumber));
 
             // Assert
-            leaderboardDamageService.Verify(s => s.GetTopStoredDamageOnPage(pageNumber + 1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopDamageOnPage(pageNumber + 1), Times.Once);
         }
 
         [Test]
         public void InvokeILeaderboardDamageService_GetTopStoredDamageOnPageMethodOnceWithCorrectParameter_WhenPageNumberIsNull()
         {
             // Arrange
-            var leaderboardDamageService = new Mock<ILeaderboardDamageService>();
-            var leaderboardHealingService = new Mock<ILeaderboardHealingService>();
+            var leaderboardService = new Mock<ILeaderboardService>();
 
-            var leaderboardController = new LeaderboardController(leaderboardDamageService.Object, leaderboardHealingService.Object);
+            var leaderboardController = new LeaderboardController(leaderboardService.Object);
 
             // Act
-            leaderboardController
-                .WithCallTo(c => c.Damage(null))
-                .ShouldRenderPartialView("_DamageDonePerSecondViewModelsPartial");
+            leaderboardController.WithCallTo(c => c.Damage(null));
 
             // Assert
-            leaderboardDamageService.Verify(s => s.GetTopStoredDamageOnPage(1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopDamageOnPage(1), Times.Once);
         }
 
         [Test]
         public void InvokeILeaderboardDamageService_GetTopStoredDamageOnPageMethodOnceWithCorrectParameter_WhenPageNumberIsNegative()
         {
             // Arrange
-            var leaderboardDamageService = new Mock<ILeaderboardDamageService>();
-            var leaderboardHealingService = new Mock<ILeaderboardHealingService>();
+            var leaderboardService = new Mock<ILeaderboardService>();
 
-            var leaderboardController = new LeaderboardController(leaderboardDamageService.Object, leaderboardHealingService.Object);
+            var leaderboardController = new LeaderboardController(leaderboardService.Object);
 
             // Act
-            leaderboardController
-                .WithCallTo(c => c.Damage(int.MinValue))
-                .ShouldRenderPartialView("_DamageDonePerSecondViewModelsPartial");
+            leaderboardController.WithCallTo(c => c.Damage(int.MinValue));
 
             // Assert
-            leaderboardDamageService.Verify(s => s.GetTopStoredDamageOnPage(1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopDamageOnPage(1), Times.Once);
         }
 
         [Test]
         public void InvokeILeaderboardDamageService_GetTopStoredDamageOnPageMethodOnceWithCorrectParameter_WhenPageNumberIsIntMaxValue()
         {
             // Arrange
-            var leaderboardDamageService = new Mock<ILeaderboardDamageService>();
-            var leaderboardHealingService = new Mock<ILeaderboardHealingService>();
+            var leaderboardService = new Mock<ILeaderboardService>();
 
-            var leaderboardController = new LeaderboardController(leaderboardDamageService.Object, leaderboardHealingService.Object);
+            var leaderboardController = new LeaderboardController(leaderboardService.Object);
 
             // Act
-            leaderboardController
-                .WithCallTo(c => c.Damage(int.MaxValue))
-                .ShouldRenderPartialView("_DamageDonePerSecondViewModelsPartial");
+            leaderboardController.WithCallTo(c => c.Damage(int.MaxValue));
 
             // Assert
-            leaderboardDamageService.Verify(s => s.GetTopStoredDamageOnPage(1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopDamageOnPage(1), Times.Once);
         }
 
         [Test]
         public void RenderCorrectPartialViewWithCorrectViewModel()
         {
             // Arrange
-            var leaderboardDamageService = new Mock<ILeaderboardDamageService>();
-            var leaderboardHealingService = new Mock<ILeaderboardHealingService>();
+            var leaderboardService = new Mock<ILeaderboardService>();
 
-            var leaderboardController = new LeaderboardController(leaderboardDamageService.Object, leaderboardHealingService.Object);
+            var leaderboardController = new LeaderboardController(leaderboardService.Object);
 
-            var damageDonePerSecondViewModels = new List<DamageDonePerSecondViewModel>();
-            var expectedViewModel = new DamageViewModel(0, damageDonePerSecondViewModels);
+            var damageDonePerSecondViewModels = new List<OutputPerSecondViewModel>();
+            var expectedViewModel = new LeaderboardViewModel(0, damageDonePerSecondViewModels);
 
-            leaderboardDamageService.Setup(s => s.GetTopStoredDamageOnPage(It.IsAny<int>())).Returns(expectedViewModel);
+            leaderboardService.Setup(s => s.GetTopDamageOnPage(It.IsAny<int>())).Returns(expectedViewModel);
 
             // Act & Assert
             leaderboardController
                 .WithCallTo(c => c.Damage(0))
-                .ShouldRenderPartialView("_DamageDonePerSecondViewModelsPartial")
-                .WithModel<DamageViewModel>(actualViewModel =>
+                .ShouldRenderPartialView("_DamageAjaxFormPartial")
+                .WithModel<LeaderboardViewModel>(actualViewModel =>
                 {
                     Assert.That(actualViewModel, Is.SameAs(expectedViewModel));
                 });
