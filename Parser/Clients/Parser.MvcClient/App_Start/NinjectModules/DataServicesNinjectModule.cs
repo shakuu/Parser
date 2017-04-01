@@ -33,7 +33,8 @@ namespace Parser.MvcClient.App_Start.NinjectModules
                 .SelectAllClasses()
                 .BindDefaultInterface()
                 .ConfigureFor<LeaderboardDamageService>(c => c.Intercept().With<ManagedCachingInterceptor>())
-                .ConfigureFor<LeaderboardHealingService>(c => c.Intercept().With<ManagedCachingInterceptor>());
+                .ConfigureFor<LeaderboardHealingService>(c => c.Intercept().With<ManagedCachingInterceptor>())
+                .ConfigureFor<LeaderboardService>(c => c.Intercept().With<ManagedCachingInterceptor>());
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)
