@@ -51,11 +51,9 @@ namespace Parser.Data.Services
         {
             var validatedPageNumber = this.ValidatePageNumber(pageNumber);
             var outputPerSecondViewModels = this.GetOutputPerSecondViewModelsOnPage(dataProviderMethod, validatedPageNumber);
+            var outputPerSecondViewModelsWithSvgStrings = this.GetSvgPathForOutputPerSecondViewModels(outputPerSecondViewModels);
 
-            var maximumOutputPerSecondValue = this.GetMaximumOutputPerSecondValue(outputPerSecondViewModels);
-            outputPerSecondViewModels = this.GetSvgPathForOutputPerSecondViewModels(outputPerSecondViewModels, maximumOutputPerSecondValue);
-
-            return this.CreateLeaderboardViewModel(validatedPageNumber, outputPerSecondViewModels);
+            return this.CreateLeaderboardViewModel(validatedPageNumber, outputPerSecondViewModelsWithSvgStrings);
         }
 
         private IList<OutputPerSecondViewModel> GetOutputPerSecondViewModelsOnPage(Func<int, int, IList<OutputPerSecondViewModel>> dataProviderMethod, int pageNumber)
@@ -70,11 +68,13 @@ namespace Parser.Data.Services
             return outputPerSecondViewModels;
         }
 
-        private IList<OutputPerSecondViewModel> GetSvgPathForOutputPerSecondViewModels(IList<OutputPerSecondViewModel> outputPerSecondViewModels, double maximumValue)
+        private IList<OutputPerSecondViewModel> GetSvgPathForOutputPerSecondViewModels(IList<OutputPerSecondViewModel> outputPerSecondViewModels)
         {
+            var maximumOutputPerSecondValue = this.GetMaximumOutputPerSecondValue(outputPerSecondViewModels);
+
             foreach (var viewModel in outputPerSecondViewModels)
             {
-                var percentage = (int)(viewModel.OutputPerSecond / maximumValue * 100);
+                var percentage = (int)(viewModel.OutputPerSecond / maximumOutputPerSecondValue * 100);
                 if (percentage < 0)
                 {
                     percentage = 0;
