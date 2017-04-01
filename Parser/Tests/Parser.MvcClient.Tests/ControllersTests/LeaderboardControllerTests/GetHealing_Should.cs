@@ -18,10 +18,9 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
         public void InvokeILeaderboardHealingService_GetTopStoredHealingOnPageMethodOnceWithCorrectParameters()
         {
             // Arrange
-            var leaderboardDamageService = new Mock<ILeaderboardDamageService>();
-            var leaderboardHealingService = new Mock<ILeaderboardHealingService>();
+            var leaderboardService = new Mock<ILeaderboardService>();
 
-            var leaderboardController = new LeaderboardController(leaderboardDamageService.Object, leaderboardHealingService.Object);
+            var leaderboardController = new LeaderboardController(leaderboardService.Object);
 
             // Act
             leaderboardController
@@ -29,28 +28,27 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
                 .ShouldRenderDefaultView();
 
             // Assert
-            leaderboardHealingService.Verify(s => s.GetTopStoredHealingOnPage(0), Times.Once);
+            leaderboardService.Verify(s => s.GetTopHealingOnPage(0), Times.Once);
         }
 
         [Test]
         public void DisplayCorrectViewWithCorrectViewModel()
         {
             // Arrange
-            var leaderboardDamageService = new Mock<ILeaderboardDamageService>();
-            var leaderboardHealingService = new Mock<ILeaderboardHealingService>();
+            var leaderboardService = new Mock<ILeaderboardService>();
 
-            var leaderboardController = new LeaderboardController(leaderboardDamageService.Object, leaderboardHealingService.Object);
+            var leaderboardController = new LeaderboardController(leaderboardService.Object);
 
-            var healingDonePerSecondViewModels = new List<HealingDonePerSecondViewModel>();
-            var expectedViewModel = new HealingViewModel(0, healingDonePerSecondViewModels);
+            var healingDonePerSecondViewModels = new List<OutputPerSecondViewModel>();
+            var expectedViewModel = new LeaderboardViewModel(0, healingDonePerSecondViewModels);
 
-            leaderboardHealingService.Setup(s => s.GetTopStoredHealingOnPage(It.IsAny<int>())).Returns(expectedViewModel);
+            leaderboardService.Setup(s => s.GetTopHealingOnPage(It.IsAny<int>())).Returns(expectedViewModel);
 
             // Act & Assert
             leaderboardController
                 .WithCallTo(c => c.Healing())
                 .ShouldRenderDefaultView()
-                .WithModel<HealingViewModel>(actualViewModel =>
+                .WithModel<LeaderboardViewModel>(actualViewModel =>
                 {
                     Assert.That(actualViewModel, Is.SameAs(expectedViewModel));
                 });

@@ -18,10 +18,9 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
         public void InvokeILeaderboardDamageService_GetTopStoredDamageOnPageMethodOnceWithCorrectParameters()
         {
             // Arrange
-            var leaderboardDamageService = new Mock<ILeaderboardDamageService>();
-            var leaderboardHealingService = new Mock<ILeaderboardHealingService>();
+            var leaderboardService = new Mock<ILeaderboardService>();
 
-            var leaderboardController = new LeaderboardController(leaderboardDamageService.Object, leaderboardHealingService.Object);
+            var leaderboardController = new LeaderboardController(leaderboardService.Object);
 
             // Act
             leaderboardController
@@ -29,28 +28,27 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
                 .ShouldRenderDefaultView();
 
             // Assert
-            leaderboardDamageService.Verify(s => s.GetTopStoredDamageOnPage(0), Times.Once);
+            leaderboardService.Verify(s => s.GetTopDamageOnPage(0), Times.Once);
         }
 
         [Test]
         public void DisplayCorrectViewWithCorrectViewModel()
         {
             // Arrange
-            var leaderboardDamageService = new Mock<ILeaderboardDamageService>();
-            var leaderboardHealingService = new Mock<ILeaderboardHealingService>();
+            var leaderboardService = new Mock<ILeaderboardService>();
 
-            var leaderboardController = new LeaderboardController(leaderboardDamageService.Object, leaderboardHealingService.Object);
+            var leaderboardController = new LeaderboardController(leaderboardService.Object);
 
-            var damageDonePerSecondViewModels = new List<DamageDonePerSecondViewModel>();
-            var expectedViewModel = new DamageViewModel(0, damageDonePerSecondViewModels);
+            var damageDonePerSecondViewModels = new List<OutputPerSecondViewModel>();
+            var expectedViewModel = new LeaderboardViewModel(0, damageDonePerSecondViewModels);
 
-            leaderboardDamageService.Setup(s => s.GetTopStoredDamageOnPage(It.IsAny<int>())).Returns(expectedViewModel);
+            leaderboardService.Setup(s => s.GetTopDamageOnPage(It.IsAny<int>())).Returns(expectedViewModel);
 
             // Act & Assert
             leaderboardController
                 .WithCallTo(c => c.Damage())
                 .ShouldRenderDefaultView()
-                .WithModel<DamageViewModel>(actualViewModel =>
+                .WithModel<LeaderboardViewModel>(actualViewModel =>
                 {
                     Assert.That(actualViewModel, Is.SameAs(expectedViewModel));
                 });

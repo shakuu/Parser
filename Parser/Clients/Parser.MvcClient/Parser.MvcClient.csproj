@@ -453,6 +453,9 @@
     <Content Include="Views\Owner\_AuthUserViewModelsPartial.cshtml" />
     <Content Include="Views\AdminFab\_AdminFabPartial.cshtml" />
     <Content Include="Views\Administration\_LogEntryViewModelPartial.cshtml" />
+    <Content Include="Views\Leaderboard\_LeaderboardViewModelPartial.cshtml" />
+    <Content Include="Views\Leaderboard\_HealingAjaxFormPartial.cshtml" />
+    <Content Include="Views\Leaderboard\_DamageAjaxFormPartial.cshtml" />
     <None Include="Web.Base.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

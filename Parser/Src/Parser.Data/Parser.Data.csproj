@@ -70,6 +70,7 @@
     <Compile Include="Contracts\IEntityFrameworkRepository.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IHealingViewModelDataProvider.cs" />
+    <Compile Include="Contracts\IOutputPerSecondViewModelDataProvider.cs" />
     <Compile Include="Contracts\IParserDbContext.cs" />
     <Compile Include="Contracts\IEntityFrameworkTransaction.cs" />
     <Compile Include="BusinessTransactions\EntityFrameworkTransaction.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Contracts\IStoredCombatStatisticsRepository.cs" />
     <Compile Include="DataProviders\DamageViewModelDataProvider.cs" />
     <Compile Include="DataProviders\HealingViewModelDataProvider.cs" />
+    <Compile Include="DataProviders\OutputPerSecondViewModelDataProvider.cs" />
     <Compile Include="DataProviders\ParserUserDataProvider.cs" />
     <Compile Include="DataProviders\StoredCombatStatisticsDataProvider.cs" />
     <Compile Include="Factories\IEntityFrameworkTransactionFactory.cs" />

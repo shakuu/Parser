@@ -1,5 +1,5 @@
 ﻿@using Parser.Data.ViewModels.Leaderboard
-@model  DamageViewModel
+@model  LeaderboardViewModel
 
 @{
     Layout = null;
@@ -7,10 +7,11 @@
 
 @Html.HiddenFor(m => m.PageNumber, new { id = "current-page-number" })
 
-@for (var index = 0; index < Model.DamageDonePerSecondViewModels.Count; index++)
+@{ 
+    var index = 0;
+}
+@foreach (var viewModel in Model.OutputPerSecondViewModels)
 {
-    var viewModel = Model.DamageDonePerSecondViewModels[index];
-
     <div class="row">
         <div class="col s12 m12 grey darken-3 damage-container">
             <div class="col inner-container">
@@ -31,7 +32,7 @@
                         </svg>
                     </div>
                     <div class="card-action">
-                        <a href="#"># @(index + 1)</a>
+                        <a href="#"># @(++index)</a>
                     </div>
                 </div>
             </div>
@@ -40,7 +41,7 @@
                     <h3>@viewModel.CharacterName</h3>
                 </header>
                 <section>
-                    <h4>@string.Format("{0:f2}", viewModel.DamageDonePerSecond)</h4>
+                    <h4>@string.Format("{0:f2}", viewModel.OutputPerSecond)</h4>
                 </section>
             </div>
         </div>

@@ -1,4 +1,4 @@
-﻿@model Parser.Data.ViewModels.Leaderboard.HealingViewModel
+﻿@model Parser.Data.ViewModels.Leaderboard.LeaderboardViewModel
 @{
     ViewBag.Title = "Healing";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,7 +7,7 @@
 <h1>Healing Leaderboard</h1>
 
 <div id="healing-done-models">
-    @Html.Partial("_HealingDonePerSecondViewModelsPartial", @Model)
+    @Html.Partial("_HealingAjaxFormPartial", @Model)
 </div>
 
 @section Styles
