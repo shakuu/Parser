@@ -21,8 +21,8 @@ namespace Parser.Data.Services
         private readonly IPartialCircleSvgPathProvider partialCircleSvgPathProvider;
         private readonly ILeaderboardViewModelFactory leaderboardViewModelFactory;
 
-        private readonly Func<int, int, IList<OutputPerSecondViewModel>> getTopDamageOnPageDataProviderMethod;
-        private readonly Func<int, int, IList<OutputPerSecondViewModel>> getTopHealingOnPageDataProviderMethod;
+        private readonly Func<int, int, IList<OutputPerSecondViewModel>> getTopDamageOnPageInDescendingOrderDataProviderMethod;
+        private readonly Func<int, int, IList<OutputPerSecondViewModel>> getTopHealingOnPageInDescendingOrderDataProviderMethod;
 
         public LeaderboardService(IOutputPerSecondViewModelDataProvider outputPerSecondViewModelDataProvider, IPartialCircleSvgPathProvider partialCircleSvgPathProvider, ILeaderboardViewModelFactory leaderboardViewModelFactory)
         {
@@ -33,30 +33,30 @@ namespace Parser.Data.Services
             this.partialCircleSvgPathProvider = partialCircleSvgPathProvider;
             this.leaderboardViewModelFactory = leaderboardViewModelFactory;
 
-            this.getTopDamageOnPageDataProviderMethod = outputPerSecondViewModelDataProvider.GetTopDamageOnPage;
-            this.getTopHealingOnPageDataProviderMethod = outputPerSecondViewModelDataProvider.GetTopHealingOnPage;
+            this.getTopDamageOnPageInDescendingOrderDataProviderMethod = outputPerSecondViewModelDataProvider.GetTopDamageOnPageInDescendingOrder;
+            this.getTopHealingOnPageInDescendingOrderDataProviderMethod = outputPerSecondViewModelDataProvider.GetTopHealingOnPageInDescendingOrder;
         }
 
         public LeaderboardViewModel GetTopDamageOnPage(int pageNumber)
         {
-            return this.GetLeaderboardViewModel(pageNumber, this.getTopDamageOnPageDataProviderMethod);
+            return this.GetLeaderboardViewModel(pageNumber, this.getTopDamageOnPageInDescendingOrderDataProviderMethod);
         }
 
         public LeaderboardViewModel GetTopHealingOnPage(int pageNumber)
         {
-            return this.GetLeaderboardViewModel(pageNumber, this.getTopHealingOnPageDataProviderMethod);
+            return this.GetLeaderboardViewModel(pageNumber, this.getTopHealingOnPageInDescendingOrderDataProviderMethod);
         }
 
         private LeaderboardViewModel GetLeaderboardViewModel(int pageNumber, Func<int, int, IList<OutputPerSecondViewModel>> dataProviderMethod)
         {
             var validatedPageNumber = this.ValidatePageNumber(pageNumber);
-            var outputPerSecondViewModels = this.GetOutputPerSecondViewModelsOnPage(dataProviderMethod, validatedPageNumber);
-            var outputPerSecondViewModelsWithSvgStrings = this.GetSvgPathForOutputPerSecondViewModels(outputPerSecondViewModels);
+            var orderedOutputPerSecondViewModels = this.GetOutputPerSecondViewModelsOnPage(validatedPageNumber, dataProviderMethod);
+            var orderedOutputPerSecondViewModelsWithSvgStrings = this.GetSvgPathForOutputPerSecondViewModels(orderedOutputPerSecondViewModels);
 
-            return this.CreateLeaderboardViewModel(validatedPageNumber, outputPerSecondViewModelsWithSvgStrings);
+            return this.CreateLeaderboardViewModel(validatedPageNumber, orderedOutputPerSecondViewModelsWithSvgStrings);
         }
 
-        private IList<OutputPerSecondViewModel> GetOutputPerSecondViewModelsOnPage(Func<int, int, IList<OutputPerSecondViewModel>> dataProviderMethod, int pageNumber)
+        private IList<OutputPerSecondViewModel> GetOutputPerSecondViewModelsOnPage(int pageNumber, Func<int, int, IList<OutputPerSecondViewModel>> dataProviderMethod)
         {
             var outputPerSecondViewModels = new List<OutputPerSecondViewModel>();
             for (int pageIndex = 1; pageIndex <= pageNumber; pageIndex++)
