@@ -6,8 +6,8 @@ namespace Parser.Data.Contracts
 {
     public interface IOutputPerSecondViewModelDataProvider
     {
-        IList<OutputPerSecondViewModel> GetTopDamageOnPage(int pageNumber, int pageSize);
+        IList<OutputPerSecondViewModel> GetTopDamageOnPageInDescendingOrder(int pageNumber, int pageSize);
 
-        IList<OutputPerSecondViewModel> GetTopHealingOnPage(int pageNumber, int pageSize);
+        IList<OutputPerSecondViewModel> GetTopHealingOnPageInDescendingOrder(int pageNumber, int pageSize);
     }
 }

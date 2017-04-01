@@ -23,7 +23,7 @@ namespace Parser.Data.DataProviders
             this.storedCombatStatisticsEntityFrameworkRepository = storedCombatStatisticsEntityFrameworkRepository;
         }
 
-        public IList<OutputPerSecondViewModel> GetTopDamageOnPage(int pageNumber, int pageSize)
+        public IList<OutputPerSecondViewModel> GetTopDamageOnPageInDescendingOrder(int pageNumber, int pageSize)
         {
             pageNumber = this.ValidatePageNumber(pageNumber);
             pageSize = this.ValidatePageSize(pageSize);
@@ -31,7 +31,7 @@ namespace Parser.Data.DataProviders
             return this.GetDamageOutputPerSecondViewModels(pageNumber, pageSize);
         }
 
-        public IList<OutputPerSecondViewModel> GetTopHealingOnPage(int pageNumber, int pageSize)
+        public IList<OutputPerSecondViewModel> GetTopHealingOnPageInDescendingOrder(int pageNumber, int pageSize)
         {
             pageNumber = this.ValidatePageNumber(pageNumber);
             pageSize = this.ValidatePageSize(pageSize);

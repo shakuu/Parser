@@ -18,9 +18,11 @@ namespace Parser.Data.Services
         private const int DefaultPageSize = 5;
         private const int DefaultPageNumber = 1;
 
-        private readonly IOutputPerSecondViewModelDataProvider outputPerSecondViewModelDataProvider;
         private readonly IPartialCircleSvgPathProvider partialCircleSvgPathProvider;
         private readonly ILeaderboardViewModelFactory leaderboardViewModelFactory;
+
+        private readonly Func<int, int, IList<OutputPerSecondViewModel>> getTopDamageOnPageInDescendingOrderDataProviderMethod;
+        private readonly Func<int, int, IList<OutputPerSecondViewModel>> getTopHealingOnPageInDescendingOrderDataProviderMethod;
 
         public LeaderboardService(IOutputPerSecondViewModelDataProvider outputPerSecondViewModelDataProvider, IPartialCircleSvgPathProvider partialCircleSvgPathProvider, ILeaderboardViewModelFactory leaderboardViewModelFactory)
         {
@@ -28,46 +30,51 @@ namespace Parser.Data.Services
             Guard.WhenArgument(partialCircleSvgPathProvider, nameof(IPartialCircleSvgPathProvider)).IsNull().Throw();
             Guard.WhenArgument(leaderboardViewModelFactory, nameof(ILeaderboardViewModelFactory)).IsNull().Throw();
 
-            this.outputPerSecondViewModelDataProvider = outputPerSecondViewModelDataProvider;
             this.partialCircleSvgPathProvider = partialCircleSvgPathProvider;
             this.leaderboardViewModelFactory = leaderboardViewModelFactory;
+
+            this.getTopDamageOnPageInDescendingOrderDataProviderMethod = outputPerSecondViewModelDataProvider.GetTopDamageOnPageInDescendingOrder;
+            this.getTopHealingOnPageInDescendingOrderDataProviderMethod = outputPerSecondViewModelDataProvider.GetTopHealingOnPageInDescendingOrder;
         }
 
         public LeaderboardViewModel GetTopDamageOnPage(int pageNumber)
         {
-            pageNumber = this.ValidatePageNumber(pageNumber);
-            var outputPerSecondViewModels = this.GetOutputPerSecondViewModelsOnPage(this.outputPerSecondViewModelDataProvider.GetTopDamageOnPage, pageNumber);
-            outputPerSecondViewModels = this.GetSvgPathForOutputPerSecondViewModels(outputPerSecondViewModels, outputPerSecondViewModels[0].OutputPerSecond);
-
-            return this.CreateLeaderboardViewModel(pageNumber, outputPerSecondViewModels);
+            return this.GetLeaderboardViewModel(pageNumber, this.getTopDamageOnPageInDescendingOrderDataProviderMethod);
         }
 
         public LeaderboardViewModel GetTopHealingOnPage(int pageNumber)
         {
-            pageNumber = this.ValidatePageNumber(pageNumber);
-            var outputPerSecondViewModels = this.GetOutputPerSecondViewModelsOnPage(this.outputPerSecondViewModelDataProvider.GetTopHealingOnPage, pageNumber);
-            outputPerSecondViewModels = this.GetSvgPathForOutputPerSecondViewModels(outputPerSecondViewModels, outputPerSecondViewModels[0].OutputPerSecond);
-
-            return this.CreateLeaderboardViewModel(pageNumber, outputPerSecondViewModels);
+            return this.GetLeaderboardViewModel(pageNumber, this.getTopHealingOnPageInDescendingOrderDataProviderMethod);
         }
 
-        private IList<OutputPerSecondViewModel> GetOutputPerSecondViewModelsOnPage(Func<int, int, IList<OutputPerSecondViewModel>> dataProviderMethod, int pageNumber)
+        private LeaderboardViewModel GetLeaderboardViewModel(int pageNumber, Func<int, int, IList<OutputPerSecondViewModel>> dataProviderMethod)
+        {
+            var validatedPageNumber = this.ValidatePageNumber(pageNumber);
+            var orderedOutputPerSecondViewModels = this.GetOutputPerSecondViewModelsOnPage(validatedPageNumber, dataProviderMethod);
+            var orderedOutputPerSecondViewModelsWithSvgStrings = this.GetSvgPathForOutputPerSecondViewModels(orderedOutputPerSecondViewModels);
+
+            return this.CreateLeaderboardViewModel(validatedPageNumber, orderedOutputPerSecondViewModelsWithSvgStrings);
+        }
+
+        private IList<OutputPerSecondViewModel> GetOutputPerSecondViewModelsOnPage(int pageNumber, Func<int, int, IList<OutputPerSecondViewModel>> dataProviderMethod)
         {
             var outputPerSecondViewModels = new List<OutputPerSecondViewModel>();
             for (int pageIndex = 1; pageIndex <= pageNumber; pageIndex++)
             {
-                var resultDamageViewModel = dataProviderMethod.Invoke(pageIndex, LeaderboardService.DefaultPageSize);
-                outputPerSecondViewModels.AddRange(resultDamageViewModel);
+                var resultOutputPerSecondViewModels = dataProviderMethod.Invoke(pageIndex, LeaderboardService.DefaultPageSize);
+                outputPerSecondViewModels.AddRange(resultOutputPerSecondViewModels);
             }
 
             return outputPerSecondViewModels;
         }
 
-        private IList<OutputPerSecondViewModel> GetSvgPathForOutputPerSecondViewModels(IList<OutputPerSecondViewModel> outputPerSecondViewModels, double maximumValue)
+        private IList<OutputPerSecondViewModel> GetSvgPathForOutputPerSecondViewModels(IList<OutputPerSecondViewModel> outputPerSecondViewModels)
         {
+            var maximumOutputPerSecondValue = this.GetMaximumOutputPerSecondValue(outputPerSecondViewModels);
+
             foreach (var viewModel in outputPerSecondViewModels)
             {
-                var percentage = (int)(viewModel.OutputPerSecond / maximumValue * 100);
+                var percentage = (int)(viewModel.OutputPerSecond / maximumOutputPerSecondValue * 100);
                 if (percentage < 0)
                 {
                     percentage = 0;
@@ -84,6 +91,11 @@ namespace Parser.Data.Services
         {
             pageNumber = outputPerSecondViewModels.Count / LeaderboardService.DefaultPageSize;
             return this.leaderboardViewModelFactory.CreateLeaderboardViewModel(pageNumber, outputPerSecondViewModels);
+        }
+
+        private double GetMaximumOutputPerSecondValue(IList<OutputPerSecondViewModel> outputPerSecondViewModels)
+        {
+            return outputPerSecondViewModels[0].OutputPerSecond;
         }
 
         private int ValidatePageNumber(int pageNumber)
