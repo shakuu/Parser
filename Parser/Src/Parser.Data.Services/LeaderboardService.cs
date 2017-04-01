@@ -18,9 +18,11 @@ namespace Parser.Data.Services
         private const int DefaultPageSize = 5;
         private const int DefaultPageNumber = 1;
 
-        private readonly IOutputPerSecondViewModelDataProvider outputPerSecondViewModelDataProvider;
         private readonly IPartialCircleSvgPathProvider partialCircleSvgPathProvider;
         private readonly ILeaderboardViewModelFactory leaderboardViewModelFactory;
+
+        private readonly Func<int, int, IList<OutputPerSecondViewModel>> getTopDamageOnPageDataProviderMethod;
+        private readonly Func<int, int, IList<OutputPerSecondViewModel>> getTopHealingOnPageDataProviderMethod;
 
         public LeaderboardService(IOutputPerSecondViewModelDataProvider outputPerSecondViewModelDataProvider, IPartialCircleSvgPathProvider partialCircleSvgPathProvider, ILeaderboardViewModelFactory leaderboardViewModelFactory)
         {
@@ -28,27 +30,32 @@ namespace Parser.Data.Services
             Guard.WhenArgument(partialCircleSvgPathProvider, nameof(IPartialCircleSvgPathProvider)).IsNull().Throw();
             Guard.WhenArgument(leaderboardViewModelFactory, nameof(ILeaderboardViewModelFactory)).IsNull().Throw();
 
-            this.outputPerSecondViewModelDataProvider = outputPerSecondViewModelDataProvider;
             this.partialCircleSvgPathProvider = partialCircleSvgPathProvider;
             this.leaderboardViewModelFactory = leaderboardViewModelFactory;
+
+            this.getTopDamageOnPageDataProviderMethod = outputPerSecondViewModelDataProvider.GetTopDamageOnPage;
+            this.getTopHealingOnPageDataProviderMethod = outputPerSecondViewModelDataProvider.GetTopHealingOnPage;
         }
 
         public LeaderboardViewModel GetTopDamageOnPage(int pageNumber)
         {
-            pageNumber = this.ValidatePageNumber(pageNumber);
-            var outputPerSecondViewModels = this.GetOutputPerSecondViewModelsOnPage(this.outputPerSecondViewModelDataProvider.GetTopDamageOnPage, pageNumber);
-            outputPerSecondViewModels = this.GetSvgPathForOutputPerSecondViewModels(outputPerSecondViewModels, outputPerSecondViewModels[0].OutputPerSecond);
-
-            return this.CreateLeaderboardViewModel(pageNumber, outputPerSecondViewModels);
+            return this.GetLeaderboardViewModel(pageNumber, this.getTopDamageOnPageDataProviderMethod);
         }
 
         public LeaderboardViewModel GetTopHealingOnPage(int pageNumber)
         {
-            pageNumber = this.ValidatePageNumber(pageNumber);
-            var outputPerSecondViewModels = this.GetOutputPerSecondViewModelsOnPage(this.outputPerSecondViewModelDataProvider.GetTopHealingOnPage, pageNumber);
-            outputPerSecondViewModels = this.GetSvgPathForOutputPerSecondViewModels(outputPerSecondViewModels, outputPerSecondViewModels[0].OutputPerSecond);
+            return this.GetLeaderboardViewModel(pageNumber, this.getTopHealingOnPageDataProviderMethod);
+        }
 
-            return this.CreateLeaderboardViewModel(pageNumber, outputPerSecondViewModels);
+        private LeaderboardViewModel GetLeaderboardViewModel(int pageNumber, Func<int, int, IList<OutputPerSecondViewModel>> dataProviderMethod)
+        {
+            var validatedPageNumber = this.ValidatePageNumber(pageNumber);
+            var outputPerSecondViewModels = this.GetOutputPerSecondViewModelsOnPage(dataProviderMethod, validatedPageNumber);
+
+            var maximumOutputPerSecondValue = this.GetMaximumOutputPerSecondValue(outputPerSecondViewModels);
+            outputPerSecondViewModels = this.GetSvgPathForOutputPerSecondViewModels(outputPerSecondViewModels, maximumOutputPerSecondValue);
+
+            return this.CreateLeaderboardViewModel(validatedPageNumber, outputPerSecondViewModels);
         }
 
         private IList<OutputPerSecondViewModel> GetOutputPerSecondViewModelsOnPage(Func<int, int, IList<OutputPerSecondViewModel>> dataProviderMethod, int pageNumber)
@@ -56,8 +63,8 @@ namespace Parser.Data.Services
             var outputPerSecondViewModels = new List<OutputPerSecondViewModel>();
             for (int pageIndex = 1; pageIndex <= pageNumber; pageIndex++)
             {
-                var resultDamageViewModel = dataProviderMethod.Invoke(pageIndex, LeaderboardService.DefaultPageSize);
-                outputPerSecondViewModels.AddRange(resultDamageViewModel);
+                var resultOutputPerSecondViewModels = dataProviderMethod.Invoke(pageIndex, LeaderboardService.DefaultPageSize);
+                outputPerSecondViewModels.AddRange(resultOutputPerSecondViewModels);
             }
 
             return outputPerSecondViewModels;
@@ -84,6 +91,11 @@ namespace Parser.Data.Services
         {
             pageNumber = outputPerSecondViewModels.Count / LeaderboardService.DefaultPageSize;
             return this.leaderboardViewModelFactory.CreateLeaderboardViewModel(pageNumber, outputPerSecondViewModels);
+        }
+
+        private double GetMaximumOutputPerSecondValue(IList<OutputPerSecondViewModel> outputPerSecondViewModels)
+        {
+            return outputPerSecondViewModels[0].OutputPerSecond;
         }
 
         private int ValidatePageNumber(int pageNumber)
