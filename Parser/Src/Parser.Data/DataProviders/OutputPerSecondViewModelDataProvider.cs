@@ -9,7 +9,7 @@ using Parser.Data.ViewModels.Leaderboard;
 
 namespace Parser.Data.DataProviders
 {
-    public class OutputPerSecondViewModelDataProvider : Contracts.OutputPerSecondViewModelDataProvider
+    public class OutputPerSecondViewModelDataProvider : IOutputPerSecondViewModelDataProvider
     {
         private const int DefaultPageSize = 5;
         private const int DefaultPageNumber = 1;

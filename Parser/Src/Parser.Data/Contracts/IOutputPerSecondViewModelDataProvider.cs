@@ -4,7 +4,7 @@ using Parser.Data.ViewModels.Leaderboard;
 
 namespace Parser.Data.Contracts
 {
-    public interface OutputPerSecondViewModelDataProvider
+    public interface IOutputPerSecondViewModelDataProvider
     {
         IList<OutputPerSecondViewModel> GetTopDamageOnPage(int pageNumber, int pageSize);
 

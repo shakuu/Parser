@@ -70,7 +70,7 @@
     <Compile Include="Contracts\IEntityFrameworkRepository.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IHealingViewModelDataProvider.cs" />
-    <Compile Include="Contracts\OutputPerSecondViewModelDataProvider.cs" />
+    <Compile Include="Contracts\IOutputPerSecondViewModelDataProvider.cs" />
     <Compile Include="Contracts\IParserDbContext.cs" />
     <Compile Include="Contracts\IEntityFrameworkTransaction.cs" />
     <Compile Include="BusinessTransactions\EntityFrameworkTransaction.cs" />
