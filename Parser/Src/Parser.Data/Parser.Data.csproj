@@ -84,14 +84,6 @@
     <Compile Include="DataProviders\ParserUserDataProvider.cs" />
     <Compile Include="DataProviders\StoredCombatStatisticsDataProvider.cs" />
     <Compile Include="Factories\IEntityFrameworkTransactionFactory.cs" />
-    <Compile Include="Migrations\201703062302082_init.cs" />
-    <Compile Include="Migrations\201703062302082_init.Designer.cs">
-      <DependentUpon>201703062302082_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703062357492_optional user.cs" />
-    <Compile Include="Migrations\201703062357492_optional user.Designer.cs">
-      <DependentUpon>201703062357492_optional user.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ParserDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,14 +113,6 @@
       <Project>{52a14ba3-e1dc-4b71-b47d-550862087b1c}</Project>
       <Name>Parser.Data.ViewModels</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703062302082_init.resx">
-      <DependentUpon>201703062302082_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703062357492_optional user.resx">
-      <DependentUpon>201703062357492_optional user.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
