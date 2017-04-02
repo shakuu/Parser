@@ -2,13 +2,21 @@
 
 using Bytes2you.Validation;
 
+using Ninject;
+
 using Parser.LogFile.SignalR.Contracts;
+using Parser.MvcClient.App_Start;
 
 namespace Parser.MvcClient.SignalRHubs
 {
     public class LogFileParserHub : Hub, ILogFileParserHub
     {
         private readonly ILogFileParserHubService logFileParserHubService;
+
+        public LogFileParserHub()
+        {
+            this.logFileParserHubService = NinjectWebCommon.Kernel.Get<ILogFileParserHubService>();
+        }
 
         public LogFileParserHub(ILogFileParserHubService logFileParserHubService)
         {

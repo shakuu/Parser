@@ -27,5 +27,8 @@ namespace Parser.Common.Logging.Models
         [Required]
         [MaxLength(200)]
         public string Controller { get; set; }
+        
+        [MaxLength(2000)]
+        public string Details { get; set; }
     }
 }
