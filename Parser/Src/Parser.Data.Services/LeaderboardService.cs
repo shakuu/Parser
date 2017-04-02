@@ -53,7 +53,7 @@ namespace Parser.Data.Services
             var orderedOutputPerSecondViewModels = this.GetOutputPerSecondViewModelsOnPage(validatedPageNumber, dataProviderMethod);
             var orderedOutputPerSecondViewModelsWithSvgStrings = this.GetSvgPathForOutputPerSecondViewModels(orderedOutputPerSecondViewModels);
 
-            return this.CreateLeaderboardViewModel(validatedPageNumber, orderedOutputPerSecondViewModelsWithSvgStrings);
+            return this.CreateLeaderboardViewModel(orderedOutputPerSecondViewModelsWithSvgStrings);
         }
 
         private IList<OutputPerSecondViewModel> GetOutputPerSecondViewModelsOnPage(int pageNumber, Func<int, int, IList<OutputPerSecondViewModel>> dataProviderMethod)
@@ -87,9 +87,9 @@ namespace Parser.Data.Services
             return outputPerSecondViewModels;
         }
 
-        private LeaderboardViewModel CreateLeaderboardViewModel(int pageNumber, IList<OutputPerSecondViewModel> outputPerSecondViewModels)
+        private LeaderboardViewModel CreateLeaderboardViewModel(IList<OutputPerSecondViewModel> outputPerSecondViewModels)
         {
-            pageNumber = outputPerSecondViewModels.Count / LeaderboardService.DefaultPageSize;
+            var pageNumber = outputPerSecondViewModels.Count / LeaderboardService.DefaultPageSize;
             return this.leaderboardViewModelFactory.CreateLeaderboardViewModel(pageNumber, outputPerSecondViewModels);
         }
 
