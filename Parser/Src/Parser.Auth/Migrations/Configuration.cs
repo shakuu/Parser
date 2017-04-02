@@ -10,7 +10,7 @@ namespace Parser.Auth.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "Parser.Auth.AuthDbContext";
+            //ContextKey = "Parser.Auth.AuthDbContext";
         }
 
         protected override void Seed(Parser.Auth.AuthDbContext context)

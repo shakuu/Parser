@@ -1,7 +1,4 @@
-﻿using System.Data.Entity;
-
-using Parser.Auth;
-using Parser.Common.Logging;
+﻿using System.Data.Entity.Migrations;
 
 namespace Parser.MvcClient
 {
@@ -9,8 +6,11 @@ namespace Parser.MvcClient
     {
         public static void InitializeDatabase()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AuthDbContext, Parser.Auth.Migrations.Configuration>());
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<LoggingServiceDbContext, Parser.Common.Logging.Migrations.Configuration>());
+            var authDbContextMigrator = new DbMigrator(new Parser.Auth.Migrations.Configuration());
+            authDbContextMigrator.Update();
+
+            var loggingServiceDbContextMigrator = new DbMigrator(new Parser.Auth.Migrations.Configuration());
+            loggingServiceDbContextMigrator.Update();
         }
     }
 }

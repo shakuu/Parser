@@ -67,10 +67,6 @@
     <Compile Include="ILogReportingDataProvider.cs" />
     <Compile Include="LoggingServiceDbContext.cs" />
     <Compile Include="MessageType.cs" />
-    <Compile Include="Migrations\201703201235144_init.cs" />
-    <Compile Include="Migrations\201703201235144_init.Designer.cs">
-      <DependentUpon>201703201235144_init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LogEntry.cs" />
     <Compile Include="PeriodType.cs" />
@@ -92,11 +88,6 @@
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
       <Name>Parser.Common</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703201235144_init.resx">
-      <DependentUpon>201703201235144_init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
