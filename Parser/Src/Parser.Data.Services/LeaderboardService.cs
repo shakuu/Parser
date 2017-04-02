@@ -95,6 +95,11 @@ namespace Parser.Data.Services
 
         private double GetMaximumOutputPerSecondValue(IList<OutputPerSecondViewModel> outputPerSecondViewModels)
         {
+            if (outputPerSecondViewModels.Count == 0)
+            {
+                return 0;
+            }
+
             return outputPerSecondViewModels[0].OutputPerSecond;
         }
 

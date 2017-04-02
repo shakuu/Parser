@@ -9,7 +9,7 @@ namespace Parser.Common.Logging.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Parser.Common.Logging.LoggingServiceDbContext context)
