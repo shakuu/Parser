@@ -16,7 +16,7 @@ namespace Parser.MvcClient.App_Start.NinjectModules
             this.Bind(this.BindAllClassesByConvention);
             this.Bind(this.BindFactoriesByConvention);
 
-            this.Bind<IInterceptor>().To<ParameterizedCachingInterceptor>().WhenInjectedExactlyInto<ManagedCachingInterceptor>();
+            this.Bind<ICachingInterceptor>().To<ParameterizedCachingInterceptor>().WhenInjectedExactlyInto<ManagedCachingInterceptor>();
 
             //Kernel.InterceptReplace<CombatStatisticsPersistentStorageStrategy>(s => s.StoreCombatStatistics(null), this.InterceptedStoreCombatStatisticsMethod);
         }
