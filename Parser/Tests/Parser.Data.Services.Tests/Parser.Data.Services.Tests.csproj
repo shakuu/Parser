@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="CreateParserUserServiceTests\Constructor_Should.cs" />
     <Compile Include="CreateParserUserServiceTests\CreateParserUser_Should.cs" />
+    <Compile Include="LeaderboardServiceTests\Constructor_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StrategiesTests\CombatStatisticsPersistentStorageStrategyTests\Constructor_Should.cs" />
     <Compile Include="StrategiesTests\CombatStatisticsPersistentStorageStrategyTests\StoreCombatStatistics_Should.cs" />
@@ -71,6 +72,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Src\Parser.Common.Html\Parser.Common.Html.csproj">
+      <Project>{fff46ef7-f592-41ee-993a-95be386e7a63}</Project>
+      <Name>Parser.Common.Html</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Src\Parser.Common\Parser.Common.csproj">
       <Project>{ce041571-30b1-4f40-b526-dc58e888f32b}</Project>
       <Name>Parser.Common</Name>
