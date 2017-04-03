@@ -7,7 +7,7 @@ using Parser.Common.Utilities.Contracts;
 
 namespace Parser.Common.Interceptors
 {
-    public class ParameterizedCachingInterceptor : CachingInterceptor, IInterceptor
+    public class ParameterizedCachingInterceptor : CachingInterceptor, IInterceptor, ICachingInterceptor
     {
         public ParameterizedCachingInterceptor(ICacheProvider cacheProvider, IDateTimeProvider dateTimeProvider)
             : base(cacheProvider, dateTimeProvider)

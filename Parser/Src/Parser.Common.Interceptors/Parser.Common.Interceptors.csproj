@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CachingInterceptor.cs" />
+    <Compile Include="ICachingInterceptor.cs" />
     <Compile Include="IShouldCacheInvocationReturnValueStrategy.cs" />
     <Compile Include="LoggingInterceptor.cs" />
     <Compile Include="HttpContextCachingInterceptor.cs" />
