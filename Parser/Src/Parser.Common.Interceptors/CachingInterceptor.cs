@@ -7,7 +7,7 @@ using Parser.Common.Utilities.Contracts;
 
 namespace Parser.Common.Interceptors
 {
-    public class CachingInterceptor : IInterceptor
+    public class CachingInterceptor : IInterceptor, ICachingInterceptor
     {
         private const double CacheTimeoutPeriodInMinutes = 1;
 
