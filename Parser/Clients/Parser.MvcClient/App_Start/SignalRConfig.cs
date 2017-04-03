@@ -7,10 +7,12 @@ namespace Parser.MvcClient
 {
     public class SignalRConfig
     {
-        public static void InitializeSignalRResolver()
+        public static HubConfiguration GetHubConfiguration()
         {
             var hubConfiguration = new HubConfiguration();
             hubConfiguration.Resolver = new ParserHubConfigurationDependencyResolver(NinjectWebCommon.Kernel);
+
+            return hubConfiguration;
         }
     }
 }

@@ -14,7 +14,6 @@ namespace Parser.MvcClient
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ViewEnginesConfig.RegisterViewEngines();
             DatabaseConfig.InitializeDatabase();
-            //SignalRConfig.InitializeSignalRResolver();
         }
     }
 }
