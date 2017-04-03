@@ -64,6 +64,7 @@
     <Compile Include="CreateParserUserServiceTests\Constructor_Should.cs" />
     <Compile Include="CreateParserUserServiceTests\CreateParserUser_Should.cs" />
     <Compile Include="LeaderboardServiceTests\Constructor_Should.cs" />
+    <Compile Include="LeaderboardServiceTests\GetTopDamageOnPage_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StrategiesTests\CombatStatisticsPersistentStorageStrategyTests\Constructor_Should.cs" />
     <Compile Include="StrategiesTests\CombatStatisticsPersistentStorageStrategyTests\StoreCombatStatistics_Should.cs" />
