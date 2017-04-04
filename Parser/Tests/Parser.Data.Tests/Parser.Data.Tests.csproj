@@ -68,6 +68,7 @@
     <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\CommitAsync_Should.cs" />
     <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\Commit_Should.cs" />
     <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\Constructor_Should.cs" />
+    <Compile Include="DataProvidersTests\OutputPerSecondViewModelDataProviderTests\Constructor_Should.cs" />
     <Compile Include="DataProvidersTests\ParserUserDataProviderTests\Constructor_Should.cs" />
     <Compile Include="DataProvidersTests\ParserUserDataProviderTests\CreateParserUser_Should.cs" />
     <Compile Include="DataProvidersTests\StoredCombatStatisticsDataProviderTests\Constructor_Should.cs" />
@@ -108,5 +109,6 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
