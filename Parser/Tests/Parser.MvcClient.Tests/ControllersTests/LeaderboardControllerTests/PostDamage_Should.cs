@@ -29,7 +29,7 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
             leaderboardController.WithCallTo(c => c.Damage(pageNumber));
 
             // Assert
-            leaderboardService.Verify(s => s.GetTopDamageOnPage(pageNumber + 1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopDamageOnPage(pageNumber), Times.Once);
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
             leaderboardController.WithCallTo(c => c.Damage(null));
 
             // Assert
-            leaderboardService.Verify(s => s.GetTopDamageOnPage(1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopDamageOnPage(0), Times.Once);
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
             leaderboardController.WithCallTo(c => c.Damage(int.MinValue));
 
             // Assert
-            leaderboardService.Verify(s => s.GetTopDamageOnPage(1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopDamageOnPage(0), Times.Once);
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
             leaderboardController.WithCallTo(c => c.Damage(int.MaxValue));
 
             // Assert
-            leaderboardService.Verify(s => s.GetTopDamageOnPage(1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopDamageOnPage(0), Times.Once);
         }
 
         [Test]

@@ -70,6 +70,7 @@
     <Compile Include="BusinessTransactionsTests\BusinessTransactionTests\Constructor_Should.cs" />
     <Compile Include="DataProvidersTests\OutputPerSecondViewModelDataProviderTests\Constructor_Should.cs" />
     <Compile Include="DataProvidersTests\OutputPerSecondViewModelDataProviderTests\GetTopDamageOnPageInDescendingOrder_Should.cs" />
+    <Compile Include="DataProvidersTests\OutputPerSecondViewModelDataProviderTests\GetTopHealingOnPageInDescendingOrder_Should.cs" />
     <Compile Include="DataProvidersTests\ParserUserDataProviderTests\Constructor_Should.cs" />
     <Compile Include="DataProvidersTests\ParserUserDataProviderTests\CreateParserUser_Should.cs" />
     <Compile Include="DataProvidersTests\StoredCombatStatisticsDataProviderTests\Constructor_Should.cs" />

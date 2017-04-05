@@ -29,7 +29,7 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
             leaderboardController.WithCallTo(c => c.Healing(pageNumber));
 
             // Assert
-            leaderboardService.Verify(s => s.GetTopHealingOnPage(pageNumber + 1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopHealingOnPage(pageNumber), Times.Once);
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
             leaderboardController.WithCallTo(c => c.Healing(null));
 
             // Assert
-            leaderboardService.Verify(s => s.GetTopHealingOnPage(1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopHealingOnPage(0), Times.Once);
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
             leaderboardController.WithCallTo(c => c.Healing(int.MinValue));
 
             // Assert
-            leaderboardService.Verify(s => s.GetTopHealingOnPage(1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopHealingOnPage(0), Times.Once);
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace Parser.MvcClient.Tests.ControllersTests.LeaderboardControllerTests
             leaderboardController.WithCallTo(c => c.Healing(int.MaxValue));
 
             // Assert
-            leaderboardService.Verify(s => s.GetTopHealingOnPage(1), Times.Once);
+            leaderboardService.Verify(s => s.GetTopHealingOnPage(0), Times.Once);
         }
 
         [Test]
