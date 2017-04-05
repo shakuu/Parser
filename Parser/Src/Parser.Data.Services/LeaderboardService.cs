@@ -16,7 +16,7 @@ namespace Parser.Data.Services
         private const int DefaultSvgElementSize = 300;
         private const int DefaultPercentageBarRadius = 75;
         private const int DefaultPageSize = 5;
-        private const int DefaultPageNumber = 1;
+        private const int DefaultPageNumber = 0;
 
         private readonly IPartialCircleSvgPathProvider partialCircleSvgPathProvider;
         private readonly ILeaderboardViewModelFactory leaderboardViewModelFactory;
@@ -59,7 +59,7 @@ namespace Parser.Data.Services
         private IList<OutputPerSecondViewModel> GetOutputPerSecondViewModelsOnPage(int pageNumber, Func<int, int, IList<OutputPerSecondViewModel>> dataProviderMethod)
         {
             var outputPerSecondViewModels = new List<OutputPerSecondViewModel>();
-            for (int pageIndex = 1; pageIndex <= pageNumber; pageIndex++)
+            for (int pageIndex = 0; pageIndex <= pageNumber; pageIndex++)
             {
                 var resultOutputPerSecondViewModels = dataProviderMethod.Invoke(pageIndex, LeaderboardService.DefaultPageSize);
                 outputPerSecondViewModels.AddRange(resultOutputPerSecondViewModels);
@@ -105,7 +105,7 @@ namespace Parser.Data.Services
 
         private int ValidatePageNumber(int pageNumber)
         {
-            if (pageNumber <= 0)
+            if (pageNumber < 0)
             {
                 pageNumber = LeaderboardService.DefaultPageNumber;
             }

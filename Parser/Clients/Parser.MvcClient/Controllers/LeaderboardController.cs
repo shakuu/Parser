@@ -32,7 +32,7 @@ namespace Parser.MvcClient.Controllers
         {
             pageNumber = this.ValidatePageNumber(pageNumber);
 
-            var viewModel = this.leaderboardService.GetTopDamageOnPage(pageNumber.Value + 1);
+            var viewModel = this.leaderboardService.GetTopDamageOnPage(pageNumber.Value);
 
             return this.PartialView("_DamageAjaxFormPartial", viewModel);
         }
@@ -51,7 +51,7 @@ namespace Parser.MvcClient.Controllers
         {
             pageNumber = this.ValidatePageNumber(pageNumber);
 
-            var viewModel = this.leaderboardService.GetTopHealingOnPage(pageNumber.Value + 1);
+            var viewModel = this.leaderboardService.GetTopHealingOnPage(pageNumber.Value);
 
             return this.PartialView("_HealingAjaxFormPartial", viewModel);
         }
