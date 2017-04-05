@@ -33,7 +33,7 @@ namespace Parser.Data.Services.Tests.LeaderboardServiceTests
             leaderboardService.GetTopDamageOnPage(pageNumber);
 
             // Assert
-            outputPerSecondViewModelDataProvider.Verify(p => p.GetTopDamageOnPageInDescendingOrder(It.IsAny<int>(), It.IsAny<int>()), Times.Exactly(pageNumber));
+            outputPerSecondViewModelDataProvider.Verify(p => p.GetTopDamageOnPageInDescendingOrder(It.IsAny<int>(), It.IsAny<int>()), Times.Exactly(pageNumber + 1));
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace Parser.Data.Services.Tests.LeaderboardServiceTests
             };
             outputPerSecondViewModelDataProvider.Setup(p => p.GetTopDamageOnPageInDescendingOrder(It.IsAny<int>(), It.IsAny<int>())).Returns(outputPerSecondViewModels);
 
-            var pageNumber = 1;
+            var pageNumber = 0;
 
             var expectedInvocationsCount = outputPerSecondViewModels.Count;
 

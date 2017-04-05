@@ -12,7 +12,7 @@ namespace Parser.Data.DataProviders
     public class OutputPerSecondViewModelDataProvider : IOutputPerSecondViewModelDataProvider
     {
         private const int DefaultPageSize = 5;
-        private const int DefaultPageNumber = 1;
+        private const int DefaultPageNumber = 0;
 
         private readonly IEntityFrameworkRepository<StoredCombatStatistics> storedCombatStatisticsEntityFrameworkRepository;
 
@@ -41,7 +41,7 @@ namespace Parser.Data.DataProviders
 
         private int ValidatePageNumber(int pageNumber)
         {
-            if (pageNumber <= 0)
+            if (pageNumber < 0)
             {
                 pageNumber = OutputPerSecondViewModelDataProvider.DefaultPageNumber;
             }
