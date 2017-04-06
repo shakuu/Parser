@@ -40,12 +40,14 @@ namespace Parser.LogFile.SignalR.Strategies
 
             this.GetParsingSessionId(this.logFileParserHubProxyProvider);
         }
-        
+
+        protected IHubProxyProvider LogFileParserHubProxyProvider { get { return this.logFileParserHubProxyProvider; } }
+
         protected string ParsingSessionId { get { return this.parsingSessionId; } set { this.parsingSessionId = value; } }
 
-        public void UtilizeCommand(ICommand command)
+        public virtual void UtilizeCommand(ICommand command)
         {
-            Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
+            this.ValidateCommand(command);
 
             this.VerifyGetParsingSessionId(this.logFileParserHubProxyProvider);
 
@@ -60,6 +62,11 @@ namespace Parser.LogFile.SignalR.Strategies
             {
                 this.GetParsingSessionId(this.logFileParserHubProxyProvider);
             }
+        }
+
+        protected void ValidateCommand(ICommand command)
+        {
+            Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
         }
 
         private string GetLoggedRemoteUserUsername()
