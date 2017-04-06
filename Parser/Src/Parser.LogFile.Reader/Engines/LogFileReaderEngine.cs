@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 
 using Bytes2you.Validation;
+
 using Parser.LogFile.Reader.Contracts;
 using Parser.LogFile.Reader.Factories;
 
@@ -37,6 +38,8 @@ namespace Parser.LogFile.Reader.Engines
             this.fileReaderInputProviderFactory = fileReaderInputProviderFactory;
         }
 
+        private IFileReaderAutoResetEvent AutoResetEvent { get; set; }
+
         public Task StartAsync()
         {
             return Task.Run(() => this.Run());
@@ -53,8 +56,8 @@ namespace Parser.LogFile.Reader.Engines
 
             var logFilePath = this.logFilePathDiscoveryStrategy.DiscoverLogFile();
 
-            var autoResetEvent = this.fileReaderAutoResetEventFactory.CreateFileReaderAutoResetEvent(false);
-            var fileSystemWatcher = this.fileReaderFileSystemWatcherFactory.CreateFileReaderFileSystemWatcher(logFilePath, true, autoResetEvent);
+            this.AutoResetEvent = this.fileReaderAutoResetEventFactory.CreateFileReaderAutoResetEvent(false);
+            var fileSystemWatcher = this.fileReaderFileSystemWatcherFactory.CreateFileReaderFileSystemWatcher(logFilePath, true, this.AutoResetEvent);
 
             using (var inputProvider = this.fileReaderInputProviderFactory.CreateFileReaderInputProvider(logFilePath))
             {
@@ -72,10 +75,15 @@ namespace Parser.LogFile.Reader.Engines
                     }
                     else
                     {
-                        autoResetEvent.WaitOne(LogFileReaderEngine.AutoResetEventWaitTimeoutInMiliseconds);
+                        this.AwaitLogFileChanges();
                     }
                 }
             }
+        }
+
+        protected virtual void AwaitLogFileChanges()
+        {
+            this.AutoResetEvent.WaitOne(LogFileReaderEngine.AutoResetEventWaitTimeoutInMiliseconds);
         }
 
         public void Dispose()
