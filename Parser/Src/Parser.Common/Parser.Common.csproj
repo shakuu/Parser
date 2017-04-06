@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICommandEnumerationJsonConvertProvider.cs" />
     <Compile Include="Contracts\ICurrentCombatStatisticsChangedEventHandlerProvider.cs" />
     <Compile Include="Contracts\ICombatStatisticsContainer.cs" />
     <Compile Include="Contracts\ICommand.cs" />
