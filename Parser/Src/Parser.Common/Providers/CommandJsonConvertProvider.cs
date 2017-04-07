@@ -15,7 +15,7 @@ namespace Parser.Common.Providers
 
             this.jsonConvertProvider = jsonConvertProvider;
         }
-        
+
         public string SerializeCommand(ICommand command)
         {
             if (command == null)
