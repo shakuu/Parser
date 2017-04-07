@@ -17,7 +17,7 @@ namespace Parser.LogFile.SignalR.Tests.ServicesTests.LogFileParserHubServiceTest
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandEnumerationJsonConvertProvider>();
 
             var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
@@ -35,7 +35,7 @@ namespace Parser.LogFile.SignalR.Tests.ServicesTests.LogFileParserHubServiceTest
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandEnumerationJsonConvertProvider>();
 
             var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
@@ -53,7 +53,7 @@ namespace Parser.LogFile.SignalR.Tests.ServicesTests.LogFileParserHubServiceTest
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandEnumerationJsonConvertProvider>();
 
             var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
@@ -75,7 +75,7 @@ namespace Parser.LogFile.SignalR.Tests.ServicesTests.LogFileParserHubServiceTest
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandEnumerationJsonConvertProvider>();
 
             var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 
@@ -96,7 +96,7 @@ namespace Parser.LogFile.SignalR.Tests.ServicesTests.LogFileParserHubServiceTest
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandEnumerationJsonConvertProvider>();
 
             var logFileParserHubService = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
 

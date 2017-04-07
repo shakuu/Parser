@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using Bytes2you.Validation;
+
 using Parser.LogFile.SignalR.Contracts;
 using Parser.LogFile.SignalR.Factories;
 

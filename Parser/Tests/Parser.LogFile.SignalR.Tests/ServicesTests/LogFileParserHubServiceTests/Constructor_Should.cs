@@ -18,7 +18,7 @@ namespace Parser.LogFile.SignalR.Tests.ServicesTests.LogFileParserHubServiceTest
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandEnumerationJsonConvertProvider>();
 
             // Act
             var actualInstance = new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider.Object);
@@ -32,7 +32,7 @@ namespace Parser.LogFile.SignalR.Tests.ServicesTests.LogFileParserHubServiceTest
         {
             // Arrange
             ILogFileParserEngineManager logFileParserEngineManager = null;
-            var commandJsonConvertProvider = new Mock<ICommandJsonConvertProvider>();
+            var commandJsonConvertProvider = new Mock<ICommandEnumerationJsonConvertProvider>();
 
             // Act & Assert
             Assert.That(
@@ -45,12 +45,12 @@ namespace Parser.LogFile.SignalR.Tests.ServicesTests.LogFileParserHubServiceTest
         {
             // Arrange
             var logFileParserEngineManager = new Mock<ILogFileParserEngineManager>();
-            ICommandJsonConvertProvider commandJsonConvertProvider = null;
+            ICommandEnumerationJsonConvertProvider commandJsonConvertProvider = null;
 
             // Act & Assert
             Assert.That(
                 () => new LogFileParserHubService(logFileParserEngineManager.Object, commandJsonConvertProvider),
-                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICommandJsonConvertProvider)));
+                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICommandEnumerationJsonConvertProvider)));
         }
     }
 }

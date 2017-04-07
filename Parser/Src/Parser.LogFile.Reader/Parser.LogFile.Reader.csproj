@@ -65,10 +65,12 @@
     <Compile Include="Contracts\IDirectoryFilesProvider.cs" />
     <Compile Include="Contracts\IEnvironmentFolderPathProvider.cs" />
     <Compile Include="Contracts\IFileReaderAutoResetEvent.cs" />
+    <Compile Include="Contracts\IForceCommandUtilizationStrategy.cs" />
     <Compile Include="Contracts\ILogFileReaderEngine.cs" />
     <Compile Include="Contracts\IFileReaderFileSystemWatcher.cs" />
     <Compile Include="Contracts\IFileReaderInputProvider.cs" />
     <Compile Include="Contracts\ILogFileDiscoveryStrategy.cs" />
+    <Compile Include="Engines\EnumeratingLogFileReaderEngine.cs" />
     <Compile Include="Engines\LogFileReaderEngine.cs" />
     <Compile Include="Factories\IFileReaderAutoResetEventFactory.cs" />
     <Compile Include="Factories\IFileReaderFileSystemWatcherFactory.cs" />

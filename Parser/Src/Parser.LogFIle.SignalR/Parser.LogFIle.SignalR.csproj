@@ -74,6 +74,7 @@
     <Compile Include="Services\LogFileParserHubService.cs" />
     <Compile Include="Services\SignalRHubConnectionService.cs" />
     <Compile Include="Strategies\SignalRCommandUtilizationStrategy.cs" />
+    <Compile Include="Strategies\SignalRForceCommandUtilizationStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -7,5 +7,7 @@
         void EndParsingSession(string engineId);
 
         void GetParsingSessionId(string username);
+
+        void SendCommandEnumeration(string engineId, string serializedCommand);
     }
 }

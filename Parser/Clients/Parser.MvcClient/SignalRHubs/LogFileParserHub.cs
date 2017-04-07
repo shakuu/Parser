@@ -35,5 +35,12 @@ namespace Parser.MvcClient.SignalRHubs
 
             Clients.Caller.UpdateParsingSessionId(message);
         }
+
+        public void SendCommandEnumeration(string engineId, string serializedCommandEnumeration)
+        {
+            var message = this.logFileParserHubService.SendCommandEnumeration(engineId, serializedCommandEnumeration);
+
+            Clients.Caller.UpdateStatus(message);
+        }
     }
 }

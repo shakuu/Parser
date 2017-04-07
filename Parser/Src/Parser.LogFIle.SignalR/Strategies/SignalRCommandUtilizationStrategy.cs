@@ -38,28 +38,35 @@ namespace Parser.LogFile.SignalR.Strategies
 
             this.InitializeLogFileParserHubProxy(this.logFileParserHubProxyProvider);
 
-            var loggedRemoteUserUsername = this.GetLoggedRemoteUserUsername();
-            this.GetParsingSessionid(loggedRemoteUserUsername, this.logFileParserHubProxyProvider);
+            this.GetParsingSessionId(this.logFileParserHubProxyProvider);
         }
 
-        /// <summary>
-        /// Created for testing.
-        /// </summary>
+        protected IHubProxyProvider LogFileParserHubProxyProvider { get { return this.logFileParserHubProxyProvider; } }
+
         protected string ParsingSessionId { get { return this.parsingSessionId; } set { this.parsingSessionId = value; } }
 
-        public void UtilizeCommand(ICommand command)
+        public virtual void UtilizeCommand(ICommand command)
         {
-            Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
+            this.ValidateCommand(command);
 
-            var loggedRemoteUserUsername = this.GetLoggedRemoteUserUsername();
-            while (string.IsNullOrEmpty(this.parsingSessionId))
-            {
-                this.GetParsingSessionid(loggedRemoteUserUsername, this.logFileParserHubProxyProvider);
-            }
+            this.VerifyGetParsingSessionId(this.logFileParserHubProxyProvider);
 
             var serializedCommand = this.commandJsonConvertProvider.SerializeCommand(command);
 
             this.logFileParserHubProxyProvider.Invoke("SendCommand", this.parsingSessionId, serializedCommand);
+        }
+
+        protected void VerifyGetParsingSessionId(IHubProxyProvider logFileParserHubProxyProvider)
+        {
+            while (string.IsNullOrEmpty(this.parsingSessionId))
+            {
+                this.GetParsingSessionId(this.logFileParserHubProxyProvider);
+            }
+        }
+
+        protected void ValidateCommand(ICommand command)
+        {
+            Guard.WhenArgument(command, nameof(ICommand)).IsNull().Throw();
         }
 
         private string GetLoggedRemoteUserUsername()
@@ -69,14 +76,14 @@ namespace Parser.LogFile.SignalR.Strategies
 
         private void InitializeLogFileParserHubProxy(IHubProxyProvider logFileParserHubProxyProvider)
         {
-            // TODO: DELETE CW
             logFileParserHubProxyProvider.On<string>("UpdateStatus", (update) => this.commandUtilizationUpdateStrategy.DisplayUpdate(update));
             logFileParserHubProxyProvider.On<string>("UpdateParsingSessionId", this.OnUpdateParsingSessionId);
         }
 
-        private void GetParsingSessionid(string username, IHubProxyProvider logFileParserHubProxyProvider)
+        private void GetParsingSessionId(IHubProxyProvider logFileParserHubProxyProvider)
         {
-            logFileParserHubProxyProvider.Invoke("GetParsingSessionId", username).Wait();
+            var loggedRemoteUserUsername = this.GetLoggedRemoteUserUsername();
+            logFileParserHubProxyProvider.Invoke("GetParsingSessionId", loggedRemoteUserUsername).Wait();
             Thread.Sleep(500);
         }
 
