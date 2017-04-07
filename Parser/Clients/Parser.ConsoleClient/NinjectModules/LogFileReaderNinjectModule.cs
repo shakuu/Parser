@@ -7,6 +7,7 @@ using Ninject.Modules;
 using Parser.Common.Contracts;
 using Parser.ConsoleClient.FileReaderImplementations;
 using Parser.LogFile.Reader.Contracts;
+using Parser.LogFile.Reader.Engines;
 using Parser.LogFile.Reader.Strategies;
 using Parser.LogFile.SignalR.Strategies;
 
@@ -21,6 +22,8 @@ namespace Parser.ConsoleClient.NinjectModules
 
             this.Bind<ICommandUtilizationStrategy>().To<SignalRCommandUtilizationStrategy>().InSingletonScope();
             this.Bind<ICommandUtilizationUpdateStrategy>().To<ConsoleCommandUtilizationUpdateStrategy>().InSingletonScope();
+
+            this.Rebind<ILogFileReaderEngine>().To<EnumeratingLogFileReaderEngine>();
 
             //this.Bind<ICommandUtilizationStrategy>().To<ConsoleClientCommandUtilizationStrategy>().InSingletonScope();
             //this.Kernel.InterceptReplace<ConsoleClientCommandUtilizationStrategy>(s => s.UtilizeCommand(null), this.ICommandUtilizationStrategyUtilizeCommandMethod);

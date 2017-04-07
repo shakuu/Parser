@@ -21,7 +21,7 @@ namespace Parser.LogFile.SignalR.Services
             Guard.WhenArgument(hubConnectionProviderFactory, nameof(IHubConnectionProviderFactory)).IsNull().Throw();
             Guard.WhenArgument(hubProxyProviderFactory, nameof(IHubProxyProviderFactory)).IsNull().Throw();
 
-            this.hubConnectionProvider = hubConnectionProviderFactory.CreateHubConnectionProvider(SignalRHubConnectionService.HubConnectionAzure);
+            this.hubConnectionProvider = hubConnectionProviderFactory.CreateHubConnectionProvider(SignalRHubConnectionService.HubConnectionUrl);
             this.hubProxyProviderFactory = hubProxyProviderFactory;
 
             this.hubProxyProviders = new Dictionary<string, IHubProxyProvider>();

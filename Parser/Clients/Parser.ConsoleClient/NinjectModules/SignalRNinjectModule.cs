@@ -2,6 +2,9 @@
 using Ninject.Extensions.Conventions.Syntax;
 using Ninject.Modules;
 
+using Parser.LogFile.Reader.Contracts;
+using Parser.LogFIle.SignalR.Strategies;
+
 namespace Parser.ConsoleClient.NinjectModules
 {
     internal class SignalRNinjectModule : NinjectModule
@@ -10,6 +13,8 @@ namespace Parser.ConsoleClient.NinjectModules
         {
             this.Bind(this.BindFactoriesByConvention);
             this.Bind(this.BindAllClassesByConvention);
+
+            this.Rebind<ICommandUtilizationStrategy>().To<SignalRForceCommandUtilizationStrategy>();
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)
