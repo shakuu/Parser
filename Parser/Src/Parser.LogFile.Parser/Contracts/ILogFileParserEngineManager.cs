@@ -1,4 +1,6 @@
-﻿using Parser.Common.Contracts;
+﻿using System.Collections.Generic;
+
+using Parser.Common.Contracts;
 
 namespace Parser.LogFile.Parser.Contracts
 {
@@ -9,6 +11,8 @@ namespace Parser.LogFile.Parser.Contracts
         string StopLogFileParserEngine(string engineId);
 
         void EnqueueCommandToEngineWithId(string engineId, ICommand command);
+
+        void EnqueueCommandEnumerationToEngineWithId(string engineId, IEnumerable<ICommand> commandEnumeration);
 
         ILogFileParserEngine FindLogFileParserEngineByUsername(string username);
     }

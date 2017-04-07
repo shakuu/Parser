@@ -39,5 +39,15 @@ namespace Parser.Common.Providers
 
             return this.jsonConvertProvider.SerializeObject(commands);
         }
+
+        public IEnumerable<ICommand> DeserializeCommandEnumeration(string value)
+        {
+            if (value == null)
+            {
+                return null;
+            }
+
+            return this.jsonConvertProvider.DeserializeObject<IEnumerable<ICommand>>(value);
+        }
     }
 }

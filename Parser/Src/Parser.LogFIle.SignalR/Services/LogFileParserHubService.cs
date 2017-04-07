@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using Bytes2you.Validation;
 
@@ -11,12 +12,12 @@ namespace Parser.LogFile.SignalR.Services
     public class LogFileParserHubService : ILogFileParserHubService
     {
         private readonly ILogFileParserEngineManager logFileParserEngineManager;
-        private readonly ICommandJsonConvertProvider commandJsonConvertProvider;
+        private readonly ICommandEnumerationJsonConvertProvider commandJsonConvertProvider;
 
-        public LogFileParserHubService(ILogFileParserEngineManager logFileParserEngineManager, ICommandJsonConvertProvider commandJsonConvertProvider)
+        public LogFileParserHubService(ILogFileParserEngineManager logFileParserEngineManager, ICommandEnumerationJsonConvertProvider commandJsonConvertProvider)
         {
             Guard.WhenArgument(logFileParserEngineManager, nameof(ILogFileParserEngineManager)).IsNull().Throw();
-            Guard.WhenArgument(commandJsonConvertProvider, nameof(ICommandJsonConvertProvider)).IsNull().Throw();
+            Guard.WhenArgument(commandJsonConvertProvider, nameof(ICommandEnumerationJsonConvertProvider)).IsNull().Throw();
 
             this.logFileParserEngineManager = logFileParserEngineManager;
             this.commandJsonConvertProvider = commandJsonConvertProvider;
@@ -46,6 +47,21 @@ namespace Parser.LogFile.SignalR.Services
 
             // TODO: Remove? Replace with something meaningful?
             return deserializedCommand.TimeStamp.ToShortTimeString();
+        }
+
+        public string SendCommandEnumeration(string engineId, string serializedCommandEnumeration)
+        {
+            Guard.WhenArgument(engineId, nameof(engineId)).IsNullOrEmpty().Throw();
+
+            var deserializedCommandsEnumeration = this.commandJsonConvertProvider.DeserializeCommandEnumeration(serializedCommandEnumeration);
+            if (deserializedCommandsEnumeration == null)
+            {
+                throw new ArgumentException(nameof(deserializedCommandsEnumeration));
+            }
+
+            this.logFileParserEngineManager.EnqueueCommandEnumerationToEngineWithId(engineId, deserializedCommandsEnumeration);
+
+            return deserializedCommandsEnumeration?.Last().TimeStamp.ToShortTimeString();
         }
     }
 }

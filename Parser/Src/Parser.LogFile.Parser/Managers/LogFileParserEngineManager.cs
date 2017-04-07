@@ -46,6 +46,16 @@ namespace Parser.LogFile.Parser.Managers
             return null;
         }
 
+        public void EnqueueCommandEnumerationToEngineWithId(string engineId, IEnumerable<ICommand> commandEnumeration)
+        {
+            Guard.WhenArgument(commandEnumeration, nameof(commandEnumeration)).IsNull().Throw();
+
+            foreach (var command in commandEnumeration)
+            {
+                this.EnqueueCommandToEngineWithId(engineId, command);
+            }
+        }
+
         public void EnqueueCommandToEngineWithId(string engineId, ICommand command)
         {
             Guard.WhenArgument(engineId, nameof(engineId)).IsNullOrEmpty().Throw();
