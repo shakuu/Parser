@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 using Parser.Common.Contracts;
 
@@ -17,11 +14,6 @@ namespace Parser.Common.Providers
         public T DeserializeObject<T>(string value)
         {
             return JsonConvert.DeserializeObject<T>(value);
-        }
-
-        public string SerializeCommandEnumeration(IEnumerable<ICommand> commands)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Parser.ConsoleClient.FileReaderImplementations
             }
 
             // Returning sample data for controlled input.
-            invocation.ReturnValue = LogFilePathDiscoveryStrategyTestingInterceptor.DrBurnzLiveHealing;
+            invocation.ReturnValue = LogFilePathDiscoveryStrategyTestingInterceptor.SampleParse;
         }
     }
 }

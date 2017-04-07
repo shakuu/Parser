@@ -41,6 +41,8 @@ namespace Parser.LogFIle.SignalR.Strategies
 
             var serializedCommandEnumeration = this.commandEnumerationJsonConvertProvider.SerializeCommandEnumeration(this.commands);
             base.LogFileParserHubProxyProvider.Invoke("SendCommandEnumeration", base.ParsingSessionId, serializedCommandEnumeration);
+
+            this.commands.Clear();
         }
     }
 }

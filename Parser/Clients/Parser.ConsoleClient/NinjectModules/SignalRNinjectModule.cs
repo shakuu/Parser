@@ -14,7 +14,7 @@ namespace Parser.ConsoleClient.NinjectModules
             this.Bind(this.BindFactoriesByConvention);
             this.Bind(this.BindAllClassesByConvention);
 
-            this.Rebind<ICommandUtilizationStrategy>().To<SignalRForceCommandUtilizationStrategy>();
+            this.Bind<IForceCommandUtilizationStrategy>().To<SignalRForceCommandUtilizationStrategy>();
         }
 
         private void BindFactoriesByConvention(IFromSyntax bind)

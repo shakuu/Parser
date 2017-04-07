@@ -3,6 +3,7 @@
 using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
+using Parser.Common.Models;
 
 namespace Parser.Common.Providers
 {
@@ -47,7 +48,7 @@ namespace Parser.Common.Providers
                 return null;
             }
 
-            return this.jsonConvertProvider.DeserializeObject<IEnumerable<ICommand>>(value);
+            return this.jsonConvertProvider.DeserializeObject<List<Command>>(value);
         }
     }
 }
