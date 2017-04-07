@@ -11,6 +11,8 @@ namespace Parser.LogFIle.SignalR.Strategies
 {
     public class SignalRForceCommandUtilizationStrategy : SignalRCommandUtilizationStrategy, IForceCommandUtilizationStrategy, ICommandUtilizationStrategy, IDisposable
     {
+        private const int MaximumCommandsCountAllowed = 29;
+
         private readonly ICommandEnumerationJsonConvertProvider commandEnumerationJsonConvertProvider;
 
         private readonly ICollection<ICommand> commands;
@@ -28,6 +30,10 @@ namespace Parser.LogFIle.SignalR.Strategies
             base.ValidateCommand(command);
 
             this.commands.Add(command);
+            if (this.commands.Count >= SignalRForceCommandUtilizationStrategy.MaximumCommandsCountAllowed)
+            {
+                this.ForceUtilizeCommand();
+            }
         }
 
         public void ForceUtilizeCommand()
