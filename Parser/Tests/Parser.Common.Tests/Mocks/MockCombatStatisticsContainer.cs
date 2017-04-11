@@ -6,8 +6,8 @@ namespace Parser.Common.Tests.Mocks
 {
     internal class MockCombatStatisticsContainer : CombatStatisticsContainer
     {
-        public MockCombatStatisticsContainer(ICurrentCombatStatisticsChangedEventHandlerProvider currentCombatStatisticsChangedEventHandlerProvider, ICurrentCombatStatisticsChangedEventArgsFactory currentCombatStatisticsChangedEventArgsFactory)
-            : base(currentCombatStatisticsChangedEventHandlerProvider, currentCombatStatisticsChangedEventArgsFactory)
+        public MockCombatStatisticsContainer(ICurrentCombatStatisticsChangedEventArgsFactory currentCombatStatisticsChangedEventArgsFactory)
+            : base(currentCombatStatisticsChangedEventArgsFactory)
         {
         }
 
@@ -16,17 +16,5 @@ namespace Parser.Common.Tests.Mocks
         internal bool CurrentCombatStatisticsChangedMethodIsCalled { get; private set; }
 
         internal ICombatStatistics CurrentCombatStatisticsChangedMethodICombatStatisticsParameter { get; private set; }
-
-        internal void MockedCurrentCombatStatisticsChanged(ICombatStatistics combatStatistics)
-        {
-            this.CurrentCombatStatisticsChanged(combatStatistics);
-        }
-
-        protected override void CurrentCombatStatisticsChanged(ICombatStatistics combatStatistics)
-        {
-            base.CurrentCombatStatisticsChanged(combatStatistics);
-            this.CurrentCombatStatisticsChangedMethodIsCalled = true;
-            this.CurrentCombatStatisticsChangedMethodICombatStatisticsParameter = combatStatistics;
-        }
     }
 }

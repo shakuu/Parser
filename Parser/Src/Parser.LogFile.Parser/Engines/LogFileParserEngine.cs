@@ -29,7 +29,7 @@ namespace Parser.LogFile.Parser.Engines
             this.combatStatisticsPersistentStorageStrategy = combatStatisticsPersistentStorageStrategy;
             this.liveCombatStatisticsCreationStrategy = liveCombatStatisticsCreationStrategy;
 
-            this.combatStatisticsContainer.OnCurrentCombatStatisticsChanged.Subscribe(this.OnCurrentCombatStatisticsChanged);
+            this.combatStatisticsContainer.OnCurrentCombatChanged += this.OnCurrentCombatStatisticsChanged;
         }
 
         protected ICombatStatisticsContainer CombatStatisticsContainer { get { return this.combatStatisticsContainer; } set { this.combatStatisticsContainer = value; } }

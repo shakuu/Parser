@@ -1,31 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using Bytes2you.Validation;
 
 using Parser.Common.Contracts;
+using Parser.Common.EventsArgs;
 using Parser.Common.Factories;
 
 namespace Parser.Common.Models
 {
     public class CombatStatisticsContainer : ICombatStatisticsContainer
     {
-        private readonly ICurrentCombatStatisticsChangedEventHandlerProvider currentCombatStatisticsChangedEventHandlerProvider;
+        public event EventHandler<CurrentCombatStatisticsChangedEventArgs> OnCurrentCombatChanged;
+
         private readonly ICurrentCombatStatisticsChangedEventArgsFactory currentCombatStatisticsChangedEventArgsFactory;
 
         private ICombatStatistics currentCombatStatistics;
 
-        public CombatStatisticsContainer(ICurrentCombatStatisticsChangedEventHandlerProvider currentCombatStatisticsChangedEventHandlerProvider, ICurrentCombatStatisticsChangedEventArgsFactory currentCombatStatisticsChangedEventArgsFactory)
+        public CombatStatisticsContainer(ICurrentCombatStatisticsChangedEventArgsFactory currentCombatStatisticsChangedEventArgsFactory)
         {
-            Guard.WhenArgument(currentCombatStatisticsChangedEventHandlerProvider, nameof(ICurrentCombatStatisticsChangedEventHandlerProvider)).IsNull().Throw();
             Guard.WhenArgument(currentCombatStatisticsChangedEventArgsFactory, nameof(ICurrentCombatStatisticsChangedEventArgsFactory)).IsNull().Throw();
 
-            this.currentCombatStatisticsChangedEventHandlerProvider = currentCombatStatisticsChangedEventHandlerProvider;
             this.currentCombatStatisticsChangedEventArgsFactory = currentCombatStatisticsChangedEventArgsFactory;
 
             this.AllCombatStatistics = new LinkedList<ICombatStatistics>();
         }
-        
-        public ICurrentCombatStatisticsChangedSubscribeProvider OnCurrentCombatStatisticsChanged { get { return this.currentCombatStatisticsChangedEventHandlerProvider; } }
 
         public ICollection<ICombatStatistics> AllCombatStatistics { get; set; }
 
@@ -44,20 +43,20 @@ namespace Parser.Common.Models
 
                 if (previousCombatStatistics != null)
                 {
-                    this.CurrentCombatStatisticsChanged(previousCombatStatistics);
+                    this.CurrentCombatChanged(previousCombatStatistics);
                 }
             }
         }
 
         protected ICombatStatistics MockingCurrentCombatStatistics { get { return this.currentCombatStatistics; } set { this.currentCombatStatistics = value; } }
 
-        protected virtual void CurrentCombatStatisticsChanged(ICombatStatistics combatStatistics)
+        protected virtual void CurrentCombatChanged(ICombatStatistics combatStatistics)
         {
             Guard.WhenArgument(combatStatistics, nameof(ICombatStatistics)).IsNull().Throw();
 
             var currentCombatStatisticsChangedEventArgs = this.currentCombatStatisticsChangedEventArgsFactory.CreateCurrentCombatStatisticsChangedEventArgs(combatStatistics);
 
-            this.currentCombatStatisticsChangedEventHandlerProvider.Raise(this, currentCombatStatisticsChangedEventArgs);
+            this.OnCurrentCombatChanged?.Invoke(this, currentCombatStatisticsChangedEventArgs);
         }
     }
 }
