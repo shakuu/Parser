@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Moq;
 using NUnit.Framework;
+
 using Parser.LogFile.SignalR.Contracts;
 using Parser.LogFile.SignalR.Factories;
 using Parser.LogFile.SignalR.Services;
@@ -55,26 +56,7 @@ namespace Parser.LogFile.SignalR.Tests.ServicesTests.SignalRHubConnectionService
                 () => new SignalRHubConnectionService(hubConnectionProviderFactory.Object, hubProxyProviderFactory),
                 Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(IHubProxyProviderFactory)));
         }
-
-        [Test]
-        public void InvokeIHubConnectionProviderFactory_CreateHubConnectionProviderMethodOnceWithCorrectParameter()
-        {
-            // Arrange
-            var hubConnectionProviderFactory = new Mock<IHubConnectionProviderFactory>();
-            var hubProxyProviderFactory = new Mock<IHubProxyProviderFactory>();
-
-            var hubConnectionProvider = new Mock<IHubConnectionProvider>();
-            hubConnectionProviderFactory.Setup(f => f.CreateHubConnectionProvider(It.IsAny<string>())).Returns(hubConnectionProvider.Object);
-
-            var hubConnectionUrl = "http://parser-mvc.azurewebsites.net/";
-
-            // Act
-            var signalRHubConnectionService = new SignalRHubConnectionService(hubConnectionProviderFactory.Object, hubProxyProviderFactory.Object);
-
-            // Assert
-            hubConnectionProviderFactory.Verify(f => f.CreateHubConnectionProvider(hubConnectionUrl), Times.Once);
-        }
-
+        
         [Test]
         public void InvokeIHubConnectionProvider_StartMethod()
         {
